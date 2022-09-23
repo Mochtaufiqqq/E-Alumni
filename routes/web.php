@@ -21,3 +21,4 @@ Route::get('/tambahalumni',[AlumniController::class,'add']);
 Route::post('/tambahalumni',[AlumniController::class,'store']);
 Route::get('/editalumni/{alumnis}',[AlumniController::class,'edit']);
 Route::put('/editalumni/{alumnis}',[AlumniController::class,'update']);
+Route::delete('/hapus/alumni/{alumnis}', [AlumniController::class, 'delete'])->name('delete');

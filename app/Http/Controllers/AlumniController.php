@@ -72,6 +72,6 @@ class AlumniController extends Controller
      public function delete(Alumni $alumnis) {
         Alumni::destroy($alumnis->id);
 
-        return redirect('/barang/lihat')->with('success', 'Data Barang Berhasil Dihapus');
+        return redirect('/lihatalumni')->with('success', 'Data Berhasil Dihapus');
      }
 }
