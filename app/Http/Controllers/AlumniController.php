@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class AlumniController extends Controller
 {
-    
+
+    public function dashboard(){
+        return view('content.user.page');
+    }
+
     public function index (){
 
         return view('content.admin.dashboard');
