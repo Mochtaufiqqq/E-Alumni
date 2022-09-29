@@ -62,49 +62,30 @@
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>Alamat</th>
-                                    <th>Pekerjaan</th>
-                                    <th>No Telp</th>
-                                    <th>Tahun Keluar</th>
+                                    <th>Status User</th>
                                     <th>Opsi</th>
                                 </tr>
-                                @foreach ($alumnis as $a)
+                                @foreach ($users as $u)
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{ $a->nama }}</td>
-                                    <td>{{ $a->email }}</td>
-                                    <td>{{ $a->alamat }}</td>
-                                    <td>{{ $a->pekerjaan }}</td>
-                                    <td>{{ $a->no_telp }}</td>
-                                    <td>{{ $a->tahun_keluar }}</td>
-                                    <td><a href="/editalumni/{{ $a->id }}"
-                                            class="btn btn-pill btn-warning btn-lg">Edit</a>
-                                        <a href="/alumni/hapus/{{ $a->id }}" class="btn btn-danger btn-pill btn-lg" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $a->id }}">Hapus</a>
-
-                                        {{-- modal delete --}}
-                                        <div class="modal fade" id="modalDelete{{ $a->id }}" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
-                                                        <button class="btn-close" type="button" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">Apakah Anda yakin ingin menghapus data {{ $a->nama }}</div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-primary" type="button"
-                                                            data-bs-dismiss="modal">Tidak</button>
-
-                                                            <form action="/hapus/alumni/{{ $a->id }}" method="POST" >
-                                                              @method('delete')
-                                                              @csrf
-                                                        <button class="btn btn-secondary" type="submit">Yakin</button>
-                                                          </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <td>{{ $u->nama }}</td>
+                                    <td>{{ $u->email }}</td>
+                                    <td>{{ $u->alamat }}</td>
+                                    <td>
+                                        @if($u->status_user_id === 1)
+                                        <h5><span class="badge bg-opacity-100 bg-danger text-white">Nonaktif</span></h5>
+                                        @else($u->status_user_id === 2)
+                                        <h5><span class="badge bg-opacity-100 bg-success text-white">Aktif</span></h5>
+                                        @endif
+                                        
+                                    </td>
+                                    <td>
+                                        @if($u->status_user_id === 1)
+                                      <a href="/statususer/{{ $u->id }}/accept" class="btn btn-success">Setujui</a>
+                                      {{-- <a href="/hapus/alumni/{id}">Tolak</a> --}}
+                                      {{-- <a href="/loanrequests/{{ $l->id }}/cancel" class="btn btn-danger" onclick="return confirm('Are you sure want to cancel ?');">Cancel</a> --}}
+                                       @endif
                                     </td>
 
                                 </tr>

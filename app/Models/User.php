@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\StatusUser;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -17,9 +18,11 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'users';
     protected $fillable = [
-        'name',
+        'nama',
         'email',
+        'alamat',
         'password',
     ];
 
@@ -41,10 +44,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    protected $guarded = ['id_alumni'];
-    protected $table = 'users';
-    protected $primarykey = 'id';
 
     public function riwayat_organisasi()
     {
@@ -69,5 +68,9 @@ class User extends Authenticatable
     public function riwayat_pendidikan()
     {
         return $this->belongsTo(Riwayat_pendidikan::class);
+    }
+
+    public function StatusUser(){
+        return $this->belongsTo(StatusUser::class);
     }
 }

@@ -35,6 +35,9 @@ return new class extends Migration
             $table->foreignId('id_prestasi');
             $table->foreignId('id_postingan');
             $table->foreignId('id_pendidikan');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->foreignId('status_user_id')->default('1');
             $table->rememberToken();
             $table->timestamps();
         });

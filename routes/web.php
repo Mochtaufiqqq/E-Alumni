@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,29 @@ Route::post('/tambahalumni',[AlumniController::class,'store']);
 Route::get('/editalumni/{alumnis}',[AlumniController::class,'edit']);
 Route::put('/editalumni/{alumnis}',[AlumniController::class,'update']);
 Route::delete('/hapus/alumni/{alumnis}', [AlumniController::class, 'delete'])->name('delete');
+
+Route::group(['middleware' => ['guest']], function(){
+    Route::get('/login', [AuthController::class, 'index']);
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'store']);
+    });
+    Route::group(['middleware' => ['auth']], function(){
+    Route::get('/logout', [AuthController::class, 'logout']);
+    });
+
+
+Route::group(['middleware' => ['auth', 'CheckRole:admin']], function(){
+    Route::get('/dashboard',[AlumniController::class,'index']);
+    Route::get('/lihatalumni',[AlumniController::class,'show']);
+    Route::get('/tambahalumni',[AlumniController::class,'add']);
+    Route::post('/tambahalumni',[AlumniController::class,'store']);
+    Route::get('/editalumni/{alumnis}',[AlumniController::class,'edit']);
+    Route::put('/editalumni/{alumnis}',[AlumniController::class,'update']);
+    Route::delete('/hapus/alumni/{alumnis}', [AlumniController::class, 'delete'])->name('delete');
+    Route::get('/statususer/{users:id}/accept', [AlumniController::class, "accept"]);
+});  
+
+Route::group(['middleware' => ['auth', 'CheckRole:user']], function(){
+    Route::get('/home',[DashboardController::class,'dashboarduser']);
+});
