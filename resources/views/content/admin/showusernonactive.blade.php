@@ -66,7 +66,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Semua Data User</h5><span>Dibawah Ini adalah table semua data user aktif dan user nonaktif kamu bisa mengelolanya. Terdapat Beberapa Button Untuk Mengelola</span>
+                    <h5>Semua Data User Nonaktif</h5><span>Dibawah Ini adalah table semua data user aktif dan user nonaktif kamu bisa mengelolanya. Terdapat Beberapa Button Untuk Mengelola</span>
                 </div>
                 <div class="card-body">
                     <a class="btn btn-primary" href="/tambahuser">Tambah Data</a>
@@ -88,8 +88,8 @@
                                     <td>{{ $u->email }}</td>
                                     <td>{{ $u->alamat }}</td>
                                     <td>
-                                        @if($u->status_user_id === 2)
-                                        <h5><span class="badge bg-opacity-100 bg-success text-white">Aktif</span></h5>
+                                        @if($u->status_user_id === 1)
+                                        <h5><span class="badge bg-opacity-100 bg-danger text-white">Nonaktif</span></h5>
                                         @endif
             
                                     </td>

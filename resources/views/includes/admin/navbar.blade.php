@@ -15,7 +15,7 @@
           </li>
           
           <li class="onhover-dropdown p-0">
-            <button class="btn btn-primary-light" type="button"><a href="login_two.html"><i data-feather="log-out"></i>Log out</a></button>
+            <button class="btn btn-primary-light" type="button"><a href="/logout"><i data-feather="log-out"></i>Log out</a></button>
           </li>
         </ul>
       </div>

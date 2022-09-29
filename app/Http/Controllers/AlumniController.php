@@ -29,11 +29,19 @@ class AlumniController extends Controller
         ]);
     }
 
+    public function usernonaktif(){
+        $users = DB::table('users')
+        ->where('status_user_id','=', '1')->get();
+
+        return view('content.admin.showusernonactive',[
+            'users' => $users
+        ]);
+    }
+
     public function accept (User $users) {
         User::where("id", $users->id)->update(["status_user_id" => 2]);
 
         return redirect("/lihatalumni")->with("success", "User Sudah Diaktivasi !");
-
     }
     
 
