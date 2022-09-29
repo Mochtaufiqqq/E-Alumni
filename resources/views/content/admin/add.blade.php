@@ -18,6 +18,13 @@
                             <form action="/tambahuser" method="POST">
                                 @csrf
                                 <div class="mb-3">
+                                    <label class="form-label">Foto</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="file" name="image" placeholder="Foto"
+                                            aria-label="Recipient's username">
+                                    </div>
+                                    </div>
+                                <div class="mb-3">
                                     <label class="form-label">NISN</label>
                                     <div class="input-group">
                                         <input class="form-control" type="text" name="nisn" placeholder="Nisn"

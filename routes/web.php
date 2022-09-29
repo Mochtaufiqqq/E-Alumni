@@ -30,7 +30,7 @@ Route::group(['middleware' => ['guest']], function(){
 Route::group(['middleware' => ['auth', 'CheckRole:admin']], function(){
     Route::get('/dashboard',[AlumniController::class,'index']);
     Route::get('/semuauser',[AlumniController::class,'show']);
-    // Route::get('/semuauser',[AlumniController::class,'show']);
+    Route::get('/useraktif',[AlumniController::class,'useraktif']);
     Route::get('/tambahuser',[AlumniController::class,'add']);
     Route::post('/tambahuser',[AlumniController::class,'store']);
     Route::get('/edituser/{users}',[AlumniController::class,'edit']);

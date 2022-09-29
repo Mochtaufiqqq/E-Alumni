@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Alumni;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AlumniController extends Controller
 {
@@ -21,12 +21,13 @@ class AlumniController extends Controller
         ],compact('users'));
     }
 
-    // public function useraktif(){
-    //     $users = User::where('name', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(5);
-    //     return view ('content.admin.showuseractive',[
-    //         'users' => $users
-    //     ]);
-    // }
+    public function useraktif(){
+        $users = DB::table('users')
+        ->where('status_user_id', '=', '2')->get();
+        return view ('content.admin.showuseractive',[
+            'users' => $users
+        ]);
+    }
 
     public function accept (User $users) {
         User::where("id", $users->id)->update(["status_user_id" => 2]);
@@ -49,13 +50,14 @@ class AlumniController extends Controller
             'nisn' => 'required|unique:users',
             'nama' => 'required',
             'alamat' => 'required',
+            
             // 'tahun_keluar'  => 'required',
             'email' => 'required|unique:users',
             // 'no_telp' => 'required',
             'password' => 'required'
         ]);
 
-        // $validatedData['image'] = $request->file('image')->store('alumni-images');
+        $validatedData['image'] = $request->file('image')->store('alumni-images');
 
         User::create($validatedData);
 

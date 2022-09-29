@@ -68,12 +68,14 @@
                 <div class="card-header">
                     <h5>Semua Data User</h5><span>Dibawah Ini adalah table semua data user aktif dan user nonaktif kamu bisa mengelolanya. Terdapat Beberapa Button Untuk Mengelola</span>
                 </div>
-                <a class="btn btn-primary" href="/tambahuser">Tambah Data</a>
+                
                 <div class="card-body">
+                    <a class="btn btn-primary" href="/tambahuser">Tambah Data</a>
                     <div class="dt-ext table-responsive">
                         <table class="display" id="responsive">
                             <thead>
                                 <tr>
+                                    <th>Foto</th>
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>Alamat</th>
