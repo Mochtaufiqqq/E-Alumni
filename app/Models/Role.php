@@ -5,11 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Alumni extends Model
+class Role extends Model
 {
     use HasFactory;
-
-    protected $guarded = ['id'];
-    protected $table = 'alumnis';
-    protected $primarykey = 'id';
 }

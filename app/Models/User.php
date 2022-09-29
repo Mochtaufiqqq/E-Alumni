@@ -41,4 +41,33 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $guarded = ['id_alumni'];
+    protected $table = 'users';
+    protected $primarykey = 'id';
+
+    public function riwayat_organisasi()
+    {
+        return $this->belongsTo(Riwayat_organisasi::class);
+    }
+
+    public function sosmed()
+    {
+        return $this->belongsTo(Sosmed::class);
+    }
+
+    public function foto_postingan()
+    {
+        return $this->belongsTo(Foto_postingan::class);
+    }
+
+    public function riwayat_prestasi()
+    {
+        return $this->belongsTo(Riwayat_prestasi::class);
+    }
+
+    public function riwayat_pendidikan()
+    {
+        return $this->belongsTo(Riwayat_pendidikan::class);
+    }
 }

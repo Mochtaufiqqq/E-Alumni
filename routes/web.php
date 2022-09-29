@@ -14,7 +14,7 @@ use App\Http\Controllers\AlumniController;
 |
 */
 
-
+Route::get('/',[AlumniController::class,'dashboard']);
 Route::get('/dashboard',[AlumniController::class,'index']);
 Route::get('/lihatalumni',[AlumniController::class,'show']);
 Route::get('/tambahalumni',[AlumniController::class,'add']);
