@@ -29,12 +29,13 @@ Route::group(['middleware' => ['guest']], function(){
 
 Route::group(['middleware' => ['auth', 'CheckRole:admin']], function(){
     Route::get('/dashboard',[AlumniController::class,'index']);
-    Route::get('/lihatalumni',[AlumniController::class,'show']);
-    Route::get('/tambahalumni',[AlumniController::class,'add']);
-    Route::post('/tambahalumni',[AlumniController::class,'store']);
-    Route::get('/editalumni/{alumnis}',[AlumniController::class,'edit']);
-    Route::put('/editalumni/{alumnis}',[AlumniController::class,'update']);
-    Route::delete('/hapus/alumni/{alumnis}', [AlumniController::class, 'delete'])->name('delete');
+    Route::get('/semuauser',[AlumniController::class,'show']);
+    // Route::get('/semuauser',[AlumniController::class,'show']);
+    Route::get('/tambahuser',[AlumniController::class,'add']);
+    Route::post('/tambahuser',[AlumniController::class,'store']);
+    Route::get('/edituser/{users}',[AlumniController::class,'edit']);
+    Route::put('/edituser/{users}',[AlumniController::class,'update']);
+    Route::delete('/hapususer/{users}', [AlumniController::class, 'delete'])->name('delete');
     Route::get('/statususer/{users:id}/accept', [AlumniController::class, "accept"]);
 });  
 

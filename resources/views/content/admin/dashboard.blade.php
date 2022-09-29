@@ -1,6 +1,8 @@
 @extends('layouts.admin.master')
 
 @section('content')
+
+@section('title', 'Dashboard')
     
 
 <div class="container-fluid dashboard-default-sec">
@@ -26,9 +28,9 @@
               </div>
             </div>
             <div class="card-body text-center p-t-0">
-              <h3 class="font-light">Wellcome Back, John!!</h3>
+              <h3 class="font-light">Wellcome Back, {{ auth()->user()->nama }}!!</h3>
               <p>Welcome to the viho Family! we are glad that you are visite this dashboard. we will be happy to help you grow your business.</p>
-              <button class="btn btn-light">Update</button>
+              {{-- <button class="btn btn-light">Update</button> --}}
             </div>
             <div class="confetti">
               <div class="confetti-piece"></div>

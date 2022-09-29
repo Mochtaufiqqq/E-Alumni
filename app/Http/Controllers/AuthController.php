@@ -10,11 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function index() {
-        return view('auth.login',
-    
-    [
-        'title' => 'Login'
-    ]);
+        return view('auth.login');
     }
 
     public function login(Request $request)
@@ -25,11 +21,12 @@ class AuthController extends Controller
         ]);
 
         if(Auth::attempt($credentials)){
+            
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
         }
 
-        return back()->with('loginError', 'Username / Password Wrong!');
+        return back()->with('loginError', 'NISN / Password salah!');
 
     }
 
@@ -45,6 +42,7 @@ class AuthController extends Controller
        $validatedData = $request->validate([
             'nama' => 'required|max:255',
             'email' => 'required|unique:users',
+            'nisn' => 'required|unique:users',
             'alamat' => 'required',
             'password' => 'required|min:8',
             'confirmation' => 'required|same:password',
@@ -55,6 +53,7 @@ class AuthController extends Controller
        User::create([
            'nama' => $validatedData['nama'],
            'email' => $validatedData['email'],
+           'nisn' => $validatedData['nisn'],
            'alamat' => $validatedData['alamat'],
            'password' => $validatedData['password'], 
        ]);

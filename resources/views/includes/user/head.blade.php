@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8">
-    <title>SMK MAHAPUTRA |  @yield('title')</title>
+    <title>TRACER ALUMNI |  @yield('title')</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Silicon - Multipurpose Technology Bootstrap Template">

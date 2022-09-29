@@ -1,18 +1,35 @@
-@extends('layouts\admin.master')
+@extends('layouts.admin.master')
+
+@section('title','Semua User')
+    
 
 @section('content')
 
 <div class="container-fluid">
     <div class="page-header">
         <div class="row">
+            @if (session('berhasil'))
+            <div class="alert alert-primary alert-dismissible fade show" role="alert"><strong>Selamat ! </strong>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+                {{ session('berhasil') }}
+              </div>
+              @endif
+            @if (session('success'))
+            <div class="alert alert-primary alert-dismissible fade show" role="alert"><strong>Selamat ! </strong>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+                {{ session('success') }}
+              </div>
+              @endif
             <div class="col-sm-6">
-                <h3>Lihat Semua Alumni</h3>
+                
+                <h3>Semua User</h3>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Base</li>
-                    <li class="breadcrumb-item active">Accordion</li>
+                    <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                    <li class="breadcrumb-item">User Aktif</li>
+                    <li class="breadcrumb-item active">User Nonaktif</li>
                 </ol>
             </div>
+            
             <div class="col-sm-6">
                 <!-- Bookmark Start-->
                 <div class="bookmark">
@@ -49,11 +66,9 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Data Alumni</h5><span>The Responsive extension for DataTables can be applied to a DataTable in
-                        one of two ways; with a specific class name on the table, or using the DataTables initialisation
-                        options. This method shows the latter, with the responsive option being set to the boolean value
-                        true.</span>
+                    <h5>Semua Data User</h5><span>Dibawah Ini adalah table semua data user aktif dan user nonaktif kamu bisa mengelolanya. Terdapat Beberapa Button Untuk Mengelola</span>
                 </div>
+                <a class="btn btn-primary" href="/tambahuser">Tambah Data</a>
                 <div class="card-body">
                     <div class="dt-ext table-responsive">
                         <table class="display" id="responsive">
@@ -81,9 +96,14 @@
                                         
                                     </td>
                                     <td>
+                                        @if($u->status_user_id === 2)
+                                        <a href="/edituser/{{ $u->id }}" class="btn btn-warning">Edit</a>
+                                        <a href="/hapususer/{{ $u->id }}" class="btn btn-danger">Hapus</a>
+                                         @endif
+
                                         @if($u->status_user_id === 1)
                                       <a href="/statususer/{{ $u->id }}/accept" class="btn btn-success">Setujui</a>
-                                      {{-- <a href="/hapus/alumni/{id}">Tolak</a> --}}
+                                      <a href="/hapususer/{id}" class="btn btn-danger">Tolak</a>
                                       {{-- <a href="/loanrequests/{{ $l->id }}/cancel" class="btn btn-danger" onclick="return confirm('Are you sure want to cancel ?');">Cancel</a> --}}
                                        @endif
                                     </td>

@@ -14,7 +14,7 @@
             @include('includes.user.carousel')
         </div>
 
-        @yield('konten')
+        @yield('content')
     </main>
     @include('includes.user.footer')
 

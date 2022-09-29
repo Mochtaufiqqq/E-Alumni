@@ -10,7 +10,7 @@
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"> --}}
     <link rel="icon" href="/viho_all/html/assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="/viho_all//assets/images/favicon.png" type="image/x-icon">
-    <title>Alumni</title>
+    <title>TRACER ALUMNI |  @yield('title')</title>
     <!-- Google font-->
     @include('includes.admin.style')
   </head>
