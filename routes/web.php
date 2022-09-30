@@ -16,17 +16,10 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/',[AlumniController::class,'dashboard']);
-Route::get('/dashboard',[AlumniController::class,'index']);
-Route::get('/lihatalumni',[AlumniController::class,'show']);
-Route::get('/tambahalumni',[AlumniController::class,'add']);
-Route::post('/tambahalumni',[AlumniController::class,'store']);
-Route::get('/editalumni/{alumnis}',[AlumniController::class,'edit']);
-Route::put('/editalumni/{alumnis}',[AlumniController::class,'update']);
-Route::delete('/hapus/alumni/{alumnis}', [AlumniController::class, 'delete'])->name('delete');
+
 
 Route::group(['middleware' => ['guest']], function(){
-    Route::get('/login', [AuthController::class, 'index']);
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'store']);

@@ -86,6 +86,7 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td><img src="{{ asset('storage/' .$u->foto_profile) }}" alt="" width="200" height="200"></td>
                                     <td>{{ $u->nama }}</td>
                                     <td>{{ $u->email }}</td>
                                     <td>{{ $u->alamat }}</td>
@@ -100,14 +101,42 @@
                                     <td>
                                         @if($u->status_user_id === 2)
                                         <a href="/edituser/{{ $u->id }}" class="btn btn-warning">Edit</a>
-                                        <a href="/hapususer/{{ $u->id }}" class="btn btn-danger">Hapus</a>
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $u->id }}">Hapus</button>
                                          @endif
+
+                                         {{-- modal delete --}}
+                                         <div class="modal fade" id="modalDelete{{ $u->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Hapus Data User</h5>
+                                                  <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Apakah anda yakin ingin menghapus data {{ $u->nama }} ?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
+                                                  <form action="/hapususer/{{ $u->id }}" method="POST">
+                                                    @method('delete')
+                                                    @csrf
+
+                                                  <button class="btn btn-primary" type="submit">Yakin</button>
+                                                </form>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+
+
+                                        
 
                                         @if($u->status_user_id === 1)
                                       <a href="/statususer/{{ $u->id }}/accept" class="btn btn-success">Setujui</a>
                                       <a href="/hapususer/{id}" class="btn btn-danger">Tolak</a>
                                       {{-- <a href="/loanrequests/{{ $l->id }}/cancel" class="btn btn-danger" onclick="return confirm('Are you sure want to cancel ?');">Cancel</a> --}}
                                        @endif
+
                                     </td>
 
                                 </tr>

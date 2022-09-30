@@ -15,12 +15,12 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <form action="/tambahuser" method="POST">
+                            <form action="/tambahuser" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                     <label class="form-label">Foto</label>
                                     <div class="input-group">
-                                        <input class="form-control" type="file" name="image" placeholder="Foto"
+                                        <input class="form-control" type="file" name="foto_profile" placeholder="Foto"
                                             aria-label="Recipient's username">
                                     </div>
                                     </div>

@@ -59,6 +59,7 @@ class AlumniController extends Controller
 
     public function store(Request $request) {
         $validatedData = $request->validate([
+            'foto_profile' => 'required',
             'nisn' => 'required|unique:users',
             'nama' => 'required',
             'alamat' => 'required',
@@ -69,7 +70,7 @@ class AlumniController extends Controller
             'password' => 'required'
         ]);
 
-        $validatedData['image'] = $request->file('image')->store('alumni-images');
+        $validatedData['foto_profile'] = $request->file('foto_profile')->store('public/profile-images');
 
         User::create($validatedData);
 
@@ -102,6 +103,6 @@ class AlumniController extends Controller
      public function delete(User $users) {
         User::destroy($users->id);
 
-        return redirect('/semuauser')->with('success', 'Data Berhasil Dihapus');
+        return redirect('/semuauser')->with('success', 'Data berhasil dihapus!');
      }
 }
