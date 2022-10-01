@@ -22,12 +22,12 @@ return new class extends Migration
             $table->string('password');
             $table->string('role')->default('user');
             // $table->string('nama_panggilan');
-            // $table->string('jurusan');
-            // $table->string('thn_lulus');
+            $table->string('jurusan')->nullable();
+            $table->year('thn_lulus')->nullable();
             // $table->string('no_tlp');
             // $table->string('karya');
             // $table->string('keahlian');
-            $table->string('foto_profile');
+            $table->string('foto_profile')->nullable();
             // $table->string('pekerjaan');
             // $table->string('jabatan_pekerjaan');
             // $table->string('tmpt_pekerjaan');
