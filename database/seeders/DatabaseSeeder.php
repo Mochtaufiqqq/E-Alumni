@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             // 'keahlian' => 'asdasd',
             // 'nama_panggilan' => 'opik',
             'email' => 'mhmdtaufiq3@gmail.com',
-            'role' => 'admin',
+            // 'role' => 'admin',
             'alamat' => 'Downtown Street,California State, USA',
             'password' => bcrypt('123123123'),
             // 'id_riwayat' => '1',

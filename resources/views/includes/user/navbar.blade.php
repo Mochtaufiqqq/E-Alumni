@@ -1,3 +1,4 @@
+@if ($users->status_users->status_user_id == 2)
 <div class="container px-3">
   <a href="#" class="navbar-brand">
     <img src="{{ asset('user/img/logo.svg') }}" width="47" alt="Silicon">
@@ -60,9 +61,17 @@
       </li>
     </ul>
   </div>
+@else
+<div class="offcanvas-header border-top">
+  <a href="https://themes.getbootstrap.com/product/silicon-business-technology-template-ui-kit/" class="btn btn-primary w-100" target="_blank" rel="noopener">
+    <i class="bx bx-cart fs-4 lh-1 me-1"></i>
+    &nbsp;Buy now
+  </a>
+</div> 
+@endif
 
 
-  
+
   <nav id="navbarCollapse5" class="collapse navbar-collapse order-lg-2">
     <hr class="d-lg-none mt-3 mb-2">
     <ul class="navbar-nav me-auto">

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('email');
             $table->string('password');
-            $table->string('role')->default('user');
             $table->string('nama_panggilan')->nullable();
             $table->string('jurusan')->nullable();
             $table->string('thn_lulus')->nullable();

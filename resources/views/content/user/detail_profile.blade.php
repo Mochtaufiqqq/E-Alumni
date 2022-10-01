@@ -5,6 +5,33 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     @include('includes.user.head')
+
+    <style>
+      .custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Select some files';
+  display: inline-block;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+    </style>
   </head>
 
 
@@ -27,9 +54,6 @@
               <div class="text-center pt-5">
                 <div class="d-table position-relative mx-auto mt-2 mt-lg-4 pt-5 mb-3">
                   <img src="{{ asset('user/img/avatar/18.jpg') }}" class="d-block rounded-circle" width="120" alt="John Doe">
-                  <button type="file" class="btn btn-icon btn-light bg-white btn-sm border rounded-circle shadow-sm position-absolute bottom-0 end-0 mt-4" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Change picture">
-                    <i class="bx bx-refresh"></i>
-                  </button>
                 </div>
                 <h2 class="h5 mb-1">John Doe</h2>
                 <p class="mb-3 pb-3">jonny@email.com</p>

@@ -214,7 +214,7 @@
               @csrf
               <div class="position-relative mb-4">
                 <label for="nisn" class="form-label fs-base">Email</label>
-                <input type="email" id="email" name="email" class="form-control form-control-lg" required>
+                <input type="email" id="email" name="email" class="form-control form-control-lg" required value="{{ old('email') }}">
                 <div class="invalid-feedback position-absolute start-0 top-100">Mohon masukkan email yang valid!</div>
               </div>
               <div class="mb-4">
