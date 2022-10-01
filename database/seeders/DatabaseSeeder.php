@@ -38,5 +38,28 @@ class DatabaseSeeder extends Seeder
             // 'id_prestasi' => '1',
             // 'id_pendidikan' => '1',
         ]);
+        User::create([
+            'nisn'  => '20211080',
+            'nama' => 'Taufiqqq',
+            // 'jurusan' => 'XI RPL',
+            // 'thn_lulus' => '2023',
+            'foto_profile' => 'asasd',
+            // 'no_tlp'  => '0908779097',
+            // 'pekerjaan' => 'ngoding',
+            // 'jabatan_pekerjaan' => 'manager aminnn',
+            // 'tmpt_pekerjaan' => 'PT.NASA aminn',
+            // 'karya' => 'asdasd',
+            // 'keahlian' => 'asdasd',
+            // 'nama_panggilan' => 'opik',
+            'email' => 'user@gmail.com',
+            'role' => 'user',
+            'alamat' => 'Downtown Street,California State, USA',
+            'password' => bcrypt('123123123'),
+            // 'id_riwayat' => '1',
+            // 'id_sosmed' => '1',
+            // 'id_postingan' => '1',
+            // 'id_prestasi' => '1',
+            // 'id_pendidikan' => '1',
+        ]);
     }
 }

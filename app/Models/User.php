@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\StatusUser;
+
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,10 +21,13 @@ class User extends Authenticatable
      */
     protected $table = 'users';
     protected $fillable = [
-        'foto_profile',
+        // 'foto_profile',
         'nisn',
         'nama',
         'email',
+        'jurusan',
+        'thn_lulus',
+        'role',
         'alamat',
         'password',
     ];

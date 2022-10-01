@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function(){
     Route::get('/edituser/{users}',[AlumniController::class,'edit']);
     Route::put('/edituser/{users}',[AlumniController::class,'update']);
     Route::delete('/hapususer/{users}', [AlumniController::class, 'delete'])->name('delete');
+    Route::delete('/tolakuser/{users}', [AlumniController::class, 'tolak'])->name('tolak');
     Route::get('/statususer/{users:id}/accept', [AlumniController::class, "accept"]);
 });  
 

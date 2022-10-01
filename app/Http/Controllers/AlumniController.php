@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AlumniController extends Controller
 {
@@ -50,8 +51,13 @@ class AlumniController extends Controller
     public function accept (User $users) {
         User::where("id", $users->id)->update(["status_user_id" => 2]);
 
-        return redirect("/lihatalumni")->with("success", "User Sudah Diaktivasi !");
+        return redirect("/semuauser")->with("success", "User Sudah Diaktivasi !");
     }
+    public function tolak(User $users) {
+        User::destroy($users->id);
+
+        return redirect('/semuauser')->with('success', 'User Berhasil Ditolak!');
+     }
     
 
     public function add() {
@@ -64,26 +70,25 @@ class AlumniController extends Controller
 
     public function store(Request $request) {
         $validatedData = $request->validate([
-            'foto_profile' => 'required',
+            // 'foto_profile' => 'required',
             'nisn' => 'required|unique:users',
             'nama' => 'required',
             'alamat' => 'required',
-            
-            // 'tahun_keluar'  => 'required',
+            'jurusan'  => 'required',
+            'thn_lulus'  => 'required',
             'email' => 'required|unique:users',
-            // 'no_telp' => 'required',
+            'role' => 'required',
             'password' => 'required'
         ]);
-        $fotoName = '';
 
-        if ($request->file('foto_profile')) {
-            $extendsion =  $request->file('foto_profile')->getClientOriginalExtension();
-            $fotoName = $request->name.'-'.now()->timestamp.'.'.$extendsion;
-            $request->file('foto_profile')->storeAs('foto_profile', $fotoName);  
-        }
+        // $fileName = time().$request->file('foto_profile')->getClientOriginalName();
+        // $path = $request->file('foto_profile')->storeAs('images', $fileName. 'public');
+        // $validatedData['foto_profile'] = '/storage/' .$path;
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
         User::create($validatedData);
 
-        return redirect('/semuauser')->with('berhasil', 'Data Berhasil Ditambahkan');
+        return redirect('/semuauser')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     public function edit(User $users) {
@@ -104,6 +109,7 @@ class AlumniController extends Controller
             'password' => 'required',
         ]);
 
+        $validatedData['password'] = Hash::make($validatedData['password']);
         User::where('id', $users->id)->update($validatedData);
 
         return redirect('/semuauser')->with('success', 'Data berhasil diubah!');
