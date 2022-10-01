@@ -17,6 +17,11 @@ class AlumniController extends Controller
 
         return view('content.admin.dashboard');
     }
+
+    public function profile()
+    {
+        return view('content.user.detail_profile');
+    }
     public function show (){
         $users = User::all();
 
@@ -69,9 +74,13 @@ class AlumniController extends Controller
             // 'no_telp' => 'required',
             'password' => 'required'
         ]);
+        $fotoName = '';
 
-        $validatedData['foto_profile'] = $request->file('foto_profile')->store('public/profile-images');
-
+        if ($request->file('foto_profile')) {
+            $extendsion =  $request->file('foto_profile')->getClientOriginalExtension();
+            $fotoName = $request->name.'-'.now()->timestamp.'.'.$extendsion;
+            $request->file('foto_profile')->storeAs('foto_profile', $fotoName);  
+        }
         User::create($validatedData);
 
         return redirect('/semuauser')->with('berhasil', 'Data Berhasil Ditambahkan');

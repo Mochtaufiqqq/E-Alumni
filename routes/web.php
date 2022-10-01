@@ -17,14 +17,15 @@ use App\Http\Controllers\DashboardController;
 */
 
 
+Route::get('/',[DashboardController::class,'dashboarduser']);
 
 Route::group(['middleware' => ['guest']], function(){
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'store']);
-    });
-    Route::group(['middleware' => ['auth']], function(){
+});
+Route::group(['middleware' => ['auth']], function(){
     Route::get('/logout', [AuthController::class, 'logout']);
     });
 
@@ -43,5 +44,5 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function(){
 });  
 
 Route::group(['middleware' => ['auth', 'CheckRole:user']], function(){
-    Route::get('/home',[DashboardController::class,'dashboarduser']);
+    Route::get('/profile', [AlumniController::class, 'profile']);
 });
