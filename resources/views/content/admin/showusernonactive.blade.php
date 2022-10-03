@@ -88,18 +88,18 @@
                                     <td>{{ $u->email }}</td>
                                     <td>{{ $u->alamat }}</td>
                                     <td>
-                                        @if($u->status_user_id === 1)
+                                        @if($u->status === 0)
                                         <h5><span class="badge bg-opacity-100 bg-danger text-white">Nonaktif</span></h5>
                                         @endif
             
                                     </td>
                                     <td>
-                                        @if($u->status_user_id === 2)
+                                        @if($u->status === 1)
                                         <a href="/edituser/{{ $u->id }}" class="btn btn-warning">Edit</a>
                                         <a href="/hapususer/{{ $u->id }}" class="btn btn-danger">Hapus</a>
                                          @endif
 
-                                        @if($u->status_user_id === 1)
+                                        @if($u->status === 0)
                                       <a href="/statususer/{{ $u->id }}/accept" class="btn btn-success">Setujui</a>
                                       <a href="/hapususer/{id}" class="btn btn-danger">Tolak</a>
                                       {{-- <a href="/loanrequests/{{ $l->id }}/cancel" class="btn btn-danger" onclick="return confirm('Are you sure want to cancel ?');">Cancel</a> --}}

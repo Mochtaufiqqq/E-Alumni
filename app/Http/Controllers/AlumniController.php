@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Hash;
 class AlumniController extends Controller
 {
 
-    public function dashboard(){
-        return view('content.user.page');
+    public function dashboarduser(){
+        return view('content.user.dashboard');
     }
 
     public function index (){
@@ -24,40 +24,34 @@ class AlumniController extends Controller
         return view('content.user.detail_profile');
     }
     public function show (){
-        $users = User::all();
-
-        return view ('content.admin.show',[
-            'users' => User::all()
-        ],compact('users'));
+        //di ubah (akun admin tidak nampil)
+        $users = User::where('role_id', 2)->get();
+        return view ('content.admin.show',compact('users'));
     }
 
     public function useraktif(){
-        $users = DB::table('users')
-        ->where('status_user_id', '=', '2')->get();
-        return view ('content.admin.showuseractive',[
-            'users' => $users
-        ]);
+        $users = User::where('status', 1)->where('role_id', 2)->get();
+        return view ('content.admin.showuseractive',['users' => $users]);
     }
 
-    public function usernonaktif(){
-        $users = DB::table('users')
-        ->where('status_user_id','=', '1')->get();
+    // public function usernonaktif(){
+    //     $users = DB::table('users')
+    //     ->where('status_user_id','=', '1')->get();
 
-        return view('content.admin.showusernonactive',[
-            'users' => $users
-        ]);
-    }
+    //     return view('content.admin.showusernonactive',[
+    //         'users' => $users
+    //     ]);
+    // }
 
     public function accept (User $users) {
-        User::where("id", $users->id)->update(["status_user_id" => 2]);
-
-        return redirect("/semuauser")->with("success", "User Sudah Diaktivasi !");
+        $user = User::where("id", $users->id)->update(['status' => 0]);
+        return redirect("/semuauser", compact('user'))->with("success", "User Sudah Diaktivasi !");
     }
-    public function tolak(User $users) {
-        User::destroy($users->id);
+    // public function tolak(User $users) {
+    //     User::destroy($users->id);
 
-        return redirect('/semuauser')->with('success', 'User Berhasil Ditolak!');
-     }
+    //     return redirect('/semuauser')->with('success', 'User Berhasil Ditolak!');
+    //  }
     
 
     public function add() {

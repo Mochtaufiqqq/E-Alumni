@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -16,17 +17,35 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required',
-            'password' => 'required',
+            'email' => ['required'],
+            'password' => ['required'], 
         ]);
 
         if(Auth::attempt($credentials)){
-
+            // dd(Auth::user()->status);
+            $status=Auth::user()->status;
+            if ($status == 0) {
+            // dd(Auth::user()->status);
+                Session::flush();
+                Session::flash('status', 'failed');
+                Session::flash('message', 'acount not active, please contact admin to active');
+                return redirect('/login');
+            }
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        }
+            if (Auth::user()->role_id == 1) {
+                return redirect('/dashboard');
+            }
 
-        return back()->with('loginError', 'NISN / Password salah!');
+            if (Auth::user()->role_id == 2) {
+            // dd(Auth::user()->status);
+                
+                return redirect('/');
+            }
+        }
+        
+        Session::flash('status', 'failed'); 
+        Session::flash('message', 'akun belum ada');
+        return back();
 
     }
 

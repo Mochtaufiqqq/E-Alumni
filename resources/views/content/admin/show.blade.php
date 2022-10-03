@@ -66,7 +66,7 @@
                                     <td>{{ $u->email }}</td>
                                     <td>{{ $u->alamat }}</td>
                                     <td>
-                                        @if($u->status_user_id === 1)
+                                        @if($u->status === 1)
                                         <h5><span class="badge bg-opacity-100 bg-danger text-white">Nonaktif</span></h5>
                                         @else($u->status_user_id === 2)
                                         <h5><span class="badge bg-opacity-100 bg-success text-white">Aktif</span></h5>
@@ -74,7 +74,7 @@
                                         
                                     </td>
                                     <td>
-                                        @if($u->status_user_id === 2)
+                                        @if($u->status === 0)
                                         <a href="/edituser/{{ $u->id }}" class="btn btn-warning">Edit</a>
                                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $u->id }}">Hapus</button>
                                          @endif

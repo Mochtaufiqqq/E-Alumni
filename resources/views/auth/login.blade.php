@@ -205,7 +205,7 @@
           @endif
           @if (session('status'))
             <div class="alert alert-danger alert-dismissible fade show text-center mt-5 mb-5" role="alert">
-            {{ session('status') }}
+            {{ session('message') }}
             </div>
           @endif
             <h1 class="text-center text-xl-start">Login</h1>

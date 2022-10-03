@@ -17,7 +17,7 @@ use App\Http\Controllers\DashboardController;
 */
 
 
-Route::get('/',[DashboardController::class,'dashboarduser']);
+Route::get('/',[AlumniController::class,'dashboarduser']);
 
 Route::group(['middleware' => ['guest']], function(){
     Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth']], function(){
     });
 
 
-Route::group(['middleware' => ['auth', 'CheckRole:admin']], function(){
+Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/dashboard',[AlumniController::class,'index']);
     Route::get('/semuauser',[AlumniController::class,'show']);
     Route::get('/useraktif',[AlumniController::class,'useraktif']);
@@ -44,6 +44,6 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function(){
     Route::get('/statususer/{users:id}/accept', [AlumniController::class, "accept"]);
 });  
 
-Route::group(['middleware' => ['auth', 'CheckRole:user']], function(){
+Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::get('/profile', [AlumniController::class, 'profile']);
 });

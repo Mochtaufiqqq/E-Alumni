@@ -7,12 +7,15 @@ use App\Models\StatusUser;
 
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use League\CommonMark\Extension\Attributes\Node\Attributes;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use Sluggable; //install (composer require cviebrock/eloquent-sluggable)
 
     /**
      * The attributes that are mass assignable.
@@ -27,8 +30,8 @@ class User extends Authenticatable
         'email',
         'jurusan',
         'thn_lulus',
-        'role',
         'alamat',
+        'status',
         'password',
     ];
 
@@ -42,6 +45,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    
     /**
      * The attributes that should be cast.
      *
@@ -50,6 +54,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    protected $attributes = [
+        'role_id' => 2,
+    ];
+
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'nama'
+            ]
+        ];
+    }
+
 
     public function riwayat_organisasi()
     {
@@ -74,9 +93,5 @@ class User extends Authenticatable
     public function riwayat_pendidikan()
     {
         return $this->belongsTo(Riwayat_pendidikan::class);
-    }
-
-    public function StatusUser(){
-        return $this->belongsTo(StatusUser::class);
     }
 }
