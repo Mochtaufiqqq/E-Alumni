@@ -66,7 +66,7 @@
                                     <td>{{ $u->email }}</td>
                                     <td>{{ $u->alamat }}</td>
                                     <td>
-                                        @if($u->status === 1)
+                                        @if($u->status === 0)
                                         <h5><span class="badge bg-opacity-100 bg-danger text-white">Nonaktif</span></h5>
                                         @else($u->status_user_id === 2)
                                         <h5><span class="badge bg-opacity-100 bg-success text-white">Aktif</span></h5>
@@ -106,7 +106,7 @@
 
                                         
 
-                                        @if($u->status_user_id === 1)
+                                        @if($u->status === 0)
                                       <a href="/statususer/{{ $u->id }}/accept" class="btn btn-success">Setujui</a>
                                       <a href="/hapususer/{id}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalTolak{{ $u->id }}">Tolak</a>
                                       {{-- <a href="/loanrequests/{{ $l->id }}/cancel" class="btn btn-danger" onclick="return confirm('Are you sure want to cancel ?');">Cancel</a> --}}

@@ -34,24 +34,20 @@ class AlumniController extends Controller
         return view ('content.admin.showuseractive',['users' => $users]);
     }
 
-    // public function usernonaktif(){
-    //     $users = DB::table('users')
-    //     ->where('status_user_id','=', '1')->get();
-
-    //     return view('content.admin.showusernonactive',[
-    //         'users' => $users
-    //     ]);
-    // }
-
-    public function accept (User $users) {
-        $user = User::where("id", $users->id)->update(['status' => 0]);
-        return redirect("/semuauser", compact('user'))->with("success", "User Sudah Diaktivasi !");
+    public function usernonaktif(){
+        $users = User::where('status', 0)->where('role_id', 2)->get();
+        return view ('content.admin.showusernonactive',['users' => $users]);
     }
-    // public function tolak(User $users) {
-    //     User::destroy($users->id);
 
-    //     return redirect('/semuauser')->with('success', 'User Berhasil Ditolak!');
-    //  }
+    public function accept ($id) {
+        User::where('id', $id)->update(['status' => 1]);
+        return redirect("/semuauser")->with("success", "User Sudah Diaktivasi !");
+    }
+    public function tolak(User $users) {
+        User::destroy($users->id);
+
+        return redirect('/semuauser')->with('success', 'User Berhasil Ditolak!');
+     }
     
 
     public function add() {

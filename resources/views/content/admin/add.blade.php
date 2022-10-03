@@ -136,8 +136,8 @@
                     <label class="form-label">Role</label>
                     <select name="role" id="" class="form-select form-control" required autofocus >
                         <option selected>Pilih Role</option>
-                        <option value="admin">Admin</option>
-                        <option value="user">User</option>
+                        <option value="1">Admin</option>
+                        <option value="2">User</option>
                     </select>
                     @error('role')
                     <div class="invalid-feedback">
