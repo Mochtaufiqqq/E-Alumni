@@ -11,7 +11,7 @@
       <img src="{{ asset('user/img/avatar/09.jpg') }}" class="rounded-circle" width="48" alt="Avatar">
       <div class="d-none d-sm-block ps-2">
         <div class="fs-xs lh-1 opacity-60">Hello,</div>
-        <div class="fs-sm dropdown-toggle">Alexander</div>
+        <div class="fs-sm dropdown-toggle">{{ auth()->user()->nama }}</div>
       </div>
     </a>
     <ul class="dropdown-menu dropdown-menu-end my-1" style="width: 14rem;">
@@ -64,16 +64,16 @@
     <hr class="d-lg-none mt-3 mb-2">
     <ul class="navbar-nav me-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active">Home</a>
+        <a href="#" class="nav-link">Home</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">Services</a>
+        <a href="/tentangkami" class="nav-link">Tentang Kami</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Alumni</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">Contacts</a>
+        <a href="#" class="nav-link">Organisasi</a>
       </li>
     </ul>
   </nav>

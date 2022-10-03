@@ -43,7 +43,8 @@
                 </div>
                 
                 <div class="card-body">
-                    <a class="btn btn-primary" href="/tambahuser">Tambah Data</a>
+                  <a class="btn btn-primary mb-3" href="/tambahuser">Tambah Data</a>
+                  <a class="btn btn-secondary text-dark mb-3" href="{{ url('/reportpdfuser') }}">Export PDF</a>
                     <div class="dt-ext table-responsive">
                         <table class="display" id="responsive">
                             <thead>
@@ -74,10 +75,11 @@
                                         
                                     </td>
                                     <td>
-                                        @if($u->status === 0)
-                                        <a href="/edituser/{{ $u->id }}" class="btn btn-warning">Edit</a>
-                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $u->id }}">Hapus</button>
-                                         @endif
+                                      @if($u->status === 1)
+                                      <a href="/detailuser/{{ $u->id }}" class="btn btn-primary"><i data-feather="eye"></i></a>
+                                      <a href="/edituser/{{ $u->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
+                                      <a href="/hapususer/{{ $u->id }}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $u->id }}"><i data-feather="trash-2"></i></a>
+                                       @endif
 
                                          {{-- modal delete --}}
                                          <div class="modal fade" id="modalDelete{{ $u->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -103,13 +105,9 @@
                                             </div>
                                           </div>
 
-
-                                        
-
                                         @if($u->status === 0)
                                       <a href="/statususer/{{ $u->id }}/accept" class="btn btn-success">Setujui</a>
                                       <a href="/hapususer/{id}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalTolak{{ $u->id }}">Tolak</a>
-                                      {{-- <a href="/loanrequests/{{ $l->id }}/cancel" class="btn btn-danger" onclick="return confirm('Are you sure want to cancel ?');">Cancel</a> --}}
                                        @endif
 
                                         {{-- modal tolak --}}

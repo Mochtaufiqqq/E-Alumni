@@ -28,7 +28,7 @@ class AuthController extends Controller
             // dd(Auth::user()->status);
                 Session::flush();
                 Session::flash('status', 'failed');
-                Session::flash('message', 'acount not active, please contact admin to active');
+                Session::flash('message', 'Akun anda belum aktif,Mohon tunggu admin untuk mengaktivasi akun anda');
                 return redirect('/login');
             }
             $request->session()->regenerate();
@@ -44,7 +44,7 @@ class AuthController extends Controller
         }
         
         Session::flash('status', 'failed'); 
-        Session::flash('message', 'akun belum ada');
+        Session::flash('message', 'Akun belum ada');
         return back();
 
     }
@@ -76,7 +76,7 @@ class AuthController extends Controller
            'alamat' => $validatedData['alamat'],
            'password' => $validatedData['password'], 
        ]);
-       return redirect('/login')->with('success', 'Registration Succesfully, Pls Login!');
+       return redirect('/login')->with('success', 'Registrasi Berhasil!');
        
     }
 

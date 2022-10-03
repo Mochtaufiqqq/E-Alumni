@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TentangKami;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use PDF;
 
 class AlumniController extends Controller
 {
@@ -23,19 +25,28 @@ class AlumniController extends Controller
     {
         return view('content.user.detail_profile');
     }
+
+    public function tentangkami(){
+        $tentangkami = TentangKami::all();
+
+        return view ('content.user.tentangkami',[
+            'tentangkami' => TentangKami::all()
+        ],compact('tentangkami'));
+    }
+
     public function show (){
         //di ubah (akun admin tidak nampil)
-        $users = User::where('role_id', 2)->get();
+        $users = User::where('role_id', 2)->latest()->get();
         return view ('content.admin.show',compact('users'));
     }
 
     public function useraktif(){
-        $users = User::where('status', 1)->where('role_id', 2)->get();
+        $users = User::where('status', 1)->where('role_id', 2)->latest()->get();
         return view ('content.admin.showuseractive',['users' => $users]);
     }
 
     public function usernonaktif(){
-        $users = User::where('status', 0)->where('role_id', 2)->get();
+        $users = User::where('status', 0)->where('role_id', 2)->latest()->get();
         return view ('content.admin.showusernonactive',['users' => $users]);
     }
 
@@ -110,4 +121,18 @@ class AlumniController extends Controller
 
         return redirect('/semuauser')->with('success', 'Data berhasil dihapus!');
      }
+     public function detailuser(User $users) {
+        return view('content.admin.detailuser',[
+           
+            'users' => $users
+        ]);
+    }
+
+    public function reportpdfuser(){
+        $users = User::all();
+
+        $pdf = PDF::loadview('content.admin.reportpdfuser',['users'=> $users])->setOptions(['defaultFont' => 'sans-serif']);;
+    	return $pdf->download('report-users.pdf');
+        return redirect('/semuauser');
+    }
 }
