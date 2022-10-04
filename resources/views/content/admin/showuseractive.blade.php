@@ -22,7 +22,7 @@
               @endif
             <div class="col-sm-6">
                 
-                <h3>Semua User</h3>
+                <h3>User Aktif</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                     <li class="breadcrumb-item">User Aktif</li>
@@ -66,10 +66,10 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Semua Data User</h5><span>Dibawah Ini adalah table semua data user aktif dan user nonaktif kamu bisa mengelolanya. Terdapat Beberapa Button Untuk Mengelola</span>
+                    <h5>Semua Data User Aktif</h5><span>Dibawah Ini adalah table semua data user yang telah diaktivasi</span>
                 </div>
                 <div class="card-body">
-                    <a class="btn btn-primary" href="/tambahuser">Tambah Data</a>
+                    <a class="btn btn-primary mb-3" href="/tambahuser">Tambah Data</a>
                     <div class="dt-ext table-responsive">
                         <table class="display" id="responsive">
                             <thead>
@@ -88,22 +88,41 @@
                                     <td>{{ $u->email }}</td>
                                     <td>{{ $u->alamat }}</td>
                                     <td>
-                                        @if($u->status_user_id === 2)
+                                        @if($u->status === 1)
                                         <h5><span class="badge bg-opacity-100 bg-success text-white">Aktif</span></h5>
                                         @endif
             
                                     </td>
                                     <td>
-                                        @if($u->status_user_id === 2)
-                                        <a href="/edituser/{{ $u->id }}" class="btn btn-warning">Edit</a>
-                                        <a href="/hapususer/{{ $u->id }}" class="btn btn-danger">Hapus</a>
-                                         @endif
-
-                                        @if($u->status_user_id === 1)
-                                      <a href="/statususer/{{ $u->id }}/accept" class="btn btn-success">Setujui</a>
-                                      <a href="/hapususer/{id}" class="btn btn-danger">Tolak</a>
-                                      {{-- <a href="/loanrequests/{{ $l->id }}/cancel" class="btn btn-danger" onclick="return confirm('Are you sure want to cancel ?');">Cancel</a> --}}
+                                        @if($u->status === 1)
+                                      <a href="/detailuser/{{ $u->id }}" class="btn btn-primary"><i data-feather="eye"></i></a>
+                                      <a href="/edituser/{{ $u->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
+                                      <a href="/hapususer/{{ $u->id }}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $u->id }}"><i data-feather="trash-2"></i></a>
                                        @endif
+
+                                        {{-- modal delete --}}
+                                        <div class="modal fade" id="modalDelete{{ $u->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Hapus Data User</h5>
+                                                  <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Apakah anda yakin ingin menghapus data {{ $u->nama }} ?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
+                                                  <form action="/hapususer/{{ $u->id }}" method="POST">
+                                                    @method('delete')
+                                                    @csrf
+
+                                                  <button class="btn btn-primary" type="submit">Yakin</button>
+                                                </form>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
                                     </td>
 
                                 </tr>

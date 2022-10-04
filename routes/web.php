@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,12 @@ Route::group(['middleware' => ['guest']], function(){
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'store']);
-});
-Route::group(['middleware' => ['auth']], function(){
+    Route::get('/forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm']);
+    Route::post('/forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm']); 
+    Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+    Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm']);
+    });
+    Route::group(['middleware' => ['auth']], function(){
     Route::get('/logout', [AuthController::class, 'logout']);
     });
 
@@ -42,8 +47,11 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::delete('/hapususer/{users}', [AlumniController::class, 'delete'])->name('delete');
     Route::delete('/tolakuser/{users}', [AlumniController::class, 'tolak'])->name('tolak');
     Route::get('/statususer/{users:id}/accept', [AlumniController::class, "accept"]);
+    Route::get('/detailuser/{users}', [AlumniController::class, "detailuser"]);
+    Route::get('/reportpdfuser', [AlumniController::class, 'reportpdfuser']);
 });  
 
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::get('/profile', [AlumniController::class, 'profile']);
+    Route::get('/tentangkami', [AlumniController::class, 'tentangkami']);
 });
