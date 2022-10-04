@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TentangKami;
 use App\Models\User;
+use Barryvdh\DomPDF\PDF;
+use App\Models\TentangKami;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use PDF;
+
 
 class AlumniController extends Controller
 {
@@ -23,7 +24,10 @@ class AlumniController extends Controller
 
     public function profile()
     {
-        return view('content.user.detail_profile');
+        $users = User::all();
+        return view('content.user.detail_profile',[
+            'users' => $users
+        ],compact('users'));
     }
 
     public function tentangkami(){
@@ -71,7 +75,7 @@ class AlumniController extends Controller
 
     public function store(Request $request) {
         $validatedData = $request->validate([
-            // 'foto_profile' => 'required',
+            'foto_profile' => 'required',
             'nisn' => 'required|unique:users',
             'nama' => 'required',
             'alamat' => 'required',
@@ -82,9 +86,9 @@ class AlumniController extends Controller
             'password' => 'required'
         ]);
 
-        // $fileName = time().$request->file('foto_profile')->getClientOriginalName();
-        // $path = $request->file('foto_profile')->storeAs('images', $fileName. 'public');
-        // $validatedData['foto_profile'] = '/storage/' .$path;
+        $fileName = time().$request->file('foto_profile')->getClientOriginalName();
+        $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
+        $validatedData['foto_profile'] = '/storage/' .$path;
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);

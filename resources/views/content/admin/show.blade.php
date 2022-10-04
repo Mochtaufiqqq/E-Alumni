@@ -21,7 +21,7 @@
               </div>
               @endif
             <div class="col-sm-6">
-                
+              
                 <h3>Semua User</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
@@ -29,7 +29,6 @@
                     <li class="breadcrumb-item active"> <a href="/usernonaktif"></a> User Nonaktif</li>
                 </ol>
             </div>
-            
         </div>
     </div>
 </div>
@@ -52,6 +51,9 @@
                                     <th>No</th>
                                     <th>Foto</th>
                                     <th>Nama</th>
+                                    <th>Nisn</th>
+                                    <th>Jurusan</th>
+                                    <th>Tahun Lulus</th>
                                     <th>Email</th>
                                     <th>Alamat</th>
                                     <th>Status User</th>
@@ -62,8 +64,18 @@
                             <tbody>
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td><img src="{{ asset($u->foto_profile) }}" alt="" width="50" height="50"></td>
+                                    <td>
+                                      @if ($u->foto_profile != '')
+                                      <img src="{{ asset($u->foto_profile) }}" alt="" width="50" height="50">
+
+                                      @else
+                                      <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
+                                      @endif
+                                     </td>
                                     <td>{{ $u->nama }}</td>
+                                    <td>{{ $u->nisn }}</td>
+                                    <td>{{ $u->jurusan }}</td>
+                                    <td>{{ $u->thn_lulus }}</td>
                                     <td>{{ $u->email }}</td>
                                     <td>{{ $u->alamat }}</td>
                                     <td>
