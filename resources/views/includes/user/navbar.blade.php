@@ -1,3 +1,7 @@
+@if (Auth::user()->role_id === 2)
+    
+<button class="btn btn-primary">login</button>
+@else
 <div class="container px-3">
   <a href="#" class="navbar-brand">
     <img src="{{ asset('user/img/logo.svg') }}" width="47" alt="Silicon">
@@ -60,6 +64,8 @@
       </li>
     </ul>
   </div>
+@endif
+
   <nav id="navbarCollapse5" class="collapse navbar-collapse order-lg-2">
     <hr class="d-lg-none mt-3 mb-2">
     <ul class="navbar-nav me-auto">
