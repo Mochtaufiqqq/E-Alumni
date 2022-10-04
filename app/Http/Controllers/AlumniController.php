@@ -75,7 +75,7 @@ class AlumniController extends Controller
 
     public function store(Request $request) {
         $validatedData = $request->validate([
-            'foto_profile' => 'required',
+            'foto_profile' => 'required|mimes:jpg,png,jpeg|max:2040',
             'nisn' => 'required|unique:users',
             'nama' => 'required',
             'alamat' => 'required',
@@ -104,6 +104,7 @@ class AlumniController extends Controller
     }
      public function update(Request $request , User $users) {
         $validatedData = $request->validate([
+            'foto_profile' => 'required',
             'nisn' => 'required',
             'nama' => 'required',
             // 'pekerjaan' => 'required',
@@ -113,6 +114,10 @@ class AlumniController extends Controller
             // 'no_telp' => 'required',
             'password' => 'required',
         ]);
+
+        $fileName = time().$request->file('foto_profile')->getClientOriginalName();
+        $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
+        $validatedData['foto_profile'] = '/storage/' .$path;
 
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::where('id', $users->id)->update($validatedData);

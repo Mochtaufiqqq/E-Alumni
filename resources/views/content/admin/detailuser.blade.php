@@ -50,7 +50,6 @@
 
                                         <h3 class="mb-1 f-20 txt-primary">{{ $users->nama }}</h3>
                                         <p class="f-12">{{ $users->nisn }}</p>
-
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +66,7 @@
                         {{-- <div class="mb-3">
                           <h6 class="form-label">Email : {{ $users->email }}</h6>
                     </div> --}}
-                    <div class="form-footer">
+                    <div class="form-footer text-end">
                         <a href="{{ url('/semuauser') }}"><button class="btn btn-primary btn-block">Kembali</button></a>
                     </div>
                 </div>
