@@ -11,7 +11,11 @@
       <img src="{{ asset('user/img/avatar/09.jpg') }}" class="rounded-circle" width="48" alt="Avatar">
       <div class="d-none d-sm-block ps-2">
         <div class="fs-xs lh-1 opacity-60">Hello,</div>
-        <div class="fs-sm dropdown-toggle">{{ auth()->user()->nama }}</div>
+        @if (Auth::user()->status === 1)
+        <div class="fs-sm dropdown-toggle">{{ auth()->user()->nama }}</div> 
+        @else
+        <div class="fs-sm dropdown-toggle">Lol</div> 
+        @endif
       </div>
     </a>
     <ul class="dropdown-menu dropdown-menu-end my-1" style="width: 14rem;">
@@ -64,7 +68,7 @@
     <hr class="d-lg-none mt-3 mb-2">
     <ul class="navbar-nav me-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link">Home</a>
+        <a href="/" @if (request()->route()->uri == )@endif class="nav-link">Home</a>
       </li>
       <li class="nav-item">
         <a href="/tentangkami" class="nav-link">Tentang Kami</a>
@@ -73,7 +77,7 @@
         <a href="#" class="nav-link">Alumni</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">Organisasi</a>
+        <a href="/organisasi" class="nav-link">Organisasi</a>
       </li>
     </ul>
   </nav>
