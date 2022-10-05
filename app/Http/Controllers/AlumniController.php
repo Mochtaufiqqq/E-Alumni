@@ -24,7 +24,7 @@ class AlumniController extends Controller
         return view('content.user.detail_profile');
     }
     public function show (){
-        //di ubah (akun admin tidak nampil)
+        //di ubah (akun admin tid   ak nampil)
         $users = User::where('role_id', 2)->get();
         return view ('content.admin.show',compact('users'));
     }
