@@ -68,13 +68,13 @@
     <hr class="d-lg-none mt-3 mb-2">
     <ul class="navbar-nav me-auto">
       <li class="nav-item">
-        <a href="/" @if (request()->route()->uri == )@endif class="nav-link">Home</a>
+        <a href="/" class="nav-link">Home</a>
       </li>
       <li class="nav-item">
         <a href="/tentangkami" class="nav-link">Tentang Kami</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">Alumni</a>
+        <a href="/semuaalumni" class="nav-link">Alumni</a>
       </li>
       <li class="nav-item">
         <a href="/organisasi" class="nav-link">Organisasi</a>
