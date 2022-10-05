@@ -51,8 +51,6 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/statususer/{users:id}/accept', [AlumniController::class, "accept"]);
     Route::get('/detailuser/{users}', [AlumniController::class, "detailuser"]);
     Route::get('/reportpdfuser', [AlumniController::class, 'reportpdfuser']);
-    Route::get('image-upload2', [ImageController::class, 'index']);
-    Route::post('image-upload', [ImageController::class, 'store'])->name('image.store');
 });  
 
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
