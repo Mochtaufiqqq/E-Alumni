@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\TentangKami;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -87,6 +88,11 @@ class DatabaseSeeder extends Seeder
             // 'id_postingan' => '1',
             // 'id_prestasi' => '1',
             // 'id_pendidikan' => '1',
+        ]);
+
+        TentangKami::create([
+            'judul' => 'Tentang Kami',
+            'isi' => 'Ini adalasdjaosdhaspdjaspdojoasidhoasidhaosidhaosidhaosfhoaisdhaosidhosadihaosdihasodihasodihasodiahsdoiahsdoiashdoaishdousfoaihfio'
         ]);
     }
 }

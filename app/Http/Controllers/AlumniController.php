@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use PDF;
+use App\Models\TentangKami;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+
 
 class AlumniController extends Controller
 {
@@ -21,21 +24,32 @@ class AlumniController extends Controller
 
     public function profile()
     {
-        return view('content.user.detail_profile');
+        $users = User::all();
+        return view('content.user.detail_profile',[
+            'users' => $users
+        ],compact('users'));
     }
+
+    public function tentangkami(){
+        $tentangkami = TentangKami::all();
+
+        return view ('content.user.tentangkami',[
+            'tentangkami' => TentangKami::all()
+        ],compact('tentangkami'));
+    }
+
     public function show (){
-        //di ubah (akun admin tid   ak nampil)
         $users = User::where('role_id', 2)->get();
         return view ('content.admin.show',compact('users'));
     }
 
     public function useraktif(){
-        $users = User::where('status', 1)->where('role_id', 2)->get();
+        $users = User::where('status', 1)->where('role_id', 2)->latest()->get();
         return view ('content.admin.showuseractive',['users' => $users]);
     }
 
     public function usernonaktif(){
-        $users = User::where('status', 0)->where('role_id', 2)->get();
+        $users = User::where('status', 0)->where('role_id', 2)->latest()->get();
         return view ('content.admin.showusernonactive',['users' => $users]);
     }
 
@@ -60,7 +74,7 @@ class AlumniController extends Controller
 
     public function store(Request $request) {
         $validatedData = $request->validate([
-            // 'foto_profile' => 'required',
+            'foto_profile' => 'required|mimes:jpg,png,jpeg|max:5000',
             'nisn' => 'required|unique:users',
             'nama' => 'required',
             'alamat' => 'required',
@@ -71,9 +85,9 @@ class AlumniController extends Controller
             'password' => 'required'
         ]);
 
-        // $fileName = time().$request->file('foto_profile')->getClientOriginalName();
-        // $path = $request->file('foto_profile')->storeAs('images', $fileName. 'public');
-        // $validatedData['foto_profile'] = '/storage/' .$path;
+        $fileName = time().$request->file('foto_profile')->getClientOriginalName();
+        $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
+        $validatedData['foto_profile'] = '/storage/' .$path;
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);
@@ -89,6 +103,7 @@ class AlumniController extends Controller
     }
      public function update(Request $request , User $users) {
         $validatedData = $request->validate([
+            'foto_profile' => 'required|image|mimes:jpg,png,jpeg|max:5000',
             'nisn' => 'required',
             'nama' => 'required',
             // 'pekerjaan' => 'required',
@@ -98,6 +113,13 @@ class AlumniController extends Controller
             // 'no_telp' => 'required',
             'password' => 'required',
         ]);
+
+        if($fileName = time().$request->file('foto_profile')){
+            $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
+            $validatedData['foto_profile'] = '/storage/' .$path;
+        };
+        
+        $validatedData['password'] = Hash::make($validatedData['password']);
 
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::where('id', $users->id)->update($validatedData);
@@ -110,4 +132,18 @@ class AlumniController extends Controller
 
         return redirect('/semuauser')->with('success', 'Data berhasil dihapus!');
      }
+     public function detailuser(User $users) {
+        return view('content.admin.detailuser',[
+           
+            'users' => $users
+        ]);
+    }
+
+    public function reportpdfuser(){
+        $users = User::all();
+
+        $pdf = PDF::loadview('content.admin.reportpdfuser',['users'=> $users])->setOptions(['defaultFont' => 'sans-serif']);;
+    	return $pdf->download('report-users.pdf');
+        return redirect('/semuauser');
+    }
 }

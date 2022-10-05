@@ -65,5 +65,41 @@
  <script src="/viho_all/html/assets/js/datatable/datatable-extension/custom.js"></script>
  <script src="/viho_all/html/assets/js/tooltip-init.js"></script>
  
+ <script>
+    $(document).ready(function () {
+        $(document).on('click', '#select', function () {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var classname = $(this).data('classname');
+            $('#userId').val(id);
+            $('#selectedName').val(name);
+            $('#selectedClassname').val(classname);
+        })
+    })
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+
+
+    function previewImage(){
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+        
+        oFReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+</script>
+
+@yield('javascript')
  <!-- Plugins JS Ends-->
  <!-- login js-->

@@ -36,6 +36,18 @@
               <div class="col">
                 <form action="/tambahuser" method="POST" enctype="multipart/form-data">
                 @csrf
+                <div class="mb-3 m-form__group">
+                  <label class="form-label" for="image">Foto Profile</label>
+                  
+                    <img class="img-preview img-fluid mb-3">
+                    <input class="form-control @error('foto_profile') is-invalid @enderror" type="file" name="foto_profile" id="image" placeholder="foto_profile" required autofocus onchange="previewImage()">
+                
+                  @error('foto_profile')
+                  <div class="invalid-feedback">
+                      {{ $message }}
+                  </div>
+                  @enderror
+                </div>
                   <div class="mb-3 m-form__group">
                     <label class="form-label">NISN</label>
                     <div class="input-group">

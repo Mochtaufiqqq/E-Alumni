@@ -188,55 +188,22 @@
         <!-- Sign in form -->
         <div class="container d-flex flex-wrap justify-content-center justify-content-xl-start h-100 pt-5">
           <div class="w-100 align-self-end pt-1 pt-md-4 pb-4" style="max-width: 526px;">
-            @if (session('NotActive'))
-            <div class="alert alert-danger alert-dismissible fade show text-center mt-5 mb-5" role="alert">
-            {{ session('NotActive') }}
-            </div>
-          @endif
+           
             @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show text-center mt-5 mb-5" role="alert">
             {{ session('success') }}
             </div>
           @endif
-          @if (session('loginError'))
-            <div class="alert alert-danger alert-dismissible fade show text-center mt-5 mb-5" role="alert">
-            {{ session('loginError') }}
-            </div>
-          @endif
-          @if (session('status'))
-            <div class="alert alert-danger alert-dismissible fade show text-center mt-5 mb-5" role="alert">
-            {{ session('message') }}
-            </div>
-          @endif
-            <h1 class="text-center text-xl-start">Login</h1>
-            <p class="text-center text-xl-start pb-3 mb-3">Belum Punya Akun? <a href="/register">Daftar Disini.</a></p>
-            <form action="/login" method="POST" class="needs-validation mb-2" novalidate>
+            <h1 class="text-center text-xl-start">Lupa Password</h1>
+            <form action="/forget-password" method="POST" class="needs-validation mb-2" novalidate>
               @csrf
               <div class="position-relative mb-4">
-                <label for="nisn" class="form-label fs-base">Email</label>
+                <label for="nisn" class="form-label fs-base">Masukan Email Anda</label>
                 <input type="email" id="email" name="email" class="form-control form-control-lg" required value="{{ old('email') }}">
                 <div class="invalid-feedback position-absolute start-0 top-100">Mohon masukkan email yang valid!</div>
               </div>
-              <div class="mb-4">
-                <label for="password" class="form-label fs-base">Password</label>
-                <div class="password-toggle">
-                  <input type="password" id="password" name="password" class="form-control form-control-lg" required>
-                  <label class="password-toggle-btn" aria-label="Show/hide password">
-                    <input class="password-toggle-check" type="checkbox">
-                    <span class="password-toggle-indicator"></span>
-                  </label>
-                  <div class="invalid-feedback position-absolute start-0 top-100">Mohon Masukan Password Yang Valid!</div>
-                </div>
-              </div>
-              <div class="mb-4">
-                <div class="form-check">
-                  <input type="checkbox" id="remember" class="form-check-input">
-                  <label for="remember" class="form-check-label fs-base">Ingatkan Saya</label>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary shadow-primary btn-lg w-100">Log In</button>
+              <button type="submit" class="btn btn-primary shadow-primary btn-lg w-100">Kirim reset password link</button>
             </form>
-            <a href="/forget-password" class="btn btn-link btn-lg w-100">Lupa Password?</a>
             <hr class="my-4">
           </div>
           <div class="w-100 align-self-end">
