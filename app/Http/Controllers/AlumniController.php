@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Barryvdh\DomPDF\PDF;
+use PDF;
 use App\Models\TentangKami;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,8 +39,7 @@ class AlumniController extends Controller
     }
 
     public function show (){
-        //di ubah (akun admin tidak nampil)
-        $users = User::where('role_id', 2)->latest()->get();
+        $users = User::where('role_id', 2)->get();
         return view ('content.admin.show',compact('users'));
     }
 
