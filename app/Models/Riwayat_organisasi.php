@@ -14,6 +14,10 @@ class Riwayat_organisasi extends Model
     protected $guarded = ['id_riwayat'];
     protected $primaryKey = 'id';
     protected $table = 'riwayat_organisasi';
+    protected $fillable = [
+        'id_organisasi',
+        'id_jabatan'
+    ];
 
     public function riwayat_organisasi()
     {
