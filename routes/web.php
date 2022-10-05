@@ -5,6 +5,7 @@ use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,4 +55,5 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::get('/profile', [AlumniController::class, 'profile']);
     Route::get('/tentangkami', [AlumniController::class, 'tentangkami']);
+    Route::get('/semuaalumni', [UserController::class, 'semuaalumni']);
 });
