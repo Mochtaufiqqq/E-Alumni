@@ -6,9 +6,8 @@
     @include('includes.user.load')
 
     <main class="page-wrapper">
-        <header class="header navbar navbar-expand-lg bg-light navbar-sticky">
+        
             @include('includes.user.navbar')
-        </header>
 
         @yield('content')
     </main>
