@@ -106,7 +106,7 @@
               <a href="/tentangkami" class="nav-link">Tentang Kami</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">Alumni</a>
+              <a href="/semuaalumni" class="nav-link">Alumni</a>
             </li>
             <li class="nav-item">
               <a href="/organisasi" class="nav-link">Organisasi</a>
@@ -116,7 +116,6 @@
         @endauth
         @endif
       </div>
-<<<<<<< HEAD
     </a>
     <ul class="dropdown-menu dropdown-menu-end my-1" style="width: 14rem;">
       <li>
@@ -164,24 +163,5 @@
       </li>
     </ul>
   </div>
-  <nav id="navbarCollapse5" class="collapse navbar-collapse order-lg-2">
-    <hr class="d-lg-none mt-3 mb-2">
-    <ul class="navbar-nav me-auto">
-      <li class="nav-item">
-        <a href="/" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item">
-        <a href="/tentangkami" class="nav-link">Tentang Kami</a>
-      </li>
-      <li class="nav-item">
-        <a href="/semuaalumni" class="nav-link">Alumni</a>
-      </li>
-      <li class="nav-item">
-        <a href="/organisasi" class="nav-link">Organisasi</a>
-      </li>
-    </ul>
-  </nav>
 </div>
-=======
     </header>
->>>>>>> f4365f0f87bc683ad83ae8dc64e0e3671698d533
