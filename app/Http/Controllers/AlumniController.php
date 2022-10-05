@@ -8,11 +8,7 @@ use App\Models\TentangKami;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-<<<<<<< HEAD
-use Barryvdh\DomPDF\PDF;
-=======
 
->>>>>>> b4929a4e3b38fb7a3d154db86a43572b61f85e78
 
 class AlumniController extends Controller
 {

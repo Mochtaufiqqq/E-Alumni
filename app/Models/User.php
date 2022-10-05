@@ -57,6 +57,7 @@ class User extends Authenticatable
     
     protected $attributes = [
         'role_id' => 2,
+        'id_riwayatORG' => 1
     ];
 
 

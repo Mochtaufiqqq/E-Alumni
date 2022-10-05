@@ -1,6 +1,6 @@
 @extends('layouts.user.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Organisasi')
 
 @section('content')
 

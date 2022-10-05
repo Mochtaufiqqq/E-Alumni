@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\OrganisasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,9 +51,13 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/statususer/{users:id}/accept', [AlumniController::class, "accept"]);
     Route::get('/detailuser/{users}', [AlumniController::class, "detailuser"]);
     Route::get('/reportpdfuser', [AlumniController::class, 'reportpdfuser']);
+    Route::get('image-upload2', [ImageController::class, 'index']);
+    Route::post('image-upload', [ImageController::class, 'store'])->name('image.store');
 });  
 
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::get('/profile', [AlumniController::class, 'profile']);
     Route::get('/tentangkami', [AlumniController::class, 'tentangkami']);
+    //organisasi
+    Route::get('/organisasi', [OrganisasiController::class, 'index']);
 });

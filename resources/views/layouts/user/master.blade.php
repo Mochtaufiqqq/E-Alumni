@@ -10,10 +10,6 @@
             @include('includes.user.navbar')
         </header>
 
-        <div class="position-relative py-lg-4 py-xl-5">
-            @include('includes.user.carousel')
-        </div>
-
         @yield('content')
     </main>
     @include('includes.user.footer')
