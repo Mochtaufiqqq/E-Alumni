@@ -99,5 +99,7 @@
         }
     }
 </script>
+
+@yield('javascript')
  <!-- Plugins JS Ends-->
  <!-- login js-->

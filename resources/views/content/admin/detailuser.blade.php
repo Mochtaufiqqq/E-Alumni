@@ -17,7 +17,6 @@
                     <li class="breadcrumb-item active"><a href="/usernonaktif"></a> User Nonaktif</li>
                 </ol>
             </div>
-
         </div>
     </div>
 </div>
@@ -50,19 +49,35 @@
 
                                         <h3 class="mb-1 f-20 txt-primary">{{ $users->nama }}</h3>
                                         <p class="f-12">{{ $users->nisn }}</p>
+                                        <div class="mb-3">
+                                          <h6 class="form-label">Jurusan : {{ $users->jurusan }}</h6>
+                                      </div>
+                                      <div class="mb-3">
+                                          <h6 class="form-label txt-primary">Tahun Lulus : {{ $users->thn_lulus }}</h6>
+                                      </div>
+                                      <div class="mb-3">
+                                        <h6 class="form-label">Foto Kegiatan :</h6>
+                                    </div>
+                                    <div class="mb-3">
+                                      <h6 class="form-label">Foto Kegiatan :</h6>
+                                  </div>
+                                  <div class="mb-3">
+                                    <h6 class="form-label">Foto Kegiatan :</h6>
+                                </div>
+                                      <div class="mb-3">
+                                          <h6 class="form-label">Email : {{ $users->email }}</h6>
+                                      </div>
+                                      <div class="mb-3">
+                                        <h6 class="form-label">Foto Kegiatan :</h6>
+                                    </div>
+                                    <div class="mb-3">
+                                      <img src="{{ asset($users->foto_profile) }}" height="100" width="200" alt="" >
+                                    </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <h6 class="form-label">Jurusan : {{ $users->jurusan }}</h6>
-                        </div>
-                        <div class="mb-3">
-                            <h6 class="form-label">Tahun Lulus : {{ $users->thn_lulus }}</h6>
-                        </div>
-                        <div class="mb-3">
-                            <h6 class="form-label">Email : {{ $users->email }}</h6>
-                        </div>
+                       
                         {{-- <div class="mb-3">
                           <h6 class="form-label">Email : {{ $users->email }}</h6>
                     </div> --}}

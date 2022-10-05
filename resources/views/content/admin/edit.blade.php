@@ -38,8 +38,17 @@
                 @csrf
                 <div class="mb-3 m-form__group">
                   <label class="form-label">Foto Profil</label>
+                  @if ($users->foto_profile)
+                            
+                  <img src="{{ asset($users->foto_profile) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+
+                  @else
+                  
+                  <img class="img-preview img-fluid mb-3 col-sm-5">
+                      
+                  @endif
                   <img class="img-preview img-fluid mb-3">
-                    <input class="form-control @error('foto_profile') is-invalid @enderror" type="file" name="foto_profile" placeholder="Foto" value="{{ old('foto_profile', $users->foto_profile) }}" required autofocus onchange="previewImage()">
+                    <input type="file" name="foto_profile" id="image" class="form-control @error('foto_profile') is-invalid @enderror" onchange="previewImage()">
                   @error('foto_profile')
                   <div class="invalid-feedback">
                       {{ $message }}
