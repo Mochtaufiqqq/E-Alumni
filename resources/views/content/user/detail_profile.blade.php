@@ -73,6 +73,10 @@
                             <i class="bx bx-plus fs-lg me-2"></i>
                             Lengkapi Profile
                         </button>
+                        <a href="/post_postingan"><button class="btn btn-outline-secondary mb-3" type="button">
+                            <i class="bx bx-plus fs-lg me-2"></i>
+                            Post Foto
+                        </button></a>
                         {{-- <!-- Default modal -->
                         <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">

@@ -21,6 +21,7 @@ use App\Http\Controllers\OrganisasiController;
 
 
 Route::get('/',[AlumniController::class,'dashboarduser']);
+Route::get('/organisasi', [OrganisasiController::class, 'index']);
 
 Route::group(['middleware' => ['guest']], function(){
     Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -57,5 +58,4 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::get('/profile', [AlumniController::class, 'profile']);
     Route::get('/tentangkami', [AlumniController::class, 'tentangkami']);
     //organisasi
-    Route::get('/organisasi', [OrganisasiController::class, 'index']);
 });
