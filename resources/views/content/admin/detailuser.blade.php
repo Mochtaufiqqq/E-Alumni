@@ -46,7 +46,6 @@
                                         alt="">
                                     @endif
                                     <div class="media-body">
-
                                         <h3 class="mb-1 f-20 txt-primary">{{ $users->nama }}</h3>
                                         <p class="f-12">{{ $users->nisn }}</p>
                                         <div class="mb-3">

@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\KelolaBeritaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrganisasiController;
 
@@ -23,7 +24,9 @@ use App\Http\Controllers\OrganisasiController;
 
 
 Route::get('/',[AlumniController::class,'dashboarduser']);
+//organisasi
 Route::get('/organisasi', [OrganisasiController::class, 'index']);
+//endorganisasi
 Route::get('/tentangkami', [AlumniController::class, 'tentangkami']);
 Route::get('/semuaalumni', [UserController::class, 'semuaalumni']);
 
@@ -57,10 +60,21 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/statususer/{users:id}/accept', [AlumniController::class, "accept"]);
     Route::get('/detailuser/{users}', [AlumniController::class, "detailuser"]);
     Route::get('/reportpdfuser', [AlumniController::class, 'reportpdfuser']);
+    // Berita admin
+    Route::get('/semuaberita',[KelolaBeritaController::class,'show']);
+    Route::get('/tambahberita',[KelolaBeritaController::class,'add']);
+    Route::post('/tambahberita',[KelolaBeritaController::class,'store']);
+    Route::get('/editberita/{beritas}',[KelolaBeritaController::class,'edit']);
+    Route::put('/editberita/{beritas}',[KelolaBeritaController::class,'update']);
+    Route::delete('/hapusberita/{beritas}', [KelolaBeritaController::class, 'delete'])->name('delete');
+
+    //organisasi admin
+    Route::get('/showORG', [OrganisasiController::class, 'show']);
+    Route::get('/Organisasi', [OrganisasiController::class, 'organisasiEdit']);
+    Route::post('/Organisasi', [OrganisasiController::class, 'carousel']);
 });  
 
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::get('/profile', [AlumniController::class, 'profile']);
     
-    //organisasi
 });

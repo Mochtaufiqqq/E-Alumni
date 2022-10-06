@@ -15,27 +15,34 @@ class OrganisasiController extends Controller
         return view('content.user.organisasi');
     }
 
+    public function organisasiEdit()
+    {
+        Riwayat_organisasi::all();
+        return view('content.admin.organisasiEdit');
+    }
+
+    public function show()
+    {
+        Riwayat_organisasi::all();
+        return view('content.admin.showOrganisasi');
+    }
+
     public function carousel(Request $request)
     {
         $validatedData = $request->validate([
-            'foto_profile' => 'required|mimes:jpg,png,jpeg|max:5000',
-            'nisn' => 'required|unique:users',
-            'nama' => 'required',
-            'alamat' => 'required',
-            'jurusan'  => 'required',
-            'thn_lulus'  => 'required',
-            'email' => 'required|unique:users',
-            'role' => 'required',
-            'password' => 'required'
+            'carousel' => 'required|mimes:jpg,png,jpeg|max:5000',
+            'id_organisasi' => 'required|unique:users',
+            'id_jabatan' => 'required',
+            'peroide' => 'required',
         ]);
 
-        $fileName = time().$request->file('foto_profile')->getClientOriginalName();
-        $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
-        $validatedData['foto_profile'] = '/storage/' .$path;
+        $fileName = time().$request->file('carousel')->getClientOriginalName();
+        $path = $request->file('carousel')->storeAs('imgay', $fileName. 'public');
+        $validatedData['carousel'] = '/storage/' .$path;
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         Riwayat_organisasi::create($validatedData);
 
-        return redirect('/semuauser')->with('success', 'Data Berhasil Ditambahkan');
+        return redirect('/showORG')->with('success', 'Data Berhasil Ditambahkan');
     }
 }
