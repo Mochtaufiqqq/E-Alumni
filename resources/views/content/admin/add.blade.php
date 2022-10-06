@@ -172,8 +172,8 @@
             </div>
           </div>
           <div class="card-footer">
-            <button class="btn btn-primary m-r-15" type="submit">Submit</button>
-            <button class="btn btn-light" type="submit">Cancel</button>
+            <button class="btn btn-primary m-r-15" type="submit">Tambah</button>
+            <button class="btn btn-light" type="submit">Batal</button>
           </div>
         </form>
         </div>

@@ -50,8 +50,8 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/usernonaktif',[AlumniController::class,'usernonaktif']);
     Route::get('/tambahuser',[AlumniController::class,'add']);
     Route::post('/tambahuser',[AlumniController::class,'store']);
-    Route::get('/edituser/{users}',[AlumniController::class,'edit']);
-    Route::put('/edituser/{users}',[AlumniController::class,'update']);
+    Route::get('/edituser/{user}',[AlumniController::class,'edit']);
+    Route::put('/edituser/{user}',[AlumniController::class,'update']);
     Route::delete('/hapususer/{users}', [AlumniController::class, 'delete'])->name('delete');
     Route::delete('/tolakuser/{users}', [AlumniController::class, 'tolak'])->name('tolak');
     Route::get('/statususer/{users:id}/accept', [AlumniController::class, "accept"]);
@@ -59,10 +59,12 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/reportpdfuser', [AlumniController::class, 'reportpdfuser']);
     Route::get('image-upload2', [ImageController::class, 'index']);
     Route::post('image-upload', [ImageController::class, 'store'])->name('image.store');
+   
 });  
 
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
-    Route::get('/profile', [AlumniController::class, 'profile']);
+    Route::get('/profile', [UserController::class, 'profile']);
+    Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
     
     //organisasi
 });

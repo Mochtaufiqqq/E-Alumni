@@ -101,9 +101,9 @@ class AlumniController extends Controller
             'users' => $users
         ]);
     }
-     public function update(Request $request , User $users) {
+     public function update(Request $request , User $user) {
         $validatedData = $request->validate([
-            'foto_profile' => 'required|image|mimes:jpg,png,jpeg|max:5000',
+            'foto_profile' => 'image|mimes:jpg,png,jpeg|max:5000',
             'nisn' => 'required',
             'nama' => 'required',
             // 'pekerjaan' => 'required',
@@ -114,15 +114,15 @@ class AlumniController extends Controller
             'password' => 'required',
         ]);
 
-        if($fileName = time().$request->file('foto_profile')){
+        if($request->file()) {
+            $fileName = time().$request->file('foto_profile')->getClientOriginalName();
             $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
-            $validatedData['foto_profile'] = '/storage/' .$path;
-        };
+         $validatedData['foto_profile'] = '/storage/' .$path;
+
+        }
         
         $validatedData['password'] = Hash::make($validatedData['password']);
-
-        $validatedData['password'] = Hash::make($validatedData['password']);
-        User::where('id', $users->id)->update($validatedData);
+        User::where('id', $user->id)->update($validatedData);
 
         return redirect('/semuauser')->with('success', 'Data berhasil diubah!');
      }

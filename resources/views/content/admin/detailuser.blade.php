@@ -38,7 +38,7 @@
                         <div class="row mb-2 px-5">
                             <div class="profile-title">
                                 <div class="media">
-                                    @if ($users->foto_profile != '')
+                                    @if ($user->foto_profile != '')
                                     <img class="img-300 img-fluid rounded-circle" alt=""
                                         src="{{ asset($users->foto_profile) }}">
                                     @else

@@ -150,14 +150,11 @@
                       <p class="fs-sm mb-3">Bekerja di PT.Nasa Sebagai Manager</p>
                       <p class="fs-sm mb-3">{{ $u->thn_lulus }}</p>
                       <div class="d-flex">
-                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHorizontal" aria-expanded="false" aria-controls="collapseHorizontal">
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#modalEdit" >
                             Detail
                           </button>
-                          <div class="collapse collapse-horizontal" id="collapseHorizontal">
-                            <div class="card card-body mt-3" style="width: 25rem;">
-                              This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
-                            </div>
-                          </div>
+                         
+             
                       </div>
                   </div>
               </div>

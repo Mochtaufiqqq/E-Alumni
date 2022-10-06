@@ -33,14 +33,14 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <form action="/edituser/{{ $users->id }}" method="POST" enctype="multipart/form-data">
+                <form action="/edituser/{{ $user->id }}" method="POST" enctype="multipart/form-data">
                 @method('put')    
                 @csrf
                 <div class="mb-3 m-form__group">
                   <label class="form-label">Foto Profil</label>
-                  @if ($users->foto_profile)
+                  @if ($user->foto_profile)
                             
-                  <img src="{{ asset($users->foto_profile) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                  <img src="{{ asset($user->foto_profile) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
 
                   @else
                   
@@ -58,7 +58,7 @@
                   <div class="mb-3 m-form__group">
                     <label class="form-label">NISN</label>
                     <div class="input-group">
-                      <input class="form-control @error('nisn') is-invalid @enderror" type="text" name="nisn" placeholder="NISN" value="{{ old('nisn', $users->nisn) }}" required autofocus>
+                      <input class="form-control @error('nisn') is-invalid @enderror" type="text" name="nisn" placeholder="NISN" value="{{ old('nisn', $user->nisn) }}" required autofocus>
                     </div>
                     @error('nisn')
                     <div class="invalid-feedback">
@@ -69,7 +69,7 @@
                   <div class="mb-3">
                     <label class="form-label">Nama Lengkap</label>
                     <div class="input-group">
-                      <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama" placeholder="Nama Lengkap" value="{{ old('nama', $users->nama) }}" aria-label="Recipient's username" required autofocus>
+                      <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama" placeholder="Nama Lengkap" value="{{ old('nama', $user->nama) }}" aria-label="Recipient's username" required autofocus>
                     </div>
                     @error('nama')
                     <div class="invalid-feedback">
@@ -80,7 +80,7 @@
                   <div class="mb-3">
                     <label class="form-label">Email</label>
                     <div class="input-group">
-                      <input class="form-control @error('email') is-invalid @enderror" name="email" type="email"  value="{{ old('email', $users->email) }}" aria-label="Amount (to the nearest dollar)" placeholder="Email" required autofocus>
+                      <input class="form-control @error('email') is-invalid @enderror" name="email" type="email"  value="{{ old('email', $user->email) }}" aria-label="Amount (to the nearest dollar)" placeholder="Email" required autofocus>
                     </div>
                     @error('email')
                     <div class="invalid-feedback">
@@ -91,7 +91,7 @@
                   <div class="mb-3">
                     <label class="form-label">Alamat</label>
                     <div class="input-group">
-                      <input class="form-control @error('alamat') is-invalid @enderror" name="alamat" type="text"  value="{{ old('alamat', $users->alamat) }}" aria-label="Amount (to the nearest dollar)" placeholder="Alamat" required autofocus>
+                      <input class="form-control @error('alamat') is-invalid @enderror" name="alamat" type="text"  value="{{ old('alamat', $user->alamat) }}" aria-label="Amount (to the nearest dollar)" placeholder="Alamat" required autofocus>
                     </div>
                     @error('email')
                     <div class="invalid-feedback">
@@ -101,7 +101,7 @@
                   </div>
                   <div class="mb-3 input-group-solid">
                     <label class="form-label">Jurusan</label>
-                    <select name="jurusan" id=""  value="{{ old('jurusan', $users->jurusan) }}" class="form-select form-control" required autofocus>
+                    <select name="jurusan" id=""  value="{{ old('jurusan', $user->jurusan) }}" class="form-select form-control" required autofocus>
                         <option selected>Pilih Jurusan</option>
                         <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
                         <option value="Multimedia">Multimedia</option>
@@ -114,7 +114,7 @@
                   </div>
                   <div class="mb-3 input-group-solid">
                     <label class="form-label">Tahun Lulus</label>
-                    <select name="thn_lulus" id=""  value="{{ old('thn_lulus', $users->thn_lulus) }}" class="form-select form-control" required autofocus >
+                    <select name="thn_lulus" id=""  value="{{ old('thn_lulus', $user->thn_lulus) }}" class="form-select form-control" required autofocus >
                         <option selected>Pilih Tahun Lulus</option>
                         <option value="Rekayasa Perangkat Lunak">2040</option>
                         <option value="2039">2039</option>
@@ -153,7 +153,7 @@
                   </div>
                   <div class="mb-3 input-group-square">
                     <label class="form-label">Role</label>
-                    <select name="role" id=""  value="{{ old('role', $users->role) }}" class="form-select form-control" required autofocus >
+                    <select name="role" id=""  value="{{ old('role', $user->role) }}" class="form-select form-control" required autofocus >
                         <option selected>Pilih Role</option>
                         <option value="admin">Admin</option>
                         <option value="user">User</option>
@@ -167,7 +167,7 @@
                   <div class="mb-3">
                     <label class="form-label">Password</label>
                     <div class="input-group">
-                      <input class="form-control @error('password') is-invalid @enderror" name="password" type="password"  value="{{ old('password', $users->password) }}" aria-label="Amount (to the nearest dollar)" placeholder="Password" required autofocus>
+                      <input class="form-control @error('password') is-invalid @enderror" name="password" type="password"  value="{{ old('password', $user->password) }}" aria-label="Amount (to the nearest dollar)" placeholder="Password" required autofocus>
                     </div>
                     @error('password')
                     <div class="invalid-feedback">
