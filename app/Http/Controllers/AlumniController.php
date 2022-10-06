@@ -146,4 +146,25 @@ class AlumniController extends Controller
     	return $pdf->download('report-users.pdf');
         return redirect('/semuauser');
     }
+
+    public function uploadDokumentasi(Request $request){
+        $request -> validate([
+            'image'=> 'required|image|mimes:jgp,png,jpeg,svg|max:6000',
+            'judul'=> 'required',
+            'waktu' => 'required'
+        ]);
+
+        $fileName = time().$request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->storeAs('dokumentasi', $fileName. 'public');
+        $validatedData['image'] = '/storage/' .$path;
+
+        User::create($validatedData);
+        
+        return redirect('/dokumentasi')->with('success','Foto berhasil di upload');
+    }
+
+    public function showDokumentasi(){
+        $users = User::where('role_id', 2)->latest()->get();
+        return view ('content.admin.show',compact('users'));
+    }
 }

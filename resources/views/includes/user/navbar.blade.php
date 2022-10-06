@@ -87,4 +87,6 @@
         @endauth
         @endif
     </div>
+
 </header>
+

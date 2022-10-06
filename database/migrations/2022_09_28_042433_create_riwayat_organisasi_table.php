@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('riwayat_organisasi', function (Blueprint $table) {
-            $table->id('id_riwayat');
+            $table->id('id_riwayatORG');
             $table->foreignId('id_organisasi');
             $table->foreignId('id_jabatan');
             $table->year('periode');
+            $table->string('carousel');
             $table->timestamps();
         });
     }

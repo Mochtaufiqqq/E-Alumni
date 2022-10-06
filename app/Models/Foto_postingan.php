@@ -11,7 +11,6 @@ class Foto_postingan extends Model
 
     protected $table = 'foto_postingan';
     protected $primaryKey = 'id';
-    protected $guarded = ['id_postingan'];
 
     public function foto_postingan()
     {

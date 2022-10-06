@@ -10,6 +10,7 @@
         "cviebrock/eloquent-sluggable": "^9.0",
         "dompdf/dompdf": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^2.7",
         "kevincobain2000/laravel-erd": "^1.6",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
