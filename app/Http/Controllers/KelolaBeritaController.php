@@ -30,6 +30,7 @@ class KelolaBeritaController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
+            'dokumentasi' => 'mimes:jpg,png,jpeg|max:5000',
             'judul' => 'required',
             'isi' => 'required',
             'kategori' => 'required',
@@ -39,6 +40,10 @@ class KelolaBeritaController extends Controller
         $fileName = time().$request->file('foto')->getClientOriginalName();
         $path = $request->file('foto')->storeAs('foto-berita', $fileName. 'public');
         $validatedData['foto'] = '/storage/' .$path;
+
+        $fileName = time().$request->file('dokumentasi')->getClientOriginalName();
+        $path = $request->file('dokumentasi')->storeAs('foto-dokumentasi', $fileName. 'public');
+        $validatedData['foto'] = '/storage' . $path;
 
         Berita::create($validatedData);
 
