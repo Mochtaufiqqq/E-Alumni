@@ -36,7 +36,7 @@ Route::group(['middleware' => ['guest']], function(){
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'store']);
     Route::get('/forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm']);
-    Route::post('/forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm']); 
+    Route::post('/forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm']);
     Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
     Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm']);
     });
@@ -62,7 +62,7 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
 
     Route::get('image-upload2', [ImageController::class, 'index']);
     Route::post('image-upload', [ImageController::class, 'store'])->name('image.store');
-   
+
     // Berita admin
     Route::get('/semuaberita',[KelolaBeritaController::class,'show']);
     Route::get('/tambahberita',[KelolaBeritaController::class,'add']);
@@ -74,12 +74,12 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     //organisasi admin
     Route::get('/showORG', [OrganisasiController::class, 'show']);
     Route::get('/Organisasi', [OrganisasiController::class, 'organisasiEdit']);
-    Route::post('/Organisasi', [OrganisasiController::class, 'carousel']);
+    Route::post('/organisasi/tambah', [OrganisasiController::class, 'carousel']);
 
-});  
+});
 
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::get('/profile', [UserController::class, 'profile']);
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
-    
+
 });
