@@ -95,6 +95,18 @@
                     </div>
                     @enderror
                   </div>
+                  <div class="mb-3 input-group-solid">
+                    <label class="form-label" for="image">Foto Kegiatan (Dokumentasi)</label>
+                  
+                    <img class="img-preview img-fluid mb-3">
+                    <input class="form-control @error('foto') is-invalid @enderror" type="file" name="foto" id="foto" placeholder="foto" required autofocus onchange="previewImage()">
+                
+                    @error('foto')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                  </div>
             </div>
           </div>
           <div class="card-footer">
