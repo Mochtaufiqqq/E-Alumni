@@ -16,7 +16,9 @@ class Riwayat_organisasi extends Model
     protected $table = 'riwayat_organisasi';
     protected $fillable = [
         'id_organisasi',
-        'id_jabatan'
+        'id_jabatan',
+        'carousel',
+        'periode'
     ];
 
     public function riwayat_organisasi()

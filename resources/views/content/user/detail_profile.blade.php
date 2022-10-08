@@ -4,14 +4,6 @@
 @section('content')
 
 
-
-
-=======
-
-@section('title', 'Profile')
-
-@section('content')
-
 <!-- Page content -->
 <section class="container">
     <div class="row">
@@ -691,8 +683,6 @@
                         Account menu
                         <i class="bx bx-chevron-down fs-lg ms-1"></i>
                     </button>
-
->>>>>>> ca0570faeae8c2242f38690bd6048897e282ade5
                 </div>
                 <button type="button" class="btn btn-danger">Delete</button>
             </div>
@@ -820,11 +810,4 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-
-</section>
 @endsection
-=======
-</section>
-@endsection
->>>>>>> ca0570faeae8c2242f38690bd6048897e282ade5

@@ -21,10 +21,10 @@ class JabatanSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         $data = [
-            'Osis',
-            'Panahan',
-            'Voli',
-            'Nampon',
+            'Ketua',
+            'Wakil',
+            'Serketaris',
+            'Bendahara',
         ];
 
         foreach ($data as $key ) {

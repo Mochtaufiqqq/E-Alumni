@@ -11,35 +11,42 @@ class OrganisasiController extends Controller
 {
     public function index()
     {
-        Riwayat_organisasi::all();
-        return view('content.user.organisasi');
+        $organisasi = Riwayat_organisasi::all();
+        $org = Organisasi::all();
+
+        return view('content.user.organisasi', compact('organisasi', 'org'));
     }
 
     public function organisasiEdit()
     {
-        Riwayat_organisasi::all();
-        return view('content.admin.organisasiEdit');
+        $organisasi = Riwayat_organisasi::all();
+        $org = Organisasi::all();
+
+        return view('content.admin.organisasiEdit', compact('organisasi', 'org'));
     }
 
     public function show()
     {
-        Riwayat_organisasi::all();
-        return view('content.admin.showOrganisasi');
+        $organisasi = Riwayat_organisasi::all();
+        $org = Organisasi::all();
+        return view('content.admin.showOrganisasi', compact('organisasi', 'org'));
     }
 
     public function carousel(Request $request)
     {
+
         $validatedData = $request->validate([
-            'carousel' => 'required|mimes:jpg,png,jpeg|max:5000',
             'id_organisasi' => 'required|unique:users',
             'id_jabatan' => 'required',
             'peroide' => 'required',
+            'carousel' => 'required|mimes:jpg,png,jpeg|max:5000',
         ]);
 
+
         $fileName = time().$request->file('carousel')->getClientOriginalName();
-        $path = $request->file('carousel')->storeAs('imgay', $fileName. 'public');
+        $path = $request->file('carousel')->storeAs('img-carousel', $fileName. 'public');
         $validatedData['carousel'] = '/storage/' .$path;
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        // $validatedData['password'] = Hash::make($validatedData['password']);
 
         Riwayat_organisasi::create($validatedData);
 

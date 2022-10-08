@@ -67,7 +67,10 @@
  <script src="{{ asset('viho_all/html/assets/js/datatable/datatable-extension/dataTables.scroller.min.js') }}"></script>
  <script src="{{ asset('viho_all/html/assets/js/datatable/datatable-extension/custom.js') }}"></script>
  <script src="{{ asset('viho_all/html/assets/js/tooltip-init.js') }}"></script>
- 
+    <script src="{{ asset('js/owlcarousel/owl.carousel.js') }}"></script>
+    <script src="{{ asset('js/owlcarousel/owl-custom.js') }}"></script>
+    <script src="{{ asset('js/tooltip-init.js') }}"></script>
+
  <script>
     $(document).ready(function () {
         $(document).on('click', '#select', function () {
@@ -96,7 +99,7 @@
 
         const oFReader = new FileReader();
         oFReader.readAsDataURL(image.files[0]);
-        
+
         oFReader.onload = function(oFREvent){
             imgPreview.src = oFREvent.target.result;
         }
