@@ -62,7 +62,7 @@
                   <div class="mb-3">
                     <label class="form-label">Tgl</label>
                     <div class="input-group">
-                      <input class="form-control @error('tgl') is-invalid @enderror" type="text" name="tgl" placeholder="Tanggal" aria-label="Recipient's username" required autofocus>
+                      <input class="form-control @error('tgl') is-invalid @enderror" type="date" name="tgl" placeholder="Tanggal" aria-label="Recipient's username" required autofocus>
                     </div>
                     @error('tgl')
                     <div class="invalid-feedback">
@@ -87,7 +87,7 @@
                     <label class="form-label" for="image">Foto</label>
                   
                     <img class="img-preview img-fluid mb-3">
-                    <input class="form-control @error('foto') is-invalid @enderror" type="file" name="foto" id="foto" placeholder="foto" required autofocus onchange="previewImage()">
+                    <input class="form-control @error('foto') is-invalid @enderror" type="file" name="foto" id="foto" placeholder="foto" onchange="previewImage()">
                 
                     @error('foto')
                     <div class="invalid-feedback">
@@ -99,7 +99,7 @@
                     <label class="form-label" for="image">Foto Kegiatan (Dokumentasi)</label>
                   
                     <img class="img-preview img-fluid mb-3">
-                    <input class="form-control @error('foto') is-invalid @enderror" type="file" name="foto" id="foto" placeholder="foto" required autofocus onchange="previewImage()">
+                    <input class="form-control @error('foto') is-invalid @enderror" type="file" name="dokumentasi" id="foto" placeholder="foto" onchange="previewImage()">
                 
                     @error('foto')
                     <div class="invalid-feedback">

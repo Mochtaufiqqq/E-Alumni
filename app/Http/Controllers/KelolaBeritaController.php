@@ -29,22 +29,26 @@ class KelolaBeritaController extends Controller
 
     public function store(Request $request) {
         $validatedData = $request->validate([
-            'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
-            'dokumentasi' => 'mimes:jpg,png,jpeg|max:5000',
+            'foto' => 'image|mimes:jpg,png,jpeg|max:5000',
+            'dokumentasi' => 'image|mimes:jpg,png,jpeg|max:5000',
             'judul' => 'required',
             'isi' => 'required',
             'kategori' => 'required',
             'tgl'  => 'required',
         ]);
 
-        $fileName = time().$request->file('foto')->getClientOriginalName();
+        if($request->file()){
+            $fileName = time().$request->file('foto')->getClientOriginalName();
         $path = $request->file('foto')->storeAs('foto-berita', $fileName. 'public');
         $validatedData['foto'] = '/storage/' .$path;
+        }
 
+        if($request->file()){
         $fileName = time().$request->file('dokumentasi')->getClientOriginalName();
         $path = $request->file('dokumentasi')->storeAs('foto-dokumentasi', $fileName. 'public');
-        $validatedData['foto'] = '/storage' . $path;
-
+        $validatedData['dokumentasi'] = '/storage/' . $path;
+        }
+        
         Berita::create($validatedData);
 
         return redirect('/semuaberita')->with('success', 'Data Berhasil Ditambahkan');
