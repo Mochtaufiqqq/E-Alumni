@@ -72,10 +72,12 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::delete('/hapusberita/{beritas}', [KelolaBeritaController::class, 'delete'])->name('delete');
 
     //organisasi admin
-    Route::get('/showORG', [OrganisasiController::class, 'show']);
-    Route::get('/Organisasi', [OrganisasiController::class, 'organisasiEdit']);
-    Route::post('/organisasi/tambah', [OrganisasiController::class, 'carousel']);
-
+    Route::prefix('organisasi')->group(function(){ 
+        Route::get('/', [OrganisasiController::class, 'show']);
+        Route::get('/edit', [OrganisasiController::class, 'edit']);
+        Route::get('/add', [OrganisasiController::class, 'tambah']);
+        Route::post('/store', [OrganisasiController::class, 'carousel']);
+    });
 });
 
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){

@@ -11,8 +11,7 @@ class Organisasi extends Model
     use HasFactory;
 
     protected $table = 'organisasi';
-    protected $primaryKey = 'id';
-    protected $guarded = ['id_organisasi'];
+    protected $fillable = ['nama_organisasi', 'id_organisasi'];
 
     public function organisasi()
     {

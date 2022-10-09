@@ -17,26 +17,36 @@ class OrganisasiController extends Controller
         return view('content.user.organisasi', compact('organisasi', 'org'));
     }
 
-    public function organisasiEdit()
+    public function edit()
     {
         $organisasi = Riwayat_organisasi::all();
         $org = Organisasi::all();
 
-        return view('content.admin.organisasiEdit', compact('organisasi', 'org'));
+        return view('content.admin.organisasi.organisasiEdit', compact('organisasi', 'org'));
     }
 
     public function show()
     {
         $organisasi = Riwayat_organisasi::all();
         $org = Organisasi::all();
-        return view('content.admin.showOrganisasi', compact('organisasi', 'org'));
+        return view('content.admin.organisasi.showOrganisasi', compact('organisasi', 'org'));
+    }
+
+    public function tambah()
+    {
+        $organisasi = Riwayat_organisasi::all();
+        $org = Organisasi::all();
+        return view('content.admin.organisasi.addOrganisasi', compact('organisasi', 'org'));
     }
 
     public function carousel(Request $request)
     {
 
+        dd($request->id_organisasi);
+        // $organisasi = Riwayat_organisasi::all();
+
         $validatedData = $request->validate([
-            'id_organisasi' => 'required|unique:users',
+            'id_organisasi' => 'required',
             'id_jabatan' => 'required',
             'peroide' => 'required',
             'carousel' => 'required|mimes:jpg,png,jpeg|max:5000',
@@ -50,6 +60,6 @@ class OrganisasiController extends Controller
 
         Riwayat_organisasi::create($validatedData);
 
-        return redirect('/showORG')->with('success', 'Data Berhasil Ditambahkan');
+        return redirect('/organisasi')->with('success', 'Data Berhasil Ditambahkan');
     }
 }
