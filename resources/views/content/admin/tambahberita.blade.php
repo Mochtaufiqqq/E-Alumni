@@ -101,7 +101,7 @@
                     <img class="img-preview img-fluid mb-3">
                     <input class="form-control @error('foto') is-invalid @enderror" type="file" name="foto" id="foto" placeholder="foto" required autofocus onchange="previewImage()">
                 
-                    @error('foto')
+                    @error('files')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

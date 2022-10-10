@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Berita;
 use PDF;
+use App\Models\Berita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\File;
 
 class KelolaBeritaController extends Controller
 {
@@ -41,9 +42,17 @@ class KelolaBeritaController extends Controller
         $path = $request->file('foto')->storeAs('foto-berita', $fileName. 'public');
         $validatedData['foto'] = '/storage/' .$path;
 
-        $fileName = time().$request->file('dokumentasi')->getClientOriginalName();
-        $path = $request->file('dokumentasi')->storeAs('foto-dokumentasi', $fileName. 'public');
-        $validatedData['foto'] = '/storage' . $path;
+        if($request->hasFile('dokumentasi')){
+            foreach($request->file('dokumentasi') as $key => $file){
+                $path = $file->storeAs('foto-dokumentasi');
+                $name = $file->getClientOriginalName();
+
+                $insert[$key]['name'] = $name;
+                $insert[$key]['path'] = $path;
+            }
+        }
+
+        File::insert($insert);
 
         Berita::create($validatedData);
 
