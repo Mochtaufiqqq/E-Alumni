@@ -42,17 +42,9 @@ class KelolaBeritaController extends Controller
         $path = $request->file('foto')->storeAs('foto-berita', $fileName. 'public');
         $validatedData['foto'] = '/storage/' .$path;
 
-        if($request->hasFile('dokumentasi')){
-            foreach($request->file('dokumentasi') as $key => $file){
-                $path = $file->storeAs('foto-dokumentasi');
-                $name = $file->getClientOriginalName();
-
-                $insert[$key]['name'] = $name;
-                $insert[$key]['path'] = $path;
-            }
-        }
-
-        File::insert($insert);
+        $fileName = time().$request->file('dokumentasi')->getClientOriginalName();
+        $path = $request->file('dokumentasi')->storeAs('foto-berita', $fileName. 'public');
+        $validatedData['dokumentasi'] = '/storage/' .$path;
 
         Berita::create($validatedData);
 
