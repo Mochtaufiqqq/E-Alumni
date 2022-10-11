@@ -68,6 +68,11 @@
  <script src="{{ asset('viho_all/html/assets/js/datatable/datatable-extension/custom.js') }}"></script>
  <script src="{{ asset('viho_all/html/assets/js/tooltip-init.js') }}"></script>
  
+
+ <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+ 
+ {{-- <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> --}}
+
  <script>
     $(document).ready(function () {
         $(document).on('click', '#select', function () {
@@ -104,5 +109,6 @@
 </script>
 
 @yield('javascript')
+
  <!-- Plugins JS Ends-->
  <!-- login js-->

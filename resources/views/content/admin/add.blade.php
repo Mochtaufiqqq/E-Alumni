@@ -40,7 +40,7 @@
                   <label class="form-label" for="image">Foto Profile</label>
                   
                     <img class="img-preview img-fluid mb-3">
-                    <input class="form-control @error('foto_profile') is-invalid @enderror" type="file" name="foto_profile" id="image" placeholder="foto_profile" required autofocus onchange="previewImage()">
+                    <input class="form-control @error('foto_profile') is-invalid @enderror" type="file" name="foto_profile" id="image" placeholder="foto_profile" onchange="previewImage()">
                 
                   @error('foto_profile')
                   <div class="invalid-feedback">

@@ -28,6 +28,8 @@ Route::get('/organisasi', [OrganisasiController::class, 'index']);
 //endorganisasi
 Route::get('/tentangkami', [AlumniController::class, 'tentangkami']);
 Route::get('/semuaalumni', [UserController::class, 'semuaalumni']);
+Route::get('/detailalumni/{user}', [UserController::class, "detailalumni"]);
+Route::get('/kesanpesan',[UserController::class,'kesanpesan']);
 
 
 Route::group(['middleware' => ['guest']], function(){
@@ -81,5 +83,6 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::get('/profile', [UserController::class, 'profile']);
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
+    Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
     
 });
