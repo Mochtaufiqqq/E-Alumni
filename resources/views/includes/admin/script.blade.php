@@ -72,6 +72,9 @@
  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
  
  {{-- <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> --}}
+    <script src="{{ asset('js/owlcarousel/owl.carousel.js') }}"></script>
+    <script src="{{ asset('js/owlcarousel/owl-custom.js') }}"></script>
+    <script src="{{ asset('js/tooltip-init.js') }}"></script>
 
  <script>
     $(document).ready(function () {
@@ -101,7 +104,7 @@
 
         const oFReader = new FileReader();
         oFReader.readAsDataURL(image.files[0]);
-        
+
         oFReader.onload = function(oFREvent){
             imgPreview.src = oFREvent.target.result;
         }

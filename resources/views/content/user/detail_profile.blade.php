@@ -12,7 +12,6 @@
                 <div class="text-center pt-5">
                     <div class="d-table position-relative mx-auto mt-2 mt-lg-4 pt-5 mb-3">
 
-
                         @if (auth()->user()->foto_profile != '')
                         <img src="{{ asset(auth()->user()->foto_profile) }}" class="d-block rounded-circle" width="120"
                             alt="John Doe">
@@ -773,15 +772,12 @@
                         Account menu
                         <i class="bx bx-chevron-down fs-lg ms-1"></i>
                     </button>
-
                 </div>
                 <button type="button" class="btn btn-danger">Delete</button>
             </div>
     </div>
+
 </div>
 
 </section>
 @endsection
-
-
-

@@ -11,22 +11,23 @@ class Riwayat_organisasi extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id_riwayat'];
-    protected $primaryKey = 'id';
+    protected $guarded = ['id'];
     protected $table = 'riwayat_organisasi';
     protected $fillable = [
         'id_organisasi',
-        'id_jabatan'
+        'id_jabatan',
+        'foto',
+        'periode'
     ];
 
-    public function riwayat_organisasi()
+    public function organisasi()
     {
-        return $this->belongsTo(Organisasi::class);
+        return $this->belongsTo(Organisasi::class, 'id');
     }
 
     public function jabatan()
     {
-        return $this->belongsTo(Jabatan::class);
+        return $this->belongsTo(Jabatan::class, 'id');
     }
 
     public function alumni()

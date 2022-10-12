@@ -29,7 +29,7 @@
                     <ul class="dropdown-menu show" data-bs-popper="static">
                       <li><a href="account-details.html" class="dropdown-item">Lowongan Pekerjaan</a></li>
                       <li><a href="account-security.html" class="dropdown-item">Ajukan Lowongan Pekerjaan</a></li>
-                      <li><a href="/kesanpesan" class="dropdown-item">Testimoni</a></li>
+                      <li><a href="/kesanpesan" class="dropdown-item">Kesan & Pesan</a></li>
                     </ul>
                   </li>
             </ul>
