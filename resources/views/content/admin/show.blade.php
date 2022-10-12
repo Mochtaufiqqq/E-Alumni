@@ -69,7 +69,7 @@
                                       <img src="{{ asset($u->foto_profile) }}" alt="" width="50" height="50">
 
                                       @else
-                                      <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
+                                      <img src="{{ asset('default/user.png') }}" alt="" width="50" height="50">
                                       @endif
                                      </td>
                                     <td>{{ $u->nama }}</td>

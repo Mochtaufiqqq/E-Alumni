@@ -59,6 +59,9 @@
                                         <td>
                                           <img src="{{ asset($o->foto) }}" alt="" width="50" height="50">
                                          </td>
+                                        <td>
+                                          <img src="{{ asset($o->logo) }}" alt="" width="50" height="50">
+                                         </td>
                                         <td>{{ $o->organisasi->organisasi }}</td>
                                         <td>{{ $o->jabatan->jabatan }}</td>
                                         <td>{{ $o->periode }}</td>

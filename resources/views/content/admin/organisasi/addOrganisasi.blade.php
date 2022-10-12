@@ -49,6 +49,20 @@
                                     @enderror
                                 </div>
 
+                                <div class="mb-3">
+                                    <label class="form-label" for="image">Logo</label>
+                                        <img class="img-preview img-fluid mb-3" style="max-height: 300px; max-width: 400px;">
+
+                                        <input class="form-control @error('foto') is-invalid @enderror" type="file"
+                                            name="logo" id="image" placeholder="logo" required autofocus
+                                            onchange="previewImage()" accept="image/*">
+                                    @error('logo')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+
                                 <div class="mb-3 input-group-solid">
                                     <label class="form-label">Organisasi</label>
                                     <select name="organisasi" id="" class="form-select form-control" required autofocus>

@@ -49,19 +49,25 @@ class OrganisasiController extends Controller
         $validatedData = $request->validate([
             'periode' => 'required',
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
+            'logo' => 'required|mimes:jpg,png,jpeg|max:5000',
         ]);
 
         $fileName = time().$request->file('foto')->getClientOriginalName();
         $path = $request->file('foto')->storeAs('organisasi-img', $fileName);
         $foto = '/storage/' .$path;
         
+        $fileName = time().$request->file('logo')->getClientOriginalName();
+        $path = $request->file('logo')->storeAs('organisasi-logo', $fileName);
+        $logo = '/storage/' .$path;
+
         Riwayat_organisasi::create([
             'id_organisasi' => $request->organisasi,
             'id_jabatan' => $request->jabatan,
             'periode' => $request->periode,
-            'foto' => $foto
+            'foto' => $foto,
+            'logo' => $logo
         ]);
         
-        return redirect('/organisasi/show')->with('berhasil', 'berhasil menambahkan organisasi'); 
+        return redirect('/organisasi/show')->with('berhasil', 'berhasil menambahkan'); 
     }
 }

@@ -12,7 +12,11 @@
         </button>
         <div class="nav dropdown d-block order-lg-3 ms-4">
             <a href="#" class="d-flex nav-link p-0" data-bs-toggle="dropdown">
+                @if (Auth::user()->foto_profile == '')
+                <img src="{{ asset('default/user.png') }}" class="rounded-circle" width="48" alt="Avatar">
+                @else
                 <img src="{{ asset(auth()->user()->foto_profile) }}" class="rounded-circle" width="48" alt="Avatar">
+                @endif
                 <div class="d-none d-sm-block ps-2">
                     <div class="fs-xs lh-1 opacity-60">Hello,</div>
                     <div class="fs-sm dropdown-toggle">{{ auth()->user()->nama }}</div>
@@ -89,4 +93,3 @@
     </div>
 
 </header>
-
