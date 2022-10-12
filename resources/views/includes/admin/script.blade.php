@@ -67,6 +67,11 @@
  <script src="{{ asset('viho_all/html/assets/js/datatable/datatable-extension/dataTables.scroller.min.js') }}"></script>
  <script src="{{ asset('viho_all/html/assets/js/datatable/datatable-extension/custom.js') }}"></script>
  <script src="{{ asset('viho_all/html/assets/js/tooltip-init.js') }}"></script>
+ 
+
+ <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+ 
+ {{-- <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> --}}
     <script src="{{ asset('js/owlcarousel/owl.carousel.js') }}"></script>
     <script src="{{ asset('js/owlcarousel/owl-custom.js') }}"></script>
     <script src="{{ asset('js/tooltip-init.js') }}"></script>
@@ -107,5 +112,6 @@
 </script>
 
 @yield('javascript')
+
  <!-- Plugins JS Ends-->
  <!-- login js-->

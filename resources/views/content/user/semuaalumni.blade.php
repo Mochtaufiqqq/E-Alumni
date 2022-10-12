@@ -139,7 +139,7 @@
   <section class="container-fluid pt-lg-5 pb-5 mb-2 mb-md-4 mb-lg-5">
     <h2 class="h1 text-center pb-md-1 mb-1 mb-sm-3">Semua Alumni</h2>
           <div class="row">
-            @foreach ($users as $u)
+            @foreach ($user as $u)
                 
             <!-- Item -->
             <div class="col-5 col-md-6 col-sm-6 col-xs-12 col-lg-3">
@@ -150,11 +150,8 @@
                       <p class="fs-sm mb-3">Bekerja di PT.Nasa Sebagai Manager</p>
                       <p class="fs-sm mb-3">{{ $u->thn_lulus }}</p>
                       <div class="d-flex">
-                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#modalEdit" >
-                            Detail
-                          </button>
-                         
-             
+                        <a href="/detailalumni/{{ $u->id }}" class="btn btn-outline-secondary
+                        ">Detail</a>
                       </div>
                   </div>
               </div>

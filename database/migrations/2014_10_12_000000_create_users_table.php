@@ -27,15 +27,17 @@ return new class extends Migration
             $table->string('karya')->nullable();
             $table->string('keahlian')->nullable();
             $table->string('foto_profile')->nullable();
+            $table->string('foto_kegiatan')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->string('jabatan_pekerjaan')->nullable();
             $table->string('tmpt_pekerjaan')->nullable();
             $table->integer('status')->default('0');
+
+            $table->foreignId('id_riwayatORG');
+            $table->foreignId('id_sosmed')->nullable();
+            $table->foreignId('id_prestasi')->nullable();
+            $table->foreignId('id_pendidikan')->nullable();
             $table->foreignId('id_organisasi')->nullable();
-            // $table->foreignId('id_sosmed');
-            // $table->foreignId('id_prestasi');
-            // $table->foreignId('id_postingan');
-            // $table->foreignId('id_pendidikan');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

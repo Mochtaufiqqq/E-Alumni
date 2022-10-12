@@ -7,15 +7,26 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\KesanPesan;
 
 class UserController extends Controller
 {
+
+    public function kesanpesan(){
+        $dtkesanpesan = KesanPesan::with('user')->latest()->get();
+        return view('content.user.showkesanpesan',[
+            'user' => User::all(),
+            'kesanpesan' => KesanPesan::all(),
+        ], compact('dtkesanpesan'));
+    
+    }
+
     public function semuaalumni (){
-        $users = User::where('role_id', 2)->latest()->get();
+        $user = User::where('role_id', 2)->latest()->get();
         
         return view('content.user.semuaalumni',[
-            'users'  => $users
-        ],compact('users'));
+            'user'  => $user
+        ],compact('user'));
 
     }
 
@@ -30,6 +41,7 @@ class UserController extends Controller
     public function settingprofileuser(Request $request, User $user){
         $validatedData = $request->validate([
             'foto_profile' => 'image|mimes:jpg,png,jpeg|max:5000',
+            'nama_panggilan' => 'required',
             
         ]);
 
@@ -42,5 +54,17 @@ class UserController extends Controller
 
         User::where('id', $user->id)->update($validatedData);
         return redirect('/profile')->with('success', 'Foto Profil Berhasil Ditambahkan!');
+    }
+
+    public function addpekerjaan(Request $request, User $user) {
+
+        $validatedData = $request->validate([
+            'pekerjaan'      => 'required',
+            'jabatan_pekerjaan'    => 'required',
+            
+        ]);
+        User::where('id', $user->id)->update($validatedData);
+        return redirect('/profile')->with('success', 'Pekerjaan Berhasil Ditambahkan!');
+
     }
 }

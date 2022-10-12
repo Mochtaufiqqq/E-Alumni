@@ -28,6 +28,9 @@
     <link id="color" rel="stylesheet" href="/viho_all/html/assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="/viho_all/html/assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+    
     <link rel="stylesheet" type="text/css" href="/viho_all/html/assets/css/owlcarousel.css">
     <link id="color" rel="stylesheet" href="/viho_all/html/assets/css/color-1.css" media="screen">
+
 
