@@ -65,7 +65,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Tgl</label>
                                     <div class="input-group">
-                                        <input class="form-control @error('tgl') is-invalid @enderror" type="text"
+                                        <input class="form-control @error('tgl') is-invalid @enderror" type="date"
                                             name="tgl" placeholder="Tanggal" aria-label="Recipient's username" required
                                             autofocus>
                                     </div>

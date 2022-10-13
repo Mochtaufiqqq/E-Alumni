@@ -32,6 +32,9 @@ Route::get('/tentangkami', [AlumniController::class, 'tentangkami']);
 Route::get('/semuaalumni', [UserController::class, 'semuaalumni']);
 Route::get('/detailalumni/{user}', [UserController::class, "detailalumni"]);
 Route::get('/kesanpesan',[UserController::class,'kesanpesan']);
+//berita
+Route::get('/tampilberita', [KelolaBeritaController::class, 'tampil']);
+Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detail_berita']);
 
 
 Route::group(['middleware' => ['guest']], function(){
@@ -92,7 +95,6 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     // for manage profile alumni personal
     Route::get('/profile', [UserController::class, 'profile']);
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
-
     Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
     Route::get('/kontak', [MailController::class, 'email']);
     Route::post('/kontak', [MailController::class, 'send'])->name('send');

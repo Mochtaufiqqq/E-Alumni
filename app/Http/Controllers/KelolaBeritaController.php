@@ -10,6 +10,18 @@ use Illuminate\Validation\Rules\File;
 
 class KelolaBeritaController extends Controller
 {
+    public function detail_berita(Berita $berita){
+        return view('content.user.detail_berita',[
+            'berita' => $berita
+        ]);
+    }
+
+    public function tampil(){
+        $beritas = Berita::all();
+        return view('content.user.berita',[
+            'beritas' => Berita::all()
+        ],compact('beritas'));
+    }
     
     public function show()
     {
@@ -31,7 +43,7 @@ class KelolaBeritaController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
-            'dokumentasi' => 'mimes:jpg,png,jpeg|max:5000',
+            'dokumentasi' => 'required|mimes:jpg,png,jpeg|max:5000',
             'judul' => 'required',
             'isi' => 'required',
             'kategori' => 'required',
@@ -42,9 +54,11 @@ class KelolaBeritaController extends Controller
         $path = $request->file('foto')->storeAs('foto-berita', $fileName. 'public');
         $validatedData['foto'] = '/storage/' .$path;
 
+        foreach ($request->dokumentasi as $path){
         $fileName = time().$request->file('dokumentasi')->getClientOriginalName();
-        $path = $request->file('dokumentasi')->storeAs('foto-berita', $fileName. 'public');
+        $path = $request->file('dokumentasi')->storeAs('foto-dokumnetasi', $fileName. 'public');
         $validatedData['dokumentasi'] = '/storage/' .$path;
+        }
 
         Berita::create($validatedData);
 
@@ -74,7 +88,6 @@ class KelolaBeritaController extends Controller
 
         }
         
-        
         Berita::where('id', $beritas->id)->update($validatedData);
 
         return redirect('/semuaberita')->with('success', 'Data berhasil diubah!');
@@ -90,6 +103,10 @@ class KelolaBeritaController extends Controller
            
             'beritas' => $beritas
         ]);
+    }
+
+    public function dokumentasi(){
+        return view('content.user.dokumentasi');
     }
 
     public function reportpdfberita(){

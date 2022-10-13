@@ -1,6 +1,7 @@
 @extends('layouts.user.master')
 
 @section('title', 'Profil Saya')
+
 @section('content')
 
 <!-- Page content -->
