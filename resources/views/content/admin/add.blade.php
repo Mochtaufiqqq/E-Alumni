@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <form action="/organisasi/store" method="POST" enctype="multipart/form-data">
+                            <form action="/tambahuser" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3 m-form__group">
                                     <label class="form-label" for="image">Foto Profile</label>

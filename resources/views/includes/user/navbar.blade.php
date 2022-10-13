@@ -1,4 +1,4 @@
-<header class="header navbar navbar-expand-lg bg-light navbar-sticky">
+<header class="header navbar navbar-expand-lg bg-light shadow-sm shadow-dark-mode-none fixed-top">
     <div class="container px-3">
         @if (Route::has('login'))
         @auth

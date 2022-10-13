@@ -83,5 +83,7 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::get('/profile', [UserController::class, 'profile']);
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
-
+    Route::get('/tampilberita', [KelolaBeritaController::class, 'tampil']);
+    Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detail_berita']);
+    Route::get('/dokumentasi',[KelolaBeritaController::class,'dokumentasi']);
 });
