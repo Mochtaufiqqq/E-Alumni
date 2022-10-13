@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title','Edit User')
+@section('title','Organisasi')
 
 @section('content')
 
@@ -27,8 +27,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header pb-0">
-                    <h5>Auto Play Example</h5>
+                <div class="card-header">
+                    <h5>Organisasi</h5><span>Dibawah Ini adalah table semua data organisasi kamu bisa mengelolanya. Terdapat Beberapa Button Untuk Mengelola</span>
                 </div>
                 @if (session('berhasil'))
                 <div class="alert alert-primary alert-dismissible fade show" role="alert"><strong>Selamat ! </strong>
@@ -38,43 +38,49 @@
                 </div>
                 @endif
                 <div class="card-body">
-                    <a class="btn btn-primary mb-3" href="/tambahuser">Tambah Data</a>
-                    <a class="btn btn-secondary text-dark mb-3" href="{{ url('/reportpdfuser') }}">Export PDF</a>
+                    <a class="btn btn-primary mb-3" href="/organisasi/add">Tambah Data</a>
                       <div class="dt-ext table-responsive">
-                          <table class="display" id="responsive">
+                          <table id="responsive" class="display">
                               <thead>
                                   <tr>
-                                      <th>No</th>
-                                      <th>Foto</th>
-                                      <th>Organisasi</th>
-                                      <th>Jabatan</th>
-                                      <th>Periode</th>
-                                      <th>Opsi</th>
-                                  </tr>
+                                      <th scope="col">No</th>
+                                      <th scope="col">Foto</th>
+                                      <th scope="col">Logo</th>
+                                      <th scope="col">Organisasi</th>
+                                      <th scope="col">Jabatan</th>
+                                      <th scope="col">Periode</th>
+                                      <th scope="col">Deskripsi</th>
+                                      <th scope="col">Opsi</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($organisasi as $o)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td scope="row">{{ $loop->iteration }}</td>
                                         <td>
-                                          <img src="{{ asset($o->foto) }}" alt="" width="50" height="50">
+                                          <img src="{{ asset($o->foto) }}" alt="" style="max-width: 100px; max-height: 80px;">
                                          </td>
                                         <td>
-                                          <img src="{{ asset($o->logo) }}" alt="" width="50" height="50">
+                                          <img src="{{ asset($o->logo) }}" alt="" style="max-width: 100px; max-height: 80px;">
                                          </td>
                                         <td>{{ $o->organisasi->organisasi }}</td>
                                         <td>{{ $o->jabatan->jabatan }}</td>
                                         <td>{{ $o->periode }}</td>
+                                        <td>{{ $o->deskripsi }}</td>
+                                        <td>
+                                            <a href="/organisasi/edit{{ $o->id }}" class="btn btn-primary btn-sm">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <a href="/organisasi/delete{{ $o->id }}" class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     @endforeach
                               </tbody>
                           </table>
                       </div>
                   </div>
-                <div class="mb-3 text-end px-4">
-                    <a href="/organisasi/edit" class="btn btn-primary">Edit</a>
-                    <a href="/organisasi/add" class="btn btn-primary">tambah foto</a>
-                </div>
             </div>
         </div>
     </div>

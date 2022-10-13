@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::create([
-            'nisn'  => '20211001',
+            'nisn'  => '2021190',
             'nama' => 'Taufiq',
             // 'jurusan' => 'XI RPL',
             // 'thn_lulus' => '2023',
-            'foto_profile' => 'asasd',
+            'foto_profile' => 'null',
             // 'no_tlp'  => '0908779097',
             // 'pekerjaan' => 'ngoding',
             // 'jabatan_pekerjaan' => 'manager aminnn',
@@ -37,13 +37,14 @@ class DatabaseSeeder extends Seeder
             'id_sosmed' => '1',
             'id_prestasi' => '1',
             'id_pendidikan' => '1',
+            // 'id_organisasi' => '1',
         ]);
         User::create([
-            'nisn'  => '20211787',
+            'nisn'  => '20211789',
             'nama' => 'Taufiqqq',
             // 'jurusan' => 'XI RPL',
             // 'thn_lulus' => '2023',
-            'foto_profile' => 'asasd',
+            'foto_profile' => 'null',
             // 'no_tlp'  => '0908779097',
             // 'pekerjaan' => 'ngoding',
             // 'jabatan_pekerjaan' => 'manager aminnn',
@@ -59,6 +60,8 @@ class DatabaseSeeder extends Seeder
             'id_sosmed' => '1',
             'id_prestasi' => '1',
             'id_pendidikan' => '1',
+            // 'id_organisasi' => '1
+
         ]);
 
         User::create([
@@ -82,6 +85,7 @@ class DatabaseSeeder extends Seeder
             'id_sosmed' => '1',
             'id_prestasi' => '1',
             'id_pendidikan' => '1',
+            // 'id_organisasi' => '1',
         ]);
 
         TentangKami::create([

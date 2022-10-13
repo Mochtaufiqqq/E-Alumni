@@ -12,7 +12,8 @@ class Organisasi extends Model
 
     protected $table = 'organisasi';
     protected $fillable = ['organisasi'];
-
+    protected $guarded = ['id'];
+    
     public function riwayat_organisasi()
     {
         return $this->hasMany(Riwayat_organisasi::class);

@@ -16,23 +16,23 @@
                         <img src="{{ asset(auth()->user()->foto_profile) }}" class="d-block rounded-circle" width="120"
                             alt="John Doe">
                         @else
-                        <img src="{{ asset('jikatidadada/user.png') }}" class="d-block rounded-circle" width="120"
+                        <img src="{{ asset('default/user.png') }}" class="d-block rounded-circle" width="120"
                             alt="John Doe">
                         @endif
                     </div>
                     <h2 class="h5 mb-1">{{ auth()->user()->nama }} ({{ auth()->user()->nama_panggilan }})</h2>
                     <p class="mb-3 pb-3">{{ auth()->user()->nisn }}</p>
-                <button class="btn btn-outline-secondary mb-3" data-bs-toggle="modal"
-                    data-bs-target="#modalLengkapi" type="button">
-                    <i class="bx bx-plus fs-lg me-2"></i>
-                    Lengkapi Profile
+                    <button class="btn btn-outline-secondary mb-3" data-bs-toggle="modal"
+                        data-bs-target="#modalLengkapi" type="button">
+                        <i class="bx bx-plus fs-lg me-2"></i>
+                        Lengkapi Profile
 
-                </button>
-                    </div>
-                   
+                    </button>
                 </div>
-            
-    </aside>
+
+            </div>
+
+        </aside>
 
         <!-- Modal Lengkapi Profil -->
         <div class="modal fade" tabindex="-1" role="dialog" id="modalLengkapi">
@@ -45,21 +45,21 @@
                     <div class="modal-body">
                         @if (auth()->user()->nama_panggilan == null)
                         <a href="#modalNamaPanggilan" data-bs-toggle="modal" data-bs-target="#modalNamaPanggilan"
-                        style="text-decoration: none; color:black">
-                        <p>Tambahkan nama panggilan</p>
+                            style="text-decoration: none; color:black">
+                            <p>Tambahkan nama panggilan</p>
                         </a>
                         @else
-                        <a href="#modalEditNamaPanggilan" data-bs-toggle="modal" data-bs-target="#modalEditNamaPanggilan"
-                        style="text-decoration: none; color:black">
-                        <p>Edit nama panggilan</p>
+                        <a href="#modalEditNamaPanggilan" data-bs-toggle="modal"
+                            data-bs-target="#modalEditNamaPanggilan" style="text-decoration: none; color:black">
+                            <p>Edit nama panggilan</p>
                         </a>
                         @endif
-                       
+
                         <hr>
                         @if (auth()->user()->foto_profile == null)
                         <a href="#modalfotoProfil" data-bs-toggle="modal" data-bs-target="#modalfotoProfil"
-                        style="text-decoration: none; color:black">
-                        <p class="mt-4">Tambahkan foto profil</p>
+                            style="text-decoration: none; color:black">
+                            <p class="mt-4">Tambahkan foto profil</p>
                         </a>
                         @else
                         <a href="#modalEditFotoProfil" data-bs-toggle="modal" data-bs-target="#modalEditFotoProfil"
@@ -127,7 +127,8 @@
                     <div class="modal-body tab-content py-4">
 
                         <!-- Sign in form -->
-                        <form action="/updateprofile/{{ auth()->user()->id }}" method="POST" class="tab-pane fade show active" autocomplete="off" id="signin">
+                        <form action="/updateprofile/{{ auth()->user()->id }}" method="POST"
+                            class="tab-pane fade show active" autocomplete="off" id="signin">
                             @csrf
                             @method('put')
                             <div class="mb-3">
@@ -142,8 +143,8 @@
             </div>
         </div>
 
-          <!-- Modal edit nama panggilan -->
-          <div class="modal fade" tabindex="-1" role="dialog" id="modalEditNamaPanggilan">
+        <!-- Modal edit nama panggilan -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalEditNamaPanggilan">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
 
@@ -157,12 +158,14 @@
                     <div class="modal-body tab-content py-4">
 
                         <!-- Sign in form -->
-                        <form action="/updateprofile/{{ auth()->user()->id }}" method="POST" class="tab-pane fade show active" autocomplete="off" id="signin">
+                        <form action="/updateprofile/{{ auth()->user()->id }}" method="POST"
+                            class="tab-pane fade show active" autocomplete="off" id="signin">
                             @csrf
                             @method('put')
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Nama Panggilan</label>
-                                <input class="form-control" type="text" name="nama_panggilan" value="{{ old('nama_panggilan',auth()->user()->nama_panggilan) }}" id="email1"
+                                <input class="form-control" type="text" name="nama_panggilan"
+                                    value="{{ old('nama_panggilan',auth()->user()->nama_panggilan) }}" id="email1"
                                     placeholder="Nama Panggilan">
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">Edit</button>
@@ -172,7 +175,7 @@
             </div>
         </div>
 
-         <div class="modal fade" tabindex="-1" role="dialog" id="modalNamaPanggilan">
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalNamaPanggilan">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
 
@@ -186,7 +189,8 @@
                     <div class="modal-body tab-content py-4">
 
                         <!-- Sign in form -->
-                        <form action="/updateprofile/{{ auth()->user()->id }}" method="POST" class="tab-pane fade show active" autocomplete="off" id="signin">
+                        <form action="/updateprofile/{{ auth()->user()->id }}" method="POST"
+                            class="tab-pane fade show active" autocomplete="off" id="signin">
                             @csrf
                             @method('put')
                             <div class="mb-3">
@@ -234,7 +238,8 @@
 
                                 @endif
                                 <img class="img-preview img-fluid mb-3">
-                                <input type="file" value="{{ old('foto_profile',auth()->user()->foto_profile) }}" name="foto_profile" id="image"
+                                <input type="file" value="{{ old('foto_profile',auth()->user()->foto_profile) }}"
+                                    name="foto_profile" id="image"
                                     class="form-control @error('foto_profile') is-invalid @enderror"
                                     onchange="previewImage()">
                                 @error('foto_profile')
@@ -250,8 +255,8 @@
             </div>
         </div>
 
-          <!-- Modal edit for foto profil -->
-          <div class="modal fade" tabindex="-1" role="dialog" id="modalEditFotoProfil">
+        <!-- Modal edit for foto profil -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalEditFotoProfil">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
 
@@ -283,7 +288,8 @@
 
                                 @endif
                                 <img class="img-preview img-fluid mb-3">
-                                <input type="file" value="{{ old('foto_profile',auth()->user()->foto_profile) }}" name="foto_profile" id="image"
+                                <input type="file" value="{{ old('foto_profile',auth()->user()->foto_profile) }}"
+                                    name="foto_profile" id="image"
                                     class="form-control @error('foto_profile') is-invalid @enderror"
                                     onchange="previewImage()">
                                 @error('foto_profile')
@@ -314,7 +320,9 @@
                     <div class="modal-body tab-content py-4">
 
                         <!-- Sign in form -->
-                        <form action="/addpekerjaan/{{ auth()->user()->id }}" method="POST" class="tab-pane fade show active" autocomplete="off" id="signin" enctype="multipart/form-data">
+                        <form action="/addpekerjaan/{{ auth()->user()->id }}" method="POST"
+                            class="tab-pane fade show active" autocomplete="off" id="signin"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="mb-3">
@@ -650,134 +658,45 @@
                 <h1 class="h2 pt-xl-1 pb-3">Profil Saya</h1>
 
                 <!-- Basic info -->
-                <h2 class="h5 text-primary mb-4">Basic info</h2>
-                <form class="needs-validation border-bottom pb-3 pb-lg-4" novalidate>
-                    <div class="row pb-2">
-                        <div class="col-sm-6 mb-4">
-                            <label for="fn" class="form-label fs-base">Email</label>
-                            <p>{{ auth()->user()->email }}</p>
+                <div class="row pb-2">
+                    <div class="col-6 mb-4">
 
-                            <div class="col-sm-6 mb-4">
-                                <label for="sn" class="form-label fs-base">Alamat</label>
-                                <p>{{ auth()->user()->alamat }}</p>
-                            </div>
-                            <div class="col-sm-6 mb-4">
-                                <label for="email" class="form-label fs-base">Pekerjaan</label>
+                        <label for="fn" class="form-label fs-base">Email</label>
+                        <p>{{ auth()->user()->email }}</p>
+
+                        <div class="col-6 mb-4">
+                            <label for="sn" class="form-label fs-base">Alamat</label>
+                            <p>{{ auth()->user()->alamat }}</p>
+                        </div>
+
+                        <div class="col-6 mb-4">
+                            <label for="email" class="form-label fs-base">Pekerjaan</label>
+                            @if (Auth::user()->pekerjaan == '')
+                                <p>Bekerja di <em>PT.Inovindo Digital Media</em> <small class="text-muted">(contoh)</small></p>
+                            @else
                                 <p>Bekerja di {{ auth()->user()->pekerjaan }}</p>
+                            @endif
+                            <br>
+                            @if (Auth::user()->pekerjaan == '')
+                                <p>Sebagai <em>Pegawai</em> <small class="text-muted">(contoh)</small></p>
+                            @else
                                 <p>Sebagai {{ auth()->user()->jabatan_pekerjaan }}</p>
-                            </div>
-                            <div class="col-sm-6 mb-4">
-                                <label for="phone" class="form-label fs-base">Phone <small
-                                        class="text-muted">(optional)</small></label>
-                                <input type="text" id="phone" class="form-control form-control-lg"
-                                    data-format='{"numericOnly": true, "delimiters": ["+1 ", " ", " "], "blocks": [0, 3, 3, 2]}'
-                                    placeholder="+1 ___ ___ __">
-                            </div>
-                            <div class="col-12 mb-4">
-                                <label for="bio" class="form-label fs-base">Bio <small
-                                        class="text-muted">(optional)</small></label>
-                                <textarea id="bio" class="form-control form-control-lg" rows="4"
-                                    placeholder="Add a short bio..."></textarea>
-                            </div>
+                            @endif
                         </div>
-                        <div class="d-flex mb-3">
-                            <button type="reset" class="btn btn-secondary me-3">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                </form>
 
-                <!-- Address -->
-                <h2 class="h5 text-primary pt-1 pt-lg-3 my-4">Address</h2>
-                <form class="needs-validation border-bottom pb-2 pb-lg-4" novalidate>
-                    <div class="row pb-2">
-                        <div class="col-sm-6 mb-4">
-                            <label for="country" class="form-label fs-base">Country</label>
-                            <select id="country" class="form-select form-select-lg" required>
-                                <option value="" disabled>Choose country</option>
-                                <option value="Australia">Australia</option>
-                                <option value="Belgium">Belgium</option>
-                                <option value="Canada">Canada</option>
-                                <option value="Denmark">Denmark</option>
-                                <option value="USA" selected>USA</option>
-                            </select>
-                            <div class="invalid-feedback">Please choose your country!</div>
-                        </div>
-                        <div class="col-sm-6 mb-4">
-                            <label for="state" class="form-label fs-base">State</label>
-                            <select id="state" class="form-select form-select-lg" required>
-                                <option value="" disabled>Choose state</option>
-                                <option value="Arizona">Arizona</option>
-                                <option value="California">California</option>
-                                <option value="Iowa">Iowa</option>
-                                <option value="Florida" selected>Florida</option>
-                                <option value="Michigan">Michigan</option>
-                                <option value="Texas">Texas</option>
-                            </select>
-                            <div class="invalid-feedback">Please choose your state!</div>
-                        </div>
-                        <div class="col-sm-6 mb-4">
-                            <label for="city" class="form-label fs-base">City</label>
-                            <select id="city" class="form-select form-select-lg" required>
-                                <option value="" disabled>Choose city</option>
-                                <option value="Boston">Boston</option>
-                                <option value="Chicago">Chicago</option>
-                                <option value="Los Angeles">Los Angeles</option>
-                                <option value="Miami" selected>Miami</option>
-                                <option value="New York">New York</option>
-                                <option value="Philadelphia">Philadelphia</option>
-                            </select>
-                            <div class="invalid-feedback">Please choose your city!</div>
-                        </div>
-                        <div class="col-sm-6 mb-4">
-                            <label for="zip" class="form-label fs-base">ZIP code</label>
-                            <input type="text" id="zip" class="form-control form-control-lg" required>
-                            <div class="invalid-feedback">Please enter your ZIP code!</div>
-                        </div>
-                        <div class="col-12 mb-4">
-                            <label for="address1" class="form-label fs-base">Address line 1</label>
-                            <input id="address1" class="form-control form-control-lg" required>
-                        </div>
-                        <div class="col-12 mb-4">
-                            <label for="address2" class="form-label fs-base">Address line 2 <small
-                                    class="text-muted">(optional)</small></label>
-                            <input id="address2" class="form-control form-control-lg">
+                        <div class="col-6 mb-4">
+                            <label for="phone" class="form-label fs-base">Phone</label>
+                            @if (Auth::user()->no_tlp == '')
+                            <p><em>62+12345689</em> <small class="text-muted">(contoh)</small></p>
+                            @else
+                            <p>{{ auth()->user()->no_tlp }}</p>
+                            @endif
                         </div>
                     </div>
-                    <div class="d-flex mb-3">
-                        <button type="reset" class="btn btn-secondary me-3">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
-
-                <!-- Delete account -->
-                <h2 class="h5 text-primary pt-1 pt-lg-3 mt-4">Delete account</h2>
-                <p>When you delete your account, your public profile will be deactivated immediately. If you change
-                    your mind before the 14 days are up, sign in with your email and password, and we’ll send you a
-                    link to reactivate your account.</p>
-                <div class="form-check mb-4">
-                    <input type="checkbox" id="delete-account" class="form-check-input">
-                    <label for="delete-account" class="form-check-label fs-base">Yes, I want to delete my
-                        account</label>
-                    <button class="btn btn-outline-secondary mb-3" type="button">
-                        <i class="bx bx-plus fs-lg me-2"></i>
-                        Lengkapi Profile
-                    </button>
-                    <a href="/post_postingan"><button class="btn btn-outline-secondary mb-3" type="button">
-                            <i class="bx bx-plus fs-lg me-2"></i>
-                            Post Foto
-                        </button></a>
-                    <button type="button" class="btn btn-secondary w-100 d-md-none mt-n2 mb-3" data-bs-toggle="collapse"
-                        data-bs-target="#account-menu">
-                        <i class="bx bxs-user-detail fs-xl me-2"></i>
-                        Account menu
-                        <i class="bx bx-chevron-down fs-lg ms-1"></i>
-                    </button>
                 </div>
-                <button type="button" class="btn btn-danger">Delete</button>
             </div>
+        </div>
     </div>
-
-</div>
 
 </section>
 @endsection

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->year('periode');
             $table->string('foto')->nullable();
             $table->string('logo')->nullable();
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }

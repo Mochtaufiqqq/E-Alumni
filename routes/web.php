@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\KelolaBeritaController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrganisasiController;
 
@@ -25,6 +26,7 @@ use App\Http\Controllers\OrganisasiController;
 Route::get('/',[AlumniController::class,'dashboarduser']);
 //organisasi
 Route::get('/organisasi', [OrganisasiController::class, 'index']);
+Route::get('/organisasi/detail/{slug}', [OrganisasiController::class, 'details']);
 //endorganisasi
 Route::get('/tentangkami', [AlumniController::class, 'tentangkami']);
 Route::get('/semuaalumni', [UserController::class, 'semuaalumni']);
@@ -76,10 +78,13 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::delete('/hapusberita/{beritas}', [KelolaBeritaController::class, 'delete'])->name('delete');
 
     //organisasi admin
-    Route::get('/organisasi/show', [OrganisasiController::class, 'show']);
-    Route::get('/organisasi/edit', [OrganisasiController::class, 'edit']);
-    Route::get('/organisasi/add', [OrganisasiController::class, 'tambah']);
-    Route::post('/organisasi/store', [OrganisasiController::class, 'store']);
+    Route::prefix('organisasi')->group(function(){ 
+        Route::get('/show', [OrganisasiController::class, 'show']);
+        Route::get('/edit', [OrganisasiController::class, 'edit']);
+        Route::get('/add', [OrganisasiController::class, 'tambah']);
+        Route::post('/store', [OrganisasiController::class, 'store']);
+        Route::post('/update/{id}', [OrganisasiController::class, 'update']);
+    });
 });
 
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
@@ -89,6 +94,8 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
 
     Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
+    Route::get('/kontak', [MailController::class, 'email']);
+    Route::post('/kontak', [MailController::class, 'send'])->name('send');
     
 });
 

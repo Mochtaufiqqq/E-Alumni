@@ -24,6 +24,9 @@
                 <li class="nav-item">
                     <a href="/organisasi" class="nav-link">Organisasi</a>
                 </li>
+                <li class="nav-item">
+                    <a href="/kontak" class="nav-link">kontak Kami</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">Lainnya</a>
                     <ul class="dropdown-menu show" data-bs-popper="static">
@@ -39,7 +42,7 @@
         @auth
         <div class="nav dropdown d-block order-lg-3 ms-4">
             <a href="#" class="d-flex nav-link p-0" data-bs-toggle="dropdown">
-                @if (Auth::user()->foto_profile == '')
+                @if (Auth::user()->foto_profile == null)
                 <img src="{{ asset('default/user.png') }}" class="rounded-circle" width="48" alt="Avatar">
                 @else
                 <img src="{{ asset(auth()->user()->foto_profile) }}" class="rounded-circle" width="48" alt="Avatar">
