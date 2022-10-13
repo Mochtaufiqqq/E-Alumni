@@ -34,11 +34,9 @@ class DatabaseSeeder extends Seeder
             'status' => '1',
             'alamat' => 'Downtown Street,California State, USA',
             'password' => bcrypt('123123123'),
-            // 'id_riwayat' => '1',
-            // 'id_sosmed' => '1',
-            // 'id_postingan' => '1',
-            // 'id_prestasi' => '1',
-            // 'id_pendidikan' => '1',
+            'id_sosmed' => '1',
+            'id_prestasi' => '1',
+            'id_pendidikan' => '1',
         ]);
         User::create([
             'nisn'  => '20211787',
@@ -58,11 +56,9 @@ class DatabaseSeeder extends Seeder
             'status' => '0',
             'alamat' => 'Downtown Street,California State, USA',
             'password' => bcrypt('123123123'),
-            // 'id_riwayat' => '1',
-            // 'id_sosmed' => '1',
-            // 'id_postingan' => '1',
-            // 'id_prestasi' => '1',
-            // 'id_pendidikan' => '1',
+            'id_sosmed' => '1',
+            'id_prestasi' => '1',
+            'id_pendidikan' => '1',
         ]);
 
         User::create([
@@ -70,7 +66,7 @@ class DatabaseSeeder extends Seeder
             'nama' => 'huhuhu',
             // 'jurusan' => 'XI RPL',
             // 'thn_lulus' => '2023',
-            'foto_profile' => 'asasd',
+            'foto_profile' => 'null',
             // 'no_tlp'  => '0908779097',
             // 'pekerjaan' => 'ngoding',
             // 'jabatan_pekerjaan' => 'manager aminnn',
@@ -83,16 +79,16 @@ class DatabaseSeeder extends Seeder
             'status' => '0',
             'alamat' => 'Downtown Street,California State, USA',
             'password' => bcrypt('123123123'),
-            // 'id_riwayat' => '1',
-            // 'id_sosmed' => '1',
-            // 'id_postingan' => '1',
-            // 'id_prestasi' => '1',
-            // 'id_pendidikan' => '1',
+            'id_sosmed' => '1',
+            'id_prestasi' => '1',
+            'id_pendidikan' => '1',
         ]);
 
         TentangKami::create([
             'judul' => 'Tentang Kami',
-            'isi' => 'Ini adalasdjaosdhaspdjaspdojoasidhoasidhaosidhaosidhaosfhoaisdhaosidhosadihaosdihasodihasodihasodiahsdoiahsdoiashdoaishdousfoaihfio'
+            'isi' => 'Ini adalasdjaosdhaspdjaspdojoasidhoas
+            idhaosidhaosidhaosfhoaisdhaosidhosadihaosdi
+            hasodihasodihasodiahsdoiahsdoiashdoaishdousfoaihfio'
         ]);
     }
 }

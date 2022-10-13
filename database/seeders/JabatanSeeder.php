@@ -29,7 +29,7 @@ class JabatanSeeder extends Seeder
 
         foreach ($data as $key ) {
             Jabatan::create([
-                'nama_jabatan' => $key
+                'jabatan' => $key
             ]);
         }
     }

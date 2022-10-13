@@ -11,9 +11,9 @@ class Organisasi extends Model
     use HasFactory;
 
     protected $table = 'organisasi';
-    protected $fillable = ['nama_organisasi', 'id_organisasi'];
+    protected $fillable = ['organisasi'];
 
-    public function organisasi()
+    public function riwayat_organisasi()
     {
         return $this->hasMany(Riwayat_organisasi::class);
     }

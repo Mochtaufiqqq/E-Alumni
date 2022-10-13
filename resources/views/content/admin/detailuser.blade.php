@@ -38,7 +38,7 @@
                         <div class="row mb-2 px-5">
                             <div class="profile-title">
                                 <div class="media">
-                                    @if ($user->foto_profile != '')
+                                    @if ($users->foto_profile != '')
                                     <img class="img-300 img-fluid rounded-circle" alt=""
                                         src="{{ asset($users->foto_profile) }}">
                                     @else
@@ -52,17 +52,8 @@
                                           <h6 class="form-label">Jurusan : {{ $users->jurusan }}</h6>
                                       </div>
                                       <div class="mb-3">
-                                          <h6 class="form-label txt-primary">Tahun Lulus : {{ $users->thn_lulus }}</h6>
+                                          <h6 class="form-label ">Tahun Lulus : {{ $users->thn_lulus }}</h6>
                                       </div>
-                                      <div class="mb-3">
-                                        <h6 class="form-label">Foto Kegiatan :</h6>
-                                    </div>
-                                    <div class="mb-3">
-                                      <h6 class="form-label">Foto Kegiatan :</h6>
-                                  </div>
-                                  <div class="mb-3">
-                                    <h6 class="form-label">Foto Kegiatan :</h6>
-                                </div>
                                       <div class="mb-3">
                                           <h6 class="form-label">Email : {{ $users->email }}</h6>
                                       </div>

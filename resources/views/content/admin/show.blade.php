@@ -45,114 +45,112 @@
                   <a class="btn btn-primary mb-3" href="/tambahuser">Tambah Data</a>
                   <a class="btn btn-secondary text-dark mb-3" href="{{ url('/reportpdfuser') }}">Export PDF</a>
                     <div class="dt-ext table-responsive">
-                        <table class="display" id="responsive">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Foto</th>
-                                    <th>Nama</th>
-                                    <th>Nisn</th>
-                                    <th>Jurusan</th>
-                                    <th>Tahun Lulus</th>
-                                    <th>Email</th>
-                                    <th>Alamat</th>
-                                    <th>Status User</th>
-                                    <th>Opsi</th>
-                                </tr>
-                                @foreach ($users as $u)
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>
-                                      @if ($u->foto_profile != '')
-                                      <img src="{{ asset($u->foto_profile) }}" alt="" width="50" height="50">
+                      <table id="responsive" class="display">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Foto Profil</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">NISN</th>
+                                <th scope="col">Jurusan</th>
+                                <th scope="col">Tahun Lulus</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Alamat</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Opsi</th>
 
-                                      @else
-                                      <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
-                                      @endif
-                                     </td>
-                                    <td>{{ $u->nama }}</td>
-                                    <td>{{ $u->nisn }}</td>
-                                    <td>{{ $u->jurusan }}</td>
-                                    <td>{{ $u->thn_lulus }}</td>
-                                    <td>{{ $u->email }}</td>
-                                    <td>{{ $u->alamat }}</td>
-                                    <td>
-                                        @if($u->status === 0)
-                                        <h5><span class="badge bg-opacity-100 bg-danger text-white">Nonaktif</span></h5>
-                                        @else($u->status_user_id === 2)
-                                        <h5><span class="badge bg-opacity-100 bg-success text-white">Aktif</span></h5>
-                                        @endif
-                                        
-                                    </td>
-                                    <td>
-                                      @if($u->status === 1)
-                                      <a href="/detailuser/{{ $u->id }}" class="btn btn-primary"><i data-feather="eye"></i></a>
-                                      <a href="/edituser/{{ $u->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
-                                      <a href="/hapususer/{{ $u->id }}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $u->id }}"><i data-feather="trash-2"></i></a>
-                                       @endif
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $u)
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>
+                                  @if ($u->foto_profile != '')
+                                  <img src="{{ asset($u->foto_profile) }}" alt="" width="50" height="50">
 
-                                         {{-- modal delete --}}
-                                         <div class="modal fade" id="modalDelete{{ $u->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLabel">Hapus Data User</h5>
-                                                  <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Apakah anda yakin ingin menghapus data {{ $u->nama }} ?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                  <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
-                                                  <form action="/hapususer/{{ $u->id }}" method="POST">
-                                                    @method('delete')
-                                                    @csrf
+                                  @else
+                                  <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
+                                  @endif
+                                </td>
+                                <td>{{ $u->nama }}</td>
+                                <td>{{ $u->nisn }}</td>
+                                <td>{{ $u->jurusan }}</td>
+                                <td>{{ $u->thn_lulus }}</td>
+                                <td>{{ $u->email }}</td>
+                                <td>{{ $u->alamat }}</td>
+                                <td>
+                                  @if($u->status === 0)
+                                  <h5><span class="badge bg-opacity-100 bg-danger text-white">Nonaktif</span></h5>
+                                  @else($u->status_user_id === 2)
+                                  <h5><span class="badge bg-opacity-100 bg-success text-white">Aktif</span></h5>
+                                  @endif
+                                  
+                              </td>
+                              <td>
+                                @if($u->status === 1)
+                                <a href="/detailuser/{{ $u->id }}" class="btn btn-primary mb-3"><i data-feather="eye"></i></a>
+                                <a href="/edituser/{{ $u->id }}" class="btn btn-warning mb-3"><i data-feather="edit"></i></a>
+                                <a href="/hapususer/{{ $u->id }}" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $u->id }}"><i data-feather="trash-2"></i></a>
+                                 @endif
 
-                                                  <button class="btn btn-primary" type="submit">Yakin</button>
-                                                </form>
-                                                </div>
-                                              </div>
-                                            </div>
+                                   {{-- modal delete --}}
+                                   <div class="modal fade" id="modalDelete{{ $u->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Hapus Data User</h5>
+                                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                                           </div>
-
-                                        @if($u->status === 0)
-                                      <a href="/statususer/{{ $u->id }}/accept" class="btn btn-success">Setujui</a>
-                                      <a href="/hapususer/{id}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalTolak{{ $u->id }}">Tolak</a>
-                                       @endif
-
-                                        {{-- modal tolak --}}
-                                        <div class="modal fade" id="modalTolak{{ $u->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLabel">Tolak User</h5>
-                                                  <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Apakah anda yakin ingin menolak {{ $u->nama }} ?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                  <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
-                                                  <form action="/tolakuser/{{ $u->id }}" method="POST">
-                                                    @method('delete')
-                                                    @csrf
-
-                                                  <button class="btn btn-primary" type="submit">Yakin</button>
-                                                </form>
-                                                </div>
-                                              </div>
-                                            </div>
+                                          <div class="modal-body">
+                                              <p>Apakah anda yakin ingin menghapus data {{ $u->nama }} ?</p>
                                           </div>
+                                          <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
+                                            <form action="/hapususer/{{ $u->id }}" method="POST">
+                                              @method('delete')
+                                              @csrf
 
+                                            <button class="btn btn-primary" type="submit">Yakin</button>
+                                          </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
 
-                                    </td>
+                                  @if($u->status === 0)
+                                <a href="/statususer/{{ $u->id }}/accept" class="btn btn-success mb-3">Setujui</a>
+                                <a href="/hapususer/{id}" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#modalTolak{{ $u->id }}">Tolak</a>
+                                 @endif
 
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                  {{-- modal tolak --}}
+                                  <div class="modal fade" id="modalTolak{{ $u->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Tolak User</h5>
+                                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                              <p>Apakah anda yakin ingin menolak {{ $u->nama }} ?</p>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
+                                            <form action="/tolakuser/{{ $u->id }}" method="POST">
+                                              @method('delete')
+                                              @csrf
+
+                                            <button class="btn btn-primary" type="submit">Yakin</button>
+                                          </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                              </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     </div>
                 </div>
             </div>

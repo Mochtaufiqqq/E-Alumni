@@ -3,38 +3,89 @@
 @section('title','Edit User')
 
 @section('content')
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-6">
 
+                <h3>Tambah Data Berita</h3>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/semuaberita">Semua Berita</a></li>
+                    <li class="breadcrumb-item"> <a href="#"></a> Prestasi</li>
+                    <li class="breadcrumb-item"><a href="#"></a> Event</li>
+                </ol>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header pb-0">
-                    <h5>Tambah User</h5>
+                    <h5>Tambah Berita</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
                             <form action="/organisasi/store" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="mb-3 m-form__group">
-                                    <label class="form-label" for="image">Foto Profile</label>
+                                <div class="mb-3">
+                                    <label class="form-label" for="image">Foto</label>
+                                        <img class="img-preview img-fluid mb-3" style="max-height: 300px; max-width: 400px;">
 
-                                    <img class="img-preview img-fluid mb-3">
-                                    <input class="form-control @error('carousel') is-invalid @enderror" type="file"
-                                        name="carousel" id="image" placeholder="carousel" required autofocus
-                                        onchange="previewImage()">
-
-                                    @error('carousel')
+                                        <input class="form-control @error('foto') is-invalid @enderror" type="file"
+                                            name="foto" id="image" placeholder="foto" required autofocus
+                                            onchange="previewImage()" accept="image/*">
+                                    @error('foto')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                     @enderror
                                 </div>
+
                                 <div class="mb-3 input-group-solid">
-                                    <label class="form-label">Periode</label>
-                                    <select name="periode" id="" class="form-select form-control" required autofocus>
-                                        <option selected>Periode</option>
+                                    <label class="form-label">Organisasi</label>
+                                    <select name="organisasi" id="" class="form-select form-control" required autofocus>
+                                        <option selected>Pilih Organisasi</option>
+                                        @foreach ($org as $item)
+                                        <option value="{{ $item->id }}">{{ $item->organisasi }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    @error('organisasi')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3 input-group-solid">
+                                    <label class="form-label">Jabatan</label>
+                                    <select name="jabatan" id="" class="form-select form-control" required autofocus>
+                                        <option selected>Pilih Jabatan</option>
+                                        @foreach ($jab as $item)
+                                        <option value="{{ $item->id }}">{{ $item->jabatan }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('jabatan')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3 input-group-solid">
+                                    <label class="form-label" for="periode">Periode</label>
+
+                                    <select name="periode" id="periode" class="form-select form-control" required autofocus>
+                                        <option selected>Pilih Periode</option>
+                                        <option value="Rekayasa Perangkat Lunak">2040</option>
                                         <option value="2039">2039</option>
                                         <option value="2038">2038</option>
                                         <option value="2037">2037</option>
@@ -69,32 +120,13 @@
                                     </div>
                                     @enderror
                                 </div>
-                                <div class="mb-3 input-group-solid">
-                                    <label class="form-label">Tahun Lulus</label>
-                                    <select name="nama_organisasi" id="" class="form-select form-control" required
-                                        autofocus>
-                                        <option selected>Pilih organisasi</option>
-                                        @foreach ($org as $item)
-                                        <option value="{{ $item->nama_organisasi }}">{{ $item->nama_organisasi }}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                    @error('nama_organisasi')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 text-end">
-                                    <button class="btn btn-primary m-r-15" type="submit">Tambah</button>
-                                </div>
-                            </form>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-light" type="submit">Batal</button>
+                    <div class="card-footer">
+                        <button class="btn btn-primary m-r-15" type="submit">Submit</button>
+                        <button class="btn btn-light" type="submit">Cancel</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>

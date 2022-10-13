@@ -17,11 +17,6 @@
     </ol>
 </nav>
 
-<!-- Page title -->
-<section class="container pb-4 mb-2 mb-lg-3">
-    <h1>{{ $berita->judul }}</h1>
-    <p class="text-muted mb-0">{{ $berita->tgl }}</p>
-</section>
 
 
 <!-- Hero image (Parallax) -->
@@ -33,6 +28,11 @@
     <div class="d-md-none" style="height: 400px;"></div>
 </section>
 
+<!-- Page title -->
+<section class="container pb-4 mb-2 mb-lg-3">
+    <h1>{{ $berita->judul }}</h1>
+    <p class="text-muted mb-0">{{ $berita->tgl }}</p>
+</section>
 
 <!-- About project -->
 <section class="container py-5 my-1 my-md-4 my-lg-5">

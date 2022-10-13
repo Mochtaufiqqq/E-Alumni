@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('riwayat_pendidikan', function (Blueprint $table) {
-            $table->id('id_pendidikan');
-            $table->string('jenjang');
-            $table->string('nama_sekolah');
+            $table->id();
+            $table->string('nama_instansi');
+            $table->string('tahun_mulai');
+            $table->string('tahun_akhir');
             $table->timestamps();
         });
     }

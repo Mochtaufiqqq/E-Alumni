@@ -27,6 +27,9 @@ class User extends Authenticatable
         'foto_profile',
         'nisn',
         'nama',
+        'nama_panggilan',
+        'pekerjaan',
+        'jabatan_pekerjaan',
         'email',
         'jurusan',
         'thn_lulus',
@@ -57,7 +60,6 @@ class User extends Authenticatable
     
     protected $attributes = [
         'role_id' => 2,
-        'id_riwayatORG' => 1
     ];
 
 
@@ -94,5 +96,9 @@ class User extends Authenticatable
     public function riwayat_pendidikan()
     {
         return $this->belongsTo(Riwayat_pendidikan::class);
+    }
+    
+    public function kesanpesan(){
+        return $this->hasOne(KesanPesan::class);
     }
 }

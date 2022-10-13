@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('foto_postingan', function (Blueprint $table) {
+        Schema::create('kesan_pesans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_file');
-            $table->string('size');
-            $table->string('location');
+            $table->foreignId('user_id');
+            $table->string('foto');
+            $table->string('isi');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('foto_postingans');
+        Schema::dropIfExists('kesan_pesans');
     }
 };

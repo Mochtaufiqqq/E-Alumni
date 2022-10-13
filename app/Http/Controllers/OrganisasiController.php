@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
 use App\Models\Organisasi;
 use Illuminate\Http\Request;
 use App\Models\Riwayat_organisasi;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class OrganisasiController extends Controller
 {
@@ -13,53 +15,53 @@ class OrganisasiController extends Controller
     {
         $organisasi = Riwayat_organisasi::all();
         $org = Organisasi::all();
-
-        return view('content.user.organisasi', compact('organisasi', 'org'));
+        $jab = Jabatan::all();
+        return view('content.user.organisasi', compact('organisasi', 'org', 'jab'));
     }
 
     public function edit()
     {
         $organisasi = Riwayat_organisasi::all();
         $org = Organisasi::all();
-
-        return view('content.admin.organisasi.organisasiEdit', compact('organisasi', 'org'));
+        $jab = Jabatan::all();
+        return view('content.admin.organisasi.organisasiEdit', compact('organisasi', 'org', 'jab'));
     }
 
     public function show()
     {
         $organisasi = Riwayat_organisasi::all();
         $org = Organisasi::all();
-        return view('content.admin.organisasi.showOrganisasi', compact('organisasi', 'org'));
+        $jab = Jabatan::all();
+        return view('content.admin.organisasi.showOrganisasi', compact('organisasi', 'org', 'jab'));
     }
 
     public function tambah()
     {
         $organisasi = Riwayat_organisasi::all();
         $org = Organisasi::all();
-        return view('content.admin.organisasi.addOrganisasi', compact('organisasi', 'org'));
+        $jab = Jabatan::all();
+        return view('content.admin.organisasi.addOrganisasi', compact('organisasi', 'org', 'jab'));
     }
 
-    public function carousel(Request $request)
+    public function store(Request $request)
     {
-
-        dd($request->id_organisasi);
-        // $organisasi = Riwayat_organisasi::all();
-
+        // dd($request->all());
         $validatedData = $request->validate([
-            'id_organisasi' => 'required',
-            'id_jabatan' => 'required',
-            'peroide' => 'required',
-            'carousel' => 'required|mimes:jpg,png,jpeg|max:5000',
+            'periode' => 'required',
+            'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
         ]);
 
-
-        $fileName = time().$request->file('carousel')->getClientOriginalName();
-        $path = $request->file('carousel')->storeAs('img-carousel', $fileName. 'public');
-        $validatedData['carousel'] = '/storage/' .$path;
-        // $validatedData['password'] = Hash::make($validatedData['password']);
-
-        Riwayat_organisasi::create($validatedData);
-
-        return redirect('/organisasi')->with('success', 'Data Berhasil Ditambahkan');
+        $fileName = time().$request->file('foto')->getClientOriginalName();
+        $path = $request->file('foto')->storeAs('organisasi-img', $fileName);
+        $foto = '/storage/' .$path;
+        
+        Riwayat_organisasi::create([
+            'id_organisasi' => $request->organisasi,
+            'id_jabatan' => $request->jabatan,
+            'periode' => $request->periode,
+            'foto' => $foto
+        ]);
+        
+        return redirect('/organisasi/show')->with('berhasil', 'berhasil menambahkan organisasi'); 
     }
 }

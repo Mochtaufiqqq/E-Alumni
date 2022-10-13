@@ -38,14 +38,10 @@
                 @csrf
                 <div class="mb-3 m-form__group">
                   <label class="form-label">Foto Profil</label>
-                  @if ($user->foto_profile)
-                            
+                  @if ($user->foto_profile) 
                   <img src="{{ asset($user->foto_profile) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
-
                   @else
-                  
                   <img class="img-preview img-fluid mb-3 col-sm-5">
-                      
                   @endif
                   <img class="img-preview img-fluid mb-3">
                     <input type="file" name="foto_profile" id="image" class="form-control @error('foto_profile') is-invalid @enderror" onchange="previewImage()">
@@ -155,8 +151,8 @@
                     <label class="form-label">Role</label>
                     <select name="role" id=""  value="{{ old('role', $user->role) }}" class="form-select form-control" required autofocus >
                         <option selected>Pilih Role</option>
-                        <option value="admin">Admin</option>
-                        <option value="user">User</option>
+                        <option value="1">Admin</option>
+                        <option value="2">User</option>
                     </select>
                     @error('role')
                     <div class="invalid-feedback">
@@ -167,7 +163,7 @@
                   <div class="mb-3">
                     <label class="form-label">Password</label>
                     <div class="input-group">
-                      <input class="form-control @error('password') is-invalid @enderror" name="password" type="password"  value="{{ old('password', $user->password) }}" aria-label="Amount (to the nearest dollar)" placeholder="Password" required autofocus>
+                      <input class="form-control @error('password') is-invalid @enderror" name="password" type="password" aria-label="Amount (to the nearest dollar)" placeholder="Password" required autofocus>
                     </div>
                     @error('password')
                     <div class="invalid-feedback">
