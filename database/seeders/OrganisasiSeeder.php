@@ -29,7 +29,7 @@ class OrganisasiSeeder extends Seeder
 
         foreach ($data as $key ) {
             Organisasi::create([
-                'nama_organisasi' => $key
+                'organisasi' => $key
             ]);
         }
     }

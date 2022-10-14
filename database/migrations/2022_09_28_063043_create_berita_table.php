@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('judul');
             $table->text('isi');
             $table->string('kategori');
-            $table->string('foto');
-            $table->string('dokumentasi');
-            $table->date('tgl');
+            $table->string('foto')->nullable();
+            // $table->string('dokumentasi');
+            $table->date('tgl')->nullable();
             $table->timestamps();
         });
     }

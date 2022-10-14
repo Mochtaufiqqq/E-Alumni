@@ -80,14 +80,14 @@ class AlumniController extends Controller
             'alamat' => 'required',
             'jurusan'  => 'required',
             'thn_lulus'  => 'required',
-            'email' => 'required|unique:users',
+            'email' => 'required|min:8|unique:users',
             'role' => 'required',
             'password' => 'required'
         ]);
 
-        $fileName = time().$request->file('foto_profile')->getClientOriginalName();
-        $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
-        $validatedData['foto_profile'] = '/storage/' .$path;
+            $fileName = time().$request->file('foto_profile')->getClientOriginalName();
+            $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
+         $validatedData['foto_profile'] = '/storage/' .$path;
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);
@@ -95,23 +95,23 @@ class AlumniController extends Controller
         return redirect('/semuauser')->with('success', 'Data Berhasil Ditambahkan');
     }
 
-    public function edit(User $users) {
+    public function edit(User $user) {
         return view('content.admin.edit',[
            
-            'users' => $users
+            'user' => $user
         ]);
     }
+
      public function update(Request $request , User $user) {
         $validatedData = $request->validate([
             'foto_profile' => 'image|mimes:jpg,png,jpeg|max:5000',
-            'nisn' => 'required',
-            'nama' => 'required',
-            // 'pekerjaan' => 'required',
-            'alamat' => 'required',
-            // 'tahun_keluar' => 'required',
-            'email' => 'required',
-            // 'no_telp' => 'required',
-            'password' => 'required',
+            'nisn'      => 'required',
+            'nama'        => 'required',
+            'thn_lulus'  => 'required',
+            'jurusan'    => 'required',
+            'alamat'     => 'required',
+            'email'     => 'required',
+            'password'   => 'required|min:8',
         ]);
 
         if($request->file()) {

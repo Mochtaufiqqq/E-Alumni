@@ -35,7 +35,7 @@
                 <li><a href="/usernonaktif">User Nonaktif</a></li>
               </ul>
             </li>
-            <li class="dropdown"><a class="nav-link menu-title link-nav" href="/showORG  "><i data-feather="users"></i><span>Organisasi</span></a>
+            <li class="dropdown"><a class="nav-link menu-title link-nav" href="/organisasi  "><i data-feather="users"></i><span>Organisasi</span></a>
             </li>
             <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="user"></i><span>Berita</span></a>
               <ul class="nav-submenu menu-content">

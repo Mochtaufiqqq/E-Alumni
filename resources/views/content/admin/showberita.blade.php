@@ -54,7 +54,6 @@
                                     <th>Isi</th>
                                     <th>Tanggal</th>
                                     <th>Kategori</th>
-                                    <th>Foto Kegiatan</th>
                                     <th>Opsi</th>
                                 </tr>
                                 @foreach ($beritas as $b)
@@ -74,14 +73,6 @@
                                     <td>{{ $b->isi }}</td>
                                     <td>{{ $b->tgl }}</td>
                                     <td>{{ $b->kategori }}</td>
-                                    <td>
-                                      @if ($b->foto != '')
-                                      <img src="{{ asset($b->foto) }}" alt="" width="50" height="50">
-
-                                      @else
-                                      <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
-                                      @endif
-                                     </td>
                                     <td>
                                       <a href="/detailberita/{{ $b->id }}" class="btn btn-primary"><i data-feather="eye"></i></a>
                                       <a href="/editberita/{{ $b->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>

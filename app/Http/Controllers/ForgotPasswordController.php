@@ -85,6 +85,6 @@ class ForgotPasswordController extends Controller
  
           DB::table('password_resets')->where(['email'=> $request->email])->delete();
   
-          return redirect('/login')->with('succes', 'Password kamu sudah diubah!');
+          return redirect('/login')->with('success', 'Password kamu sudah diubah!');
       }
 }

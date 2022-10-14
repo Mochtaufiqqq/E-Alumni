@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('karya')->nullable();
             $table->string('keahlian')->nullable();
             $table->string('foto_profile')->nullable();
+            $table->string('foto_kegiatan')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->string('jabatan_pekerjaan')->nullable();
             $table->string('tmpt_pekerjaan')->nullable();
@@ -34,7 +35,6 @@ return new class extends Migration
             $table->foreignId('id_organisasi');
             // $table->foreignId('id_sosmed');
             // $table->foreignId('id_prestasi');
-            // $table->foreignId('id_postingan');
             // $table->foreignId('id_pendidikan');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
