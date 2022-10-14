@@ -43,7 +43,7 @@ class KelolaBeritaController extends Controller
         $validatedData['foto'] = '/storage/' .$path;
         }
 
-        if($request->file()){
+        if($request->has('dokumentasi')){
         $fileName = time().$request->file('dokumentasi')->getClientOriginalName();
         $path = $request->file('dokumentasi')->storeAs('foto-dokumentasi', $fileName. 'public');
         $validatedData['dokumentasi'] = '/storage/' . $path;

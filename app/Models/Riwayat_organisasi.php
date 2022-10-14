@@ -15,10 +15,10 @@ class Riwayat_organisasi extends Model
     protected $primaryKey = 'id';
     protected $table = 'riwayat_organisasi';
     protected $fillable = [
+        'carousel',
+        'periode',
         'id_organisasi',
         'id_jabatan',
-        'carousel',
-        'periode'
     ];
 
     public function riwayat_organisasi()

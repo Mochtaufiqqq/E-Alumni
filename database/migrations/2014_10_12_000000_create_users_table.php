@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('jabatan_pekerjaan')->nullable();
             $table->string('tmpt_pekerjaan')->nullable();
             $table->integer('status')->default('0');
-            $table->foreignId('id_riwayatORG');
+            $table->foreignId('id_organisasi');
             // $table->foreignId('id_sosmed');
             // $table->foreignId('id_prestasi');
             // $table->foreignId('id_postingan');
