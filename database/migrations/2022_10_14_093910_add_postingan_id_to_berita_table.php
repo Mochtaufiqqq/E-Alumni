@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('foto_postingan', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_file');
-            $table->string('foto_dokumen')->nullable();
-            $table->string('location')->nullable();
-            $table->timestamps();
+        Schema::table('berita', function (Blueprint $table) {
+            $table->foreignId('postingan_id')->nulllable()->constrained('berita');
         });
     }
 
@@ -29,6 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('foto_postingans');
+        Schema::table('berita', function (Blueprint $table) {
+            $table->dropForeign('berita_postingan_id_foreign');
+            $table->dropColumn('postingan_id');
+        });
     }
 };

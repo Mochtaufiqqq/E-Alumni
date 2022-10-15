@@ -10,7 +10,7 @@ class Foto_postingan extends Model
     use HasFactory;
 
     protected $table = 'foto_postingan';
-    protected $primaryKey = 'id';
+    protected $guarded = ['id'];
 
     public function foto_postingan()
     {

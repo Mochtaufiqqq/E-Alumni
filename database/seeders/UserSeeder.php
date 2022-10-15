@@ -2,20 +2,22 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Berita;
 use App\Models\User;
 use App\Models\TentangKami;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
+        User::truncate();
         User::create([
             'nisn'  => '20211001',
             'nama' => 'Taufiq',
@@ -30,13 +32,11 @@ class DatabaseSeeder extends Seeder
             // 'keahlian' => 'asdasd',
             // 'nama_panggilan' => 'opik',
             'email' => 'mhmdtaufiq3@gmail.com',
-            'role_id' => '1',
             'status' => '1',
             'alamat' => 'Downtown Street,California State, USA',
             'password' => bcrypt('123123123'),
-            'id_sosmed' => '1',
-            'id_prestasi' => '1',
-            'id_pendidikan' => '1',
+            'role_id' => 1,
+            'id_organisasi' => 1,
         ]);
         User::create([
             'nisn'  => '20211787',
@@ -52,13 +52,11 @@ class DatabaseSeeder extends Seeder
             // 'keahlian' => 'asdasd',
             // 'nama_panggilan' => 'opik',
             'email' => 'user@gmail.com',
-            'role_id' => '2',
             'status' => '0',
             'alamat' => 'Downtown Street,California State, USA',
             'password' => bcrypt('123123123'),
-            'id_sosmed' => '1',
-            'id_prestasi' => '1',
-            'id_pendidikan' => '1',
+            'role_id' => 2,
+            'id_organisasi' => 1,
         ]);
 
         User::create([
@@ -75,20 +73,21 @@ class DatabaseSeeder extends Seeder
             // 'keahlian' => 'asdasd',
             // 'nama_panggilan' => 'opik',
             'email' => 'user2@gmail.com',
-            'role_id' => '2',
             'status' => '0',
             'alamat' => 'Downtown Street,California State, USA',
             'password' => bcrypt('123123123'),
-            'id_sosmed' => '1',
-            'id_prestasi' => '1',
-            'id_pendidikan' => '1',
+            'role_id' => 2,
+            'id_organisasi' => 1,
         ]);
 
-        TentangKami::create([
-            'judul' => 'Tentang Kami',
-            'isi' => 'Ini adalasdjaosdhaspdjaspdojoasidhoas
-            idhaosidhaosidhaosfhoaisdhaosidhosadihaosdi
-            hasodihasodihasodiahsdoiahsdoiashdoaishdousfoaihfio'
-        ]);
+        // TentangKami::create([
+        //     'judul' => 'Tentang Kami',
+        //     'isi' => 'Ini adalasdjaosdhaspdjaspdojoasidhoas
+        //     idhaosidhaosidhaosfhoaisdhaosidhosadihaosdi
+        //     hasodihasodihasodiahsdoiahsdoiashdoaishdousfoaihfio',
+        //     'postingan_id' => 3,
+        //     'kategori' => 'posting'
+
+        // ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use PDF;
 use App\Models\Berita;
+use App\Models\Foto_postingan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\File;
@@ -25,10 +26,8 @@ class KelolaBeritaController extends Controller
     
     public function show()
     {
-       $beritas = Berita::all();
-        return view('content.admin.showberita',[
-            'beritas' => Berita::all()
-        ],compact('beritas'));
+       $beritas = Berita::orderBy('updated_at', 'DESC')->get();
+        return view('content.admin.showberita',compact('beritas'));
         
     }
 
@@ -43,21 +42,28 @@ class KelolaBeritaController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
-            'dokumentasi' => 'required|mimes:jpg,png,jpeg|max:5000',
+            // 'dokumentasi' => 'mimes:jpg,png,jpeg|max:5000',
             'judul' => 'required',
             'isi' => 'required',
             'kategori' => 'required',
             'tgl'  => 'required',
         ]);
 
-        $fileName = time().$request->file('foto')->getClientOriginalName();
+        if($request->file()){
+            $fileName = time().$request->file('foto')->getClientOriginalName();
         $path = $request->file('foto')->storeAs('foto-berita', $fileName. 'public');
         $validatedData['foto'] = '/storage/' .$path;
+        }
 
-        foreach ($request->dokumentasi as $path){
-        $fileName = time().$request->file('dokumentasi')->getClientOriginalName();
-        $path = $request->file('dokumentasi')->storeAs('foto-dokumnetasi', $fileName. 'public');
-        $validatedData['dokumentasi'] = '/storage/' .$path;
+        if($request->has('foto-dokumen')){
+            foreach ($request->file('foto-dokumen') as $images) {
+                $fileName = time().$request->file('foto-dokumen')->getClientOriginalName();
+                $images->file('foto-dokumen')->storeAs('foto-dokumentasi', $fileName. 'public');
+                // $validatedData['foto'] = '/storage/' . $images;
+                Foto_postingan::create([
+                    'nama_file' => $fileName,
+                ]);
+            }
         }
 
         Berita::create($validatedData);

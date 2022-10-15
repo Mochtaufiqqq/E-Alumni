@@ -32,100 +32,92 @@
                     <h5>Tambah Berita</h5>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <form action="/tambahberita" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="mb-3 m-form__group">
-                                    <label class="form-label" for="image">Judul</label>
-
-                                    <img class="img-preview img-fluid mb-3">
-                                    <input class="form-control @error('judul') is-invalid @enderror" type="text"
-                                        name="judul" id="judl" placeholder="Judul" required autofocus
-                                        onchange="previewImage()">
-
-                                    @error('judul')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 m-form__group">
-                                    <label class="form-label">Isi</label>
-                                    <div class="input-group">
-                                        <input class="form-control @error('isi') is-invalid @enderror" type="text"
-                                            name="isi" placeholder="Isi" required autofocus>
-                                    </div>
-                                    @error('isi')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Tgl</label>
-                                    <div class="input-group">
-                                        <input class="form-control @error('tgl') is-invalid @enderror" type="date"
-                                            name="tgl" placeholder="Tanggal" aria-label="Recipient's username" required
-                                            autofocus>
-                                    </div>
-                                    @error('tgl')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 input-group-solid">
-                                    <label class="form-label">Kategori</label>
-                                    <select name="kategori" id="" class="form-select form-control" required autofocus>
-                                        <option selected>Pilih Kategori</option>
-                                        <option value="Prestasi">Prestasi</option>
-                                        <option value="Event">Event</option>
-                                    </select>
-                                    @error('kategori')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 input-group-solid">
-                                    <label class="form-label" for="image">Foto</label>
-
-                                    <img class="img-preview img-fluid mb-3">
-                                    <input class="form-control @error('foto') is-invalid @enderror" type="file"
-                                        name="foto" id="foto" placeholder="foto" required autofocus
-                                        onchange="previewImage()">
-
-                                    @error('foto')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 input-group-solid">
-                                    <label class="form-label" for="image">Foto Kegiatan (Dokumentasi)</label>
-
-                                    <img class="img-preview img-fluid mb-3">
-                                    <input class="form-control @error('foto') is-invalid @enderror" type="file"
-                                        name="foto" id="foto" placeholder="foto" required autofocus
-                                        onchange="previewImage()">
-
-                                    @error('files')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
+                    <form action="/tambahberita" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3 m-form__group">
+                            <label class="form-label">Judul</label>
+                            <div class="input-group">
+                                <input class="form-control @error('judul') is-invalid @enderror" type="text" name="judul"
+                                    placeholder="Judul" required autofocus>
+                            </div>
+                            @error('judul')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-primary m-r-15" type="submit">Submit</button>
-                        <button class="btn btn-light" type="submit">Cancel</button>
-                    </div>
+                        <div class="mb-3 m-form__group">
+                            <label class="form-label">Isi</label>
+                            <div class="input-group">
+                                <input class="form-control @error('isi') is-invalid @enderror" type="text" name="isi"
+                                    placeholder="Isi" required autofocus>
+                            </div>
+                            @error('isi')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tgl</label>
+                            <div class="input-group">
+                                <input class="form-control @error('tgl') is-invalid @enderror" type="date" name="tgl"
+                                    placeholder="Tanggal" aria-label="Recipient's username" required autofocus>
+                            </div>
+                            @error('tgl')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3 input-group-solid">
+                            <label class="form-label">Kategori</label>
+                            <select name="kategori" id="" class="form-select form-control" required autofocus>
+                                <option selected>Pilih Kategori</option>
+                                <option value="Prestasi">Prestasi</option>
+                                <option value="Event">Event</option>
+                            </select>
+                            @error('kategori')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3 input-group-solid">
+                            <label class="form-label" for="image">Foto</label>
+                            <img class="img-preview img-fluid mb-3">
+                            <input class="form-control @error('foto') is-invalid @enderror" type="file" name="foto"
+                                id="foto" placeholder="foto" onchange="previewImage()">
+
+                            @error('foto')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3 input-group-solid">
+                            <label class="form-label" for="image">Foto Kegiatan (Dokumentasi)</label>
+
+                            <img class="img-preview img-fluid mb-3">
+                            <input class="form-control @error('foto') is-invalid @enderror" type="file"
+                                name="foto_dokumen" id="foto" placeholder="foto" onchange="previewImage()" multiple>
+
+                            @error('foto')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-primary" type="submit">kirim 
+                                <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
