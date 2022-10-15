@@ -32,6 +32,10 @@ return new class extends Migration
             $table->string('jabatan_pekerjaan')->nullable();
             $table->string('tmpt_pekerjaan')->nullable();
             $table->integer('status')->default('0');
+            $table->string('instagram')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('tiktok')->nullable();
+            $table->string('linkedin')->nullable();
             $table->foreignId('id_sosmed')->nullable();
             $table->foreignId('id_prestasi')->nullable();
             $table->foreignId('id_pendidikan')->nullable();

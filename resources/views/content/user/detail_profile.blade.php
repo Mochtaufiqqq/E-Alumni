@@ -11,7 +11,7 @@
         <aside class="col-lg-3 col-md-4 border-end pb-5 mt-n5">
             <div class="position-sticky top-0">
                 <div class="text-center pt-5">
-                    <div class="d-table position-relative mx-auto mt-2 mt-lg-4 pt-5 mb-3">
+                    <div class="d-table position-relative mx-auto mt-4 mt-lg-4 pt-5 mb-3">
 
                         @if (auth()->user()->foto_profile != '')
                         <img src="{{ asset(auth()->user()->foto_profile) }}" class="d-block rounded-circle" width="120"
@@ -564,22 +564,22 @@
                         <form class="tab-pane fade show active" autocomplete="off" id="signin">
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Instagram</label>
-                                <input class="form-control" type="text" name="nama_panggilan" id="email1"
-                                    placeholder="@example">
+                                <input class="form-control" type="text" name="instagram" id="email1"
+                                    placeholder="instagram">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Facebook</label>
-                                <input class="form-control" type="text" name="nama_panggilan" id="email1"
+                                <input class="form-control" type="text" name="facebook" id="email1"
                                     placeholder="Facebook">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Tiktok</label>
-                                <input class="form-control" type="text" name="nama_panggilan" id="email1"
-                                    placeholder="@example">
+                                <input class="form-control" type="text" name="tiktok" id="email1"
+                                    placeholder="Tiktok">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Linkedin</label>
-                                <input class="form-control" type="text" name="nama_panggilan" id="email1"
+                                <input class="form-control" type="text" name="linkedin" id="email1"
                                     placeholder="Linkedin">
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">Tambah</button>
@@ -648,7 +648,7 @@
 
         <!-- Account details -->
         <div class="col-md-8 offset-lg-1 pb-5 mb-2 mb-lg-4 pt-md-5 mt-n3 mt-md-0">
-            <div class="ps-md-3 ps-lg-0 mt-md-2 py-md-4">
+            <class="ps-md-3 ps-lg-0 mt-md-2 py-md-4">
                 @if (session('success'))
                 <div class="alert alert-primary alert-dismissible fade show" role="alert"><strong>Selamat ! </strong>
                     <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"
@@ -657,18 +657,19 @@
                 </div>
                 @endif
                 <h1 class="h2 pt-xl-1 pb-3">Profil Saya</h1>
-
+                
                 <!-- Basic info -->
                 <div class="row pb-2">
                     <div class="col-6 mb-4">
-
+                        
                         <label for="fn" class="form-label fs-base">Email</label>
                         <p>{{ auth()->user()->email }}</p>
-
+                        
                         <div class="col-6 mb-4">
                             <label for="sn" class="form-label fs-base">Alamat</label>
                             <p>{{ auth()->user()->alamat }}</p>
                         </div>
+                    </div>
 
                         <div class="col-6 mb-4">
                             <label for="email" class="form-label fs-base">Pekerjaan</label>
@@ -684,6 +685,33 @@
                                 <p>Sebagai {{ auth()->user()->jabatan_pekerjaan }}</p>
                             @endif
                         </div>
+                        <div class="col-6 mb-4">
+                            <label for="email" class="form-label fs-base">Social Media</label>
+                            @if (Auth::user()->instagram == '')
+                                <p><i class="bx bxl-instagram"></i> endrit faisal<small class="text-muted">(contoh)</small></p>
+                            @else
+                                <p>Sebagai {{ auth()->user()->instagram }}</p>
+                            @endif
+                            @if (Auth::user()->facebook == '')
+                            
+                                <p><i class="bx bxl-facebook"></i> endrit faisal<small class="text-muted">(contoh)</small></p>
+                            @else
+                                <p><i class="bx bxl-facebook"></i> {{ auth()->user()->facebook }}</p>
+                            @endif
+                            @if (Auth::user()->Tiktok == '')
+                            
+                                <p><i class="bx bxl-tiktok"></i> endrit faisal<small class="text-muted">(contoh)</small></p>
+                            @else
+                                <p><i class="bx bxl-facebook"></i> {{ auth()->user()->tiktok }}</p>
+                            @endif
+
+                            @if (Auth::user()->linkedin == '')
+                            
+                                <p><i class="bx bxl-linkedin"></i> endrit faisal<small class="text-muted">(contoh)</small></p>
+                            @else
+                                <p><i class="bx bxl-facebook"></i> {{ auth()->user()->linkedin }}</p>
+                            @endif
+                        </div>
 
                         <div class="col-6 mb-4">
                             <label for="phone" class="form-label fs-base">Phone</label>
@@ -693,7 +721,6 @@
                             <p>{{ auth()->user()->no_tlp }}</p>
                             @endif
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

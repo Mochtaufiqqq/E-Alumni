@@ -52,7 +52,7 @@
                                         convallis morbi sit est feugiat ultrices. Cras tortor maecenas pulvinar nec ac
                                         justo.
                                         Massa sem eget semper...</p>
-                                    <a href="#" class="btn btn-primary">View "udy</a>
+                                    <a href="/organisasi/detail/{{ $item->slug }}" class="btn btn-primary">View "udy</a>
                                 </div>
                                 @endforeach
                             </div>
@@ -121,7 +121,7 @@
                     <h5 class="fw-medium fs-lg mb-1">{{ $item->organisasi->organisasi }}</h5>
                     <p class="fs-sm mb-3">Tentang {{ $item->organisasi->organisasi }}</p>
                     <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-outline-primary btn-md">
+                        <a href="/organisasi/detail/{{ $item->slug }}" class="btn btn-outline-primary btn-md">
                             <i class="bx bxl-facebook"></i>
                         </a>
                     </div>

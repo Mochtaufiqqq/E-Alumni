@@ -9,6 +9,45 @@
             aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
         </button>
+        @if (Route::has('login'))
+        @auth
+        <div class="nav dropdown d-block order-lg-3 ms-4">
+            <a href="#" class="d-flex nav-link p-0" data-bs-toggle="dropdown">
+                @if (Auth::user()->foto_profile == null)
+                <img src="{{ asset('default/user.png') }}" class="rounded-circle" width="48" alt="Avatar">
+                @else
+                <img src="{{ asset(auth()->user()->foto_profile) }}" class="rounded-circle" width="48" alt="Avatar">
+                @endif
+                <div class="d-none d-sm-block ps-2">
+                    <div class="fs-xs lh-1 opacity-60">Hello,</div>
+                    <div class="fs-sm dropdown-toggle">{{ auth()->user()->nama }}</div>
+                </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end my-1" style="width: 14rem;">
+                <li>
+                    <a href="/profile" class="dropdown-item d-flex align-items-center">
+                        <i class="bx bx-group fs-base opacity-60 me-2"></i>
+                        Profil Saya
+                        {{-- <span class="ms-auto fs-xs text-muted">$735.00</span> --}}
+                    </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="logout">
+                        <i class="bx bx-log-out fs-base opacity-60 me-2"></i>
+                        Log out
+                    </a>
+                </li>
+            </ul>
+        </div>
+        @else
+        <div class="nav d-block order-lg-3 ms-4">
+            <a href="/login" class="btn btn-primary btn-sm fs-sm rounded d-lg-inline-flex" rel="noopener">
+                &nbsp;Login
+            </a>
+        </div>
+        @endauth
+        @endif
         <nav id="navbarCollapse5" class="collapse navbar-collapse order-lg-2">
             <hr class="d-lg-none mt-3 mb-2">
             <ul class="navbar-nav me-auto">
@@ -37,47 +76,9 @@
                   </li>
             </ul>
         </nav>
+        
 
-        @if (Route::has('login'))
-        @auth
-        <div class="nav dropdown d-block order-lg-3 ms-4">
-            <a href="#" class="d-flex nav-link p-0" data-bs-toggle="dropdown">
-                @if (Auth::user()->foto_profile == null)
-                <img src="{{ asset('default/user.png') }}" class="rounded-circle" width="48" alt="Avatar">
-                @else
-                <img src="{{ asset(auth()->user()->foto_profile) }}" class="rounded-circle" width="48" alt="Avatar">
-                @endif
-                <div class="d-none d-sm-block ps-2">
-                    <div class="fs-xs lh-1 opacity-60">Hello,</div>
-                    <div class="fs-sm dropdown-toggle">{{ auth()->user()->nama }}</div>
-                </div>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end my-1" style="width: 14rem;">
-                <li>
-                    <a href="profile" class="dropdown-item d-flex align-items-center">
-                        <i class="bx bx-group fs-base opacity-60 me-2"></i>
-                        Profil Saya
-                        {{-- <span class="ms-auto fs-xs text-muted">$735.00</span> --}}
-                    </a>
-                </li>
-                <li class="dropdown-divider"></li>
-                <li>
-                    <a class="dropdown-item d-flex align-items-center" href="logout">
-                        <i class="bx bx-log-out fs-base opacity-60 me-2"></i>
-                        Log out
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-        @else
-        <div class="nav d-block order-lg-3 ms-4">
-            <a href="/login" class="btn btn-primary btn-sm fs-sm rounded d-lg-inline-flex" rel="noopener">
-                &nbsp;Login
-            </a>
-        </div>
-        @endauth
-        @endif
+        
         
     </div>
 

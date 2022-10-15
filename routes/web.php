@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::get('/profile', [UserController::class, 'profile']);
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
     Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
+    Route::put('/addsosmed/{user}',[UserController::class,'addsosmed']);
     Route::get('/kontak', [MailController::class, 'email']);
     Route::post('/kontak', [MailController::class, 'send'])->name('send');
     
