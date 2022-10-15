@@ -21,6 +21,35 @@ class UserController extends Controller
     
     }
 
+    public function addkesanpesan(Request $request){
+
+        KesanPesan::with('user');
+        $validatedData = $request->validate([
+            'isi' => 'required',
+
+        ]);
+
+        $validatedData["user_id"] = auth()->user()->id;
+        KesanPesan::create($validatedData);
+
+        return redirect('/kesanpesan')->with('success' ,'Berhasil menambahkan kesan & pesan');
+
+    }
+
+    public function editkesanpesan(KesanPesan $kesanpesan, Request $request){
+        KesanPesan::with('user');
+        $validatedData = $request->validate([
+            'isi' => 'required',
+
+        ]);
+
+        $validatedData["user_id"] = auth()->user()->id;
+        KesanPesan::where('id', $kesanpesan->id)->update($validatedData);
+
+        return redirect('/kesanpesan')->with('success' ,'Berhasil mengedit kesan & pesan');
+        
+    }
+
     public function semuaalumni (){
         $user = User::where('role_id', 2)->latest()->get();
         
@@ -28,6 +57,12 @@ class UserController extends Controller
             'user'  => $user
         ],compact('user'));
 
+    }
+    public function detailalumni(User $user) {
+        return view('content.user.detail_alumni',[
+           
+            'user' => $user
+        ]);
     }
 
     public function profile(User $user)
@@ -41,7 +76,7 @@ class UserController extends Controller
     public function settingprofileuser(Request $request, User $user){
         $validatedData = $request->validate([
             'foto_profile' => 'image|mimes:jpg,png,jpeg|max:5000',
-            'nama_panggilan' => 'required',
+            // 'nama_panggilan' => 'required',
             
         ]);
 

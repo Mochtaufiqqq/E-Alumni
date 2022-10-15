@@ -87,8 +87,8 @@ class AlumniController extends Controller
 
             $fileName = time().$request->file('foto_profile')->getClientOriginalName();
             $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
-         $validatedData['foto_profile'] = '/storage/' .$path;
-        $validatedData['password'] = Hash::make($validatedData['password']);
+            $validatedData['foto_profile'] = '/storage/' .$path;
+            $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);
 

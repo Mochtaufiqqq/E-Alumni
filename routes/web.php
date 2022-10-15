@@ -5,9 +5,11 @@ use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\FotoController;
 use App\Http\Controllers\KelolaBeritaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrganisasiController;
+use App\Http\Controllers\LokerController;
 
 
 /*
@@ -80,6 +82,16 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/organisasi/edit', [OrganisasiController::class, 'edit']);
     Route::get('/organisasi/add', [OrganisasiController::class, 'tambah']);
     Route::post('/organisasi/store', [OrganisasiController::class, 'store']);
+
+    // loker
+    Route::get('/lokershow',[LokerController::class,'showloker']);
+    Route::get('/addloker',[LokerController::class,'addloker']);
+    Route::post('/addloker',[LokerController::class,'storeloker']);
+
+    // kesan & pesan
+    Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
+    
+
 });
 
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
@@ -89,6 +101,10 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
 
     Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
+     // kesan & pesan
+     Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
+     Route::put('/editkesanpesan{kesanpesan}',[UserController::class,'editkesanpesan']);
     
 });
+
 

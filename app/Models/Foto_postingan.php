@@ -9,11 +9,8 @@ class Foto_postingan extends Model
 {
     use HasFactory;
 
-    protected $table = 'foto_postingan';
-    protected $primaryKey = 'id';
-
-    public function foto_postingan()
-    {
-        return $this->hasMany(User::class);
-    }
+    protected $fillable = [
+        'name',
+        'image_path'
+    ];
 }
