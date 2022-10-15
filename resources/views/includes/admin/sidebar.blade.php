@@ -44,7 +44,13 @@
                 <li><a href="#">Event</a></li>
               </ul>
             </li>
-            
+            <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="user"></i><span>Lowongan Kerja</span></a>
+              <ul class="nav-submenu menu-content">
+                <li><a href="/lowongankerja">Semua Lowongan Kerja</a></li>
+                <li><a href="#">Develover</a></li>
+                <li><a href="#">Designer</a></li>
+              </ul>
+            </li>
             <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="image"></i><span>Gallery</span></a>
               <ul class="nav-submenu menu-content">
                 <li><a href="gallery.html">Gallery Grid</a></li>
