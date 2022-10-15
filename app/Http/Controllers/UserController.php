@@ -87,4 +87,17 @@ class UserController extends Controller
         return redirect('/profile')->with('success', 'Pekerjaan Berhasil Ditambahkan!');
 
     }
+    
+    public function addsosmed(Request $request, User $user) {
+
+        $validatedData = $request->validate([
+            'instagram'      => 'required',
+            'facebook'      => 'required',
+            'tiktok'      => 'required',
+            'linkedin'      => 'required',
+            
+       ]);
+       User::where('id', $user->id)->update($validatedData);
+       return redirect('/profile')->with('success', 'Pekerjaan Berhasil Ditambahkan!');
+    }
 }

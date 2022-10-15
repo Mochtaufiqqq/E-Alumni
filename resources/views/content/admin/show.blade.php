@@ -69,30 +69,30 @@
                                   @if ($u->foto_profile != '')
                                   <img src="{{ asset($u->foto_profile) }}" alt="" width="50" height="50">
 
-                                  @else
-                                  <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
-                                  @endif
-                                </td>
-                                <td>{{ $u->nama }}</td>
-                                <td>{{ $u->nisn }}</td>
-                                <td>{{ $u->jurusan }}</td>
-                                <td>{{ $u->thn_lulus }}</td>
-                                <td>{{ $u->email }}</td>
-                                <td>{{ $u->alamat }}</td>
-                                <td>
-                                  @if($u->status === 0)
-                                  <h5><span class="badge bg-opacity-100 bg-danger text-white">Nonaktif</span></h5>
-                                  @else($u->status_user_id === 2)
-                                  <h5><span class="badge bg-opacity-100 bg-success text-white">Aktif</span></h5>
-                                  @endif
-                                  
-                              </td>
-                              <td>
-                                @if($u->status === 1)
-                                <a href="/detailuser/{{ $u->id }}" class="btn btn-primary mb-3"><i data-feather="eye"></i></a>
-                                <a href="/edituser/{{ $u->id }}" class="btn btn-warning mb-3"><i data-feather="edit"></i></a>
-                                <a href="/hapususer/{{ $u->id }}" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $u->id }}"><i data-feather="trash-2"></i></a>
-                                 @endif
+                                      @else
+                                      <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
+                                      @endif
+                                     </td>
+                                    <td>{{ $u->nama }}</td>
+                                    <td>{{ $u->nisn }}</td>
+                                    <td>{{ $u->jurusan }}</td>
+                                    <td>{{ $u->thn_lulus }}</td>
+                                    <td>{{ $u->email }}</td>
+                                    <td>{{ $u->alamat }}</td>
+                                    <td>
+                                        @if($u->status === 0)
+                                        <h5><span class="badge bg-opacity-100 bg-danger text-white">Nonaktif</span></h5>
+                                        @else($u->status_user_id === 2)
+                                        <h5><span class="badge bg-opacity-100 bg-success text-white">Aktif</span></h5>
+                                        @endif
+                                        
+                                    </td>
+                                    <td>
+                                      @if($u->status === 1)
+                                      <a href="/detailuser/{{ $u->id }}" class="btn btn-primary"><i data-feather="eye"></i></a>
+                                      <a href="/edituser/{{ $u->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
+                                      <a href="/hapususer/{{ $u->id }}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $u->id }}"><i data-feather="trash-2"></i></a>
+                                       @endif
 
                                    {{-- modal delete --}}
                                    <div class="modal fade" id="modalDelete{{ $u->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

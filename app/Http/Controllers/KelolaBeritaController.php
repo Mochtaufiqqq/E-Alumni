@@ -14,10 +14,8 @@ class KelolaBeritaController extends Controller
     
     public function show()
     {
-       $beritas = Berita::all();
-        return view('content.admin.showberita',[
-            'beritas' => Berita::all()
-        ],compact('beritas'));
+       $beritas = Berita::orderBy('updated_at', 'DESC')->get();
+        return view('content.admin.showberita',compact('beritas'));
         
     }
 
@@ -39,9 +37,11 @@ class KelolaBeritaController extends Controller
             'tgl'  => 'required',
         ]);
 
-        $fileName = time().$request->file('foto')->getClientOriginalName();
+        if($request->file()){
+            $fileName = time().$request->file('foto')->getClientOriginalName();
         $path = $request->file('foto')->storeAs('foto-berita', $fileName. 'public');
         $validatedData['foto'] = '/storage/' .$path;
+        }
 
         $images = [];
 

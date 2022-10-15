@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title','Edit User')
+@section('title','Tambah Organisasi')
 
 @section('content')
 <!-- Container-fluid starts-->
@@ -43,6 +43,20 @@
                                             name="foto" id="image" placeholder="foto" required autofocus
                                             onchange="previewImage()" accept="image/*">
                                     @error('foto')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="image">Logo</label>
+                                        <img class="img-preview img-fluid mb-3" style="max-height: 300px; max-width: 400px;">
+
+                                        <input class="form-control @error('logo') is-invalid @enderror" type="file"
+                                            name="logo" id="image" placeholder="logo" required autofocus
+                                            onchange="previewImage()" accept="image/*">
+                                    @error('logo')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -115,6 +129,16 @@
                                         <option value="2013">2013</option>
                                     </select>
                                     @error('periode')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="image">Deskripsi Organisasi</label>
+                                        <textarea class="form-control @error('deskripsi') is-invalid @enderror"
+                                            name="deskripsi" id="image" placeholder="Deskripsi" required ></textarea>
+                                    @error('deskripsi')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>

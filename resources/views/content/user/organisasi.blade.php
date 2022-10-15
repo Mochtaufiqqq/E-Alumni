@@ -11,7 +11,7 @@
 <div class="position-relative py-lg-4 py-xl-5">
     <div class="swiper-tabs position-absolute top-0 start-0 w-100 h-100">
         @foreach ($organisasi as $item)
-        <div id="1"
+        <div id="a{{ $item->id }}"
             class="position-absolute top-0 start-0 w-100 h-100 bg-position-center bg-repeat-0 bg-size-cover swiper-tab active"
             style="background-image: url({{ asset($item->foto) }});">
             <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-35"></span>
@@ -27,36 +27,36 @@
                 <!-- Slider controls (Prev / next) -->
 
                 <!-- Card -->
-                <div class="swiper" data-swiper-options='{
-                "spaceBetween": 30,
-                        "loop": true,
-                        "tabs": true,
-                        "pagination": {
-                          "el": "#case-study-pagination",
-                          "clickable": true
-                        },
-                        "navigation": {
-                          "prevEl": "#case-study-prev",
-                          "nextEl": "#case-study-next"
-                        }
-                      }'>
-                    <div class="swiper-wrapper">
-
-                        @foreach ($organisasi as $item)
-                        <div class="swiper-slide" data-swiper-tab="#1">
-                            <img src="{{ asset($item->foto) }}"
-                                class="d-block mb-3" width="72" alt="Logo">
-                            <h3 class="mb-2">{{ $item->organisasi->organisasi }}</h3>
-                            <p class="fs-sm text-muted border-bottom pb-3 mb-3">Payment Service Provider Company</p>
-                            <p class="pb-2 pb-lg-3 mb-3">Aenean dolor elit tempus tellus imperdiet. Elementum, ac
-                                convallis morbi sit est feugiat ultrices. Cras tortor maecenas pulvinar nec ac justo.
-                                Massa sem eget semper...</p>
-                            <a href="#" class="btn btn-primary">View "udy</a>
+                        <div class="swiper" data-swiper-options='{
+                                "spaceBetween": 30,
+                                "loop": true,
+                                "tabs": true,
+                                "pagination": {
+                                "el": "#case-study-pagination",
+                                "clickable": true
+                                },
+                                "navigation": {
+                                "prevEl": "#case-study-prev",
+                                "nextEl": "#case-study-next"
+                                }
+                            }'>
+                            <div class="swiper-wrapper">
+                                @foreach ($organisasi as $item)
+                                <div class="swiper-slide" data-swiper-tab="#a{{ $item->id }}">
+                                    <img src="{{ asset($item->logo) }}" class="d-block mb-3" width="72" alt="Logo">
+                                    <h3 class="mb-2 text-white">{{ $item->organisasi->organisasi }}</h3>
+                                    <p class="fs-sm text-muted border-bottom pb-3 mb-3">Payment Service Provider Company
+                                    </p>
+                                    <p class="pb-2 pb-lg-3 mb-3 text-white">Aenean dolor elit tempus tellus imperdiet. Elementum,
+                                        ac
+                                        convallis morbi sit est feugiat ultrices. Cras tortor maecenas pulvinar nec ac
+                                        justo.
+                                        Massa sem eget semper...</p>
+                                    <a href="/organisasi/detail/{{ $item->slug }}" class="btn btn-primary">View "udy</a>
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
-                        @endforeach
-                        
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -76,34 +76,62 @@
 </div>
 
 <!-- Breadcrumb -->
-<nav class="container py-4 mb-2 my-lg-3" aria-label="breadcrumb">
-    <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item">
-            <a href="index-2.html"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">About v.2</li>
-    </ol>
-</nav>
-
-
-<!-- About company -->
-<section class="container pb-5 mb-md-2 mb-lg-4">
+<div class="container py-4 mb-2 my-lg-3">
     <h1 class="border-bottom pb-4">Who We Are</h1>
-    <div class="row pt-2 pt-md-3">
-        <div class="col-md-6">
-            <p class="fs-lg pe-lg-4 mb-1 mb-lg-4">Mi semper risus ultricies orci pulvinar in at enim orci. Quis
-                facilisis nunc pellentesque in ullamcorper sit. Lorem blandit arcu sapien, senectus libero, amet dapibus
-                cursus quam. Eget pellentesque eu purus volutpat adipiscing malesuada. Purus nisi, tortor vel lacus.
-                Donec diam molestie ultrices vitae eget pulvinar fames. Velit lacus mi purus velit justo, amet. Nascetur
-                lobortis diam, duis orci. Vitae nibh amet lorem pellentesque.</p>
+</div>
+
+
+<!-- Team (Slider) -->
+<section class="container-fluid pt-lg-2 pb-5 mb-2 mb-md-4 mb-lg-5">
+    <h2 class="h1 text-center pb-md-1 mb-1 mb-sm-3">Our Leaders</h2>
+    <div class="swiper mx-0 mb-md-n2 mb-xxl-n3" data-swiper-options='{
+            "slidesPerView": 1,
+            "spaceBetween": 8,
+            "loop": false,
+            "pagination": {
+            "el": ".swiper-pagination",
+            "clickable": true
+            },
+            "breakpoints": {
+            "480": {
+                "slidesPerView": 2
+            },
+            "700": {
+                "slidesPerView": 3
+            },
+            "900": {
+                "slidesPerView": 4
+            },
+            "1160": {
+                "slidesPerView": 5
+            },
+            "1500": {
+                "slidesPerView": 6
+            }
+            }
+        }'>
+        <div class="swiper-wrapper">
+
+            <!-- Item -->
+            @foreach ($organisasi as $item)
+            <div class="swiper-slide py-3">
+                <div class="card card-body card-hover bg-light border-0 text-center mx-2">
+                    <img src="{{ $item->logo }}" class="d-block rounded-circle mx-auto mb-3" width="162"
+                        alt="Ralph Edwards">
+                    <h5 class="fw-medium fs-lg mb-1">{{ $item->organisasi->organisasi }}</h5>
+                    <p class="fs-sm mb-3">Tentang {{ $item->organisasi->organisasi }}</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="/organisasi/detail/{{ $item->slug }}" class="btn btn-outline-primary btn-md">
+                            <i class="bx bxl-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
-        <div class="col-md-6">
-            <p class="fs-lg ps-lg-4 mb-1 mb-lg-4">Ac at sed sit senectus massa. Massa ante amet ultrices magna porta
-                tempor. Aliquet diam in et magna ultricies mi at. Lectus enim, vel enim egestas nam pellentesque et leo.
-                Elit mi faucibus laoreet aliquam pellentesque sed aliquet integer massa. Orci leo tortor ornare id
-                mattis auctor aliquam volutpat aliquet. Odio lectus viverra eu blandit nunc malesuada vitae eleifend
-                pulvinar. In ac fermentum sit in orci.</p>
-        </div>
+
+        <!-- Pagination (bullets) -->
+        <div class="swiper-pagination position-relative pt-3 mt-3"></div>
     </div>
 </section>
 
@@ -270,41 +298,6 @@
                     <img src="assets/img/brands/01.svg" class="d-block mx-auto my-2" width="154" alt="Brand">
                 </a>
             </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3">
-                <a href="#" class="card card-body card-hover px-2 mx-2">
-                    <img src="assets/img/brands/02.svg" class="d-block mx-auto my-2" width="154" alt="Brand">
-                </a>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3">
-                <a href="#" class="card card-body card-hover px-2 mx-2">
-                    <img src="assets/img/brands/03.svg" class="d-block mx-auto my-2" width="154" alt="Brand">
-                </a>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3">
-                <a href="#" class="card card-body card-hover px-2 mx-2">
-                    <img src="assets/img/brands/04.svg" class="d-block mx-auto my-2" width="154" alt="Brand">
-                </a>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3">
-                <a href="#" class="card card-body card-hover px-2 mx-2">
-                    <img src="assets/img/brands/05.svg" class="d-block mx-auto my-2" width="154" alt="Brand">
-                </a>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3">
-                <a href="#" class="card card-body card-hover px-2 mx-2">
-                    <img src="assets/img/brands/06.svg" class="d-block mx-auto my-2" width="154" alt="Brand">
-                </a>
-            </div>
         </div>
 
         <!-- Pagination (bullets) -->
@@ -448,183 +441,7 @@
 </section>
 
 
-<!-- Team (Slider) -->
-<section class="container-fluid pt-lg-2 pb-5 mb-2 mb-md-4 mb-lg-5">
-    <h2 class="h1 text-center pb-md-1 mb-1 mb-sm-3">Our Leaders</h2>
-    <div class="swiper mx-0 mb-md-n2 mb-xxl-n3" data-swiper-options='{
-            "slidesPerView": 1,
-            "spaceBetween": 8,
-            "loop": true,
-            "pagination": {
-            "el": ".swiper-pagination",
-            "clickable": true
-            },
-            "breakpoints": {
-            "480": {
-                "slidesPerView": 2
-            },
-            "700": {
-                "slidesPerView": 3
-            },
-            "900": {
-                "slidesPerView": 4
-            },
-            "1160": {
-                "slidesPerView": 5
-            },
-            "1500": {
-                "slidesPerView": 6
-            }
-            }
-        }'>
-        <div class="swiper-wrapper">
 
-            <!-- Item -->
-            <div class="swiper-slide py-3">
-                <div class="card card-body card-hover bg-light border-0 text-center mx-2">
-                    <img src="assets/img/team/09.jpg" class="d-block rounded-circle mx-auto mb-3" width="162"
-                        alt="Ralph Edwards">
-                    <h5 class="fw-medium fs-lg mb-1">Ralph Edwards</h5>
-                    <p class="fs-sm mb-3">Co-Founder</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-facebook btn-sm me-2">
-                            <i class="bx bxl-facebook"></i>
-                        </a>
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-linkedin btn-sm me-2">
-                            <i class="bx bxl-linkedin"></i>
-                        </a>
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-twitter btn-sm">
-                            <i class="bx bxl-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3">
-                <div class="card card-body card-hover bg-light border-0 text-center mx-2">
-                    <img src="assets/img/team/10.jpg" class="d-block rounded-circle mx-auto mb-3" width="162"
-                        alt="Darrell Steward">
-                    <h5 class="fw-medium fs-lg mb-1">Darrell Steward</h5>
-                    <p class="fs-sm mb-3">Lead Developer</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-facebook btn-sm me-2">
-                            <i class="bx bxl-facebook"></i>
-                        </a>
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-stack-overflow btn-sm me-2">
-                            <i class="bx bxl-stack-overflow"></i>
-                        </a>
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-github btn-sm">
-                            <i class="bx bxl-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3">
-                <div class="card card-body card-hover bg-light border-0 text-center mx-2">
-                    <img src="assets/img/team/11.jpg" class="d-block rounded-circle mx-auto mb-3" width="162"
-                        alt="Cameron Williamson">
-                    <h5 class="fw-medium fs-lg mb-1">Cameron Williamson</h5>
-                    <p class="fs-sm mb-3">Creative Director</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-facebook btn-sm me-2">
-                            <i class="bx bxl-facebook"></i>
-                        </a>
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-dribbble btn-sm me-2">
-                            <i class="bx bxl-dribbble"></i>
-                        </a>
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-linkedin btn-sm">
-                            <i class="bx bxl-linkedin"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3">
-                <div class="card card-body card-hover bg-light border-0 text-center mx-2">
-                    <img src="assets/img/team/12.jpg" class="d-block rounded-circle mx-auto mb-3" width="162"
-                        alt="Jerome Bell">
-                    <h5 class="fw-medium fs-lg mb-1">Jerome Bell</h5>
-                    <p class="fs-sm mb-3">Marketing Director</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-instagram btn-sm me-2">
-                            <i class="bx bxl-instagram"></i>
-                        </a>
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-linkedin btn-sm">
-                            <i class="bx bxl-linkedin"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3">
-                <div class="card card-body card-hover bg-light border-0 text-center mx-2">
-                    <img src="assets/img/team/13.jpg" class="d-block rounded-circle mx-auto mb-3" width="162"
-                        alt="Annette Black">
-                    <h5 class="fw-medium fs-lg mb-1">Annette Black</h5>
-                    <p class="fs-sm mb-3">Lead UI Designer</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-facebook btn-sm me-2">
-                            <i class="bx bxl-facebook"></i>
-                        </a>
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-dribbble btn-sm me-2">
-                            <i class="bx bxl-dribbble"></i>
-                        </a>
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-behance btn-sm">
-                            <i class="bx bxl-behance"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3">
-                <div class="card card-body card-hover bg-light border-0 text-center mx-2">
-                    <img src="assets/img/team/14.jpg" class="d-block rounded-circle mx-auto mb-3" width="162"
-                        alt="Marvin McKinney">
-                    <h5 class="fw-medium fs-lg mb-1">Marvin McKinney</h5>
-                    <p class="fs-sm mb-3">Senior Project Manager</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-facebook btn-sm me-2">
-                            <i class="bx bxl-facebook"></i>
-                        </a>
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-linkedin btn-sm me-2">
-                            <i class="bx bxl-linkedin"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3">
-                <div class="card card-body card-hover bg-light border-0 text-center mx-2">
-                    <img src="assets/img/team/15.jpg" class="d-block rounded-circle mx-auto mb-3" width="162"
-                        alt="Esther Howard">
-                    <h5 class="fw-medium fs-lg mb-1">Esther Howard</h5>
-                    <p class="fs-sm mb-3">Motion Designer</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-facebook btn-sm me-2">
-                            <i class="bx bxl-facebook"></i>
-                        </a>
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-dribbble btn-sm me-2">
-                            <i class="bx bxl-dribbble"></i>
-                        </a>
-                        <a href="#" class="btn btn-icon btn-outline-secondary btn-behance btn-sm">
-                            <i class="bx bxl-behance"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pagination (bullets) -->
-        <div class="swiper-pagination position-relative pt-3 mt-3"></div>
-    </div>
-</section>
 
 
 <!-- Contact form -->
