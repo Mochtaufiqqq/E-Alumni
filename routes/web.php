@@ -31,8 +31,10 @@ Route::get('/semuaalumni', [UserController::class, 'semuaalumni']);
 Route::get('/detailalumni/{user}', [UserController::class, "detailalumni"]);
 Route::get('/kesanpesan',[UserController::class,'kesanpesan']);
 //berita
-Route::get('/tampilberita', [KelolaBeritaController::class, 'tampil']);
-Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detail_berita']);
+Route::get('/tampilberita', [UserController::class, 'tampil']);
+Route::get('/detail_berita/{berita}', [UserController::class, 'detail_berita']);
+//dokumentasi
+Route::get('/dokumentasi',[UserController::class, 'dokumentasi']);
 
 
 Route::group(['middleware' => ['guest']], function(){

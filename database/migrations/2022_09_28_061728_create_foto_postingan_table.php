@@ -15,9 +15,7 @@ return new class extends Migration
     {
         Schema::create('foto_postingan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_file');
-            $table->string('size');
-            $table->string('location');
+            $table->string('images');
             $table->timestamps();
         });
     }

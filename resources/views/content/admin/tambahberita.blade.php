@@ -38,8 +38,6 @@
                                 @csrf
                                 <div class="mb-3 m-form__group">
                                     <label class="form-label" for="image">Judul</label>
-
-                                    <img class="img-preview img-fluid mb-3">
                                     <input class="form-control @error('judul') is-invalid @enderror" type="text"
                                         name="judul" id="judl" placeholder="Judul" required autofocus
                                         onchange="previewImage()">
@@ -90,8 +88,6 @@
                                 </div>
                                 <div class="mb-3 input-group-solid">
                                     <label class="form-label" for="image">Foto</label>
-
-                                    <img class="img-preview img-fluid mb-3">
                                     <input class="form-control @error('foto') is-invalid @enderror" type="file"
                                         name="foto" id="foto" placeholder="foto" required autofocus
                                         onchange="previewImage()">
@@ -107,7 +103,7 @@
 
                                     <img class="img-preview img-fluid mb-3">
                                     <input class="form-control @error('foto') is-invalid @enderror" type="file"
-                                        name="foto" id="foto" placeholder="foto" required autofocus
+                                        name="images[]" placeholder="foto" multiple required autofocus
                                         onchange="previewImage()">
 
                                     @error('files')

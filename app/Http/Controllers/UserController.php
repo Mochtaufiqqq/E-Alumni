@@ -8,9 +8,29 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\KesanPesan;
+use App\Models\Berita;
+use App\Models\Foto_postingan;
 
 class UserController extends Controller
 {
+    public function dokumentasi(Foto_postingan $dokumentasi){
+        return view('content.user.dokumentasi',[
+            'foto_postingan' => $dokumentasi
+        ]);
+    }
+
+    public function detail_berita(Berita $berita){
+        return view('content.user.detail_berita',[
+            'berita' => $berita
+        ]);
+    }
+
+    public function tampil(){
+        $beritas = Berita::all();
+        return view('content.user.berita',[
+            'beritas' => Berita::all()
+        ],compact('beritas'));
+    }
 
     public function kesanpesan(){
         $dtkesanpesan = KesanPesan::with('user')->latest()->get();

@@ -11,9 +11,10 @@ class Foto_postingan extends Model
 
     protected $table = 'foto_postingan';
     protected $primaryKey = 'id';
+    protected $fillable = ['images'];
 
     public function foto_postingan()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Berita::class);
     }
 }

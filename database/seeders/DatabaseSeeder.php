@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             'id_sosmed' => '1',
             'id_prestasi' => '1',
             'id_pendidikan' => '1',
+            'id_riwayatORG' => '1',
         ]);
         User::create([
             'nisn'  => '20211787',
@@ -59,6 +60,7 @@ class DatabaseSeeder extends Seeder
             'id_sosmed' => '1',
             'id_prestasi' => '1',
             'id_pendidikan' => '1',
+            'id_riwayatORG' => '1',
         ]);
 
         User::create([
@@ -82,6 +84,7 @@ class DatabaseSeeder extends Seeder
             'id_sosmed' => '1',
             'id_prestasi' => '1',
             'id_pendidikan' => '1',
+            'id_riwayatORG' => '1',
         ]);
 
         TentangKami::create([
