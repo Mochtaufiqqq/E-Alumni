@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/semuaberita',[KelolaBeritaController::class,'show']);
     Route::get('/tambahberita',[KelolaBeritaController::class,'add']);
     Route::post('/tambahberita',[KelolaBeritaController::class,'store']);
+    // Route::post('/tambahberita',[KelolaBeritaController::class,'fotoPosting']);
     Route::get('/editberita/{beritas}',[KelolaBeritaController::class,'edit']);
     Route::put('/editberita/{beritas}',[KelolaBeritaController::class,'update']);
     Route::delete('/hapusberita/{beritas}', [KelolaBeritaController::class, 'delete'])->name('delete');
@@ -98,7 +99,7 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::get('/profile', [UserController::class, 'profile']);
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
     Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
-    Route::put('/addsosmed/{user}',[UserController::class,'addsosmed']);
+    Route::post('/addsosmed',[UserController::class,'addsosmed']);
     Route::get('/kontak', [MailController::class, 'email']);
     Route::post('/kontak', [MailController::class, 'send'])->name('send');
     

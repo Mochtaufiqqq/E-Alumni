@@ -30,7 +30,7 @@ class KelolaBeritaController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
-            'images' => 'required|mimes:jpg,png,jpeg|max:5000',
+            // 'dokumentasi' => 'required|mimes:jpg,png,jpeg|max:5000',
             'judul' => 'required',
             'isi' => 'required',
             'kategori' => 'required',
@@ -40,29 +40,26 @@ class KelolaBeritaController extends Controller
         if($request->file()){
             $fileName = time().$request->file('foto')->getClientOriginalName();
         $path = $request->file('foto')->storeAs('foto-berita', $fileName. 'public');
-        $validatedData['foto'] = '/storage/' .$path;
+        $foto = '/storage/' .$path;
         }
+        
+        $image = [];
 
-        $images = [];
-
-        if ($request->images){
-            foreach($request->images as $key => $image){
-                $imageName = time().rand(1,99).'.'.$image->extension();
-                $image->file->store('images', $imageName);
-
-                $image[]['images'] = $imageName;
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $path = $file->store('foto-dokumentasi');
+                $image[] = $path;
             }
         }
-        foreach($images as $key){
-            Foto_postingan::create($key);
-        }
         
-        // $fileName = time().$request->file('dokumentasi')->getClientOriginalName();
-        // $path = $request->file('dokumentasi')->storeAs('foto-dokumnetasi', $fileName. 'public');
-        // $validatedData['dokumentasi'] = '/storage/' .$path;
-        
-
-        Berita::create($validatedData);
+        Berita::create([
+            'dokumentasi' => implode('|', $image),
+            'foto' => $foto,
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'kategori' => $request->kategori,
+            'tgl' => $request->tgl,
+        ]);
 
         return redirect('/semuaberita')->with('success', 'Data Berhasil Ditambahkan');
     }
@@ -115,7 +112,17 @@ class KelolaBeritaController extends Controller
         return redirect('/semuaberita');
     }
 
+    // public function fotoPosting(Request $request)
+    // {
+    //     $validatedData = $request->validate([
+    //         'images' => 'required'
+    //     ]);
 
-    }
+        
+    // }
 
 
+}
+
+
+ 

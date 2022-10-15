@@ -54,6 +54,7 @@
                                     <th>Isi</th>
                                     <th>Tanggal</th>
                                     <th>Kategori</th>
+                                    <th>dokumentasi</th>
                                     <th>Opsi</th>
                                 </tr>
                                 @foreach ($beritas as $b)
@@ -128,6 +129,11 @@
                                           </div>
 
 
+                                    </td>
+                                    <td>
+                                      @foreach (explode('|', $b->dokumentasi) as $img)
+                                        <img src="/storage/{{ $img }}" alt="" width="50" height="50">
+                                      @endforeach
                                     </td>
 
                                 </tr>

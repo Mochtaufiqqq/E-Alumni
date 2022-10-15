@@ -37,6 +37,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('123123123'),
             'role_id' => 1,
             'id_organisasi' => 1,
+             
         ]);
         User::create([
             'nisn'  => '20211787',
@@ -57,7 +58,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('123123123'),
             'role_id' => 2,
             'id_organisasi' => 1,
-        ]);
+                     ]);
 
         User::create([
             'nisn'  => '090909',
@@ -78,6 +79,8 @@ class UserSeeder extends Seeder
             'password' => bcrypt('123123123'),
             'role_id' => 2,
             'id_organisasi' => 1,
+
+                     
         ]);
 
         // TentangKami::create([

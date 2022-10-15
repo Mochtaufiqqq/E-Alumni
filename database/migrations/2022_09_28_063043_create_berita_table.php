@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('isi');
             $table->string('kategori');
             $table->string('foto')->nullable();
-            // $table->string('dokumentasi');
+            $table->string('dokumentasi');
             $table->date('tgl')->nullable();
             $table->timestamps();
         });

@@ -80,7 +80,7 @@ class User extends Authenticatable
 
     public function sosmed()
     {
-        return $this->belongsTo(Sosmed::class);
+        return $this->hasOne(Sosmed::class);
     }
 
 

@@ -561,7 +561,8 @@
                     <div class="modal-body tab-content py-4">
 
                         <!-- Sign in form -->
-                        <form class="tab-pane fade show active" autocomplete="off" id="signin">
+                        <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/addsosmed" method="POST">
+                            @csrf
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Instagram</label>
                                 <input class="form-control" type="text" name="instagram" id="email1"
@@ -648,7 +649,7 @@
 
         <!-- Account details -->
         <div class="col-md-8 offset-lg-1 pb-5 mb-2 mb-lg-4 pt-md-5 mt-n3 mt-md-0">
-            <class="ps-md-3 ps-lg-0 mt-md-2 py-md-4">
+            <div class="ps-md-3 ps-lg-0 mt-md-2 py-md-4">
                 @if (session('success'))
                 <div class="alert alert-primary alert-dismissible fade show" role="alert"><strong>Selamat ! </strong>
                     <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"
@@ -686,6 +687,7 @@
                             @endif
                         </div>
                         <div class="col-6 mb-4">
+                            @foreach ($sosmed as $item)
                             <label for="email" class="form-label fs-base">Social Media</label>
                             @if (Auth::user()->instagram == '')
                                 <p><i class="bx bxl-instagram"></i> endrit faisal<small class="text-muted">(contoh)</small></p>
@@ -698,7 +700,7 @@
                             @else
                                 <p><i class="bx bxl-facebook"></i> {{ auth()->user()->facebook }}</p>
                             @endif
-                            @if (Auth::user()->Tiktok == '')
+                            @if (Auth::user()->tiktok == '')
                             
                                 <p><i class="bx bxl-tiktok"></i> endrit faisal<small class="text-muted">(contoh)</small></p>
                             @else
@@ -711,6 +713,7 @@
                             @else
                                 <p><i class="bx bxl-facebook"></i> {{ auth()->user()->linkedin }}</p>
                             @endif
+                            @endforeach
                         </div>
 
                         <div class="col-6 mb-4">
