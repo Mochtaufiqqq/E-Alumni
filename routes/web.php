@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\KelolaBeritaController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\OrganisasiController;
+use App\Http\Controllers\KelolaKerjaController;
+use App\Http\Controllers\KelolaBeritaController;
+use App\Http\Controllers\ForgotPasswordController;
 
 
 /*
@@ -33,10 +34,8 @@ Route::get('/semuaalumni', [UserController::class, 'semuaalumni']);
 Route::get('/detailalumni/{user}', [UserController::class, "detailalumni"]);
 Route::get('/kesanpesan',[UserController::class,'kesanpesan']);
 //berita
-Route::get('/tampilberita', [UserController::class, 'tampil']);
-Route::get('/detail_berita/{berita}', [UserController::class, 'detail_berita']);
-//dokumentasi
-Route::get('/dokumentasi',[UserController::class, 'dokumentasi']);
+Route::get('/tampilberita', [KelolaBeritaController::class, 'tampil']);
+Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detail_berita']);
 
 
 Route::group(['middleware' => ['guest']], function(){
@@ -82,6 +81,16 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/editberita/{beritas}',[KelolaBeritaController::class,'edit']);
     Route::put('/editberita/{beritas}',[KelolaBeritaController::class,'update']);
     Route::delete('/hapusberita/{beritas}', [KelolaBeritaController::class, 'delete'])->name('delete');
+
+    // Lowongan Kerja admin
+    Route::get('/lowongankerja',[KelolaKerjaController::class,'show']);
+    Route::get('/addlowongankerja',[KelolaKerjaController::class,'add']);
+    Route::post('/addlowongankerja',[KelolaKerjaController::class,'store']);
+    Route::get('/editlowongankerja/{kerjas}',[KelolaKerjaController::class,'edit']);
+    Route::put('/editlowongankerja/{kerjas}',[KelolaKerjaController::class,'update']);
+    Route::delete('/hapuslowongankerja/{kerjas}', [KelolaKerjaController::class, 'delete'])->name('delete');
+    Route::get('/detaillowongankerja/{kerjas}', [KelolaKerjaController::class, "detaillowongankerja"]);
+    Route::get('/reportpdflowongankerja', [KelolaKerjaController::class, 'reportpdflowongankerja']);
 
     //organisasi admin
     Route::prefix('organisasi')->group(function(){ 
