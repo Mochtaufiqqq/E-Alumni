@@ -11,18 +11,6 @@ use Illuminate\Validation\Rules\File;
 
 class KelolaBeritaController extends Controller
 {
-    public function detail_berita(Berita $berita){
-        return view('content.user.detail_berita',[
-            'berita' => $berita
-        ]);
-    }
-
-    public function tampil(){
-        $beritas = Berita::all();
-        return view('content.user.berita',[
-            'beritas' => Berita::all()
-        ],compact('beritas'));
-    }
     
     public function show()
     {
@@ -42,7 +30,7 @@ class KelolaBeritaController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
-            // 'dokumentasi' => 'mimes:jpg,png,jpeg|max:5000',
+            'images' => 'required|mimes:jpg,png,jpeg|max:5000',
             'judul' => 'required',
             'isi' => 'required',
             'kategori' => 'required',
@@ -55,16 +43,24 @@ class KelolaBeritaController extends Controller
         $validatedData['foto'] = '/storage/' .$path;
         }
 
-        if($request->has('foto-dokumen')){
-            foreach ($request->file('foto-dokumen') as $images) {
-                $fileName = time().$request->file('foto-dokumen')->getClientOriginalName();
-                $images->file('foto-dokumen')->storeAs('foto-dokumentasi', $fileName. 'public');
-                // $validatedData['foto'] = '/storage/' . $images;
-                Foto_postingan::create([
-                    'nama_file' => $fileName,
-                ]);
+        $images = [];
+
+        if ($request->images){
+            foreach($request->images as $key => $image){
+                $imageName = time().rand(1,99).'.'.$image->extension();
+                $image->file->store('images', $imageName);
+
+                $image[]['images'] = $imageName;
             }
         }
+        foreach($images as $key){
+            Foto_postingan::create($key);
+        }
+        
+        // $fileName = time().$request->file('dokumentasi')->getClientOriginalName();
+        // $path = $request->file('dokumentasi')->storeAs('foto-dokumnetasi', $fileName. 'public');
+        // $validatedData['dokumentasi'] = '/storage/' .$path;
+        
 
         Berita::create($validatedData);
 
@@ -104,17 +100,13 @@ class KelolaBeritaController extends Controller
 
         return redirect('/semuaberita')->with('success', 'Data berhasil dihapus!');
      }
+
      public function detailberita(Berita $beritas) {
         return view('content.admin.detailberita',[
-           
             'beritas' => $beritas
         ]);
     }
-
-    public function dokumentasi(){
-        return view('content.user.dokumentasi');
-    }
-
+    
     public function reportpdfberita(){
         $beritas = Berita::all();
 

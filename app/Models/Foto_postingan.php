@@ -10,10 +10,11 @@ class Foto_postingan extends Model
     use HasFactory;
 
     protected $table = 'foto_postingan';
-    protected $guarded = ['id'];
+    protected $primaryKey = 'id';
+    protected $fillable = ['images'];
 
     public function foto_postingan()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Berita::class);
     }
 }

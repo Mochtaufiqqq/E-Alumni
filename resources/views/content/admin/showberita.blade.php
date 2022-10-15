@@ -45,7 +45,7 @@
                   <a class="btn btn-primary mb-3" href="/tambahberita">Tambah Data Berita</a>
                   <a class="btn btn-secondary text-dark mb-3" href="{{ url('/reportpdfberita') }}">Export PDF</a>
                     <div class="dt-ext table-responsive">
-                        <table class="display" id="responsive">
+                        <table class="table table-bordered" id="basic-row-reorder">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -70,16 +70,16 @@
                                       @endif
                                      </td>
                                     <td>{{ $b->judul }}</td>
-                                    <td>{{ $b->isi }}</td>
                                     <td>{{ $b->tgl }}</td>
+                                    <td>{{ Str::limit($b->isi,200) }}</td>
                                     <td>{{ $b->kategori }}</td>
                                     <td>
                                       <a href="/detailberita/{{ $b->id }}" class="btn btn-primary"><i data-feather="eye"></i></a>
                                       <a href="/editberita/{{ $b->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
-                                      <a href="/hapusberita/{{ $b->id }}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $b->id }}"><i data-feather="trash-2"></i></a>
+                                      <a href="/hapusberita/{{ $b->id }}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHpsBerita{{ $b->id }}"><i data-feather="trash-2"></i></a>
                                        
                                          {{-- modal delete --}}
-                                         <div class="modal fade" id="modalDelete{{ $b->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                         <div class="modal fade" id="modalHpsBerita{{ $b->id }}" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                 <div class="modal-header">

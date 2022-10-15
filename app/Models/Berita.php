@@ -10,11 +10,15 @@ class Berita extends Model
     use HasFactory;
 
     protected $table = 'berita';
-    protected $primaryKey = 'id';
-    protected $guarded = ['id_berita'];
+    protected $guarded = ['id'];
 
     public function admin()
     {
         return $this->hasMany(Admin::class);
+    }
+
+    public function foto_postingan()
+    {
+        return $this->belongsTo(Foto_postingan::class);
     }
 }

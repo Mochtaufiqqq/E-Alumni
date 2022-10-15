@@ -5,15 +5,15 @@
 @section('content')
 
 <!-- Breadcrumb -->
-<nav class="container py-4 mb-lg-2 mt-lg-3" aria-label="breadcrumb">
-    <ol class="breadcrumb mb-0">
+<nav class="container mt-lg-4 pt-5" aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0 pt-4 pb-5">
         <li class="breadcrumb-item">
-            <a href="index-2.html"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
+            <a href="/"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="portfolio-grid.html">Portfolio</a>
+            <a href="/tampilberita">Semua Berita</a>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">Single Project</li>
+        <li class="breadcrumb-item active" aria-current="page">Detail Berita</li>
     </ol>
 </nav>
 
@@ -29,7 +29,7 @@
 </section>
 
 <!-- Page title -->
-<section class="container pb-4 mb-2 mb-lg-3">
+<section class="container pt-4 mb-0 mb-lg-0">
     <h1>{{ $berita->judul }}</h1>
     <p class="text-muted mb-0">{{ $berita->tgl }}</p>
 </section>

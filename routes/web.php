@@ -36,9 +36,6 @@ Route::get('/kesanpesan',[UserController::class,'kesanpesan']);
 //berita
 Route::get('/tampilberita', [KelolaBeritaController::class, 'tampil']);
 Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detail_berita']);
-//lowongankerja
-Route::get('/lowonganpekerjaan', [KelolaKerjaController::class, 'showlokeruser']);
-
 
 
 Route::group(['middleware' => ['guest']], function(){
