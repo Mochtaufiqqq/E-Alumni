@@ -138,6 +138,14 @@
 
 <section class="container-fluid pt-lg-5 pb-5 mb-2 mb-md-4 mb-lg-5">
     <h2 class="h1 text-center pb-md-1 mb-1 mb-sm-3">Semua Alumni</h2>
+    <div class="text-center mb-5">
+        <a href="" class="btn btn-outline-secondary">Semua</a>
+        <a href="" class="btn btn-outline-secondary">Angkatan 1</a>
+        <a href="" class="btn btn-outline-secondary">Angkatan 2</a>
+        <a href="" class="btn btn-outline-secondary">Angkatan 3</a>
+        <a href="" class="btn btn-outline-secondary">Angkatan 4</a>
+        <a href="" class="btn btn-outline-secondary">Angkatan 5</a>
+    </div>
     <div class="row">
         @foreach ($user as $u)
 

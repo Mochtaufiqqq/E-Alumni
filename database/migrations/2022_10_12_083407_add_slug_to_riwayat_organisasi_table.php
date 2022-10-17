@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tentang_kamis', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul');
-            $table->string('isi');
-            $table->string('foto')->default('null');
-            $table->timestamps();
+        Schema::table('riwayat_organisasi', function (Blueprint $table) {
+            $table->string('slug', 225)->nullable()->after('periode');
         });
     }
 
@@ -29,6 +25,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tentang_kamis');
+        Schema::table('riwayat_organisasi', function (Blueprint $table) {
+            if (Schema::hasColumn('riwayat_organisasi', 'slug')) {
+                $table->dropColumn('slug');
+            }
+        });
     }
 };

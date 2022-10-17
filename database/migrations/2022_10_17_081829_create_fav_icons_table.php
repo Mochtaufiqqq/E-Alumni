@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lowongan_pekerjaans', function (Blueprint $table) {
+        Schema::create('fav_icons', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->string('deskripsi');
-            $table->string('loker_image');
+            $table->string('favicon');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lowongan_pekerjaans');
+        Schema::dropIfExists('fav_icons');
     }
 };

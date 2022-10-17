@@ -4,12 +4,14 @@ namespace App\Models;
 
 use App\Models\Jabatan;
 use App\Models\Organisasi;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Riwayat_organisasi extends Model
 {
     use HasFactory;
+    use Sluggable;
 
     protected $guarded = ['id'];
     protected $table = 'riwayat_organisasi';
@@ -17,8 +19,19 @@ class Riwayat_organisasi extends Model
         'id_organisasi',
         'id_jabatan',
         'foto',
-        'periode'
+        'logo',
+        'periode',
+        'deskripsi'
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'id_organisasi'
+            ]
+        ];
+    }
 
     public function organisasi()
     {

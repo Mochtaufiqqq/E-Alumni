@@ -13,4 +13,12 @@ class Foto_postingan extends Model
         'name',
         'image_path'
     ];
+
+    protected $table = 'foto_postingan';
+    protected $guarded = ['id'];
+
+    public function foto_postingan()
+    {
+        return $this->hasMany(User::class);
+    }
 }

@@ -7,9 +7,11 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\FotoController;
 use App\Http\Controllers\KelolaBeritaController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\LokerController;
+use App\Http\Controllers\OtherController;
 
 
 /*
@@ -23,15 +25,22 @@ use App\Http\Controllers\LokerController;
 |
 */
 
-
+// this route guest for user
 Route::get('/',[AlumniController::class,'dashboarduser']);
 //organisasi
 Route::get('/organisasi', [OrganisasiController::class, 'index']);
+Route::get('/organisasi/detail/{slug}', [OrganisasiController::class, 'details']);
 //endorganisasi
-Route::get('/tentangkami', [AlumniController::class, 'tentangkami']);
+Route::get('/tentangkami', [OtherController::class, 'tentangkami']);
 Route::get('/semuaalumni', [UserController::class, 'semuaalumni']);
 Route::get('/detailalumni/{user}', [UserController::class, "detailalumni"]);
 Route::get('/kesanpesan',[UserController::class,'kesanpesan']);
+//berita
+Route::get('/tampilberita', [KelolaBeritaController::class, 'tampil']);
+Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detail_berita']);
+//kontak
+Route::get('/kontak', [MailController::class, 'email']);
+Route::post('/kontak', [MailController::class, 'send'])->name('send');
 
 
 Route::group(['middleware' => ['guest']], function(){
@@ -78,6 +87,7 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::delete('/hapusberita/{beritas}', [KelolaBeritaController::class, 'delete'])->name('delete');
 
     //organisasi admin
+
     Route::get('/organisasi/show', [OrganisasiController::class, 'show']);
     Route::get('/organisasi/edit', [OrganisasiController::class, 'edit']);
     Route::get('/organisasi/add', [OrganisasiController::class, 'tambah']);
@@ -90,7 +100,25 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
 
     // kesan & pesan
     Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
+
+    // tentang kami
+    Route::get('/showttgkami',[OtherController::class,'showttgkami']);
+    Route::get('/editttgkami/{ttgkami}',[OtherController::class,'editttgkami']);
+    Route::post('/updatettgkami/{ttgkami}',[OtherController::class,'updatettgkami']);
+
+    // favicon
+    Route::get('/faviconlogo',[OtherController::class,'index']);
+    Route::get('/editfavicon/{fvicon}',[OtherController::class,'editfavicon']);
+    Route::post('/updatefavicon/{fvicon}',[OtherController::class,'updatefavicon']);
     
+
+    Route::prefix('organisasi')->group(function(){ 
+        Route::get('/show', [OrganisasiController::class, 'show']);
+        Route::get('/edit', [OrganisasiController::class, 'edit']);
+        Route::get('/add', [OrganisasiController::class, 'tambah']);
+        Route::post('/store', [OrganisasiController::class, 'store']);
+        Route::post('/update/{id}', [OrganisasiController::class, 'update']);
+    });
 
 });
 
@@ -99,11 +127,15 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     // for manage profile alumni personal
     Route::get('/profile', [UserController::class, 'profile']);
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
-
     Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
+
      // kesan & pesan
      Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
      Route::put('/editkesanpesan{kesanpesan}',[UserController::class,'editkesanpesan']);
+
+    Route::put('/addsosmed/{user}',[UserController::class,'addsosmed']);
+    
+
     
 });
 

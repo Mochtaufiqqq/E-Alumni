@@ -102,7 +102,7 @@
                                             </div>
                                           </div>
 
-                                        @if($b->status === 0)
+                                      @if($b->status === 0)
                                       <a href="/statusberita/{{ $b->id }}/accept" class="btn btn-success">Setujui</a>
                                       <a href="/hapusberita/{id}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalTolak{{ $b->id }}">Tolak</a>
                                        @endif

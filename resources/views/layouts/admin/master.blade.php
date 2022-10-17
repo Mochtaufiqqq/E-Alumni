@@ -8,8 +8,8 @@
     <meta name="keywords" content="admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"> --}}
-    <link rel="icon" href="/viho_all/html/assets/images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="/viho_all//assets/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon/tracerstudy.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('favicon/tracerstudy.ico') }}" type="image/x-icon">
     <title>Tracer Alumni |  @yield('title')</title>
     <!-- Google font-->
     @include('includes.admin.style')

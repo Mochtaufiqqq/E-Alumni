@@ -6,16 +6,11 @@
             <img src="{{ asset('user/img/logo.svg') }}" width="47" alt="Silicon">
             Silicon
           </div>
-          <p class="fs-sm text-light opacity-70 pb-lg-3 mb-4">Proin ipsum pharetra, senectus eget scelerisque varius pretium platea velit. Lacus, eget eu vitae nullam proin turpis etiam mi sit. Non feugiat feugiat egestas nulla nec. Arcu tempus, eget elementum dolor ullamcorper sodales ultrices eros.</p>
-          <form class="needs-validation" novalidate>
-            <label for="subscr-email" class="form-label">Subscribe to our newsletter</label>
-            <div class="input-group">
-              <input type="email" id="subscr-email" class="form-control rounded-start ps-5" placeholder="Your email" required>
-              <i class="bx bx-envelope fs-lg text-muted position-absolute top-50 start-0 translate-middle-y ms-3 zindex-5"></i>
-              <div class="invalid-tooltip position-absolute top-100 start-0">Please provide a valid email address.</div>
-              <button type="submit" class="btn btn-primary">Subscribe</button>
-            </div>
-          </form>
+            <h6 class="mb-2">Contact Us</h6>
+            <a href="mailto:smkmahaputracerdasutama@gmail.com" class="fw-medium"></a>
+            <p> 0895-6304-68373 </p>
+            <p>Jl. Katapang Andir No.Km 4, Sukamukti, Kec. Katapang, Kabupaten Bandung, Jawa Barat 40921</p> 
+            <a href="" <box-icon type='logo' name='facebook-circle'></box-icon></a>
         </div>
         <div class="col-xl-6 col-lg-7 col-md-5 offset-xl-2 offset-md-1 pt-4 pt-md-1 pt-lg-0">
           <div id="footer-links" class="row">
@@ -51,8 +46,7 @@
               </div>
             </div>
             <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
-              <h6 class="mb-2">Contact Us</h6>
-              <a href="mailto:email@example.com" class="fw-medium">email@example.com</a>
+              
             </div>
           </div>
         </div>

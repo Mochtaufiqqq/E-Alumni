@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TentangKami extends Model
+class FavIcon extends Model
 {
     use HasFactory;
-    protected $table = 'tentang_kamis';
-    protected $fillable = ['judul' , 'isi', 'foto'];
+    protected $table = 'fav_icons';
+    protected $fillable = ['favicon'];
 }

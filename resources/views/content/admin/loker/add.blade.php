@@ -62,7 +62,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Foto</label>
                                     <div class="input-group">
-                                        <input class="form-control @error('images[]') is-invalid @enderror" type="file" name="images[]" multiple required>
+                                        <input class="form-control @error('images[]') is-invalid @enderror" type="file" name="images[]" multiple>
                                     </div>
                                     @error('loker_image[]')
                                     <div class="invalid-feedback">

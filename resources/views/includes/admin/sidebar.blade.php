@@ -54,6 +54,15 @@
                 <li><a href="gallery-hover.html">Hover Effects</a></li>
               </ul>
             </li>
+            <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="image"></i><span>Lainnya</span></a>
+              <ul class="nav-submenu menu-content">
+                <li><a href="/faviconlogo">Ubah Logo & Favicon</a></li>
+                <li><a href="/showttgkami">Tentang Kami</a></li>
+                <li><a href="gallery-masonry.html">Masonry Gallery</a></li>
+                <li><a href="masonry-gallery-with-disc.html">Masonry with Desc</a></li>
+                <li><a href="gallery-hover.html">Hover Effects</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

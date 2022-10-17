@@ -60,9 +60,9 @@
                                     
                                     <td>{{ $l->judul }}</td>
                                     <td>{{ $l->deskripsi }}</td>
-                                    <td>@foreach (explode('|', $l->loker_image) as $item)
+                                    <td>@foreach (explode('|', $l->loker_image) as $img)
                                         
-                                        <img src="/storage/{{ $item }}" alt="" width="150" height="150">
+                                        <img src="/storage/{{ $img }}" alt="" width="150" height="150">
                                         
                                     @endforeach</td>
                                     <td>

@@ -25,7 +25,7 @@ class AlumniController extends Controller
     public function profile()
     {
         $users = User::all();
-        return view('content.user.detail_profile',[
+        return view('content.user.detail-profile',[
             'users' => $users
         ],compact('users'));
     }
@@ -82,7 +82,11 @@ class AlumniController extends Controller
             'thn_lulus'  => 'required',
             'email' => 'required|min:8|unique:users',
             'role' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'instagram' => 'required',
+            'facebook' => 'required',
+            'tiktok' => 'required',
+            'linkedin' => 'required',
         ]);
 
             $fileName = time().$request->file('foto_profile')->getClientOriginalName();
