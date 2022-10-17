@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ForgotPasswordController;
@@ -9,9 +8,15 @@ use App\Http\Controllers\FotoController;
 use App\Http\Controllers\KelolaBeritaController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\OtherController;
+use App\Http\Controllers\KelolaKerjaController;
+use App\Http\Controllers\KelolaBeritaController;
+use App\Http\Controllers\ForgotPasswordController;
+
 
 
 /*
@@ -82,9 +87,20 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/semuaberita',[KelolaBeritaController::class,'show']);
     Route::get('/tambahberita',[KelolaBeritaController::class,'add']);
     Route::post('/tambahberita',[KelolaBeritaController::class,'store']);
+    // Route::post('/tambahberita',[KelolaBeritaController::class,'fotoPosting']);
     Route::get('/editberita/{beritas}',[KelolaBeritaController::class,'edit']);
     Route::put('/editberita/{beritas}',[KelolaBeritaController::class,'update']);
     Route::delete('/hapusberita/{beritas}', [KelolaBeritaController::class, 'delete'])->name('delete');
+
+    // Lowongan Kerja admin
+    Route::get('/lowongankerja',[KelolaKerjaController::class,'show']);
+    Route::get('/addlowongankerja',[KelolaKerjaController::class,'add']);
+    Route::post('/addlowongankerja',[KelolaKerjaController::class,'store']);
+    Route::get('/editlowongankerja/{kerjas}',[KelolaKerjaController::class,'edit']);
+    Route::put('/editlowongankerja/{kerjas}',[KelolaKerjaController::class,'update']);
+    Route::delete('/hapuslowongankerja/{kerjas}', [KelolaKerjaController::class, 'delete'])->name('delete');
+    Route::get('/detaillowongankerja/{kerjas}', [KelolaKerjaController::class, "detaillowongankerja"]);
+    Route::get('/reportpdflowongankerja', [KelolaKerjaController::class, 'reportpdflowongankerja']);
 
     //organisasi admin
 
@@ -129,13 +145,17 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
     Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
 
+
      // kesan & pesan
      Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
      Route::put('/editkesanpesan{kesanpesan}',[UserController::class,'editkesanpesan']);
 
-    Route::put('/addsosmed/{user}',[UserController::class,'addsosmed']);
+     Route::put('/addsosmed/{user}',[UserController::class,'addsosmed']);
     
 
+    Route::post('/addsosmed',[UserController::class,'addsosmed']);
+    Route::get('/kontak', [MailController::class, 'email']);
+    Route::post('/kontak', [MailController::class, 'send'])->name('send');
     
 });
 

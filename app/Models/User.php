@@ -80,13 +80,9 @@ class User extends Authenticatable
 
     public function sosmed()
     {
-        return $this->belongsTo(Sosmed::class);
+        return $this->hasOne(Sosmed::class);
     }
 
-    public function foto_postingan()
-    {
-        return $this->belongsTo(Foto_postingan::class);
-    }
 
     public function riwayat_prestasi()
     {

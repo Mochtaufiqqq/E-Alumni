@@ -15,11 +15,15 @@ return new class extends Migration
     {
         Schema::create('foto_postingan', function (Blueprint $table) {
             $table->id();
+<<<<<<< HEAD
             $table->string('name')->nullable();
             $table->string('image_path')->nullable();
             $table->string('nama_file');
             $table->string('foto_dokumen')->nullable();
             $table->string('location')->nullable();
+=======
+            $table->string('images');
+>>>>>>> 3bd4a0ee6ffbada08092cfaffc0ff161d1ea32a8
             $table->timestamps();
         });
     }

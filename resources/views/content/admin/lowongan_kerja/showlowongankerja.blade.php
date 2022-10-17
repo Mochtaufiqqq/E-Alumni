@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title','Semua Berita')
+@section('title','Semua Lowongan Kerja')
     
 
 @section('content')
@@ -22,11 +22,11 @@
               @endif
             <div class="col-sm-6">
               
-                <h3>Berita</h3>
+                <h3>Lowongan Kerja</h3>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/semuaberita">Semua Berita</a></li>
-                    <li class="breadcrumb-item"> <a href="#"></a>Prestasi  </li>
-                    <li class="breadcrumb-item"> <a href="#"></a>Event  </li>
+                    <li class="breadcrumb-item"><a href="/lowongankerja">Semua Lowongan Kerja</a></li>
+                    <li class="breadcrumb-item"> <a href="#"></a>Develover  </li>
+                    <li class="breadcrumb-item"> <a href="#"></a>Designer  </li>
                 </ol>
             </div>
         </div>
@@ -38,61 +38,60 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Semua Data Berita</h5><span>Dibawah Ini adalah table semua data user aktif dan user nonaktif kamu bisa mengelolanya. Terdapat Beberapa Button Untuk Mengelola</span>
+                    <h5>Semua Data Lowongan Kerja</h5><span>Dibawah Ini adalah table semua data user aktif dan user nonaktif kamu bisa mengelolanya. Terdapat Beberapa Button Untuk Mengelola</span>
                 </div>
                 
                 <div class="card-body">
-                  <a class="btn btn-primary mb-3" href="/tambahberita">Tambah Data Berita</a>
-                  <a class="btn btn-secondary text-dark mb-3" href="{{ url('/reportpdfberita') }}">Export PDF</a>
+                  <a class="btn btn-primary mb-3" href="/addlowongankerja">Tambah Data Lowongan Kerja</a>
+                  <a class="btn btn-secondary text-dark mb-3" href="{{ url('/reportpdflowongankerja') }}">Export PDF</a>
                     <div class="dt-ext table-responsive">
-                        <table class="table table-bordered" id="basic-row-reorder">
+                        <table class="display" id="responsive">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Foto</th>
                                     <th>Judul</th>
-                                    <th>Isi</th>
+                                    <th>Dekskripsi</th>
                                     <th>Tanggal</th>
                                     <th>Kategori</th>
-                                    <th>dokumentasi</th>
                                     <th>Opsi</th>
                                 </tr>
-                                @foreach ($beritas as $b)
+                                @foreach ($kerjas as $k)
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                      @if ($b->foto != '')
-                                      <img src="{{ asset($b->foto) }}" alt="" width="50" height="50">
+                                      @if ($k->foto != '')
+                                      <img src="{{ asset($k->foto) }}" alt="" width="50" height="50">
 
                                       @else
                                       <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
                                       @endif
                                      </td>
-                                    <td>{{ $b->judul }}</td>
-                                    <td>{{ $b->tgl }}</td>
-                                    <td>{{ Str::limit($b->isi,200) }}</td>
-                                    <td>{{ $b->kategori }}</td>
+                                    <td>{{ $k->judul }}</td>
+                                    <td>{{ $k->dekskripsi }}</td>
+                                    <td>{{ $k->tgl }}</td>
+                                    <td>{{ $k->kategori }}</td>
                                     <td>
-                                      <a href="/detailberita/{{ $b->id }}" class="btn btn-primary"><i data-feather="eye"></i></a>
-                                      <a href="/editberita/{{ $b->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
-                                      <a href="/hapusberita/{{ $b->id }}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHpsBerita{{ $b->id }}"><i data-feather="trash-2"></i></a>
+                                      <a href="/detaillowongankerja/{{ $k->id }}" class="btn btn-primary"><i data-feather="eye"></i></a>
+                                      <a href="/editlowongankerja/{{ $k->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
+                                      <a href="/hapuslowongankerja/{{ $k->id }}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $k->id }}"><i data-feather="trash-2"></i></a>
                                        
                                          {{-- modal delete --}}
-                                         <div class="modal fade" id="modalHpsBerita{{ $b->id }}" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                         <div class="modal fade" id="modalDelete{{ $k->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                 <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLabel">Hapus Data Berita</h5>
+                                                  <h5 class="modal-title" id="exampleModalLabel">Hapus Data Lowongan Kerja</h5>
                                                   <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Apakah anda yakin ingin menghapus data {{ $b->judul }} ?</p>
+                                                    <p>Apakah anda yakin ingin menghapus data {{ $k->judul }} ?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                   <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
-                                                  <form action="/hapusberita/{{ $b->id }}" method="POST">
+                                                  <form action="/hapuslowongankerja/{{ $k->id }}" method="POST">
                                                     @method('delete')
                                                     @csrf
 
@@ -102,22 +101,14 @@
                                               </div>
                                             </div>
                                           </div>
-
-                                      @if($b->status === 0)
-                                      <a href="/statusberita/{{ $b->id }}/accept" class="btn btn-success">Setujui</a>
-                                      <a href="/hapusberita/{id}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalTolak{{ $b->id }}">Tolak</a>
-                                       @endif
-
+                                     
                                         {{-- modal tolak --}}
-                                        <div class="modal fade" id="modalTolak{{ $b->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="modalTolak{{ $k->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <p>Apakah anda yakin ingin menolak {{ $b->judul }} ?</p>
-                                                </div>
                                                 <div class="modal-footer">
                                                   <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
-                                                  <form action="/tolakuser/{{ $b->id }}" method="POST">
+                                                  <form action="/tolakuser/{{ $k->id }}" method="POST">
                                                     @method('delete')
                                                     @csrf
 
@@ -129,11 +120,6 @@
                                           </div>
 
 
-                                    </td>
-                                    <td>
-                                      @foreach (explode('|', $b->dokumentasi) as $img)
-                                        <img src="/storage/{{ $img }}" alt="" width="50" height="50">
-                                      @endforeach
                                     </td>
 
                                 </tr>

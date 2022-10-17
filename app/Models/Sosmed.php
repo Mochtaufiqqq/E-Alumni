@@ -9,12 +9,19 @@ class Sosmed extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id_sosmed'];
-    protected $primaryKey = 'id';
+    // protected $guarded = ['id'];
     protected $table = 'sosmed';
+    protected $primaryKey = 'id';
+    protected $fillable = [
+        'instagram',
+        'facebook',
+        'tiktok',
+        'linkedin',
+        'id_user'
+    ];
 
     public function sosmed()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }

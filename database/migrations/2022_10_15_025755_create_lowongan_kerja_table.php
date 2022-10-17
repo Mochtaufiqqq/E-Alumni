@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('berita', function (Blueprint $table) {
-            $table->foreignId('postingan_id')->nulllable()->constrained('berita');
+        Schema::create('lowongan_kerja', function (Blueprint $table) {
+            $table->id();
+            $table->string('judul');
+            $table->string('dekskripsi');
+            $table->string('kategori');
+            $table->string('foto');
+            $table->date('tgl');
+            $table->timestamps();
         });
     }
 
@@ -25,9 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('berita', function (Blueprint $table) {
-            $table->dropForeign('berita_postingan_id_foreign');
-            $table->dropColumn('postingan_id');
-        });
+        Schema::dropIfExists('lowongan_kerja');
     }
 };

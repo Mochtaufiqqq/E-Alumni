@@ -70,8 +70,13 @@
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">Lainnya</a>
                     <ul class="dropdown-menu show" data-bs-popper="static">
+
                       <li><a href="account-details.html" class="dropdown-item">Lowongan Pekerjaan</a></li>
                       <li><a href="account-security.html" class="dropdown-item">Publikasi Lowongan Pekerjaan</a></li>
+
+                      <li><a href="/lowongankerja" class="dropdown-item">Lowongan Pekerjaan</a></li>
+                      <li><a href="account-security.html" class="dropdown-item">Ajukan Lowongan Pekerjaan</a></li>
+
                       <li><a href="/kesanpesan" class="dropdown-item">Kesan & Pesan</a></li>
                     </ul>
                   </li>

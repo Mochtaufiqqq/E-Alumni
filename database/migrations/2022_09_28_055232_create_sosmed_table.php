@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sosmed', function (Blueprint $table) {
-            $table->id('id_sosmed');
-            $table->string('nama_sosmed');
+            $table->id();
+            $table->string('instagram');
+            $table->string('facebook');
+            $table->string('tiktok');
+            $table->string('linkedin');
+            $table->foreignId('id_user');
             $table->timestamps();
         });
     }

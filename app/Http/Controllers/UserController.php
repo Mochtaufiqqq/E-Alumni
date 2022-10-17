@@ -8,9 +8,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\KesanPesan;
+use App\Models\Berita;
+use App\Models\Foto_postingan;
+use App\Models\Sosmed;
 
 class UserController extends Controller
 {
+    public function dokumentasi(){
+        return view('content.user.dokumentasi');
+    }
+
+    public function detail_berita(Berita $berita){
+        return view('content.user.detail_berita',[
+            'berita' => $berita
+        ]);
+    }
+
+    public function tampil(){
+        $beritas = Berita::all();
+        return view('content.user.berita',[
+            'beritas' => Berita::all()
+        ],compact('beritas'));
+    }
 
     public function kesanpesan(){
         $dtkesanpesan = KesanPesan::with('user')->latest()->get();
@@ -68,9 +87,11 @@ class UserController extends Controller
     public function profile(User $user)
     {
         $user = Auth::user();
+        $sosmed = Sosmed::all();
         return view('content.user.detail_profile',[
-            'user' => $user
-        ],compact('user'));
+            'user' => $user,
+            'sosmed' => $sosmed
+        ],compact('user', 'sosmed'));
     }
 
     public function settingprofileuser(Request $request, User $user){
@@ -103,8 +124,9 @@ class UserController extends Controller
 
     }
     
-    public function addsosmed(Request $request, User $user) {
+    public function addsosmed(Request $request) {
 
+        Sosmed::with('user');
         $validatedData = $request->validate([
             'instagram'      => 'required',
             'facebook'      => 'required',
@@ -112,7 +134,9 @@ class UserController extends Controller
             'linkedin'      => 'required',
             
        ]);
-       User::where('id', $user->id)->update($validatedData);
+       $validatedData['id_user'] = auth()->user()->id;
+       Sosmed::create($validatedData);
+
        return redirect('/profile')->with('success', 'Pekerjaan Berhasil Ditambahkan!');
     }
 }

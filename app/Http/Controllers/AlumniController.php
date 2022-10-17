@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sosmed;
 use App\Models\User;
 use PDF;
 use App\Models\TentangKami;
@@ -83,10 +84,6 @@ class AlumniController extends Controller
             'email' => 'required|min:8|unique:users',
             'role' => 'required',
             'password' => 'required',
-            'instagram' => 'required',
-            'facebook' => 'required',
-            'tiktok' => 'required',
-            'linkedin' => 'required',
         ]);
 
             $fileName = time().$request->file('foto_profile')->getClientOriginalName();
@@ -95,7 +92,6 @@ class AlumniController extends Controller
             $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);
-
         return redirect('/semuauser')->with('success', 'Data Berhasil Ditambahkan');
     }
 

@@ -111,6 +111,8 @@
     }
 </script>
 
+
+
 @yield('javascript')
 
  <!-- Plugins JS Ends-->

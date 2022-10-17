@@ -11,18 +11,6 @@ use Illuminate\Validation\Rules\File;
 
 class KelolaBeritaController extends Controller
 {
-    public function detail_berita(Berita $berita){
-        return view('content.user.detail_berita',[
-            'berita' => $berita
-        ]);
-    }
-
-    public function tampil(){
-        $beritas = Berita::all();
-        return view('content.user.berita',[
-            'beritas' => Berita::all()
-        ],compact('beritas'));
-    }
     
     public function show()
     {
@@ -42,7 +30,7 @@ class KelolaBeritaController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
-            // 'dokumentasi' => 'mimes:jpg,png,jpeg|max:5000',
+            // 'dokumentasi' => 'required|mimes:jpg,png,jpeg|max:5000',
             'judul' => 'required',
             'isi' => 'required',
             'kategori' => 'required',
@@ -52,21 +40,26 @@ class KelolaBeritaController extends Controller
         if($request->file()){
             $fileName = time().$request->file('foto')->getClientOriginalName();
         $path = $request->file('foto')->storeAs('foto-berita', $fileName. 'public');
-        $validatedData['foto'] = '/storage/' .$path;
+        $foto = '/storage/' .$path;
         }
+        
+        $image = [];
 
-        if($request->has('foto-dokumen')){
-            foreach ($request->file('foto-dokumen') as $images) {
-                $fileName = time().$request->file('foto-dokumen')->getClientOriginalName();
-                $images->file('foto-dokumen')->storeAs('foto-dokumentasi', $fileName. 'public');
-                // $validatedData['foto'] = '/storage/' . $images;
-                Foto_postingan::create([
-                    'nama_file' => $fileName,
-                ]);
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $path = $file->store('foto-dokumentasi');
+                $image[] = $path;
             }
         }
-
-        Berita::create($validatedData);
+        
+        Berita::create([
+            'dokumentasi' => implode('|', $image),
+            'foto' => $foto,
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'kategori' => $request->kategori,
+            'tgl' => $request->tgl,
+        ]);
 
         return redirect('/semuaberita')->with('success', 'Data Berhasil Ditambahkan');
     }
@@ -104,17 +97,13 @@ class KelolaBeritaController extends Controller
 
         return redirect('/semuaberita')->with('success', 'Data berhasil dihapus!');
      }
+
      public function detailberita(Berita $beritas) {
         return view('content.admin.detailberita',[
-           
             'beritas' => $beritas
         ]);
     }
-
-    public function dokumentasi(){
-        return view('content.user.dokumentasi');
-    }
-
+    
     public function reportpdfberita(){
         $beritas = Berita::all();
 
@@ -123,7 +112,17 @@ class KelolaBeritaController extends Controller
         return redirect('/semuaberita');
     }
 
+    // public function fotoPosting(Request $request)
+    // {
+    //     $validatedData = $request->validate([
+    //         'images' => 'required'
+    //     ]);
 
-    }
+        
+    // }
 
 
+}
+
+
+ 
