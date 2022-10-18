@@ -68,12 +68,59 @@
                                      
                                       <a href="/editfavicon/{{ $f->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
                                       
-
-
                                     </td>
 
                                 </tr>
                                 @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Logo</h5><span>Dibawah Ini adalah table logo kamu bisa mengelolanya. Terdapat Button Untuk Mengelola</span>
+                </div>
+                
+                <div class="card-body">
+                 
+                    <div class="dt-ext table-responsive">
+                        <table class="display" id="responsive">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Logo</th>
+                                    <th>Opsi</th>
+                                </tr>
+                                {{-- @foreach ($fvicon as $f) --}}
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {{-- <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                      @if ($f->favicon != '')
+                                      <img src="{{ asset($f->favicon) }}" alt="" width="50" height="50">
+
+                                      @else
+                                      <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
+                                      @endif
+                                     </td>
+                                   
+                                    <td>
+                                     
+                                      <a href="/editfavicon/{{ $f->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
+                                      
+                                    </td> --}}
+
+                                </tr>
+                               
                             </tbody>
                         </table>
                     </div>

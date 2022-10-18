@@ -22,7 +22,7 @@
     <a class="btn btn-primary" href="#modalKesanPesan" data-bs-toggle="modal"
     data-bs-target="#modalKesanPesan">Tambahkan Kesan Pesan</a>   
     @else
-    <a class="btn btn-primary" href="#modalEditKesanPesan/{{ auth()->user()->id }}" data-bs-toggle="modal" data-bs-target="#modalEditKesanPesan">Edit Kesan Pesan</a>
+    <a class="btn btn-primary" href="#modalEditKesanPesan" data-bs-toggle="modal" data-bs-target="#modalEditKesanPesan">Edit Kesan Pesan</a>
     @endif
     </div>
     

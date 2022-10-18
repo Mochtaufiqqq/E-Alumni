@@ -2,19 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\FotoController;
 use App\Http\Controllers\KelolaBeritaController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ImageController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\OtherController;
 use App\Http\Controllers\KelolaKerjaController;
-use App\Http\Controllers\KelolaBeritaController;
-use App\Http\Controllers\ForgotPasswordController;
 
 
 
@@ -36,8 +33,6 @@ Route::get('/organisasi', [OrganisasiController::class, 'index']);
 Route::get('/organisasi/detail/{slug}', [OrganisasiController::class, 'details']);
 //endorganisasi
 Route::get('/tentangkami', [OtherController::class, 'tentangkami']);
-Route::get('/semuaalumni', [UserController::class, 'semuaalumni']);
-Route::get('/detailalumni/{user}', [UserController::class, "detailalumni"]);
 Route::get('/kesanpesan',[UserController::class,'kesanpesan']);
 //berita
 Route::get('/tampilberita', [KelolaBeritaController::class, 'tampil']);
@@ -65,6 +60,8 @@ Route::group(['middleware' => ['guest']], function(){
 Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/dashboard',[AlumniController::class,'index']);
 
+    //
+    Route::get('/dataalumni',[AlumniController::class,'showdtalumni']);
     // for manage user
     Route::get('/semuauser',[AlumniController::class,'show']);
     Route::get('/useraktif',[AlumniController::class,'useraktif']);
@@ -139,6 +136,9 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
 
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
 
+    Route::get('/semuaalumni', [UserController::class, 'semuaalumni']);
+    Route::get('/detailalumni/{user}', [UserController::class, "detailalumni"]);
+
     // for manage profile alumni personal
     Route::get('/profile', [UserController::class, 'profile']);
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
@@ -153,8 +153,7 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     
 
     Route::post('/addsosmed',[UserController::class,'addsosmed']);
-    Route::get('/kontak', [MailController::class, 'email']);
-    Route::post('/kontak', [MailController::class, 'send'])->name('send');
+   
     
 });
 

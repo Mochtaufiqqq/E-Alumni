@@ -11,12 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon and Touch Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('user/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('user/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('user/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('user/favicon/site.webmanifest') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset($fvicon->favicon) }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset($fvicon->favicon) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset($fvicon->favicon) }}">
+    <link rel="manifest" href="{{ asset($fvicon->favicon) }}">
     <link rel="mask-icon" href="{{ asset('user/favicon/safari-pinned-tab.svg') }}" color="#6366f1">
-    <link rel="shortcut icon" href="{{ asset('user/favicon/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset($fvicon->favicon) }}">
     <meta name="msapplication-TileColor" content="#080032">
     <meta name="msapplication-config" content="{{ asset('user/favicon/browserconfig.xml') }}">
     <meta name="theme-color" content="#ffffff">

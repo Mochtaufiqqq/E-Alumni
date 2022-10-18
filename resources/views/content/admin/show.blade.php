@@ -45,7 +45,7 @@
                   <a class="btn btn-primary mb-3" href="/tambahuser">Tambah Data</a>
                   <a class="btn btn-secondary text-dark mb-3" href="{{ url('/reportpdfuser') }}">Export PDF</a>
                     <div class="dt-ext table-responsive">
-                      <table id="responsive" class="display">
+                      <table class="table table-bordered" id="basic-row-reorder">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -66,11 +66,11 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>
-                                  @if ($u->foto_profile != '')
-                                  <img src="{{ asset($u->foto_profile) }}" alt="" width="50" height="50">
+                                  @if ($u->foto_profile == null)
+                                  <img src="{{ asset('/imagenull/user.png') }}" alt="" width="50" height="50">
 
                                       @else
-                                      <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
+                                      <img src="{{ asset($u->foto_profile) }}" alt="" width="50" height="50">
                                       @endif
                                      </td>
                                     <td>{{ $u->nama }}</td>
@@ -89,9 +89,9 @@
                                     </td>
                                     <td>
                                       @if($u->status === 1)
-                                      <a href="/detailuser/{{ $u->id }}" class="btn btn-primary"><i data-feather="eye"></i></a>
-                                      <a href="/edituser/{{ $u->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
-                                      <a href="/hapususer/{{ $u->id }}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $u->id }}"><i data-feather="trash-2"></i></a>
+                                      <a href="/detailuser/{{ $u->id }}" class="btn btn-primary mb-3"><i data-feather="eye"></i></a>
+                                      <a href="/edituser/{{ $u->id }}" class="btn btn-warning mb-3"><i data-feather="edit"></i></a>
+                                      <a href="/hapususer/{{ $u->id }}" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $u->id }}"><i data-feather="trash-2"></i></a>
                                        @endif
 
                                    {{-- modal delete --}}

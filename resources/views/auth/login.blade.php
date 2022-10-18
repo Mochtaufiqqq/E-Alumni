@@ -5,7 +5,7 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8">
-    <title>Silicon | Account - Sign In</title>
+    <title>Tracer Alumni | Log In </title>
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Silicon - Multipurpose Technology Bootstrap Template">
@@ -19,7 +19,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/silicon.createx.studio/assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/silicon.createx.studio/assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/silicon.createx.studio/assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/silicon.createx.studio/assets/favicon/site.webmanifest">
+    <link rel="manifest" href="/silicon.createx.studio/assets/favicon/site.webmanifest ">
     <link rel="mask-icon" href="/silicon.createx.studio/assets/favicon/safari-pinned-tab.svg" color="#6366f1">
     <link rel="shortcut icon" href="/silicon.createx.studio/assets/favicon/favicon.ico">
     <meta name="msapplication-TileColor" content="#080032">
@@ -167,7 +167,7 @@
 
 
       <!-- Navbar -->
-      <!-- Remove "fixed-top" class to make navigation bar scrollable with the page -->
+      {{-- <!-- Remove "fixed-top" class to make navigation bar scrollable with the page -->
       <header class="header navbar navbar-expand-lg position-absolute navbar-sticky">
         <div class="container px-3">
           <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
@@ -179,7 +179,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-      </header>
+      </header> --}}
 
 
       <!-- Page content -->
@@ -236,7 +236,7 @@
               </div>
               <button type="submit" class="btn btn-primary shadow-primary btn-lg w-100">Log In</button>
             </form>
-            <a href="/forget-password" class="btn btn-link btn-lg w-100">Lupa Password?</a>
+            {{-- <a href="/forget-password" class="btn btn-link btn-lg w-100">Lupa Password?</a> --}}
             <hr class="my-4">
           </div>
           <div class="w-100 align-self-end">

@@ -28,7 +28,7 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5>Edit User</h5>
+            <h5>Lengkapi Form</h5>
           </div>
           <div class="card-body">
             <div class="row">
@@ -98,7 +98,7 @@
                   <div class="mb-3 input-group-solid">
                     <label class="form-label">Jurusan</label>
                     <select name="jurusan" id=""  value="{{ old('jurusan', $user->jurusan) }}" class="form-select form-control" required autofocus>
-                        <option selected>Pilih Jurusan</option>
+                        <option selected disabled>Pilih Jurusan</option>
                         <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
                         <option value="Multimedia">Multimedia</option>
                     </select>
@@ -111,25 +111,8 @@
                   <div class="mb-3 input-group-solid">
                     <label class="form-label">Tahun Lulus</label>
                     <select name="thn_lulus" id=""  value="{{ old('thn_lulus', $user->thn_lulus) }}" class="form-select form-control" required autofocus >
-                        <option selected>Pilih Tahun Lulus</option>
+                        <option selected disabled>Pilih Tahun Lulus</option>
                         <option value="Rekayasa Perangkat Lunak">2040</option>
-                        <option value="2039">2039</option>
-                        <option value="2038">2038</option>
-                        <option value="2037">2037</option>
-                        <option value="2036">2036</option>
-                        <option value="2035">2035</option>
-                        <option value="2034">2034</option>
-                        <option value="2033">2033</option>
-                        <option value="2032">2032</option>
-                        <option value="2031">2031</option>
-                        <option value="2030">2030</option>
-                        <option value="2029">2029</option>
-                        <option value="2028">2028</option>
-                        <option value="2027">2027</option>
-                        <option value="2026">2026</option>
-                        <option value="2025">2025</option>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
                         <option value="2022">2022</option>
                         <option value="2021">2021</option>
                         <option value="2020">2020</option>
@@ -138,8 +121,6 @@
                         <option value="2017">2017</option>
                         <option value="2016">2016</option>
                         <option value="2015">2015</option>
-                        <option value="2014">2014</option>
-                        <option value="2013">2013</option>
                     </select>
                     @error('thn_lulus')
                     <div class="invalid-feedback">

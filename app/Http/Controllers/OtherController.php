@@ -10,7 +10,7 @@ class OtherController extends Controller
 {
 
     public function index (){
-        $fvicon = FavIcon::all();
+        $fvicon = FavIcon::first();
         return view('content.admin.faviconlogo',[
             'fvicon' => $fvicon
         ],compact('fvicon'));
@@ -46,24 +46,29 @@ class OtherController extends Controller
     //     ]);
     // }
     public function tentangkami(){
+        $fvicon = FavIcon::first();
         $tentangkami = TentangKami::all();
 
         return view ('content.user.tentangkami',[
             'tentangkami' => TentangKami::all()
-        ],compact('tentangkami'));
+        ],compact('tentangkami','fvicon'));
     }
     public function showttgkami(){
+
+        $fvicon = FavIcon::first();
         $tentangkami = TentangKami::all();
 
         return view ('content.admin.showttgkami',[
             'tentangkami' => TentangKami::all()
-        ],compact('tentangkami'));
+        ],compact('tentangkami','fvicon'));
     }
 
     public function editttgkami(TentangKami $ttgkami){
+        $fvicon = FavIcon::first();
         return view('content.admin.editttgkami',[
            
-            'ttgkami' => $ttgkami
+            'ttgkami' => $ttgkami,
+            'fvicon' => $fvicon
         ]);
     }
     public function updatettgkami(Request $request, TentangKami $ttgkami){

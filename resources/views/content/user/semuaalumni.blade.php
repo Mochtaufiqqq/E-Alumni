@@ -163,7 +163,7 @@
                 <div class="ps-4">
                     <h5 class="fw-sm fs-lg mb-1">{{ $u->nama }}</h5>
                     <p class="fs-sm mb-3">Bekerja di PT.Nasa Sebagai Manager</p>
-                    <p class="fs-sm mb-3">{{ $u->thn_lulus }}</p>
+                    {{-- <p class="fs-sm mb-3">{{ $u->thn_lulus }}</p> --}}
                     <div class="d-flex">
                         <a href="/detailalumni/{{ $u->id }}" class="btn btn-outline-secondary
                         ">Detail</a>
