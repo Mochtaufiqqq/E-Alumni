@@ -91,7 +91,7 @@ class User extends Authenticatable
 
     public function riwayat_pendidikan()
     {
-        return $this->belongsTo(Riwayat_pendidikan::class);
+        return $this->hasOne(Riwayat_pendidikan::class);
     }
     
     public function kesanpesan(){

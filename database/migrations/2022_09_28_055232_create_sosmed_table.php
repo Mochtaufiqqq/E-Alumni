@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('sosmed', function (Blueprint $table) {
             $table->id();
-            $table->string('instagram');
-            $table->string('facebook');
-            $table->string('tiktok');
-            $table->string('linkedin');
-            $table->foreignId('id_user');
+            $table->string('instagram')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('tiktok')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->foreignId('id_user')->nullable();
             $table->timestamps();
         });
     }

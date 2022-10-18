@@ -68,12 +68,23 @@
                             <p class="mt-4">Edit foto profil</p>
                         </a>
                         @endif
+                        
                         <hr>
+
+                        @if (auth()->user()->pekerjaan == '')
                         <a href="#modalPekerjaan" data-bs-toggle="modal" data-bs-target="#modalPekerjaan"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Tambahkan pekerjaan</p>
                         </a>
+                        @else
+                        <a href="#modalEditPekerjaan" data-bs-toggle="modal" data-bs-target="#modalEditPekerjaan"
+                            style="text-decoration: none; color:black">
+                            <p class="mt-4">Edit Pekerjaan</p>
+                        </a>
+                        @endif
+
                         <hr>
+
                         <a href="#modalRP" data-bs-toggle="modal" data-bs-target="#modalRP"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Tambahkan riwayat pendidikan</p>
@@ -83,22 +94,37 @@
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Tambahkan riwayat organisasi</p>
                         </a>
+                        
                         <hr>
+
                         <a href="#modalKeahlian" data-bs-toggle="modal" data-bs-target="#modalKeahlian"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Tambahkan keahlian</p>
                         </a>
+
                         <hr>
+                        
+                        @if ($sosmed == '')
                         <a href="#modalSosmed" data-bs-toggle="modal" data-bs-target="#modalSosmed"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Tambahkan sosial media</p>
                         </a>
+                        @else
+                        <a href="#modalEditSosmed" data-bs-toggle="modal" data-bs-target="#modalEditSosmed"
+                            style="text-decoration: none; color:black">
+                            <p class="mt-4">Edit sosial media</p>
+                        </a>    
+                        @endif
+                        
                         <hr>
+                        
                         <a href="#modalFotoKegiatan" data-bs-toggle="modal" data-bs-target="#modalFotoKegiatan"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Tambahkan dokumentasi</p>
                         </a>
+                        
                         <hr>
+                        
                         <a href="#modalKarya" data-bs-toggle="modal" data-bs-target="#modalKarya"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Tambahkan karya</p>
@@ -112,6 +138,7 @@
             </div>
         </div>
 
+ {{-- allmodal --}}
 
         <!-- Modal nama panggilan -->
         <div class="modal fade" tabindex="-1" role="dialog" id="modalNamaPanggilan">
@@ -343,6 +370,43 @@
             </div>
         </div>
 
+        <!-- Modal Edit pekerjaan -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalEditPekerjaan">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <!-- Modal header with nav tabs -->
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tambahkan Pekerjaan</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Modal body with tab panes -->
+                    <div class="modal-body tab-content py-4">
+
+                        <!-- Sign in form -->
+                        <form action="/updateprofile/{{ auth()->user()->id }}" method="POST"
+                            class="tab-pane fade show active" autocomplete="off" id="signin"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('put')
+                            <div class="mb-3">
+                                <label class="form-label" for="email1">Nama Perusahaan</label>
+                                <input class="form-control" type="text" name="pekerjaan" id="email1"
+                                    placeholder="Nama Perusahaan" value="{{ old('nama_panggilan',auth()->user()->pekerjaan) }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="email1">Jabatan</label>
+                                <input class="form-control" type="text" name="jabatan_pekerjaan" id="email1"
+                                    placeholder="Sebagai" value="{{ old('nama_panggilan',auth()->user()->jabatan_pekerjaan) }}">
+                            </div>
+                            <button class="btn btn-primary d-block w-100" type="submit">edit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Modal RIWAYAT PENDIDIKAN -->
         <div class="modal fade" tabindex="-1" role="dialog" id="modalRP">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -359,94 +423,128 @@
 
                         <!-- Sign in form -->
 
-                        <form class="tab-pane fade show active" autocomplete="off" id="signin">
+                        <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/addpendidikan" action="POST">
+                            @csrf
+                            @method('put')
                             <h2 class="h5 text-dark mb-4">Perguruan Tinggi</h2>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Nama Universitas</label>
-                                <input class="form-control" type="text" name="nama_perusahaan" id="email1"
+                                <input class="form-control" type="univ" name="nama_perusahaan" id="email1"
                                     placeholder="Nama Perusahaan">
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Mulai</label>
-                                <select id="country" class="form-select form-select-lg" required>
-                                    <option value="" disabled>Choose country</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="USA">USA</option>
+                                <select id="country" class="form-select form-select-lg" required name="tahun_mulai">
+                                    <option selected>Pilih Tahun Lulus</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
                                 </select>
                                 <div class="invalid-feedback">Please choose your country!</div>
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Akhir</label>
-                                <select id="country" class="form-select form-select-lg" required>
-                                    <option value="" disabled>Choose country</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="USA" selected>USA</option>
+                                <select id="country" class="form-select form-select-lg" required name="tahun_akhir">
+                                    <option value="Belum selesai">Belum selesai</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
                                 </select>
                                 <div class="invalid-feedback">Please choose your country!</div>
                             </div>
                             <h2 class="h5 text-dark mb-4">SMA / SMK</h2>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Nama Sekolah</label>
-                                <input class="form-control" type="text" name="nama_perusahaan" id="email1"
+                                <input class="form-control" type="text" name="smk" id="email1"
                                     placeholder="Nama SMA/SMK">
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Mulai</label>
-                                <select id="country" class="form-select form-select-lg" required>
-                                    <option value="" disabled>Choose country</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="USA">USA</option>
+                                <select id="country" class="form-select form-select-lg" required name="tahun_mulai">
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
                                 </select>
                                 <div class="invalid-feedback">Please choose your country!</div>
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Akhir</label>
-                                <select id="country" class="form-select form-select-lg" required>
-                                    <option value="" disabled>Choose country</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="USA" selected>USA</option>
+                                <select id="country" class="form-select form-select-lg" required name="tahun_akhir">
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
                                 </select>
                                 <div class="invalid-feedback">Please choose your country!</div>
                             </div>
                             <h2 class="h5 text-dark mb-4">Sekolah Menengah Pertama</h2>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Nama Sekolah</label>
-                                <input class="form-control" type="text" name="nama_perusahaan" id="email1"
+                                <input class="form-control" type="text" name="smp" id="email1"
                                     placeholder="Nama SMA/SMK">
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Mulai</label>
-                                <select id="country" class="form-select form-select-lg" required>
-                                    <option value="" disabled>Choose country</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="USA">USA</option>
+                                <select id="country" class="form-select form-select-lg" required name="tahun_mulai">
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
                                 </select>
                                 <div class="invalid-feedback">Please choose your country!</div>
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Akhir</label>
-                                <select id="country" class="form-select form-select-lg" required>
-                                    <option value="" disabled>Choose country</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="USA" selected>USA</option>
+                                <select id="country" class="form-select form-select-lg" required name="tahun_akhir">
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
                                 </select>
                                 <div class="invalid-feedback">Please choose your country!</div>
                             </div>
@@ -456,8 +554,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <!-- Modal ORGANISASI -->
         <div class="modal fade" tabindex="-1" role="dialog" id="modalOrganisasi">
@@ -563,6 +659,7 @@
                         <!-- Sign in form -->
                         <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/addsosmed" method="POST">
                             @csrf
+                            @method('put')
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Instagram</label>
                                 <input class="form-control" type="text" name="instagram" id="email1"
@@ -584,6 +681,51 @@
                                     placeholder="Linkedin">
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">Tambah</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal Edit sosial media -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalEditSosmed">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <!-- Modal header with nav tabs -->
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tambahkan sosial media</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Modal body with tab panes -->
+                    <div class="modal-body tab-content py-4">
+
+                        <!-- Sign in form -->
+                        <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/editsosmed/{{ $sosmed->id }}" method="POST">
+                            @csrf
+                            @method('put')
+                            <div class="mb-3">
+                                <label class="form-label" for="email1">Instagram</label>
+                                <input class="form-control" type="text" name="instagram" id="email1"
+                                    placeholder="instagram" value="{{ old('nama_panggilan', $sosmed->instagram) }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="email1">Facebook</label>
+                                <input class="form-control" type="text" name="facebook" id="email1"
+                                    placeholder="Facebook" value="{{ old('nama_panggilan', $sosmed->facebook) }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="email1">Tiktok</label>
+                                <input class="form-control" type="text" name="tiktok" id="email1"
+                                    placeholder="Tiktok" value="{{ old('nama_panggilan', $sosmed->tiktok) }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="email1">Linkedin</label>
+                                <input class="form-control" type="text" name="linkedin" id="email1"
+                                    placeholder="Linkedin" value="{{ old('nama_panggilan', $sosmed->linkedin) }}">
+                            </div>
+                            <button class="btn btn-primary d-block w-100" type="submit">Edit</button>
                         </form>
                     </div>
                 </div>
@@ -672,58 +814,65 @@
                         </div>
                     </div>
 
-                        <div class="col-6 mb-4">
+                    <div class="col-6 mb-4">
                             <label for="email" class="form-label fs-base">Pekerjaan</label>
                             @if (Auth::user()->pekerjaan == '')
                                 <p>Bekerja di <em>PT.Inovindo Digital Media</em> <small class="text-muted">(contoh)</small></p>
                             @else
                                 <p>Bekerja di {{ auth()->user()->pekerjaan }}</p>
                             @endif
-                            <br>
+                            
                             @if (Auth::user()->pekerjaan == '')
                                 <p>Sebagai <em>Pegawai</em> <small class="text-muted">(contoh)</small></p>
                             @else
                                 <p>Sebagai {{ auth()->user()->jabatan_pekerjaan }}</p>
                             @endif
-                        </div>
-                        <div class="col-6 mb-4">
-                            @foreach ($sosmed as $item)
-                            <label for="email" class="form-label fs-base">Social Media</label>
-                            @if (Auth::user()->instagram == '')
-                                <p><i class="bx bxl-instagram"></i> endrit faisal<small class="text-muted">(contoh)</small></p>
-                            @else
-                                <p>Sebagai {{ auth()->user()->instagram }}</p>
-                            @endif
-                            @if (Auth::user()->facebook == '')
-                            
-                                <p><i class="bx bxl-facebook"></i> endrit faisal<small class="text-muted">(contoh)</small></p>
-                            @else
-                                <p><i class="bx bxl-facebook"></i> {{ auth()->user()->facebook }}</p>
-                            @endif
-                            @if (Auth::user()->tiktok == '')
-                            
-                                <p><i class="bx bxl-tiktok"></i> endrit faisal<small class="text-muted">(contoh)</small></p>
-                            @else
-                                <p><i class="bx bxl-facebook"></i> {{ auth()->user()->tiktok }}</p>
-                            @endif
+                    </div>
 
-                            @if (Auth::user()->linkedin == '')
-                            
-                                <p><i class="bx bxl-linkedin"></i> endrit faisal<small class="text-muted">(contoh)</small></p>
+                    <div class="col-6 mb-4">
+                        <label for="email" class="form-label fs-base">Social Media</label>
+                            @if ($sosmed == null)
+                                <p><i class="bx bxl-instagram"></i>@user<small class="text-muted">(contoh)</small></p>
                             @else
-                                <p><i class="bx bxl-facebook"></i> {{ auth()->user()->linkedin }}</p>
+                                <p><i class="bx bxl-instagram"></i> {{ $sosmed->instagram }}</p>
                             @endif
-                            @endforeach
-                        </div>
+                            
+                            @if ($sosmed == null)
+                                <p><i class="bx bxl-facebook"></i> User<small class="text-muted">(contoh)</small></p>
+                            @else
+                                <p><i class="bx bxl-facebook"></i> {{ $sosmed->facebook }}</p>
+                            @endif
+                            
+                            @if ($sosmed == null)
+                                <p><i class="bx bxl-tiktok"></i> User<small class="text-muted">(contoh)</small></p>
+                            @else
+                                <p><i class="bx bxl-tiktok"></i> {{ $sosmed->tiktok }}</p> 
+                            @endif
+                            
+                            @if ($sosmed == null)
+                                <p><i class="bx bxl-facebook"></i> User<small class="text-muted">(contoh)</small></p>
+                            @else
+                                <p><i class="bx bxl-linkedin"></i> {{ $sosmed->linkedin }}</p>
+                            @endif
+                    </div>
 
-                        <div class="col-6 mb-4">
-                            <label for="phone" class="form-label fs-base">Phone</label>
-                            @if (Auth::user()->no_tlp == '')
+                    <div class="col-6 mb-4">
+                        <label for="phone" class="form-label fs-base">Phone</label>
+                        @if (Auth::user()->no_tlp == '')
                             <p><em>62+12345689</em> <small class="text-muted">(contoh)</small></p>
-                            @else
+                        @else
                             <p>{{ auth()->user()->no_tlp }}</p>
-                            @endif
-                        </div>
+                        @endif
+                    </div>
+                    
+                    <div class="col-6 mb-4">
+                        <label for="phone" class="form-label fs-base">Phone</label>
+                        @if (Auth::user()->no_tlp == '')
+                            <p><em>62+12345689</em> <small class="text-muted">(contoh)</small></p>
+                        @else
+                            <p>{{ auth()->user()->no_tlp }}</p>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

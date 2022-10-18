@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\KesanPesan;
 use App\Models\Berita;
 use App\Models\Foto_postingan;
+use App\Models\Riwayat_pendidikan;
 use App\Models\Sosmed;
 
 class UserController extends Controller
@@ -52,7 +53,15 @@ class UserController extends Controller
     public function profile(User $user)
     {
         $user = Auth::user();
-        $sosmed = Sosmed::all();
+        $social = Sosmed::first();
+        $rp = Riwayat_pendidikan::first();
+
+        if($social == TRUE){
+            $sosmed = $social;
+        }else{
+            $sosmed = null;
+        }
+
         return view('content.user.detail_profile',[
             'user' => $user,
             'sosmed' => $sosmed
@@ -74,7 +83,7 @@ class UserController extends Controller
         }
 
         User::where('id', $user->id)->update($validatedData);
-        return redirect('/profile')->with('success', 'Foto Profil Berhasil Ditambahkan!');
+        return redirect('/profile')->with('success', 'Berhasil mengubah!');
     }
 
     public function addpekerjaan(Request $request, User $user) {
@@ -88,7 +97,9 @@ class UserController extends Controller
         return redirect('/profile')->with('success', 'Pekerjaan Berhasil Ditambahkan!');
 
     }
+
     
+    //sosmed
     public function addsosmed(Request $request) {
 
         Sosmed::with('user');
@@ -102,6 +113,40 @@ class UserController extends Controller
        $validatedData['id_user'] = auth()->user()->id;
        Sosmed::create($validatedData);
 
-       return redirect('/profile')->with('success', 'Pekerjaan Berhasil Ditambahkan!');
+       return redirect('/profile')->with('success', 'Berhasil Menambahkan Sosial Media!');
     }
+
+    public function editsosmed(Request $request, $id) {
+
+        Sosmed::with('user');
+        $validatedData = $request->validate([
+            'instagram'      => 'required',
+            'facebook'      => 'required',
+            'tiktok'      => 'required',
+            'linkedin'      => 'required',
+            
+       ]);
+       $validatedData['id_user'] = auth()->user()->id;
+       Sosmed::where('id', $id)->update($validatedData);
+
+       return redirect('/profile')->with('success', 'Berhasil Mengubah Sosial Media!');
+    }
+    //end sosmed
+
+    //riwayat_pendidikan
+    public function addpendidikan(Request $request)
+    {
+        Riwayat_pendidikan::with('user');
+        $validatedData = $request->validate([
+            'univ',
+            'smk',
+            'smp',
+        ]);
+
+        $validatedData['id_user'] = auth()->user()->id;
+        Riwayat_pendidikan::create($validatedData);
+
+        return redirect('/profile')->with('success', 'Berhasil Menambahkan Pendidikan!');
+    }
+
 }

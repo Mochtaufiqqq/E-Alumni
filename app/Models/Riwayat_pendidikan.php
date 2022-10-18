@@ -9,12 +9,17 @@ class Riwayat_pendidikan extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id_prestasi'];
     protected $primaryKey = 'id';
     protected $table = 'riwayat_pendidikan';
+    protected $fillable = [
+        'univ',
+        'smk',
+        'smp',
+        'id_user'
+    ];
 
     public function riwayat_pendidikan()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }

@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('riwayat_pendidikan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_instansi');
-            $table->string('tahun_mulai');
-            $table->string('tahun_akhir');
+            $table->string('univ')->nullable();
+            $table->string('smk')->nullable();
+            $table->string('smp')->nullable();
+            $table->string('tahun_mulai')->nullable();
+            $table->string('tahun_akhir')->nullable();
             $table->timestamps();
         });
     }
