@@ -31,6 +31,7 @@
 })(window,document,'script','dataLayer','GTM-WKV3GT5');
 </script>
 
+
 <!-- Vendor Scripts -->
   <script src="{{ asset('user/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('user/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>

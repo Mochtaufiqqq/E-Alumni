@@ -259,11 +259,8 @@
 
                                 <img src="{{ asset(auth()->user()->foto_profile) }}"
                                     class="img-preview img-fluid mb-3 col-sm-5 d-block">
-
                                 @else
-
                                 <img class="img-preview img-fluid mb-3 col-sm-5">
-
                                 @endif
                                 <img class="img-preview img-fluid mb-3">
                                 <input type="file" value="{{ old('foto_profile',auth()->user()->foto_profile) }}"

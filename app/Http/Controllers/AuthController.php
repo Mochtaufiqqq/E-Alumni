@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\FavIcon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -11,7 +12,8 @@ use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
     public function index() {
-        return view('auth.login');
+        $fvicon = FavIcon::first();
+        return view('auth.login',compact('fvicon'));
     }
 
     public function login(Request $request)
@@ -51,9 +53,11 @@ class AuthController extends Controller
 
      // Register
      public function register(){
+        $fvicon = FavIcon::first();
         return view('auth.register',
         [
-            'title' => 'Register'
+            'title' => 'Register',
+            'fvicon' => $fvicon
         ]);
     }
 

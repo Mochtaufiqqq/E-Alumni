@@ -249,7 +249,7 @@
                                     <select name="jurusan" id="jurusan"
                                         class="form-select form-control @error('jurusan') is-invalid @enderror "
                                         required value="{{ old('jurusan') }}">
-                                        <option selected>Pilih Jurusan</option>
+                                        <option selected disabled>Pilih Jurusan</option>
                                         <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat
                                             Lunak</option>
                                         <option value="Multimedia">Multimedia</option>
@@ -261,28 +261,10 @@
                             <div class="col-12-sm-6">
                                 <div class="position-relative mb-4">
                                     <label for="jurusan" class="form-label fs-base">Tahun Lulus</label>
-                                    <select name="jurusan" id="jurusan"
-                                        class="form-select form-control @error('tahun_lulus') is-invalid @enderror "
-                                        required value="{{ old('nisn') }}">
-                                        <option selected>Pilih Tahun Lulus</option>
-                                        <option value="Rekayasa Perangkat Lunak">2040</option>
-                                        <option value="2039">2039</option>
-                                        <option value="2038">2038</option>
-                                        <option value="2037">2037</option>
-                                        <option value="2036">2036</option>
-                                        <option value="2035">2035</option>
-                                        <option value="2034">2034</option>
-                                        <option value="2033">2033</option>
-                                        <option value="2032">2032</option>
-                                        <option value="2031">2031</option>
-                                        <option value="2030">2030</option>
-                                        <option value="2029">2029</option>
-                                        <option value="2028">2028</option>
-                                        <option value="2027">2027</option>
-                                        <option value="2026">2026</option>
-                                        <option value="2025">2025</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2023">2023</option>
+                                    <select name="thn_lulu" id="thn_lulus"
+                                        class="form-select form-control @error('thn_lulu') is-invalid @enderror "
+                                        required value="{{ old('thn_lulus') }}">
+                                        <option selected disabled>Pilih Tahun Lulus</option>
                                         <option value="2022">2022</option>
                                         <option value="2021">2021</option>
                                         <option value="2020">2020</option>
@@ -291,8 +273,6 @@
                                         <option value="2017">2017</option>
                                         <option value="2016">2016</option>
                                         <option value="2015">2015</option>
-                                        <option value="2014">2014</option>
-                                        <option value="2013">2013</option>
                                     </select>
                                     <div class="invalid-feedback position-absolute start-0 top-100">Mohon Masukkan
                                         tahun keluar!</div>
@@ -343,7 +323,7 @@
                                 </div>
                             </div>
                             <div class="col-12 mb-4">
-                                <label for="password-confirm" class="form-label fs-base">Confirm password</label>
+                                <label for="password-confirm" class="form-label fs-base">Konfirmasi password</label>
                                 <div class="password-toggle">
                                     <input type="password" id="password-confirm" name="confirmation"
                                         class="form-control form-control-lg @error('confirmation') is-invalid @enderror"
@@ -353,15 +333,15 @@
                                         <span class="password-toggle-indicator"></span>
                                     </label>
                                     <div class="invalid-feedback position-absolute start-0 top-100">Mohon Masukan
-                                        Password!</div>
+                                        Password yang valid!</div>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-4">
                             <div class="form-check">
                                 <input type="checkbox" id="terms" class="form-check-input">
-                                <label for="terms" class="form-check-label fs-base">I agree to <a href="#">Terms &amp;
-                                        Conditions</a></label>
+                                <label for="terms" class="form-check-label fs-base">Saya setuju dengan <a href="#">Syarat &amp;
+                                        Ketentuan</a></label>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary shadow-primary btn-lg w-100">Register</button>

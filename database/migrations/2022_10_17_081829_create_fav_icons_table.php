@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kesan_pesans', function (Blueprint $table) {
+        Schema::create('fav_icons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('isi');
+            $table->string('favicon');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kesan_pesans');
+        Schema::dropIfExists('fav_icons');
     }
 };

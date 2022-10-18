@@ -12,6 +12,7 @@ use App\Models\Berita;
 use App\Models\Foto_postingan;
 use App\Models\Riwayat_pendidikan;
 use App\Models\Sosmed;
+use App\Models\FavIcon;
 
 class UserController extends Controller
 {
@@ -20,38 +21,85 @@ class UserController extends Controller
     }
 
     public function detail_berita(Berita $berita){
+        $fvicon = FavIcon::first();
         return view('content.user.detail_berita',[
-            'berita' => $berita
+            'berita' => $berita,
+            'fvicon' => $fvicon
         ]);
     }
 
     public function tampil(){
+        $fvicon = FavIcon::first();
         $beritas = Berita::all();
         return view('content.user.berita',[
-            'beritas' => Berita::all()
+            'beritas' => $beritas,
+            'fvicon' => $fvicon
         ],compact('beritas'));
     }
 
     public function kesanpesan(){
+        $fvicon = FavIcon::first();
         $dtkesanpesan = KesanPesan::with('user')->latest()->get();
         return view('content.user.showkesanpesan',[
             'user' => User::all(),
+            'fvicon' => $fvicon,
             'kesanpesan' => KesanPesan::all(),
-        ], compact('dtkesanpesan'));
+        ], compact('dtkesanpesan','fvicon'));
     
     }
 
-    public function semuaalumni (){
-        $user = User::where('role_id', 2)->latest()->get();
-        
-        return view('content.user.semuaalumni',[
-            'user'  => $user
-        ],compact('user'));
+    public function addkesanpesan(Request $request){
+
+        KesanPesan::with('user');
+        $validatedData = $request->validate([
+            'isi' => 'required',
+
+        ]);
+
+        $validatedData["user_id"] = auth()->user()->id;
+        KesanPesan::create($validatedData);
+
+        return redirect('/kesanpesan')->with('success' ,'Berhasil menambahkan kesan & pesan');
 
     }
 
+    public function editkesanpesan(KesanPesan $kesanpesan, Request $request){
+        KesanPesan::with('user');
+        $validatedData = $request->validate([
+            'isi' => 'required',
+
+        ]);
+
+        $validatedData["user_id"] = auth()->user()->id;
+        KesanPesan::where('id', $kesanpesan->id)->update($validatedData);
+
+        return redirect('/kesanpesan')->with('success' ,'Berhasil mengedit kesan & pesan');
+        
+    }
+
+    public function semuaalumni (){
+
+        $fvicon = FavIcon::first();
+        $user = User::where('role_id', 2)->latest()->get();
+        
+        return view('content.user.semuaalumni',[
+            'user'  => $user,
+            'fvicon' => $fvicon
+        ],compact('user','fvicon'));
+
+    }
+    public function detailalumni(User $user) {
+        $fvicon = FavIcon::first();
+        return view('content.user.detail_alumni',[
+           
+            'user' => $user,
+            'fvicon' => $fvicon
+        ]);
+    }
+
     public function profile(User $user)
-    {
+    {   
+        $fvicon = FavIcon::first();
         $user = Auth::user();
         $social = Sosmed::first();
         $rp = Riwayat_pendidikan::first();
@@ -65,13 +113,13 @@ class UserController extends Controller
         return view('content.user.detail_profile',[
             'user' => $user,
             'sosmed' => $sosmed
-        ],compact('user', 'sosmed'));
+        ],compact('user', 'sosmed','fvicon'));
     }
 
     public function settingprofileuser(Request $request, User $user){
         $validatedData = $request->validate([
             'foto_profile' => 'image|mimes:jpg,png,jpeg|max:5000',
-            'nama_panggilan' => 'required',
+            // 'nama_panggilan' => 'required',
             
         ]);
 

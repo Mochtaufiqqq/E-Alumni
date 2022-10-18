@@ -136,71 +136,46 @@
 </div>
   </section> --}}
 
-  <section class="container-fluid pt-lg-5 pb-5 mb-2 mb-md-4 mb-lg-5">
+<section class="container-fluid pt-lg-5 pb-5 mb-2 mb-md-4 mb-lg-5">
     <h2 class="h1 text-center pb-md-1 mb-1 mb-sm-3">Semua Alumni</h2>
-          <div class="row">
-            @foreach ($user as $u)
-                
-            <!-- Item -->
-            <div class="col-5 col-md-6 col-sm-6 col-xs-12 col-lg-3">
-                <div class="card card-body d-flex flex-row align-items-center card-hover bg-light border-0">
-                    <img src="{{ asset($u->foto_profile) }}" class="d-block rounded-circle" width="50" alt="Darrell Steward">
-                    <div class="ps-4">
-                      <h5 class="fw-sm fs-lg mb-1">{{ $u->nama }}</h5>
-                      <p class="fs-sm mb-3">Bekerja di PT.Nasa Sebagai Manager</p>
-                      <p class="fs-sm mb-3">{{ $u->thn_lulus }}</p>
-                      <div class="d-flex">
+    <div class="text-center mb-5">
+        <a href="" class="btn btn-outline-secondary">Semua</a>
+        <a href="" class="btn btn-outline-secondary">Angkatan 1</a>
+        <a href="" class="btn btn-outline-secondary">Angkatan 2</a>
+        <a href="" class="btn btn-outline-secondary">Angkatan 3</a>
+        <a href="" class="btn btn-outline-secondary">Angkatan 4</a>
+        <a href="" class="btn btn-outline-secondary">Angkatan 5</a>
+    </div>
+    <div class="row">
+        @foreach ($user as $u)
+
+        <!-- Item -->
+        <div class="col-5 col-md-6 col-sm-6 col-xs-12 col-lg-3">
+            <div class="card card-body d-flex flex-row align-items-center card-hover bg-light border-0">
+                @if ($u->foto_profile == null)
+                <img src="{{ asset('/imagenull/user.png') }}" class="d-block rounded-circle" width="50"
+                    alt="Darrell Steward">
+                @else
+                <img src="{{ asset($u->foto_profile) }}" class="d-block rounded-circle" width="50"
+                    alt="Darrell Steward">
+                @endif
+
+                <div class="ps-4">
+                    <h5 class="fw-sm fs-lg mb-1">{{ $u->nama }}</h5>
+                    <p class="fs-sm mb-3">Bekerja di PT.Nasa Sebagai Manager</p>
+                    {{-- <p class="fs-sm mb-3">{{ $u->thn_lulus }}</p> --}}
+                    <div class="d-flex">
                         <a href="/detailalumni/{{ $u->id }}" class="btn btn-outline-secondary
                         ">Detail</a>
-                      </div>
-                  </div>
-              </div>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            @endforeach
-          </div>
+        @endforeach
+    </div>
 
-    <div class="flex">
-    <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <li class="page-item">
-        <a href="#" class="page-link">
-          <i class="bx bx-chevron-left ms-n1 me-1"></i>
-          Prev
-        </a>
-      </li>
-      <li class="page-item disabled d-sm-none">
-        <span class="page-link text-body">2 / 5</span>
-      </li>
-      <li class="page-item d-none d-sm-block">
-        <a href="#" class="page-link">1</a>
-      </li>
-      <li class="page-item active d-none d-sm-block" aria-current="page">
-        <span class="page-link">
-          2
-          <span class="visually-hidden">(current)</span>
-        </span>
-      </li>
-      <li class="page-item d-none d-sm-block">
-        <a href="#" class="page-link">3</a>
-      </li>
-      <li class="page-item d-none d-sm-block">
-        <a href="#" class="page-link">4</a>
-      </li>
-      <li class="page-item d-none d-sm-block">
-        <a href="#" class="page-link">5</a>
-      </li>
-      <li class="page-item">
-        <a href="#" class="page-link">
-          Next
-          <i class="bx bx-chevron-right me-n1 ms-1"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</div>
-
-  </section>
+</section>
 
 
 @endsection
