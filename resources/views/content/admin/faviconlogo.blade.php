@@ -50,24 +50,16 @@
                                     <th>Favicon</th>
                                     <th>Opsi</th>
                                 </tr>
-                                @foreach ($fvicon as $f)
+                                @foreach ($icon as $f)
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                      @if ($f->favicon != '')
                                       <img src="{{ asset($f->favicon) }}" alt="" width="50" height="50">
-
-                                      @else
-                                      <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
-                                      @endif
                                      </td>
-                                   
                                     <td>
-                                     
                                       <a href="/editfavicon/{{ $f->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
-                                      
                                     </td>
 
                                 </tr>

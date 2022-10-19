@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Sosmed;
 use App\Models\User;
 use App\Models\FavIcon;
 use PDF;
 use App\Models\TentangKami;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -27,10 +26,19 @@ class AlumniController extends Controller
 
     public function index (){
 
+        $chart_options = [
+            'chart_title' => 'Goods Statistic',
+            'report_type' => 'group_by_date',
+            'model' => 'App\Models\goods',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'month',
+            'chart_type' => 'bar',
+        ];
+        $chart1 = new LaravelChart($chart_options);
         $fvicon = Favicon::first();
         return view('content.admin.dashboard',[
             'fvicon' => $fvicon
-        ]);
+        ],compact('chart1'));
     }
 
     public function showdtalumni(){

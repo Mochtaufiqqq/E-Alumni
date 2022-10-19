@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Pagination;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use App\Models\KesanPesan;
 use App\Models\Berita;
-use App\Models\Foto_postingan;
 use App\Models\Sosmed;
 use App\Models\FavIcon;
+use App\Models\Carousel;
+use App\Models\KesanPesan;
+use Illuminate\Http\Request;
+use App\Models\Foto_postingan;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -76,17 +77,41 @@ class UserController extends Controller
         
     }
 
-    public function semuaalumni (){
+    public function semuaalumni (Request $request){
 
         $fvicon = FavIcon::first();
-        $user = User::where('role_id', 2)->latest()->get();
+        $carousel = Carousel::where('halaman','=','Alumni')->get();
+        $user = User::where('role_id','=','2')->where('status','=','1')->get();
+            
         
         return view('content.user.semuaalumni',[
-            'user'  => $user,
-            'fvicon' => $fvicon
-        ],compact('user','fvicon'));
+            
+        ],compact('user','fvicon','carousel'));
 
     }
+
+    public function angkatan1(){
+        $fvicon = FavIcon::first();
+        $carousel = Carousel::where('id', 1)->get();
+        $user = User::where('thn_lulus','=','2015')
+        ->where('status','=','1')
+        ->where('role_id','=','2')
+        ->get();
+
+        return view ('content.user.semuaalumni',compact('user','fvicon','carousel'));
+    }
+
+    public function angkatan2(){
+        $fvicon = FavIcon::first();
+        $carousel = Carousel::where('id', 1)->get();
+        $user = User::where('thn_lulus','=','2016')
+        ->where('status','=','1')
+        ->where('role_id','=','2')
+        ->get();
+
+        return view ('content.user.semuaalumni',compact('user','fvicon','carousel'));
+    }
+
     public function detailalumni(User $user) {
         $fvicon = FavIcon::first();
         return view('content.user.detail_alumni',[

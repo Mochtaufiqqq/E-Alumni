@@ -16,21 +16,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon and Touch Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/silicon.createx.studio/assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/silicon.createx.studio/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/silicon.createx.studio/assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/silicon.createx.studio/assets/favicon/site.webmanifest ">
-    <link rel="mask-icon" href="/silicon.createx.studio/assets/favicon/safari-pinned-tab.svg" color="#6366f1">
-    <link rel="shortcut icon" href="/silicon.createx.studio/assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/user/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset($fvicon->favicon) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset($fvicon->favicon) }}"">
+    <link rel="manifest" href="/user/favicon/site.webmanifest ">
+    {{-- <link rel="mask-icon" href="/silicon.createx.studio/assets/favicon/safari-pinned-tab.svg" color="#6366f1"> --}}
+    @if ($fvicon->favicon == null)
+    <link rel="mask-icon" href="{{ asset('/favicon/tracerstudy.ico') }}" color="#6366f1">
+    <link rel="shortcut icon" href="{{ asset('favicon/tracerstudy.ico') }}">
+    @else
+    <link rel="mask-icon" href="{{ asset($fvicon->favicon) }}" color="#6366f1">
+    <link rel="shortcut icon" href="{{ asset($fvicon->favicon) }}">    
+    @endif
     <meta name="msapplication-TileColor" content="#080032">
-    <meta name="msapplication-config" content="/silicon.createx.studio/assets/favicon/browserconfig.xml">
+    <meta name="msapplication-config" content="/user/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Vendor Styles -->
-    <link rel="stylesheet" media="screen" href="/silicon.createx.studio/assets/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="/user/vendor/boxicons/css/boxicons.min.css"/>
 
     <!-- Main Theme Styles + Bootstrap -->
-    <link rel="stylesheet" media="screen" href="/silicon.createx.studio/assets/css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="/user/css/theme.min.css">
 
     <!-- Page loading styles -->
     <style>
@@ -248,7 +254,7 @@
         </div>
         
         <!-- Background -->
-        <div class="position-absolute top-0 end-0 w-50 h-100 bg-position-center bg-repeat-0 bg-size-cover d-none d-xl-block" style="background-image: url(/silicon.createx.studio/assets/img/account/signin-bg.jpg);"></div>
+        <div class="position-absolute top-0 end-0 w-50 h-100 bg-position-center bg-repeat-0 bg-size-cover d-none d-xl-block" style="background-image: url(/user/img/account/signin-bg.jpg);"></div>
       </section>
     </main>
 
@@ -261,11 +267,11 @@
 
 
     <!-- Vendor Scripts -->
-    <script src="/silicon.createx.studio/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/silicon.createx.studio/assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="/user/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/user/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
 
     <!-- Main Theme Script -->
-    <script src="/silicon.createx.studio/assets/js/theme.min.js"></script>
+    <script src="/user/js/theme.min.js"></script>
   </body>
 
 <!-- Mirrored from silicon.createx.studio/account-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 17 Sep 2022 03:51:20 GMT -->

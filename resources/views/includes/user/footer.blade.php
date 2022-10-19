@@ -3,7 +3,7 @@
       <div class="row pb-5">
         <div class="col-lg-4 col-md-6">
           <div class="navbar-brand text-dark p-0 me-0 mb-3 mb-lg-4">
-            <img src="{{ asset('user/img/logo.svg') }}" width="47" alt="Silicon">
+            <img src="{{ asset('/silicon.createx.studio/assets/img/logo.svg') }}" width="47" alt="Silicon">
             Silicon
           </div>
             <h6 class="mb-2">Contact Us</h6>

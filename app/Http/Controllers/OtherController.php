@@ -11,9 +11,9 @@ class OtherController extends Controller
 
     public function index (){
         $fvicon = FavIcon::first();
+        $icon = FavIcon::all();
         return view('content.admin.faviconlogo',[
-            'fvicon' => $fvicon
-        ],compact('fvicon'));
+        ],compact('fvicon','icon'));
     }
 
     public function editfavicon(FavIcon $fvicon) {

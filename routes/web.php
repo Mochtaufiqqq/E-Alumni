@@ -12,6 +12,7 @@ use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\OtherController;
 use App\Http\Controllers\KelolaKerjaController;
+use App\Http\Controllers\CarouselController;
 
 
 
@@ -122,6 +123,13 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/faviconlogo',[OtherController::class,'index']);
     Route::get('/editfavicon/{fvicon}',[OtherController::class,'editfavicon']);
     Route::post('/updatefavicon/{fvicon}',[OtherController::class,'updatefavicon']);
+
+    // carousell
+    Route::get('/showcarousel',[CarouselController::class,'showcarousel']);
+    Route::get('/addcarousel',[CarouselController::class,'addcarousel']);
+    Route::post('/addcarousel',[CarouselController::class,'storecarousel']);
+    Route::get('/editcarousel/{id}',[CarouselController::class,'editcarousel']);
+    Route::post('/carousel/update/{id}',[CarouselController::class,'updatecarousel']);
     
 
     Route::prefix('organisasi')->group(function(){ 
@@ -136,7 +144,9 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
 
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
 
-    Route::get('/semuaalumni', [UserController::class, 'semuaalumni']);
+    Route::get('/semuaalumni', [UserController::class, 'semuaalumni'])->name('semuaalumni');
+    Route::get('/semuaalumni/angkatan1', [UserController::class, 'angkatan1'])->name('angkatan1');
+    Route::get('/semuaalumni/angkatan2', [UserController::class, 'angkatan2'])->name('angkatan2');
     Route::get('/detailalumni/{user}', [UserController::class, "detailalumni"]);
 
     // for manage profile alumni personal
