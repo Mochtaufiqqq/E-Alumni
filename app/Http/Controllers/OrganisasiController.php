@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FavIcon;
 use App\Models\Jabatan;
 use App\Models\Organisasi;
 use Illuminate\Http\Request;
@@ -13,26 +14,29 @@ class OrganisasiController extends Controller
 {
     public function index()
     {
+        $fvicon = FavIcon::first();
         $organisasi = Riwayat_organisasi::all();
         $org = Organisasi::all();
         $jab = Jabatan::all();
-        return view('content.user.organisasi', compact('organisasi', 'org', 'jab'));
+        return view('content.user.organisasi', compact('organisasi', 'org', 'jab','fvicon'));
     }
 
     public function show()
     {
+        $fvicon = FavIcon::first();
         $organisasi = Riwayat_organisasi::all();
         $org = Organisasi::all();
         $jab = Jabatan::all();
-        return view('content.admin.organisasi.showOrganisasi', compact('organisasi', 'org', 'jab'));
+        return view('content.admin.organisasi.showOrganisasi', compact('organisasi', 'org', 'jab','fvicon'));
     }
 
     public function tambah()
     {
+        $fvicon = FavIcon::first();
         $organisasi = Riwayat_organisasi::all();
         $org = Organisasi::all();
         $jab = Jabatan::all();
-        return view('content.admin.organisasi.addOrganisasi', compact('organisasi', 'org', 'jab'));
+        return view('content.admin.organisasi.addOrganisasi', compact('organisasi', 'org', 'jab','fvicon'));
     }
 
     public function store(Request $request)
@@ -67,18 +71,20 @@ class OrganisasiController extends Controller
 
     public function details()
     {
+        $fvicon = FavIcon::first();
         $organisasi = Riwayat_organisasi::all()->first();
         $org = Organisasi::all();
         $jab = Jabatan::all();
-        return view('content.user.detail_organisasi', compact('organisasi', 'org', 'jab'));
+        return view('content.user.detail_organisasi', compact('organisasi', 'org', 'jab','fvicon'));
     }
 
     public function edit()
     {
+        $fvicon = FavIcon::first();
         $organisasi = Riwayat_organisasi::all()->first();
         $org = Organisasi::all();
         $jab = Jabatan::all();
-        return view('content.admin.organisasi.organisasiEdit', compact('organisasi', 'org', 'jab'));
+        return view('content.admin.organisasi.organisasiEdit', compact('organisasi', 'org', 'jab','fvicon'));
     }
 
     public function update(Request $request, $id)

@@ -119,10 +119,12 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/editttgkami/{ttgkami}',[OtherController::class,'editttgkami']);
     Route::post('/updatettgkami/{ttgkami}',[OtherController::class,'updatettgkami']);
 
-    // favicon
+    // favicon & logo
     Route::get('/faviconlogo',[OtherController::class,'index']);
     Route::get('/editfavicon/{fvicon}',[OtherController::class,'editfavicon']);
     Route::post('/updatefavicon/{fvicon}',[OtherController::class,'updatefavicon']);
+    Route::get('/editlogo/{logo}',[OtherController::class,'editlogo']);
+    Route::post('/updatelogo/{logo}',[OtherController::class,'updatelogo']);
 
     // carousell
     Route::get('/showcarousel',[CarouselController::class,'showcarousel']);

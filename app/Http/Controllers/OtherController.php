@@ -5,17 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\FavIcon;
 use Illuminate\Http\Request;
 use App\Models\TentangKami;
+use App\Models\Logo;
 
 class OtherController extends Controller
 {
 
     public function index (){
+        $logo = Logo::all();
         $fvicon = FavIcon::first();
         $icon = FavIcon::all();
         return view('content.admin.faviconlogo',[
-        ],compact('fvicon','icon'));
+        ],compact('fvicon','icon','logo'));
     }
 
+    // For favicon
     public function editfavicon(FavIcon $fvicon) {
 
         return view('content.admin.ubahfavicon',[
@@ -45,22 +48,28 @@ class OtherController extends Controller
     //         'fvicon' => $fvicon
     //     ]);
     // }
+
+    // For tentang kami
     public function tentangkami(){
+
+        $logo = Logo::first();
         $fvicon = FavIcon::first();
         $tentangkami = TentangKami::all();
 
         return view ('content.user.tentangkami',[
             'tentangkami' => TentangKami::all()
-        ],compact('tentangkami','fvicon'));
+        ],compact('tentangkami','fvicon','logo'));
     }
+    
     public function showttgkami(){
 
+        $logo = Logo::first();
         $fvicon = FavIcon::first();
         $tentangkami = TentangKami::all();
 
         return view ('content.admin.showttgkami',[
             'tentangkami' => TentangKami::all()
-        ],compact('tentangkami','fvicon'));
+        ],compact('tentangkami','fvicon','logo'));
     }
 
     public function editttgkami(TentangKami $ttgkami){
@@ -71,6 +80,8 @@ class OtherController extends Controller
             'fvicon' => $fvicon
         ]);
     }
+
+
     public function updatettgkami(Request $request, TentangKami $ttgkami){
         $validatedData = $request->validate([
             'judul' => 'required',
@@ -86,5 +97,34 @@ class OtherController extends Controller
         TentangKami::where('id', $ttgkami->id)->update($validatedData);
 
         return redirect('/showttgkami')->with('success','Tentang Kami Berhasil Diubah !');
+    }
+
+
+    // For Logo
+    public function editlogo(Logo $logo) {
+
+        $fvicon = FavIcon::first();
+        return view('content.admin.editlogo',[
+           
+            'logo' => $logo,
+            'fvicon' => $fvicon
+        ]);
+    }
+
+    public function updatelogo(Request $request, Logo $logo) {
+        $validatedData = $request->validate([
+            'isi' => 'required',
+            'foto' => 'required|image|mimes:jpg,png,jpeg|max:5000'
+        ]);
+
+        if($request->file()) {
+            $fileName = time().$request->file('foto')->getClientOriginalName();
+            $path = $request->file('foto')->storeAs('logo-image', $fileName. 'public');
+         $validatedData['foto'] = '/storage/' .$path;
+        }
+
+        Logo::where('id', $logo->id)->update($validatedData);
+
+        return redirect('/faviconlogo')->with('success','Logo Berhasil Diubah !');
     }
 }

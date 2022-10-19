@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Pagination;
+use App\Models\Logo;
 use App\Models\User;
 use App\Models\Berita;
 use App\Models\Sosmed;
@@ -21,30 +22,30 @@ class UserController extends Controller
     }
 
     public function detail_berita(Berita $berita){
+        $logo = Logo::first();
         $fvicon = FavIcon::first();
-        return view('content.user.detail_berita',[
-            'berita' => $berita,
-            'fvicon' => $fvicon
-        ]);
+        return view('content.user.detail_berita',compact('beritas','fvicon','logo'));
     }
 
     public function tampil(){
+        $logo = Logo::first();
         $fvicon = FavIcon::first();
         $beritas = Berita::all();
         return view('content.user.berita',[
             'beritas' => $beritas,
             'fvicon' => $fvicon
-        ],compact('beritas'));
+        ],compact('beritas','logo'));
     }
 
     public function kesanpesan(){
+        $logo = Logo::first();
         $fvicon = FavIcon::first();
         $dtkesanpesan = KesanPesan::with('user')->latest()->get();
         return view('content.user.showkesanpesan',[
             'user' => User::all(),
             'fvicon' => $fvicon,
             'kesanpesan' => KesanPesan::all(),
-        ], compact('dtkesanpesan','fvicon'));
+        ], compact('dtkesanpesan','fvicon','logo'));
     
     }
 
@@ -79,6 +80,7 @@ class UserController extends Controller
 
     public function semuaalumni (Request $request){
 
+        $logo = Logo::first();
         $fvicon = FavIcon::first();
         $carousel = Carousel::where('halaman','=','Alumni')->get();
         $user = User::where('role_id','=','2')->where('status','=','1')->get();
@@ -86,11 +88,12 @@ class UserController extends Controller
         
         return view('content.user.semuaalumni',[
             
-        ],compact('user','fvicon','carousel'));
+        ],compact('user','fvicon','carousel','logo'));
 
     }
 
     public function angkatan1(){
+        $logo = Logo::first();
         $fvicon = FavIcon::first();
         $carousel = Carousel::where('id', 1)->get();
         $user = User::where('thn_lulus','=','2015')
@@ -98,10 +101,12 @@ class UserController extends Controller
         ->where('role_id','=','2')
         ->get();
 
-        return view ('content.user.semuaalumni',compact('user','fvicon','carousel'));
+        return view ('content.user.semuaalumni',compact('user','fvicon','carousel','logo'));
     }
 
     public function angkatan2(){
+
+        $logo = Logo::first();
         $fvicon = FavIcon::first();
         $carousel = Carousel::where('id', 1)->get();
         $user = User::where('thn_lulus','=','2016')
@@ -109,15 +114,18 @@ class UserController extends Controller
         ->where('role_id','=','2')
         ->get();
 
-        return view ('content.user.semuaalumni',compact('user','fvicon','carousel'));
+        return view ('content.user.semuaalumni',compact('user','fvicon','carousel','logo'));
     }
 
     public function detailalumni(User $user) {
+
+        $logo = Logo::first();
         $fvicon = FavIcon::first();
         return view('content.user.detail_alumni',[
            
             'user' => $user,
-            'fvicon' => $fvicon
+            'fvicon' => $fvicon,
+            'logo'  => $logo
         ]);
     }
 
