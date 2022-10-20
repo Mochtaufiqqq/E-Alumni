@@ -10,7 +10,8 @@ class KesanPesan extends Model
     use HasFactory;
     protected $table = 'kesan_pesans';
     protected $primaryKey = 'id';
-    protected $guarded = ['user_id'];
+    protected $fillable = ['user_id','isi'];
+    // protected $guarded = ['user_id'];
 
 
     public function user ()

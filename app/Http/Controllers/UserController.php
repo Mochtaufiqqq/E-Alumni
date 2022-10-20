@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use Pagination;
+use App\Models\Logo;
 use App\Models\User;
+use App\Models\Berita;
+use App\Models\Sosmed;
+use App\Models\FavIcon;
+use App\Models\Carousel;
+use App\Models\KesanPesan;
 use Illuminate\Http\Request;
+use App\Models\Foto_postingan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Models\KesanPesan;
-use App\Models\Berita;
-use App\Models\Foto_postingan;
-use App\Models\Sosmed;
 
 class UserController extends Controller
 {
@@ -19,50 +22,128 @@ class UserController extends Controller
     }
 
     public function detail_berita(Berita $berita){
-        return view('content.user.detail_berita',[
-            'berita' => $berita
-        ]);
+        $logo = Logo::first();
+        $fvicon = FavIcon::first();
+        return view('content.user.detail_berita',compact('beritas','fvicon','logo'));
     }
 
     public function tampil(){
+        $logo = Logo::first();
+        $fvicon = FavIcon::first();
         $beritas = Berita::all();
         return view('content.user.berita',[
-            'beritas' => Berita::all()
-        ],compact('beritas'));
+            'beritas' => $beritas,
+            'fvicon' => $fvicon
+        ],compact('beritas','logo'));
     }
 
     public function kesanpesan(){
+        $logo = Logo::first();
+        $fvicon = FavIcon::first();
         $dtkesanpesan = KesanPesan::with('user')->latest()->get();
         return view('content.user.showkesanpesan',[
             'user' => User::all(),
+            'fvicon' => $fvicon,
             'kesanpesan' => KesanPesan::all(),
-        ], compact('dtkesanpesan'));
+        ], compact('dtkesanpesan','fvicon','logo'));
     
     }
 
-    public function semuaalumni (){
-        $user = User::where('role_id', 2)->latest()->get();
-        
-        return view('content.user.semuaalumni',[
-            'user'  => $user
-        ],compact('user'));
+    public function addkesanpesan(Request $request){
+
+        KesanPesan::with('user');
+        $validatedData = $request->validate([
+            'isi' => 'required',
+
+        ]);
+
+        $validatedData["user_id"] = auth()->user()->id;
+        KesanPesan::create($validatedData);
+
+        return redirect('/kesanpesan')->with('success' ,'Berhasil menambahkan kesan & pesan');
 
     }
 
+    public function editkesanpesan(KesanPesan $kesanpesan, Request $request){
+        KesanPesan::with('user');
+        $validatedData = $request->validate([
+            'isi' => 'required',
+
+        ]);
+
+        $validatedData["user_id"] = auth()->user()->id;
+        KesanPesan::where('id', $kesanpesan->id)->update($validatedData);
+
+        return redirect('/kesanpesan')->with('success' ,'Berhasil mengedit kesan & pesan');
+        
+    }
+
+    public function semuaalumni (Request $request){
+
+        $logo = Logo::first();
+        $fvicon = FavIcon::first();
+        $carousel = Carousel::where('halaman','=','Alumni')->get();
+        $user = User::where('role_id','=','2')->where('status','=','1')->get();
+            
+        
+        return view('content.user.semuaalumni',[
+            
+        ],compact('user','fvicon','carousel','logo'));
+
+    }
+
+    public function angkatan1(){
+        $logo = Logo::first();
+        $fvicon = FavIcon::first();
+        $carousel = Carousel::where('id', 1)->get();
+        $user = User::where('thn_lulus','=','2015')
+        ->where('status','=','1')
+        ->where('role_id','=','2')
+        ->get();
+
+        return view ('content.user.semuaalumni',compact('user','fvicon','carousel','logo'));
+    }
+
+    public function angkatan2(){
+
+        $logo = Logo::first();
+        $fvicon = FavIcon::first();
+        $carousel = Carousel::where('id', 1)->get();
+        $user = User::where('thn_lulus','=','2016')
+        ->where('status','=','1')
+        ->where('role_id','=','2')
+        ->get();
+
+        return view ('content.user.semuaalumni',compact('user','fvicon','carousel','logo'));
+    }
+
+    public function detailalumni(User $user) {
+
+        $logo = Logo::first();
+        $fvicon = FavIcon::first();
+        return view('content.user.detail_alumni',[
+           
+            'user' => $user,
+            'fvicon' => $fvicon,
+            'logo'  => $logo
+        ]);
+    }
+
     public function profile(User $user)
-    {
+    {   
+        $fvicon = FavIcon::first();
         $user = Auth::user();
         $sosmed = Sosmed::all();
         return view('content.user.detail_profile',[
             'user' => $user,
             'sosmed' => $sosmed
-        ],compact('user', 'sosmed'));
+        ],compact('user', 'sosmed','fvicon'));
     }
 
     public function settingprofileuser(Request $request, User $user){
         $validatedData = $request->validate([
             'foto_profile' => 'image|mimes:jpg,png,jpeg|max:5000',
-            'nama_panggilan' => 'required',
+            // 'nama_panggilan' => 'required',
             
         ]);
 

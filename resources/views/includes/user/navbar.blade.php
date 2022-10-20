@@ -2,8 +2,14 @@
     <div class="container px-3">
 
         <a href="#" class="navbar-brand">
-            <img src="{{ asset('user/img/logo.svg') }}" width="47" alt="Silicon">
-            Silicon
+            @if ($logo->foto == null)
+            <img src="{{ asset('/imagenull/logo.png') }}" width="47" alt="Silicon">
+                
+            @else
+            <img src="{{ asset($logo->foto) }}" width="47" alt="Silicon">    
+            @endif
+        
+            {{ $logo->isi }}
         </a>
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse5"
             aria-expanded="false">
@@ -33,7 +39,7 @@
                 </li>
                 <li class="dropdown-divider"></li>
                 <li>
-                    <a class="dropdown-item d-flex align-items-center" href="logout">
+                    <a class="dropdown-item d-flex align-items-center" href="/logout">
                         <i class="bx bx-log-out fs-base opacity-60 me-2"></i>
                         Log out
                     </a>
@@ -57,27 +63,35 @@
                 <li class="nav-item">
                     <a href="/tentangkami" class="nav-link">Tentang Kami</a>
                 </li>
+                @if (Route::has('login'))
+                @auth
                 <li class="nav-item">
                     <a href="/semuaalumni" class="nav-link">Alumni</a>
                 </li>
+                @endauth
+                @endif
                 <li class="nav-item">
                     <a href="/organisasi" class="nav-link">Organisasi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/kontak" class="nav-link">kontak Kami</a>
+                    <a href="/ko" class="nav-link">Berita & Event</a>
                 </li>
+                
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">Lainnya</a>
                     <ul class="dropdown-menu show" data-bs-popper="static">
+
                       <li><a href="/lowongankerja" class="dropdown-item">Lowongan Pekerjaan</a></li>
-                      <li><a href="account-security.html" class="dropdown-item">Ajukan Lowongan Pekerjaan</a></li>
+                      <li><a href="account-security.html" class="dropdown-item">Publikasi Lowongan Pekerjaan</a></li>
+
                       <li><a href="/kesanpesan" class="dropdown-item">Kesan & Pesan</a></li>
                     </ul>
                   </li>
+                  <li class="nav-item">
+                    <a href="/kontak" class="nav-link">Kontak Kami</a>
+                </li>
             </ul>
         </nav>
-        
-
         
         
     </div>

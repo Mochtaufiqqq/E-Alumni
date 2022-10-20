@@ -26,7 +26,7 @@
               </div>
             </li>
 
-            <li class="dropdown"><a class="nav-link menu-title link-nav" href="#"><i data-feather="edit"></i><span>Alumni</span></a>
+            <li class="dropdown"><a class="nav-link menu-title link-nav" href="/dataalumni"><i data-feather="edit"></i><span>Alumni</span></a>
             </li>
             <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="user"></i><span>User</span></a>
               <ul class="nav-submenu menu-content">
@@ -37,19 +37,14 @@
             </li>
             <li class="dropdown"><a class="nav-link menu-title link-nav" href="/organisasi/show"><i data-feather="users"></i><span>Organisasi</span></a>
             </li>
-            <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="user"></i><span>Berita</span></a>
+            <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="book"></i><span>Berita</span></a>
               <ul class="nav-submenu menu-content">
                 <li><a href="/semuaberita">Semua Berita</a></li>
                 <li><a href="#">Prestasi</a></li>
                 <li><a href="#">Event</a></li>
               </ul>
             </li>
-            <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="user"></i><span>Lowongan Kerja</span></a>
-              <ul class="nav-submenu menu-content">
-                <li><a href="/lowongankerja">Semua Lowongan Kerja</a></li>
-                <li><a href="#">Develover</a></li>
-                <li><a href="#">Designer</a></li>
-              </ul>
+            <li class="dropdown"><a class="nav-link menu-title link-nav" href="/lowongankerja"><i data-feather="briefcase"></i><span>Lowongan Kerja</span></a>
             </li>
             <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="image"></i><span>Gallery</span></a>
               <ul class="nav-submenu menu-content">
@@ -58,6 +53,13 @@
                 <li><a href="gallery-masonry.html">Masonry Gallery</a></li>
                 <li><a href="masonry-gallery-with-disc.html">Masonry with Desc</a></li>
                 <li><a href="gallery-hover.html">Hover Effects</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="list"></i><span>Lainnya</span></a>
+              <ul class="nav-submenu menu-content">
+                <li><a href="/faviconlogo">Ubah Logo & Favicon</a></li>
+                <li><a href="/showttgkami">Tentang Kami</a></li>
+                <li><a href="/showcarousel">Caroussel</a></li>
               </ul>
             </li>
           </ul>

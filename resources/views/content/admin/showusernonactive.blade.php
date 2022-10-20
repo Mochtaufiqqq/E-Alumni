@@ -74,6 +74,7 @@
                         <table class="display" id="responsive">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>Alamat</th>
@@ -84,6 +85,7 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $u->nama }}</td>
                                     <td>{{ $u->email }}</td>
                                     <td>{{ $u->alamat }}</td>

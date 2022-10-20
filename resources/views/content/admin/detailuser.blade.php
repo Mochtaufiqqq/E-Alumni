@@ -38,11 +38,11 @@
                         <div class="row mb-2 px-5">
                             <div class="profile-title">
                                 <div class="media">
-                                    @if ($users->foto_profile != '')
-                                    <img class="img-300 img-fluid rounded-circle" alt=""
-                                        src="{{ asset($users->foto_profile) }}">
+                                    @if ($users->foto_profile == null)
+                                    <img class="img-300 img-fluid rounded-circle" height="100" width="100" alt=""
+                                        src="{{ asset('/imagenull/user.png') }}">
                                     @else
-                                    <img class="img-70 rounded-circle" src="{{ asset('public/jikatidadada/jika.jpg') }}"
+                                    <img class="img-70 rounded-circle" src="{{ asset($users->foto_profile) }}"
                                         alt="">
                                     @endif
                                     <div class="media-body">
@@ -57,11 +57,12 @@
                                       <div class="mb-3">
                                           <h6 class="form-label">Email : {{ $users->email }}</h6>
                                       </div>
-                                      <div class="mb-3">
-                                        <h6 class="form-label">Foto Kegiatan :</h6>
-                                    </div>
                                     <div class="mb-3">
-                                      <img src="{{ asset($users->foto_profile) }}" height="100" width="200" alt="" >
+                                        <h6 class="form-label">Status User :  @if($users->status === 0)
+                                            <span class="badge bg-opacity-100 bg-danger text-white">Nonaktif</span>
+                                            @else($u->status_user_id === 2)
+                                            <span class="badge bg-opacity-100 bg-success text-white">Aktif</span>
+                                            @endif</h6>
                                     </div>
                                     </div>
                                 </div>

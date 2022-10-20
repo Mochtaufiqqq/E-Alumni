@@ -8,23 +8,25 @@ use App\Models\Foto_postingan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\File;
+use App\Models\FavIcon;
 
 class KelolaBeritaController extends Controller
 {
     
     public function show()
     {
-       $beritas = Berita::orderBy('updated_at', 'DESC')->get();
-        return view('content.admin.showberita',compact('beritas'));
+        $fvicon = FavIcon::first();
+        $beritas = Berita::orderBy('updated_at', 'DESC')->get();
+        return view('content.admin.showberita',compact('beritas','fvicon'));
         
     }
 
     public function add() {
+        $fvicon = FavIcon::first();
         $beritas = Berita::all();
 
         return view ('content.admin.tambahberita',[
-            'beritas' => Berita::all()
-        ],compact('beritas'));
+        ],compact('beritas','fvicon'));
     }
 
     public function store(Request $request) {
@@ -65,9 +67,12 @@ class KelolaBeritaController extends Controller
     }
 
     public function edit(Berita $beritas) {
+
+        $fvicon = FavIcon::first();
         return view('content.admin.editberita',[
            
-            'beritas' => $beritas
+            'beritas' => $beritas,
+            'fvicon' => $fvicon
         ]);
     }
      public function update(Request $request , Berita $beritas) {
@@ -114,9 +119,12 @@ class KelolaBeritaController extends Controller
     }
     
     public function reportpdfberita(){
+        $fvicon = FavIcon::first();
         $beritas = Berita::all();
 
-        $pdf = PDF::loadview('content.admin.reportpdfberita',['beritas'=> $beritas])->setOptions(['defaultFont' => 'sans-serif']);;
+        $pdf = PDF::loadview('content.admin.reportpdfberita',[
+        'beritas'=> $beritas,
+        'fvicon' => $fvicon])->setOptions(['defaultFont' => 'sans-serif']);;
     	return $pdf->download('report-berita.pdf');
         return redirect('/semuaberita');
     }
