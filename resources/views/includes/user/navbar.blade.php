@@ -2,8 +2,14 @@
     <div class="container px-3">
 
         <a href="#" class="navbar-brand">
-            <img src="{{ asset('user/img/logo.svg') }}" width="47" alt="Silicon">
-            Silicon
+            @if ($logo->foto == null)
+            <img src="{{ asset('/imagenull/logo.png') }}" width="47" alt="Silicon">
+                
+            @else
+            <img src="{{ asset($logo->foto) }}" width="47" alt="Silicon">    
+            @endif
+        
+            {{ $logo->isi }}
         </a>
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse5"
             aria-expanded="false">
@@ -33,7 +39,7 @@
                 </li>
                 <li class="dropdown-divider"></li>
                 <li>
-                    <a class="dropdown-item d-flex align-items-center" href="logout">
+                    <a class="dropdown-item d-flex align-items-center" href="/logout">
                         <i class="bx bx-log-out fs-base opacity-60 me-2"></i>
                         Log out
                     </a>

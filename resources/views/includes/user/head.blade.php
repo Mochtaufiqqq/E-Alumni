@@ -15,19 +15,19 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset($fvicon->favicon) }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset($fvicon->favicon) }}">
     <link rel="manifest" href="{{ asset($fvicon->favicon) }}">
-    <link rel="mask-icon" href="{{ asset('user/favicon/safari-pinned-tab.svg') }}" color="#6366f1">
+    <link rel="mask-icon" href="/user/favicon/safari-pinned-tab.svg" color="#6366f1">
     <link rel="shortcut icon" href="{{ asset($fvicon->favicon) }}">
     <meta name="msapplication-TileColor" content="#080032">
-    <meta name="msapplication-config" content="{{ asset('user/favicon/browserconfig.xml') }}">
+    <meta name="msapplication-config" content="/user/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Vendor Styles -->
-    <link rel="stylesheet" media="screen" href="{{ asset('user/vendor/boxicons/css/boxicons.min.css') }}"/>
-    <link rel="stylesheet" media="screen" href="{{ asset('user/vendor/swiper/swiper-bundle.min.css') }}"/>
-    <link rel="stylesheet" media="screen" href="{{ asset('user/vendor/lightgallery/css/lightgallery-bundle.min.css') }}"/>
+    <link rel="stylesheet" media="screen" href="/user/vendor/boxicons/css/boxicons.min.css"/>
+    <link rel="stylesheet" media="screen" href="/user/vendor/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" media="screen" href="/user/vendor/lightgallery/css/lightgallery-bundle.min.css"/>
 
     <!-- Main Theme Styles + Bootstrap -->
-    <link rel="stylesheet" media="screen" href="{{ asset('user/css/theme.min.css') }}">
+    <link rel="stylesheet" media="screen" href="/user/css/theme.min.css">
 
     <!-- Page loading styles -->
     <style>

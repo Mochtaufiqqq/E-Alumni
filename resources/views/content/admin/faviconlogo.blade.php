@@ -50,24 +50,16 @@
                                     <th>Favicon</th>
                                     <th>Opsi</th>
                                 </tr>
-                                @foreach ($fvicon as $f)
+                                @foreach ($icon as $f)
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                      @if ($f->favicon != '')
                                       <img src="{{ asset($f->favicon) }}" alt="" width="50" height="50">
-
-                                      @else
-                                      <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
-                                      @endif
                                      </td>
-                                   
                                     <td>
-                                     
                                       <a href="/editfavicon/{{ $f->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
-                                      
                                     </td>
 
                                 </tr>
@@ -96,31 +88,34 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Isi</th>
                                     <th>Logo</th>
                                     <th>Opsi</th>
                                 </tr>
-                                {{-- @foreach ($fvicon as $f) --}}
+                                @foreach ($logo as $l)
                             </thead>
                             <tbody>
                                 <tr>
-                                    {{-- <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $l->isi }}</td>
                                     <td>
-                                      @if ($f->favicon != '')
-                                      <img src="{{ asset($f->favicon) }}" alt="" width="50" height="50">
-
+                                      @if ($l->foto == null)
+                                      <img src="{{ asset('/imagenull/logo.png') }}" alt="" width="150" height="100">
+                                          
                                       @else
-                                      <img src="{{ asset('jikatidadada/jika.jpg') }}" alt="" width="50" height="50">
+                                      <img src="{{ asset($l->foto) }}" alt="" width="150" height="100">
+                                          
                                       @endif
                                      </td>
                                    
                                     <td>
                                      
-                                      <a href="/editfavicon/{{ $f->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
+                                      <a href="/editlogo/{{ $l->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
                                       
-                                    </td> --}}
+                                    </td>
 
                                 </tr>
-                               
+                               @endforeach
                             </tbody>
                         </table>
                     </div>

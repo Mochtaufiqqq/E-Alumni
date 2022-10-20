@@ -33,15 +33,15 @@
 
 
 <!-- Vendor Scripts -->
-  <script src="{{ asset('user/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('user/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
-  <script src="{{ asset('user/vendor/jarallax/dist/jarallax.min.js') }}"></script>
-  <script src="{{ asset('user/vendor/swiper/swiper-bundle.min.js') }}"></script>
-  <script src="{{ asset('user/vendor/lightgallery/lightgallery.min.js') }}"></script>
-  <script src="{{ asset('user/vendor/lightgallery/plugins/fullscreen/lg-fullscreen.min.js') }}"></script>
-  <script src="{{ asset('user/vendor/lightgallery/plugins/zoom/lg-zoom.min.js') }}"></script>
-  <script src="{{ asset('user/vendor/lightgallery/plugins/video/lg-video.min.js') }}"></script>
-  <script src="{{ asset('user/vendor/lightgallery/plugins/thumbnail/lg-thumbnail.min.js') }}"></script>
+  <script src="/user/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/user/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="/user/vendor/jarallax/dist/jarallax.min.js"></script>
+  <script src="/user/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/user/vendor/lightgallery/lightgallery.min.js"></script>
+  <script src="/user/vendor/lightgallery/plugins/fullscreen/lg-fullscreen.min.js"></script>
+  <script src="/user/vendor/lightgallery/plugins/zoom/lg-zoom.min.js"></script>
+  <script src="/user/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+  <script src="/user/vendor/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script>
 
   <!-- Main Theme Script -->
-  <script src="{{ asset('user/js/theme.min.js') }}"></script>
+  <script src="/user/js/theme.min.js"></script>

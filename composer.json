@@ -9,6 +9,7 @@
         "barryvdh/laravel-dompdf": "^2.0",
         "cviebrock/eloquent-sluggable": "^9.0",
         "dompdf/dompdf": "^2.0",
+        "laraveldaily/laravel-charts": "^0.1.29",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "kevincobain2000/laravel-erd": "^1.6",
