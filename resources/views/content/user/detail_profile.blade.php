@@ -85,11 +85,20 @@
 
                         <hr>
 
+                        @if ($rp == null)
                         <a href="#modalRP" data-bs-toggle="modal" data-bs-target="#modalRP"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Tambahkan riwayat pendidikan</p>
                         </a>
+                        @else
+                        <a href="#modalRP" data-bs-toggle="modal" data-bs-target="#modalRP"
+                            style="text-decoration: none; color:black">
+                            <p class="mt-4">edid riwayat pendidikan</p>
+                        </a>  
+                        @endif
+                        
                         <hr>
+ 
                         <a href="#modalOrganisasi" data-bs-toggle="modal" data-bs-target="#modalOrganisasi"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Tambahkan riwayat organisasi</p>
@@ -105,7 +114,7 @@
                         <hr>
                         
                         @if ($sosmed == '')
-                        <a href="#modalSosmed" data-bs-toggle="modal" data-bs-target="#modalSosmed"
+                        <a href="#mod   alSosmed" data-bs-toggle="modal" data-bs-target="#modalSosmed"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Tambahkan sosial media</p>
                         </a>
@@ -420,13 +429,13 @@
 
                         <!-- Sign in form -->
 
-                        <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/addpendidikan" action="POST">
+                        <form class="tab-pane fade show active" autocomplete="off" id="" action="/addpendidikan" method="POST">
                             @csrf
                             @method('put')
                             <h2 class="h5 text-dark mb-4">Perguruan Tinggi</h2>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Nama Universitas</label>
-                                <input class="form-control" type="univ" name="nama_perusahaan" id="email1"
+                                <input class="form-control" type="univ" name="univ" id="email1"
                                     placeholder="Nama Perusahaan">
                             </div>
                             <div class="col mb-3">
@@ -643,7 +652,7 @@
         <div class="modal fade" tabindex="-1" role="dialog" id="modalSosmed">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-
+                    
                     <!-- Modal header with nav tabs -->
                     <div class="modal-header">
                         <h5 class="modal-title">Tambahkan sosial media</h5>
@@ -694,14 +703,20 @@
                         <h5 class="modal-title">Tambahkan sosial media</h5>
                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-
+                    
                     <!-- Modal body with tab panes -->
                     <div class="modal-body tab-content py-4">
-
+                        
                         <!-- Sign in form -->
+                        @if ($sosmed == null)
+                        @else
                         <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/editsosmed/{{ $sosmed->id }}" method="POST">
                             @csrf
                             @method('put')
+                            <div class="mb-3">
+                                <input class="form-control" type="text" name="id" hidden id="email1"
+                                    placeholder="instagram" value="{{ old('nama_panggilan', $sosmed->id) }}">
+                            </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Instagram</label>
                                 <input class="form-control" type="text" name="instagram" id="email1"
@@ -720,14 +735,17 @@
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Linkedin</label>
                                 <input class="form-control" type="text" name="linkedin" id="email1"
-                                    placeholder="Linkedin" value="{{ old('nama_panggilan', $sosmed->linkedin) }}">
+                                placeholder="Linkedin" value="{{ old('nama_panggilan', $sosmed->linkedin) }}">
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">Edit</button>
                         </form>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
+
+        
 
         <!-- Modal for foto kegiatan -->
         <div class="modal fade" tabindex="-1" role="dialog" id="modalFotoKegiatan">
@@ -800,18 +818,18 @@
                 
                 <!-- Basic info -->
                 <div class="row pb-2">
-                    <div class="col-6 mb-4">
+                    <div class="col-4 mb-4">
                         
                         <label for="fn" class="form-label fs-base">Email</label>
                         <p>{{ auth()->user()->email }}</p>
                         
-                        <div class="col-6 mb-4">
+                        <div class="col-4 mb-4">
                             <label for="sn" class="form-label fs-base">Alamat</label>
                             <p>{{ auth()->user()->alamat }}</p>
                         </div>
                     </div>
 
-                    <div class="col-6 mb-4">
+                    <div class="col-4 mb-4">
                             <label for="email" class="form-label fs-base">Pekerjaan</label>
                             @if (Auth::user()->pekerjaan == '')
                                 <p>Bekerja di <em>PT.Inovindo Digital Media</em> <small class="text-muted">(contoh)</small></p>
@@ -826,8 +844,8 @@
                             @endif
                     </div>
 
-                    <div class="col-6 mb-4">
-                        <label for="email" class="form-label fs-base">Social Media</label>
+                    <div class="col-4 mb-4">
+                        <label for="" class="form-label fs-base">Social Media</label>
                             @if ($sosmed == null)
                                 <p><i class="bx bxl-instagram"></i>@user<small class="text-muted">(contoh)</small></p>
                             @else
@@ -853,7 +871,7 @@
                             @endif
                     </div>
 
-                    <div class="col-6 mb-4">
+                    <div class="col-4 mb-4">
                         <label for="phone" class="form-label fs-base">Phone</label>
                         @if (Auth::user()->no_tlp == '')
                             <p><em>62+12345689</em> <small class="text-muted">(contoh)</small></p>
@@ -862,12 +880,22 @@
                         @endif
                     </div>
                     
-                    <div class="col-6 mb-4">
-                        <label for="phone" class="form-label fs-base">Phone</label>
-                        @if (Auth::user()->no_tlp == '')
-                            <p><em>62+12345689</em> <small class="text-muted">(contoh)</small></p>
+                    <div class="col-4 mb-4">
+                        <label for="" class="form-label fs-base">Pendidikan</label>
+                        @if ($rp == null)
+                        <p> <small class="text-muted">(contoh)</small></p>
                         @else
-                            <p>{{ auth()->user()->no_tlp }}</p>
+                        <p>{{ $rp->univ }}</p>
+                        @endif
+                        @if ($rp == null)
+                        <p> <small class="text-muted">(contoh)</small></p>
+                        @else
+                        <p>{{ $rp->smk }}</p>
+                        @endif
+                        @if ($rp == null)
+                        <p> <small class="text-muted">(contoh)</small></p>
+                        @else
+                        <p>{{ $rp->smp }}</p>
                         @endif
                     </div>
                 </div>

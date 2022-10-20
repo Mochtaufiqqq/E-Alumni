@@ -17,7 +17,8 @@ class Sosmed extends Model
         'facebook',
         'tiktok',
         'linkedin',
-        'id_user'
+        'user_id'
+        
     ];
 
     public function sosmed()

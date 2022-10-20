@@ -102,18 +102,25 @@ class UserController extends Controller
         $fvicon = FavIcon::first();
         $user = Auth::user();
         $social = Sosmed::first();
-        $rp = Riwayat_pendidikan::first();
+        // dd($social);
+        $rpendidikan = Riwayat_pendidikan::first();
+
+        if ($rpendidikan == TRUE) {
+            $rp = $rpendidikan;
+        }else{
+            $rp = null;
+        }
 
         if($social == TRUE){
             $sosmed = $social;
         }else{
             $sosmed = null;
+            // dd($sosmed);
         }
 
         return view('content.user.detail_profile',[
             'user' => $user,
-            'sosmed' => $sosmed
-        ],compact('user', 'sosmed','fvicon'));
+        ],compact('user', 'sosmed','fvicon', 'rp'));
     }
 
     public function settingprofileuser(Request $request, User $user){
@@ -158,7 +165,7 @@ class UserController extends Controller
             'linkedin'      => 'required',
             
        ]);
-       $validatedData['id_user'] = auth()->user()->id;
+       $validatedData['user_id'] = auth()->user()->id;
        Sosmed::create($validatedData);
 
        return redirect('/profile')->with('success', 'Berhasil Menambahkan Sosial Media!');
@@ -174,7 +181,7 @@ class UserController extends Controller
             'linkedin'      => 'required',
             
        ]);
-       $validatedData['id_user'] = auth()->user()->id;
+       $validatedData["user_id"] = auth()->user()->id;
        Sosmed::where('id', $id)->update($validatedData);
 
        return redirect('/profile')->with('success', 'Berhasil Mengubah Sosial Media!');
@@ -184,14 +191,17 @@ class UserController extends Controller
     //riwayat_pendidikan
     public function addpendidikan(Request $request)
     {
+        dd($request);
         Riwayat_pendidikan::with('user');
         $validatedData = $request->validate([
             'univ',
             'smk',
             'smp',
+            'tahun_mulai',
+            'tahun_akhir',
         ]);
 
-        $validatedData['id_user'] = auth()->user()->id;
+        $validatedData["user_id"] = auth()->user()->id;
         Riwayat_pendidikan::create($validatedData);
 
         return redirect('/profile')->with('success', 'Berhasil Menambahkan Pendidikan!');

@@ -144,7 +144,7 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
     Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
     Route::put('/addsosmed',[UserController::class,'addsosmed']);
-    Route::put('/editsosmed/{id}',[UserController::class,'editsosmed']);
+    Route::put('/editsosmed/{sosmed}',[UserController::class,'editsosmed']);
     Route::put('/addpendidikan',[UserController::class,'addpendidikan']);
     // Route::put('/editsosmed/{id}',[UserController::class,'editsosmed']);
     Route::get('/kontak', [MailController::class, 'email']);

@@ -15,6 +15,8 @@ class Riwayat_pendidikan extends Model
         'univ',
         'smk',
         'smp',
+        'tahun_mulai',
+        'tahun_akhir',
         'id_user'
     ];
 

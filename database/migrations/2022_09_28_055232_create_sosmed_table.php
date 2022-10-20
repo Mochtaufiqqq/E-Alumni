@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('tiktok')->nullable();
             $table->string('linkedin')->nullable();
-            $table->foreignId('id_user')->nullable();
+            $table->foreignId('user_id')->nullable();
             $table->timestamps();
         });
     }
