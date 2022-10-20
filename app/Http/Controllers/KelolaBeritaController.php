@@ -87,6 +87,15 @@ class KelolaBeritaController extends Controller
 
         }
         
+        $image = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $path = $file->store('foto-dokumentasi');
+                $image[] = $path;
+            }
+        }
+        
         Berita::where('id', $beritas->id)->update($validatedData);
 
         return redirect('/semuaberita')->with('success', 'Data berhasil diubah!');

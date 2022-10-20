@@ -54,8 +54,8 @@
                                     <th>Isi</th>
                                     <th>Tanggal</th>
                                     <th>Kategori</th>
-                                    <th>dokumentasi</th>
                                     <th>Opsi</th>
+                                    <th>dokumentasi</th>
                                 </tr>
                                 @foreach ($beritas as $b)
                             </thead>
