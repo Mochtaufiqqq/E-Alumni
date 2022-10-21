@@ -602,11 +602,15 @@
                     <div class="modal-body tab-content py-4">
 
                         <!-- Sign in form -->
-                        <form class="tab-pane fade show active" autocomplete="off" id="signin">
+                        <form action="/updatepostingan/{{ auth()->user()->id }}" method="post" class="tab-pane fade show active" autocomplete="off" id="signin" enctype="multipart/form-data">
+                            @method('put')
+                            @csrf
+
                             <div class="mb-3">
-                                <label class="form-label" for="email1">Foto Kegiatan</label>
-                                <input class="form-control" type="file" name="foto_profile" id="image"
-                                    placeholder="Foto Kegiatan">
+                                <label class="form-label" for="image">Foto Kegiatan</label>
+                                <input class="form-control" type="file" name="images[]" id="image"
+                                    placeholder="Foto Kegiatan" multiple required autofocus
+                                    onchange="previewImage()">
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">Tambah</button>
                         </form>

@@ -36,7 +36,7 @@ Route::get('/organisasi/detail/{slug}', [OrganisasiController::class, 'details']
 Route::get('/tentangkami', [OtherController::class, 'tentangkami']);
 Route::get('/kesanpesan',[UserController::class,'kesanpesan']);
 //berita
-Route::get('/tampilberita', [KelolaBeritaController::class, 'tampil']);
+Route::get('/tampilberita', [UserController::class, 'tampil']);
 Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detail_berita']);
 //kontak
 Route::get('/kontak', [MailController::class, 'email']);
@@ -161,12 +161,13 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
      Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
      Route::put('/editkesanpesan{kesanpesan}',[UserController::class,'editkesanpesan']);
 
+     //sosmed
      Route::put('/addsosmed/{user}',[UserController::class,'addsosmed']);
-    
-
-    Route::post('/addsosmed',[UserController::class,'addsosmed']);
+     Route::post('/addsosmed',[UserController::class,'addsosmed']);
    
-    
+     // foto postingan alumni
+     Route::put('/updatepostingan/{user}',[UserController::class, 'addpostingan']);
+
 });
 
 

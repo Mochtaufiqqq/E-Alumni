@@ -12,6 +12,7 @@ use App\Models\FavIcon;
 
 class KelolaBeritaController extends Controller
 {
+
     
     public function show()
     {
