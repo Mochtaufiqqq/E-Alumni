@@ -6,14 +6,15 @@ use Pagination;
 use App\Models\Logo;
 use App\Models\User;
 use App\Models\Berita;
-use App\Models\Foto_postingan;
+// use App\Models\Foto_postingan;
 use App\Models\Sosmed;
 use App\Models\FavIcon;
 use App\Models\Carousel;
 use App\Models\KesanPesan;
 use Illuminate\Http\Request;
-use App\Models\Foto_postingan;
+// use App\Models\Foto_postingan;
 use Illuminate\Support\Facades\DB;
+use App\Models\Riwayat_pendidikan;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -132,46 +133,44 @@ class UserController extends Controller
 
     public function profile(User $user)
     {   
+        $logo = Logo::first();
         $fvicon = FavIcon::first();
         $user = Auth::user();
-        $social = Sosmed::first();
-        // dd($social);
-        $rpendidikan = Riwayat_pendidikan::first();
-
-        if ($rpendidikan == TRUE) {
-            $rp = $rpendidikan;
-        }else{
-            $rp = null;
-        }
-
-        if($social == TRUE){
-            $sosmed = $social;
-        }else{
-            $sosmed = null;
-            // dd($sosmed);
-        }
+        $sosmed = Sosmed::where('user_id', Auth()->User()->id)->first();
+        //  dd($logos);
+        $rp = Riwayat_pendidikan::where('user_id', Auth()->User()->id)->first();
 
         return view('content.user.detail_profile',[
             'user' => $user,
-        ],compact('user', 'sosmed','fvicon', 'rp'));
+            // 'sosmed' => Sosmed::all(),
+        ],compact('user', 'sosmed','fvicon', 'rp', 'logo'));
     }
 
     public function settingprofileuser(Request $request, User $user){
+        // dd($request);
         $validatedData = $request->validate([
             'foto_profile' => 'image|mimes:jpg,png,jpeg|max:5000',
-            // 'nama_panggilan' => 'required',
-            
         ]);
-
-        if($request->file()) {
+        
+        if ($request->file()) {
             $fileName = time().$request->file('foto_profile')->getClientOriginalName();
-            $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
-         $validatedData['foto_profile'] = '/storage/' .$path;
-
+            $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName);
+            $validatedData['foto_profile'] = '/storage/' .$path;
         }
 
         User::where('id', $user->id)->update($validatedData);
         return redirect('/profile')->with('success', 'Berhasil mengubah!');
+    }
+
+    public function addnamapanggilan(Request $request, User $user)
+    {
+        $validatedData = $request->validate([
+            'nama_panggilan' => 'required',        
+        ]);
+
+        User::where('id', $user->id)->update($validatedData);
+        return redirect('/profile')->with('success', 'Berhasil mengubah!');
+
     }
 
     public function addpekerjaan(Request $request, User $user) {
@@ -191,31 +190,29 @@ class UserController extends Controller
     public function addsosmed(Request $request) {
 
         Sosmed::with('user');
-        $validatedData = $request->validate([
-            'instagram'      => 'required',
-            'facebook'      => 'required',
-            'tiktok'      => 'required',
-            'linkedin'      => 'required',
-            
+        
+       $request['user_id'] = auth()->user()->id;
+       Sosmed::create([
+        'instagram'=> $request->instagram,
+        'facebook' => $request->facebook,
+        'tiktok'=> $request->tiktok,
+        'linkedin'=> $request->linkedin,
        ]);
-       $validatedData['user_id'] = auth()->user()->id;
-       Sosmed::create($validatedData);
 
        return redirect('/profile')->with('success', 'Berhasil Menambahkan Sosial Media!');
     }
 
-    public function editsosmed(Request $request, $id) {
+    public function editsosmed(Request $request) {
 
         Sosmed::with('user');
-        $validatedData = $request->validate([
-            'instagram'      => 'required',
-            'facebook'      => 'required',
-            'tiktok'      => 'required',
-            'linkedin'      => 'required',
-            
+
+       $request["user_id"] = auth()->user()->id;
+       Sosmed::where('user_id', Auth()->User()->id)->update([
+        'instagram'      => $request->instagram,
+        'facebook'      => $request->facebook,
+        'tiktok'      => $request->tiktok,
+        'linkedin'      => $request->linkedin,
        ]);
-       $validatedData["user_id"] = auth()->user()->id;
-       Sosmed::where('id', $id)->update($validatedData);
 
        return redirect('/profile')->with('success', 'Berhasil Mengubah Sosial Media!');
     }
@@ -224,20 +221,41 @@ class UserController extends Controller
     //riwayat_pendidikan
     public function addpendidikan(Request $request)
     {
-        dd($request);
+        // dd($request);
         Riwayat_pendidikan::with('user');
         $validatedData = $request->validate([
-            'univ',
-            'smk',
-            'smp',
+            'nama_sekolah',
             'tahun_mulai',
             'tahun_akhir',
+            'rp_id'
         ]);
 
         $validatedData["user_id"] = auth()->user()->id;
-        Riwayat_pendidikan::create($validatedData);
+        Riwayat_pendidikan::create([
+            'nama_sekolah_univ' => " UNIV " . $request->nama_sekolah_univ,
+            'tahun_mulai_univ' => $request->tahun_mulai_univ,
+            'tahun_akhir_univ' => $request->tahun_akhir_univ,
+            'nama_sekolah_smk' => " SMK " . $request->nama_sekolah_smk,
+            'tahun_akhir_smk' => $request->tahun_akhir_smk,
+            'tahun_mulai_smk' => $request->tahun_mulai_smk,
+            'nama_sekolah_smp' => " SMP " . $request->nama_sekolah_smp,
+            'tahun_mulai_smp' => $request->tahun_mulai_smp,
+            'tahun_akhir_smp' => $request->tahun_akhir_smp,
+            'user_id' => Auth()->User()->id
+        ]);
+        
 
         return redirect('/profile')->with('success', 'Berhasil Menambahkan Pendidikan!');
+    }
+
+    public function addkarya(Request $request, User $user)
+    {
+        $validatedData = $request->validate([
+            'karya' => 'required',        
+        ]);
+
+        User::where('id', $user->id)->update($validatedData);
+        return redirect('/profile')->with('success', 'Berhasil mengubah!');
     }
 
 }

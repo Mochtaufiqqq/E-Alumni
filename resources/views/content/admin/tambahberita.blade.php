@@ -106,7 +106,7 @@
                                         name="images[]" placeholder="foto" multiple required autofocus
                                         onchange="previewImage()">
 
-                            @error('foto')
+                            @error('images')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

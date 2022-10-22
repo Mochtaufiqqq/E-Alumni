@@ -29,6 +29,7 @@ class User extends Authenticatable
         'nama',
         'nama_panggilan',
         'pekerjaan',
+        'karya',
         'jabatan_pekerjaan',
         'email',
         'jurusan',
@@ -73,14 +74,14 @@ class User extends Authenticatable
     }
 
 
-    public function riwayat_organisasi()
+    public function jabatan()
     {
-        return $this->belongsTo(Riwayat_organisasi::class);
+        return $this->hasOne(Jabatan::class);
     }
 
     public function sosmed()
     {
-        return $this->hasOne(Sosmed::class);
+        return $this->hasMany(Sosmed::class);
     }
 
 

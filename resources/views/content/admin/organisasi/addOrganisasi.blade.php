@@ -55,7 +55,7 @@
 
                                         <input class="form-control @error('logo') is-invalid @enderror" type="file"
                                             name="logo" id="image" placeholder="logo" required autofocus
-                                            onchange="previewImage()" accept="image/*">
+                                            onchange="previewImage()">
                                     @error('logo')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -137,7 +137,7 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="image">Deskripsi Organisasi</label>
                                         <textarea class="form-control @error('deskripsi') is-invalid @enderror"
-                                            name="deskripsi" id="image" placeholder="Deskripsi" required ></textarea>
+                                            name="deskripsi" id="" placeholder="Deskripsi" required type="text"></textarea>
                                     @error('deskripsi')
                                     <div class="invalid-feedback">
                                         {{ $message }}

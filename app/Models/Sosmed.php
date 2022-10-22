@@ -23,6 +23,6 @@ class Sosmed extends Model
 
     public function sosmed()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class);
     }
 }

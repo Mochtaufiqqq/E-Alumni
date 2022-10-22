@@ -32,7 +32,7 @@ class KelolaBeritaController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
-            // 'dokumentasi' => 'required|mimes:jpg,png,jpeg|max:5000',
+            'images.*' => 'required|mimes:jpg,png,jpeg|max:5000',
             'judul' => 'required',
             'isi' => 'required',
             'kategori' => 'required',

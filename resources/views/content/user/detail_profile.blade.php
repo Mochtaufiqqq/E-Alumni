@@ -68,7 +68,7 @@
                             <p class="mt-4">Edit foto profil</p>
                         </a>
                         @endif
-                        
+
                         <hr>
 
                         @if (auth()->user()->pekerjaan == '')
@@ -94,16 +94,16 @@
                         <a href="#modalRP" data-bs-toggle="modal" data-bs-target="#modalRP"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">edid riwayat pendidikan</p>
-                        </a>  
+                        </a>
                         @endif
-                        
+
                         <hr>
- 
+
                         <a href="#modalOrganisasi" data-bs-toggle="modal" data-bs-target="#modalOrganisasi"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Tambahkan riwayat organisasi</p>
                         </a>
-                        
+
                         <hr>
 
                         <a href="#modalKeahlian" data-bs-toggle="modal" data-bs-target="#modalKeahlian"
@@ -112,7 +112,7 @@
                         </a>
 
                         <hr>
-                        
+
                         @if ($sosmed == '')
                         <a href="#mod   alSosmed" data-bs-toggle="modal" data-bs-target="#modalSosmed"
                             style="text-decoration: none; color:black">
@@ -122,22 +122,29 @@
                         <a href="#modalEditSosmed" data-bs-toggle="modal" data-bs-target="#modalEditSosmed"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Edit sosial media</p>
-                        </a>    
+                        </a>
                         @endif
-                        
+
                         <hr>
-                        
+
                         <a href="#modalFotoKegiatan" data-bs-toggle="modal" data-bs-target="#modalFotoKegiatan"
                             style="text-decoration: none; color:black">
                             <p class="mt-4">Tambahkan dokumentasi</p>
                         </a>
-                        
+
                         <hr>
-                        
-                        <a href="#modalKarya" data-bs-toggle="modal" data-bs-target="#modalKarya"
-                            style="text-decoration: none; color:black">
-                            <p class="mt-4">Tambahkan karya</p>
-                        </a>
+
+                        @if (auth()->user()->karya == null)    
+                            <a href="#modalKarya" data-bs-toggle="modal" data-bs-target="#modalKarya"
+                                style="text-decoration: none; color:black">
+                                <p class="mt-4">Tambahkan karya</p>
+                            </a>
+                        @else
+                            <a href="#modalKarya" data-bs-toggle="modal" data-bs-target="#modalEditKarya"
+                                style="text-decoration: none; color:black">
+                                <p class="mt-4">Edit karya</p>
+                            </a>
+                        @endif
                     </div>
 
                     <div class="modal-footer">
@@ -147,7 +154,7 @@
             </div>
         </div>
 
- {{-- allmodal --}}
+        {{-- allmodal --}}
 
         <!-- Modal nama panggilan -->
         <div class="modal fade" tabindex="-1" role="dialog" id="modalNamaPanggilan">
@@ -195,7 +202,7 @@
                     <div class="modal-body tab-content py-4">
 
                         <!-- Sign in form -->
-                        <form action="/updateprofile/{{ auth()->user()->id }}" method="POST"
+                        <form action="/addnamapanggilan/{{ auth()->user()->id }}" method="POST"
                             class="tab-pane fade show active" autocomplete="off" id="signin">
                             @csrf
                             @method('put')
@@ -206,36 +213,6 @@
                                     placeholder="Nama Panggilan">
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">Edit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" tabindex="-1" role="dialog" id="modalNamaPanggilan">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-
-                    <!-- Modal header with nav tabs -->
-                    <div class="modal-header">
-                        <h5 class="modal-title">Tambahkan nama panggilan</h5>
-                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <!-- Modal body with tab panes -->
-                    <div class="modal-body tab-content py-4">
-
-                        <!-- Sign in form -->
-                        <form action="/updateprofile/{{ auth()->user()->id }}" method="POST"
-                            class="tab-pane fade show active" autocomplete="off" id="signin">
-                            @csrf
-                            @method('put')
-                            <div class="mb-3">
-                                <label class="form-label" for="email1">Nama Panggilan</label>
-                                <input class="form-control" type="text" name="nama_panggilan" id="email1"
-                                    placeholder="Nama Panggilan">
-                            </div>
-                            <button class="btn btn-primary d-block w-100" type="submit">Tambah</button>
                         </form>
                     </div>
                 </div>
@@ -399,12 +376,14 @@
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Nama Perusahaan</label>
                                 <input class="form-control" type="text" name="pekerjaan" id="email1"
-                                    placeholder="Nama Perusahaan" value="{{ old('nama_panggilan',auth()->user()->pekerjaan) }}">
+                                    placeholder="Nama Perusahaan"
+                                    value="{{ old('nama_panggilan',auth()->user()->pekerjaan) }}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Jabatan</label>
                                 <input class="form-control" type="text" name="jabatan_pekerjaan" id="email1"
-                                    placeholder="Sebagai" value="{{ old('nama_panggilan',auth()->user()->jabatan_pekerjaan) }}">
+                                    placeholder="Sebagai"
+                                    value="{{ old('nama_panggilan',auth()->user()->jabatan_pekerjaan) }}">
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">edit</button>
                         </form>
@@ -429,18 +408,20 @@
 
                         <!-- Sign in form -->
 
-                        <form class="tab-pane fade show active" autocomplete="off" id="" action="/addpendidikan" method="POST">
+                        <form class="tab-pane fade show active" autocomplete="off" id="" action="/addpendidikan"
+                            method="POST">
                             @csrf
                             @method('put')
                             <h2 class="h5 text-dark mb-4">Perguruan Tinggi</h2>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Nama Universitas</label>
-                                <input class="form-control" type="univ" name="univ" id="email1"
+                                <input class="form-control" type="univ" name="nama_sekolah_univ" id="email1"
                                     placeholder="Nama Perusahaan">
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Mulai</label>
-                                <select id="country" class="form-select form-select-lg" required name="tahun_mulai">
+                                <select id="country" class="form-select form-select-lg" required
+                                    name="tahun_mulai_univ">
                                     <option selected>Pilih Tahun Lulus</option>
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
@@ -458,7 +439,8 @@
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Akhir</label>
-                                <select id="country" class="form-select form-select-lg" required name="tahun_akhir">
+                                <select id="country" class="form-select form-select-lg" required
+                                    name="tahun_akhir_univ">
                                     <option value="Belum selesai">Belum selesai</option>
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
@@ -477,12 +459,12 @@
                             <h2 class="h5 text-dark mb-4">SMA / SMK</h2>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Nama Sekolah</label>
-                                <input class="form-control" type="text" name="smk" id="email1"
+                                <input class="form-control" type="text" name="nama_sekolah_smk" id="email1"
                                     placeholder="Nama SMA/SMK">
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Mulai</label>
-                                <select id="country" class="form-select form-select-lg" required name="tahun_mulai">
+                                <select id="country" class="form-select form-select-lg" required name="tahun_mulai_smk">
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
                                     <option value="2017">2017</option>
@@ -499,7 +481,7 @@
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Akhir</label>
-                                <select id="country" class="form-select form-select-lg" required name="tahun_akhir">
+                                <select id="country" class="form-select form-select-lg" required name="tahun_akhir_smk">
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
                                     <option value="2017">2017</option>
@@ -517,12 +499,12 @@
                             <h2 class="h5 text-dark mb-4">Sekolah Menengah Pertama</h2>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Nama Sekolah</label>
-                                <input class="form-control" type="text" name="smp" id="email1"
+                                <input class="form-control" type="text" name="nama_sekolah_smp" id="email1"
                                     placeholder="Nama SMA/SMK">
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Mulai</label>
-                                <select id="country" class="form-select form-select-lg" required name="tahun_mulai">
+                                <select id="country" class="form-select form-select-lg" required name="tahun_mulai_smp">
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
                                     <option value="2017">2017</option>
@@ -539,7 +521,7 @@
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Akhir</label>
-                                <select id="country" class="form-select form-select-lg" required name="tahun_akhir">
+                                <select id="country" class="form-select form-select-lg" required name="tahun_akhir_smp">
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
                                     <option value="2017">2017</option>
@@ -652,7 +634,7 @@
         <div class="modal fade" tabindex="-1" role="dialog" id="modalSosmed">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    
+
                     <!-- Modal header with nav tabs -->
                     <div class="modal-header">
                         <h5 class="modal-title">Tambahkan sosial media</h5>
@@ -663,7 +645,8 @@
                     <div class="modal-body tab-content py-4">
 
                         <!-- Sign in form -->
-                        <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/addsosmed" method="POST">
+                        <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/addsosmed"
+                            method="POST">
                             @csrf
                             @method('put')
                             <div class="mb-3">
@@ -678,8 +661,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Tiktok</label>
-                                <input class="form-control" type="text" name="tiktok" id="email1"
-                                    placeholder="Tiktok">
+                                <input class="form-control" type="text" name="tiktok" id="email1" placeholder="Tiktok">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Linkedin</label>
@@ -692,7 +674,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Modal Edit sosial media -->
         <div class="modal fade" tabindex="-1" role="dialog" id="modalEditSosmed">
             <div class="modal-dialog" role="document">
@@ -703,20 +685,17 @@
                         <h5 class="modal-title">Tambahkan sosial media</h5>
                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    
+
                     <!-- Modal body with tab panes -->
                     <div class="modal-body tab-content py-4">
-                        
+
                         <!-- Sign in form -->
                         @if ($sosmed == null)
                         @else
-                        <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/editsosmed/{{ $sosmed->id }}" method="POST">
+                        <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/editsosmed"
+                            method="POST">
                             @csrf
                             @method('put')
-                            <div class="mb-3">
-                                <input class="form-control" type="text" name="id" hidden id="email1"
-                                    placeholder="instagram" value="{{ old('nama_panggilan', $sosmed->id) }}">
-                            </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Instagram</label>
                                 <input class="form-control" type="text" name="instagram" id="email1"
@@ -729,13 +708,13 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Tiktok</label>
-                                <input class="form-control" type="text" name="tiktok" id="email1"
-                                    placeholder="Tiktok" value="{{ old('nama_panggilan', $sosmed->tiktok) }}">
+                                <input class="form-control" type="text" name="tiktok" id="email1" placeholder="Tiktok"
+                                    value="{{ old('nama_panggilan', $sosmed->tiktok) }}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Linkedin</label>
                                 <input class="form-control" type="text" name="linkedin" id="email1"
-                                placeholder="Linkedin" value="{{ old('nama_panggilan', $sosmed->linkedin) }}">
+                                    placeholder="Linkedin" value="{{ old('nama_panggilan', $sosmed->linkedin) }}">
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">Edit</button>
                         </form>
@@ -744,8 +723,6 @@
                 </div>
             </div>
         </div>
-
-        
 
         <!-- Modal for foto kegiatan -->
         <div class="modal fade" tabindex="-1" role="dialog" id="modalFotoKegiatan">
@@ -790,11 +767,13 @@
                     <div class="modal-body tab-content py-4">
 
                         <!-- Sign in form -->
-                        <form class="tab-pane fade show active" autocomplete="off" id="signin">
+                        <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/addkarya/{{ auth()->user()->id }}" method="post">
+                        @csrf
+                        @method('put')
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Karya</label>
-                                <input class="form-control" type="text" name="nama_panggilan" id="email1"
-                                    placeholder="Tambahkan karyamu berupa link">
+                                <textarea class="form-control" type="text" name="karya" id="email1"
+                                    placeholder="Tambahkan karyamu berupa link"></textarea>
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">Tambah</button>
                         </form>
@@ -814,89 +793,82 @@
                     {{ session('success') }}
                 </div>
                 @endif
-                <h1 class="h2 pt-xl-1 pb-3">Profil Saya</h1>
-                
+                <h1 class="h2 pt-xl-1 pb-3 mt-4">Profil Saya</h1>
+
                 <!-- Basic info -->
                 <div class="row pb-2">
-                    <div class="col-4 mb-4">
-                        
-                        <label for="fn" class="form-label fs-base">Email</label>
-                        <p>{{ auth()->user()->email }}</p>
-                        
-                        <div class="col-4 mb-4">
+                    <div class="col-12 mb-4">
+
+                        <div class="mb-4 mt-4">
+                            <label for="fn" class="form-label fs-base">Email</label>
+                            <p>{{ auth()->user()->email }}</p>
+                        </div>
+
+                        <hr>
+
+                        <div class="mb-4 mt-4">
                             <label for="sn" class="form-label fs-base">Alamat</label>
                             <p>{{ auth()->user()->alamat }}</p>
                         </div>
-                    </div>
 
-                    <div class="col-4 mb-4">
+                        <hr>
+
+                        <div class="mb-4 mt-4">
+                            @if (Auth::user()->pekerjaan == '')
+                            @else
                             <label for="email" class="form-label fs-base">Pekerjaan</label>
-                            @if (Auth::user()->pekerjaan == '')
-                                <p>Bekerja di <em>PT.Inovindo Digital Media</em> <small class="text-muted">(contoh)</small></p>
-                            @else
-                                <p>Bekerja di {{ auth()->user()->pekerjaan }}</p>
+                            <div>Bekerja di {{ auth()->user()->pekerjaan }}</div>
+                            <div>Sebagai {{ auth()->user()->jabatan_pekerjaan }}</div>
                             @endif
-                            
-                            @if (Auth::user()->pekerjaan == '')
-                                <p>Sebagai <em>Pegawai</em> <small class="text-muted">(contoh)</small></p>
-                            @else
-                                <p>Sebagai {{ auth()->user()->jabatan_pekerjaan }}</p>
-                            @endif
-                    </div>
+                        </div>
 
-                    <div class="col-4 mb-4">
-                        <label for="" class="form-label fs-base">Social Media</label>
-                            @if ($sosmed == null)
-                                <p><i class="bx bxl-instagram"></i>@user<small class="text-muted">(contoh)</small></p>
-                            @else
-                                <p><i class="bx bxl-instagram"></i> {{ $sosmed->instagram }}</p>
-                            @endif
-                            
-                            @if ($sosmed == null)
-                                <p><i class="bx bxl-facebook"></i> User<small class="text-muted">(contoh)</small></p>
-                            @else
-                                <p><i class="bx bxl-facebook"></i> {{ $sosmed->facebook }}</p>
-                            @endif
-                            
-                            @if ($sosmed == null)
-                                <p><i class="bx bxl-tiktok"></i> User<small class="text-muted">(contoh)</small></p>
-                            @else
-                                <p><i class="bx bxl-tiktok"></i> {{ $sosmed->tiktok }}</p> 
-                            @endif
-                            
-                            @if ($sosmed == null)
-                                <p><i class="bx bxl-facebook"></i> User<small class="text-muted">(contoh)</small></p>
-                            @else
-                                <p><i class="bx bxl-linkedin"></i> {{ $sosmed->linkedin }}</p>
-                            @endif
-                    </div>
+                        <hr>
 
-                    <div class="col-4 mb-4">
-                        <label for="phone" class="form-label fs-base">Phone</label>
-                        @if (Auth::user()->no_tlp == '')
+                        <div class="mb-4 mt-4">
+                            @if ($sosmed == null)
+                            @else
+                            <label for="" class="form-label fs-base">Social Media</label>
+                                <div><i class="bx bxl-instagram-alt"></i> {{ $sosmed->instagram }}</div>
+                                <div><i class="bx bxl-facebook"></i> {{ $sosmed->facebook }}</div>
+                                <div><i class="bx bxl-tiktok"></i> {{ $sosmed->tiktok }}</div>
+                                <div><i class="bx bxl-linkedin"></i> {{ $sosmed->linkedin }}</div>
+                            @endif
+                        </div>
+
+                        <hr>
+
+                        <div class="mb-4 mt-4">
+                            <label for="phone" class="form-label fs-base">Phone</label>
+                            @if (Auth::user()->no_tlp == '')
                             <p><em>62+12345689</em> <small class="text-muted">(contoh)</small></p>
-                        @else
+                            @else
                             <p>{{ auth()->user()->no_tlp }}</p>
-                        @endif
-                    </div>
-                    
-                    <div class="col-4 mb-4">
-                        <label for="" class="form-label fs-base">Pendidikan</label>
-                        @if ($rp == null)
-                        <p> <small class="text-muted">(contoh)</small></p>
-                        @else
-                        <p>{{ $rp->univ }}</p>
-                        @endif
-                        @if ($rp == null)
-                        <p> <small class="text-muted">(contoh)</small></p>
-                        @else
-                        <p>{{ $rp->smk }}</p>
-                        @endif
-                        @if ($rp == null)
-                        <p> <small class="text-muted">(contoh)</small></p>
-                        @else
-                        <p>{{ $rp->smp }}</p>
-                        @endif
+                            @endif
+                        </div>
+
+                        <hr>
+
+                        <div class="mb-4 mt-4">
+                            @if ($rp == null)
+
+                            @else
+                            <label for="" class="form-label fs-base">Pendidikan</label>
+                            <div>{{ $rp->nama_sekolah_univ }} ({{ $rp->tahun_mulai_univ }} - {{ $rp->tahun_akhir_univ }})</div>
+                            <div>{{ $rp->nama_sekolah_smk }} ({{ $rp->tahun_mulai_smk }} - {{ $rp->tahun_akhir_smk }})</div>
+                            <div>{{ $rp->nama_sekolah_smp }} ({{ $rp->tahun_mulai_smp }} - {{ $rp->tahun_akhir_smp }})</div>
+                            @endif
+                        </div>
+
+                        <hr>
+
+                        <div class="mb-4 mt-4">
+                            @if (auth()->user()->karya == null)
+                                
+                            @else
+                            <label for="" class="form-label fs-base">Karya</label>
+                                <div>{{ auth()->user()->karya }}</div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

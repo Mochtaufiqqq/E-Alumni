@@ -40,7 +40,7 @@
                 <div class="card-body">
                     <a class="btn btn-primary mb-3" href="/organisasi/add">Tambah Data</a>
                       <div class="dt-ext table-responsive">
-                          <table id="responsive" class="display">
+                          <table class="table table-bordered" id="basic-row-reorder">
                               <thead>
                                   <tr>
                                       <th scope="col">No</th>

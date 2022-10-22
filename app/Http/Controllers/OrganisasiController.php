@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FavIcon;
 use App\Models\Jabatan;
 use App\Models\Organisasi;
+use App\Models\Logo;
 use Illuminate\Http\Request;
 use App\Models\Riwayat_organisasi;
 use Illuminate\Support\Facades\Hash;
@@ -15,10 +16,11 @@ class OrganisasiController extends Controller
     public function index()
     {
         $fvicon = FavIcon::first();
+        $logo = Logo::first();
         $organisasi = Riwayat_organisasi::all();
         $org = Organisasi::all();
         $jab = Jabatan::all();
-        return view('content.user.organisasi', compact('organisasi', 'org', 'jab','fvicon'));
+        return view('content.user.organisasi', compact('organisasi', 'org', 'jab','fvicon', 'logo'));
     }
 
     public function show()
@@ -72,10 +74,11 @@ class OrganisasiController extends Controller
     public function details()
     {
         $fvicon = FavIcon::first();
+        $logo = Logo::first();
         $organisasi = Riwayat_organisasi::all()->first();
         $org = Organisasi::all();
         $jab = Jabatan::all();
-        return view('content.user.detail_organisasi', compact('organisasi', 'org', 'jab','fvicon'));
+        return view('content.user.detail_organisasi', compact('organisasi', 'org', 'jab','fvicon', 'logo'));
     }
 
     public function edit()
@@ -110,7 +113,7 @@ class OrganisasiController extends Controller
             'periode' => $request->periode,
             'foto' => $foto,
             'logo' => $logo,
-            'deskripsi' =>$request
+            'deskripsi' => $request->deskripsi
         ]);
         
         return redirect('/organisasi/show')->with('berhasil', 'berhasil menambahkan');
