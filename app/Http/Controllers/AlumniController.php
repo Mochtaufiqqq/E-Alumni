@@ -40,8 +40,7 @@ class AlumniController extends Controller
             'chart_type' => 'bar',
         ];
 
-
-        $logo = Logo::all();
+        $logo = Logo::where('id','=','2');
         $beritas = Berita::orderBy('updated_at', 'DESC')->get();
         $organisasi = Riwayat_organisasi::all();
         $totalactive = User::where('role_id','=','2')->where('status','=','1')->get();

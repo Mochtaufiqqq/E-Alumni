@@ -2,13 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use PDF;
+use App\Models\Logo;
+use App\Models\FavIcon;
+use App\Models\Carousel;
+use Illuminate\Http\Request;
 use App\Models\Lowongan_Kerja;
 
 
 class KelolaKerjaController extends Controller
 {
+
+    public function publikasiloker(){
+        $fvicon = FavIcon::first();
+        $logo = Logo::first();
+        $carousel = Carousel::where('halaman' ,'=','publikasiloker')->first();
+
+        return view ('content.user.publikasiloker',compact('fvicon','logo','carousel'));
+    }
 
     public function show()
     {

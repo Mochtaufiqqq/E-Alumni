@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8">
-    <title>Tracer Alumni |  @yield('title')</title>
+    <title>Tracer Study |  @yield('title')</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Silicon - Multipurpose Technology Bootstrap Template">
@@ -25,9 +25,12 @@
     <link rel="stylesheet" media="screen" href="/user/vendor/boxicons/css/boxicons.min.css"/>
     <link rel="stylesheet" media="screen" href="/user/vendor/swiper/swiper-bundle.min.css"/>
     <link rel="stylesheet" media="screen" href="/user/vendor/lightgallery/css/lightgallery-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('/css/custom1.css') }}">
 
     <!-- Main Theme Styles + Bootstrap -->
     <link rel="stylesheet" media="screen" href="/user/css/theme.min.css">
+    
 
     <!-- Page loading styles -->
     <style>
@@ -106,6 +109,12 @@
             transform: rotate(360deg);
           }
         }
+      </style>
+
+      <style>
+        html {
+          scroll-behavior: smooth;
+          }
       </style>
 
 </head>

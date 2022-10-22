@@ -40,6 +40,9 @@
                                         <option selected disabled>Pilih Halaman</option>
                                         <option value="Alumni">Alumni</option>
                                         <option value="Berita">Berita</option>
+                                        <option value="Organisasi">Organisasi</option>
+                                        <option value="publikasiloker">Publikasi Loker</option>
+                                        <option value="loker">Loker</option>
                                         <option value="TentangKami">Tentang Kami</option>
                                         <option value="Dashboard">Dashboard</option>
                                     </select>
@@ -49,6 +52,7 @@
                                     </div>
                                     @enderror
                                 </div>
+                                
                                 <div class="mb-3 m-form__group">
                                     <label class="form-label">Isi</label>
                                     <div class="input-group">

@@ -254,7 +254,7 @@
         </div>
         
         <!-- Background -->
-        <div class="position-absolute top-0 end-0 w-50 h-100 bg-position-center bg-repeat-0 bg-size-cover d-none d-xl-block" style="background-image: url(/user/img/account/signin-bg.jpg);"></div>
+        <div class="position-absolute top-0 end-0 w-50 h-100 bg-position-center bg-repeat-0 bg-size-cover d-none d-xl-block" style="background-image: url({{ asset('imagenull/ttgkami.jpg') }});"></div>
       </section>
     </main>
 

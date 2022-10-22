@@ -40,13 +40,13 @@ class UserController extends Controller
     public function kesanpesan(){
         $logo = Logo::first();
         $fvicon = FavIcon::first();
-        $dtkesanpesan = KesanPesan::with('user')->latest()->get();
+        $dtkesanpesan = KesanPesan::all();
+        $kesanpesan = KesanPesan::where('user_id', auth()->user()->id)->first();
         return view('content.user.showkesanpesan',[
-            'user' => User::all(),
-            'fvicon' => $fvicon,
-            'kesanpesan' => KesanPesan::all(),
-        ], compact('dtkesanpesan','fvicon','logo'));
-    
+            // 'kesanpesan' => KesanPesan::all(),
+            // 'user' => User::all(),
+            
+        ], compact('fvicon','logo','kesanpesan','dtkesanpesan'));
     }
 
     public function addkesanpesan(Request $request){
@@ -74,7 +74,7 @@ class UserController extends Controller
         $validatedData["user_id"] = auth()->user()->id;
         KesanPesan::where('id', $kesanpesan->id)->update($validatedData);
 
-        return redirect('/kesanpesan')->with('success' ,'Berhasil mengedit kesan & pesan');
+        return redirect('/kesanpesan')->with('success' ,'Berhasil mengubah kesan & pesan');
         
     }
 
@@ -82,10 +82,9 @@ class UserController extends Controller
 
         $logo = Logo::first();
         $fvicon = FavIcon::first();
-        $carousel = Carousel::where('halaman','=','Alumni')->get();
+        $carousel = Carousel::where('halaman' ,'Alumni')->get();
         $user = User::where('role_id','=','2')->where('status','=','1')->get();
             
-        
         return view('content.user.semuaalumni',[
             
         ],compact('user','fvicon','carousel','logo'));
@@ -95,8 +94,8 @@ class UserController extends Controller
     public function angkatan1(){
         $logo = Logo::first();
         $fvicon = FavIcon::first();
-        $carousel = Carousel::where('id', 1)->get();
-        $user = User::where('thn_lulus','=','2015')
+        $carousel = Carousel::where('halaman','=','Alumni')->get();
+        $user = User::where('thn_lulus','=','2019')
         ->where('status','=','1')
         ->where('role_id','=','2')
         ->get();
@@ -108,8 +107,33 @@ class UserController extends Controller
 
         $logo = Logo::first();
         $fvicon = FavIcon::first();
-        $carousel = Carousel::where('id', 1)->get();
-        $user = User::where('thn_lulus','=','2016')
+        $carousel = Carousel::where('halaman','=','Alumni')->get();
+        $user = User::where('thn_lulus','=','2020')
+        ->where('status','=','1')
+        ->where('role_id','=','2')
+        ->get();
+
+        return view ('content.user.semuaalumni',compact('user','fvicon','carousel','logo'));
+    }
+    public function angkatan3(){
+
+        $logo = Logo::first();
+        $fvicon = FavIcon::first();
+        $carousel = Carousel::where('halaman','=','Alumni')->get();
+        $user = User::where('thn_lulus','=','2021')
+        ->where('status','=','1')
+        ->where('role_id','=','2')
+        ->get();
+
+        return view ('content.user.semuaalumni',compact('user','fvicon','carousel','logo'));
+    }
+
+    public function angkatan4(){
+
+        $logo = Logo::first();
+        $fvicon = FavIcon::first();
+        $carousel = Carousel::where('halaman','=','Alumni')->get();
+        $user = User::where('thn_lulus','=','2022')
         ->where('status','=','1')
         ->where('role_id','=','2')
         ->get();
@@ -125,19 +149,20 @@ class UserController extends Controller
            
             'user' => $user,
             'fvicon' => $fvicon,
-            'logo'  => $logo
+            'logo'  => $logo 
         ]);
     }
 
     public function profile(User $user)
     {   
         $fvicon = FavIcon::first();
+        $logo = Logo::first();
         $user = Auth::user();
         $sosmed = Sosmed::all();
         return view('content.user.detail_profile',[
             'user' => $user,
             'sosmed' => $sosmed
-        ],compact('user', 'sosmed','fvicon'));
+        ],compact('user', 'sosmed','fvicon','logo'));
     }
 
     public function settingprofileuser(Request $request, User $user){
@@ -168,7 +193,7 @@ class UserController extends Controller
         User::where('id', $user->id)->update($validatedData);
         return redirect('/profile')->with('success', 'Pekerjaan Berhasil Ditambahkan!');
 
-    }
+    } 
     
     public function addsosmed(Request $request) {
 

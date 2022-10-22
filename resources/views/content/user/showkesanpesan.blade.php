@@ -13,6 +13,8 @@
         {{ session('success') }}
     </div>
     @endif
+
+
     <h2 class="h1 text-center pb-md-1 mb-1 mb-sm-3">Kesan & Pesan</h2>
     @if (Route::has('login'))
     @auth
@@ -73,7 +75,7 @@
                 <div class="modal-body tab-content py-4">
 
                     <!-- Sign in form -->
-                    <form action="/editkesanpesan/{{ $kesanpesan->id }}" method="POST" class="tab-pane fade show active" autocomplete="off"
+                    <form action="/editkesanpesan" method="POST" class="tab-pane fade show active" autocomplete="off"
                         id="signin">
                         @csrf
                         @method('put')

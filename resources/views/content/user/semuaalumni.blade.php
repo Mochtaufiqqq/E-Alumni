@@ -9,75 +9,43 @@
 
 <!-- Swiper tabs -->
 <div class="position-relative py-lg-4 py-xl-5">
-    <div class="swiper-tabs position-absolute top-0 start-0 w-100 h-100">
-        @foreach ($carousel as $item)
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+
+            @foreach ($carousel as $key => $c)
             
-        <div id="a{{ $item->id }}"
-            class="position-absolute top-0 start-0 w-100 h-100 bg-position-center bg-repeat-0 bg-size-cover swiper-tab"
-             style="background-image: url(/storage/caroussel-images/{{  $item->foto }});">
+          <div class="carousel-item {{ $key == 0 ? 'active':'' }}">
+            @if ($c->foto)
+            <img src="{{ asset($c->foto) }}" class="d-block w-100" alt="...">    
+            @endif
             
-            <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-35"></span>
-        </div>
-        @endforeach
-    </div>
-
-    <!-- Swiper slider -->
-    <div class="container position-relative zindex-5 py-5">
-        <div class="row py-2 py-md-3">
-            <div class="col-xl-5 col-lg-7 col-md-9">
-
-                <!-- Slider controls (Prev / next) -->
-
-                <!-- Card -->
-                <div class="swiper" data-swiper-options='{
-                "spaceBetween": 30,
-                        "loop": true,
-                        "tabs": true,
-                        "pagination": {
-                          "el": "#case-study-pagination",
-                          "clickable": true
-                        },
-                        "navigation": {
-                          "prevEl": "#case-study-prev",
-                          "nextEl": "#case-study-next"
-                        }
-                      }'>
-                    <div class="swiper-wrapper">
-                        @foreach ($carousel as $item)
-                        <!-- Item -->
-                        <div class="swiper-slide" data-swiper-tab="#a{{ $item->id }}">
-                            <img src="{{ asset('user/img/landing/software-company/case-study-logo01.png') }}"
-                                class="d-block mb-3" width="72" alt="Logo">
-                            <p class="fs-sm text-muted border-bottom pb-3 mb-3">{{ $item->isi }}</p>
-                            <p class="pb-2 pb-lg-3 mb-3">Aenean dolor elit tempus tellus imperdiet. Elementum, ac
-                                convallis morbi sit est feugiat ultrices. Cras tortor maecenas pulvinar nec ac justo.
-                                Massa sem eget semper...</p>
-                            <a href="#" class="btn btn-primary">View "udy</a>
-                        </div>
-                        @endforeach
-
+            <div class="carousel-caption d-none d-md-block">
+                <div class="custom-carousel-content">
+                    <h1 style="margin-bottom :30">
+                        <span>{{ ($c->isi) }}</span>
+                    </h1>
+                    <div>
+                        <a href="#lihatsemuaalumni" class="btn btn-slider" style="margin-bottom: 50%">
+                            Lihat Semua Alumni
+                        </a>
                     </div>
                 </div>
             </div>
+          </div>
+          @endforeach
+
         </div>
 
-        <div class="d-flex justify-content-center justify-content-md-starts pb-3 mb-3">
-            <button type="button" id="case-study-prev" class="btn btn-prev btn-icon btn-sm bg-white me-2">
-                <i class="bx bx-chevron-left"></i>
-            </button>
-            <button type="button" id="case-study-next" class="btn btn-next btn-icon btn-sm bg-white ms-2">
-                <i class="bx bx-chevron-right"></i>
-            </button>
-        </div>
-        <!-- Pagination (bullets) -->
-        <div class="dark-mode pt-4 mt-3">
-            <div id="case-study-pagination" class="swiper-pagination position-relative bottom-0"></div>
-        </div>
-    </div>
+        <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </button>
+      </div>
 </div>
-
-
-
 
 
 <!-- Brands (Carousel) -->
@@ -108,15 +76,14 @@
 </div>
   </section> --}}
 
-<section class="container-fluid pt-lg-5 pb-5 mb-2 mb-md-4 mb-lg-5">
-    <h2 class="h1 text-center pb-md-1 mb-1 mb-sm-3">Semua Alumni</h2>
+<section id="lihatsemuaalumni" class="container-fluid pt-lg-5 pb-5 mb-2 mb-md-4 mb-lg-5">
+    <h2 class="h2 text-center pb-md-1 mb-1 mb-sm-3">Alumni SMKS MAHAPUTRA CERDAS UTAMA</h2>
     <div class="text-center mb-5">
         <a href="/semuaalumni" class="btn btn-outline-secondary">Semua</a>
         <a href="{{ route('angkatan1') }}" class="btn btn-outline-secondary">Angkatan 1</a>
         <a href="{{ route('angkatan2') }}" class="btn btn-outline-secondary">Angkatan 2</a>
-        <a href="" class="btn btn-outline-secondary">Angkatan 3</a>
-        <a href="" class="btn btn-outline-secondary">Angkatan 4</a>
-        <a href="" class="btn btn-outline-secondary">Angkatan 5</a>
+        <a href="{{ route('angkatan3') }}" class="btn btn-outline-secondary">Angkatan 3</a>
+        <a href="{{ route('angkatan4') }}" class="btn btn-outline-secondary">Angkatan 4</a>
     </div>
     <div class="row">
         @foreach ($user as $u)

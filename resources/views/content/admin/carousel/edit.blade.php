@@ -33,6 +33,7 @@
                     <div class="row">
                         <div class="col">
                             <form action="/carousel/update/{{ $carousel->id }}" method="POST" enctype="multipart/form-data">
+                                @method('put')
                                 @csrf
                                 <div class="mb-3 input-group-solid">
                                     <label class="form-label">Halaman</label>
@@ -61,22 +62,24 @@
                                     @enderror
                                 </div>
                                 
-                        <div class="mb-3 input-group-solid">
-                            <label class="form-label" for="image">Foto</label>
-
+                                <div class="mb-3 m-form__group">
+                                    <label class="form-label">Foto Caroussel</label>
+                                    @if ($carousel->foto) 
+                                    <img src="{{ asset($carousel->foto) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                    @else
+                                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                                    @endif
                                     <img class="img-preview img-fluid mb-3">
-                                    <input class="form-control @error('foto') is-invalid @enderror" type="file"
-                                        name="images[]" placeholder="foto" multiple required autofocus
-                                        onchange="previewImage()" id="image">
+                                      <input type="file" name="foto" id="image" class="form-control @error('foto') is-invalid @enderror" onchange="previewImage()">
+                                    @error('foto')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                  </div>
 
-                            @error('foto')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
                         <div class="mb-3">
-                            <button class="btn btn-primary" type="submit">Tambah 
+                            <button class="btn btn-primary" type="submit">Edit 
                                 <i class="fa fa-arrow-right"></i>
                             </button>
                         </div>
