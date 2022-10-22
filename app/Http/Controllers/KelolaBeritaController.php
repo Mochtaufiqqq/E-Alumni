@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\File;
 use App\Models\FavIcon;
+use App\Models\Logo;
+
+// use Barryvdh\DomPDF\Facade\Pdf;
 
 class KelolaBeritaController extends Controller
 {
@@ -113,10 +116,13 @@ class KelolaBeritaController extends Controller
         return redirect('/semuaberita')->with('success', 'Data berhasil dihapus!');
      }
 
-     public function detailberita(Berita $beritas) {
-        return view('content.admin.detailberita',[
-            'beritas' => $beritas
-        ]);
+     public function detailberita($id) {
+        $fvicon = FavIcon::first();
+        $logo = Logo::first();
+        $beritas = Berita::where('id', $id)->first();
+        return view('content.user.detail_berita',[
+            'beritas'=> $beritas,
+        ], compact('fvicon', 'logo', 'beritas'));
     }
     
     public function reportpdfberita(){
@@ -125,7 +131,7 @@ class KelolaBeritaController extends Controller
 
         $pdf = PDF::loadview('content.admin.reportpdfberita',[
         'beritas'=> $beritas,
-        'fvicon' => $fvicon])->setOptions(['defaultFont' => 'sans-serif']);;
+        'fvicon' => $fvicon])->setOptions(['defaultFont' => 'sans-serif']);
     	return $pdf->download('report-berita.pdf');
         return redirect('/semuaberita');
     }

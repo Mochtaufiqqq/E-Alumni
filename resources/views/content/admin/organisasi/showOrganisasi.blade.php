@@ -47,6 +47,7 @@
                                       <th scope="col">Foto</th>
                                       <th scope="col">Logo</th>
                                       <th scope="col">Organisasi</th>
+                                      <th scope="col">Dokumentasi</th>
                                       <th scope="col">Jabatan</th>
                                       <th scope="col">Periode</th>
                                       <th scope="col">Deskripsi</th>
@@ -64,6 +65,10 @@
                                           <img src="{{ asset($o->logo) }}" alt="" style="max-width: 100px; max-height: 80px;">
                                          </td>
                                         <td>{{ $o->organisasi->organisasi }}</td>
+                                        <td>@foreach (explode('|', $o->dokumentasi) as $img)
+                                            <img src="/storage/{{ $img }}" alt="" width="50" height="50">
+                                          @endforeach
+                                        </td>
                                         <td>{{ $o->jabatan->jabatan }}</td>
                                         <td>{{ $o->periode }}</td>
                                         <td>{{ $o->deskripsi }}</td>

@@ -11,6 +11,13 @@ class Berita extends Model
 
     protected $table = 'berita';
     protected $guarded = ['id'];
+    protected $fillable = [
+        'judul',
+        'isi',
+        'foto',
+        'dokumentasi',
+        'tgl'
+    ];
 
     public function admin()
     {

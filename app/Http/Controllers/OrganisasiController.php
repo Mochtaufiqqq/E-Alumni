@@ -45,6 +45,7 @@ class OrganisasiController extends Controller
         $validatedData = $request->validate([
             'periode' => 'required',
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
+            'images.*' => 'required|mimes:jpg,png,jpeg|max:5000',
             'logo' => 'required|mimes:jpg,png,jpeg|max:5000',
             'deskripsi' => 'required'
         ]);
@@ -57,11 +58,21 @@ class OrganisasiController extends Controller
         $path = $request->file('logo')->storeAs('organisasi-logo', $fileName);
         $logo = '/storage/' .$path;
 
+        $image = [];
+        
+        if($request->hasFile('images')){
+            foreach ($request->file('images') as $file){
+                $path = $file->store('dokumentasi_organisasi');
+                $image[] = $path;
+            }
+        }
+
         Riwayat_organisasi::create([
             'id_organisasi' => $request->organisasi,
             'id_jabatan' => $request->jabatan,
             'periode' => $request->periode,
             'foto' => $foto,
+            'dokumentasi' => implode('|', $image),
             'logo' => $logo,
             'deskripsi' =>$request
         ]);

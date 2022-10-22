@@ -37,7 +37,7 @@ Route::get('/tentangkami', [OtherController::class, 'tentangkami']);
 Route::get('/kesanpesan',[UserController::class,'kesanpesan']);
 //berita
 Route::get('/tampilberita', [UserController::class, 'tampil']);
-Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detail_berita']);
+Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detailberita']);
 //kontak
 Route::get('/kontak', [MailController::class, 'email']);
 Route::post('/kontak', [MailController::class, 'send'])->name('send');

@@ -2,14 +2,18 @@
     <div class="container px-3">
 
         <a href="#" class="navbar-brand">
-            @if ($logo->foto == null)
+            @if ($logo == null)
             <img src="{{ asset('/imagenull/logo.png') }}" width="47" alt="Silicon">
                 
             @else
             <img src="{{ asset($logo->foto) }}" width="47" alt="Silicon">    
             @endif
-        
-            {{ $logo->isi }}
+            
+            @if ($logo == null)
+                TRACER STUDY
+            @else
+                {{ $logo->isi }}
+            @endif
         </a>
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse5"
             aria-expanded="false">

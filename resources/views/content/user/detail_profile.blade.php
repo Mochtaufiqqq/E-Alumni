@@ -725,6 +725,10 @@
                             <p>{{ auth()->user()->no_tlp }}</p>
                             @endif
                         </div>
+                        <div class="col-6 mb-4">
+                            <label for="dokumentasi" class="form-label fs-base">Dokumentasi</label>
+                            <img src="{{ asset(auth()->user()->dokumentasi) }}" alt="">
+                        </div>
                 </div>
             </div>
         </div>

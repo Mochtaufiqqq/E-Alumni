@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-sm-6">
 
-                <h3>Tambah Data Berita</h3>
+                <h3>Tambah Data Organisasi</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/semuaberita">Semua Berita</a></li>
                     <li class="breadcrumb-item"> <a href="#"></a> Prestasi</li>
@@ -139,6 +139,20 @@
                                         <textarea class="form-control @error('deskripsi') is-invalid @enderror"
                                             name="deskripsi" id="image" placeholder="Deskripsi" required ></textarea>
                                     @error('deskripsi')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3 input-group-solid">
+                                    <label class="form-label" for="image">Foto Kegiatan</label>
+        
+                                            <img class="img-preview img-fluid mb-3">
+                                            <input class="form-control @error('foto') is-invalid @enderror" type="file"
+                                                name="images[]" placeholder="foto" multiple required autofocus
+                                                onchange="previewImage()">
+        
+                                    @error('foto')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
