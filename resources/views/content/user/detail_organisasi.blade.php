@@ -66,7 +66,7 @@
           <div class="swiper-wrapper">
   
               <!-- Item -->
-              @foreach ($organisasi as $item)
+              {{-- @foreach ($organisasi as $item)
               <div class="swiper-slide py-3">
                   <div class="card card-body card-hover bg-light border-0 text-center mx-2">
                       <img src="{{ $item->logo }}" class="d-block rounded-circle mx-auto mb-3" width="162"
@@ -80,7 +80,7 @@
                       </div>
                   </div>
               </div>
-              @endforeach
+              @endforeach --}}
           </div>
   
           <!-- Pagination (bullets) -->

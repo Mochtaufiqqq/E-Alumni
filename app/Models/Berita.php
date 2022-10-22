@@ -15,6 +15,7 @@ class Berita extends Model
         'judul',
         'isi',
         'foto',
+        'kategori',
         'dokumentasi',
         'tgl'
     ];

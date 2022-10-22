@@ -8,6 +8,7 @@ use App\Models\Organisasi;
 use App\Models\Logo;
 use Illuminate\Http\Request;
 use App\Models\Riwayat_organisasi;
+use App\Models\Riwayat_prestasi;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -76,13 +77,13 @@ class OrganisasiController extends Controller
             'foto' => $foto,
             'dokumentasi' => implode('|', $image),
             'logo' => $logo,
-            'deskripsi' =>$request
+            'deskripsi' =>$request->deskripsi
         ]);
         
         return redirect('/organisasi/show')->with('berhasil', 'berhasil menambahkan'); 
     }
 
-    public function details()
+    public function details($id)
     {
         $fvicon = FavIcon::first();
         $logo = Logo::first();
@@ -128,5 +129,12 @@ class OrganisasiController extends Controller
         ]);
         
         return redirect('/organisasi/show')->with('berhasil', 'berhasil menambahkan');
+    }
+
+    //USER
+    
+    public function struktur(Request $request)
+    {
+        
     }
 }

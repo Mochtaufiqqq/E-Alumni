@@ -34,14 +34,14 @@ class DatabaseSeeder extends Seeder
             hasodihasodihasodiahsdoiahsdoiashdoaishdousfoaihfio'
         ]);
 
-        FavIcon::create([
-            'favicon' => 'tracerstudy.ico'
-        ]);
+        // FavIcon::create([
+        //     'favicon' => 'tracerstudy.ico'
+        // ]);
 
-        Logo::create([
-            'isi' => 'TRACER STUDY',
-            'foto' => 'Null'
-        ]);
+        // Logo::create([
+        //     'isi' => 'TRACER STUDY',
+        //     'foto' => 'Null'
+        // ]);
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);

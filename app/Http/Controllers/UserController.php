@@ -155,11 +155,12 @@ class UserController extends Controller
         $logo = Logo::first();
         $fvicon = FavIcon::first();
         $user = Auth::user();
-        $sosmed = Sosmed::all();
+        $sosmed = Sosmed::where('user_id', Auth()->User()->id)->first();
+        $rp = Riwayat_pendidikan::where('user_id', Auth()->User()->id)->first();
         return view('content.user.detail_profile',[
             'user' => $user,
             'sosmed' => $sosmed
-        ],compact('user', 'sosmed','fvicon'));
+        ],compact('user', 'sosmed','fvicon', 'rp', 'logo'));
     }
 
     public function settingprofileuser(Request $request, User $user){
