@@ -4,13 +4,18 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\FavIcon;
+use App\Models\Logo;
 
 
-use App\Models\Organisasi;
 use App\Models\User;
+use App\Models\FavIcon;
+use App\Models\Organisasi;
 use App\Models\TentangKami;
 use Illuminate\Database\Seeder;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\JabatanSeeder;
+use Database\Seeders\OrganisasiSeeder;
 
 
 class DatabaseSeeder extends Seeder
@@ -31,6 +36,11 @@ class DatabaseSeeder extends Seeder
 
         FavIcon::create([
             'favicon' => 'tracerstudy.ico'
+        ]);
+
+        Logo::create([
+            'isi' => 'TRACER STUDY',
+            'foto' => 'Null'
         ]);
 
         $this->call(RoleSeeder::class);

@@ -36,8 +36,8 @@ Route::get('/organisasi/detail/{slug}', [OrganisasiController::class, 'details']
 Route::get('/tentangkami', [OtherController::class, 'tentangkami']);
 Route::get('/kesanpesan',[UserController::class,'kesanpesan']);
 //berita
-Route::get('/tampilberita', [KelolaBeritaController::class, 'tampil']);
-Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detail_berita']);
+Route::get('/tampilberita', [UserController::class, 'tampil']);
+Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detailberita']);
 //kontak
 Route::get('/kontak', [MailController::class, 'email']);
 Route::post('/kontak', [MailController::class, 'send'])->name('send');
@@ -157,12 +157,17 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::put('/addnamapanggilan/{user}',[UserController::class,'addnamapanggilan']);
     Route::put('/addkarya/{user}',[UserController::class,'addkarya']);
     Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
-    Route::put('/addsosmed',[UserController::class,'addsosmed']);
-    Route::put('/editsosmed',[UserController::class,'editsosmed']);
-    Route::put('/addpendidikan',[UserController::class,'addpendidikan']);
-    // Route::put('/editsosmed/{id}',[UserController::class,'editsosmed']);
-    Route::get('/kontak', [MailController::class, 'email']);
-    Route::post('/kontak', [MailController::class, 'send'])->name('send');
+
+
+     // kesan & pesan
+     Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
+     Route::put('/editkesanpesan{kesanpesan}',[UserController::class,'editkesanpesan']);
+
+     Route::put('/addsosmed/{user}',[UserController::class,'addsosmed']);
+    
+
+    Route::post('/addsosmed',[UserController::class,'addsosmed']);
+   
     
 });
 

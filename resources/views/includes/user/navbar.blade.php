@@ -76,7 +76,7 @@
                     <a href="/organisasi" class="nav-link">Organisasi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/ko" class="nav-link">Berita & Event</a>
+                    <a href="/tampilberita" class="nav-link">Berita & Event</a>
                 </li>
                 
                 <li class="nav-item dropdown">

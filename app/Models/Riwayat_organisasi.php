@@ -19,6 +19,7 @@ class Riwayat_organisasi extends Model
         'id_organisasi',
         'id_jabatan',
         'foto',
+        'dokumentasi',
         'logo',
         'periode',
         'deskripsi'

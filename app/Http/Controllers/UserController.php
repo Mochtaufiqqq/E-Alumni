@@ -19,6 +19,25 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    public function addpostingan(Request $request , User $user){
+
+        $image = [];
+
+        if($request->hasFile('images')){
+            foreach ($request->file('images') as $file){
+                $path = $file->store('postingan_alumni');
+                $image[] = $path;
+            }
+        } 
+        
+        User::where('id', $user->id)->update([
+            'foto_kegiatan' => implode('|', $image)
+        ]);   
+
+        return redirect('/profile')->with('success','Foto Kegiatan berhasil ditambahkan');
+    }
+
     public function dokumentasi(){
         return view('content.user.dokumentasi');
     }
@@ -136,14 +155,11 @@ class UserController extends Controller
         $logo = Logo::first();
         $fvicon = FavIcon::first();
         $user = Auth::user();
-        $sosmed = Sosmed::where('user_id', Auth()->User()->id)->first();
-        //  dd($logos);
-        $rp = Riwayat_pendidikan::where('user_id', Auth()->User()->id)->first();
-
+        $sosmed = Sosmed::all();
         return view('content.user.detail_profile',[
             'user' => $user,
-            // 'sosmed' => Sosmed::all(),
-        ],compact('user', 'sosmed','fvicon', 'rp', 'logo'));
+            'sosmed' => $sosmed
+        ],compact('user', 'sosmed','fvicon'));
     }
 
     public function settingprofileuser(Request $request, User $user){

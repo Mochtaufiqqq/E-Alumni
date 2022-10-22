@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('id_jabatan');
             $table->year('periode');
             $table->string('foto')->nullable();
+            $table->string('dokumentasi')->nullable();
             $table->string('logo')->nullable();
             $table->text('deskripsi');
             $table->timestamps();
