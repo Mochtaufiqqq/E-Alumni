@@ -91,9 +91,9 @@
                             <p class="mt-4">Tambahkan riwayat pendidikan</p>
                         </a>
                         @else
-                        <a href="#modalRP" data-bs-toggle="modal" data-bs-target="#modalRP"
+                        <a href="#modalRP" data-bs-toggle="modal" data-bs-target="#modaEditlRP"
                             style="text-decoration: none; color:black">
-                            <p class="mt-4">edid riwayat pendidikan</p>
+                            <p class="mt-4">Edit riwayat pendidikan</p>
                         </a>
                         @endif
 
@@ -171,7 +171,7 @@
                     <div class="modal-body tab-content py-4">
 
                         <!-- Sign in form -->
-                        <form action="/updateprofile/{{ auth()->user()->id }}" method="POST"
+                        <form action="/addnamapanggilan/{{ auth()->user()->id }}" method="POST"
                             class="tab-pane fade show active" autocomplete="off" id="signin">
                             @csrf
                             @method('put')
@@ -339,12 +339,12 @@
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Nama Perusahaan</label>
                                 <input class="form-control" type="text" name="pekerjaan" id="email1"
-                                    placeholder="Nama Perusahaan">
+                                    placeholder="Nama Perusahaan" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Jabatan</label>
                                 <input class="form-control" type="text" name="jabatan_pekerjaan" id="email1"
-                                    placeholder="Sebagai">
+                                    placeholder="Sebagai" required>
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">Tambah</button>
                         </form>
@@ -416,7 +416,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Nama Universitas</label>
                                 <input class="form-control" type="univ" name="nama_sekolah_univ" id="email1"
-                                    placeholder="Nama Perusahaan">
+                                    placeholder="Nama Universitas">
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Mulai</label>
@@ -543,6 +543,162 @@
             </div>
         </div>
 
+        <!-- Modal Edit RIWAYAT PENDIDIKAN -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="modaEditlRP">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+
+                    <!-- Modal header with nav tabs -->
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit riwayat pendidikan</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Modal body with tab panes -->
+                    <div class="modal-body tab-content py-4">
+
+                        <!-- Sign in form -->
+
+                        <form class="tab-pane fade show active" autocomplete="off" id="" action="/editpendidikan"
+                            method="POST">
+                            @csrf
+                            @method('put')
+                            <h2 class="h5 text-dark mb-4">Perguruan Tinggi</h2>
+                            <div class="mb-3">
+                                <label class="form-label" for="email1">Nama Universitas</label>
+                                <input class="form-control" type="univ" name="nama_sekolah_univ" id="email1"
+                                    placeholder="Nama Perusahaan" value="{{ old('nama_sekolah_univ', $rp->nama_sekolah_univ ?? 'none') }}">
+                            </div>
+                            <div class="col mb-3">
+                                <label class="form-label" for="email1">Tahun Mulai</label>
+                                <select id="country" class="form-select form-select-lg" required
+                                    name="tahun_mulai_univ">
+                                    <option selected value="{{ old('tahun_mulai_univ', $rp->tahun_mulai_univ ?? 'none') }}">{{ $rp->tahun_mulai_univ ?? 'none' }}</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                                <div class="invalid-feedback">Please choose your country!</div>
+                            </div>
+                            <div class="col mb-3">
+                                <label class="form-label" for="email1">Tahun Akhir</label>
+                                <select id="country" class="form-select form-select-lg" required
+                                    name="tahun_akhir_univ">
+                                    <option selected value="{{ old('tahun_akhir_univ', $rp->tahun_akhir_univ ?? 'none') }}">{{ $rp->tahun_akhir_univ ?? 'none'}}</option>
+                                    <option value="Belum selesai">Belum selesai</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                                <div class="invalid-feedback">Please choose your country!</div>
+                            </div>
+                            <h2 class="h5 text-dark mb-4">SMA / SMK</h2>
+                            <div class="mb-3">
+                                <label class="form-label" for="email1">Nama Sekolah</label>
+                                <input class="form-control" type="text" name="nama_sekolah_smk" id="email1"
+                                    placeholder="Nama SMA/SMK" value="{{ old('nama_panggilan', $rp->nama_sekolah_smk ?? 'none') }}">
+                            </div>
+                            <div class="col mb-3">
+                                <label class="form-label" for="email1">Tahun Mulai</label>
+                                <select id="country" class="form-select form-select-lg" required name="tahun_mulai_smk">
+                                    <option selected value="{{ old('nama_panggilan', $rp->tahun_mulai_smk ?? 'none') }}">{{ $rp->tahun_mulai_smk ?? 'none' }}</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                                <div class="invalid-feedback">Please choose your country!</div>
+                            </div>
+                            <div class="col mb-3">
+                                <label class="form-label" for="email1">Tahun Akhir</label>
+                                <select id="country" class="form-select form-select-lg" required name="tahun_akhir_smk" >
+                                    <option selected value="{{ old('nama_panggilan', $rp->tahun_akhir_smk ?? 'none') }}">{{ $rp->tahun_akhir_smk ?? 'none'}}</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                                <div class="invalid-feedback">Please choose your country!</div>
+                            </div>
+                            <h2 class="h5 text-dark mb-4">Sekolah Menengah Pertama</h2>
+                            <div class="mb-3">
+                                <label class="form-label" for="email1">Nama Sekolah</label>
+                                <input class="form-control" type="text" name="nama_sekolah_smp" id="email1"
+                                    placeholder="Nama SMP" value="{{ old('nama_panggilan', $rp->nama_sekolah_smp ?? 'none') }}">
+                            </div>
+                            <div class="col mb-3">
+                                <label class="form-label" for="email1">Tahun Mulai</label>
+                                <select id="country" class="form-select form-select-lg" required name="tahun_mulai_smp" >
+                                    <option selected value="{{ old('nama_panggilan', $rp->tahun_mulai_smp ?? 'none') }}">{{ $rp->tahun_mulai_smp ?? 'none'}}</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                                <div class="invalid-feedback">Please choose your country!</div>
+                            </div>
+                            <div class="col mb-3">
+                                <label class="form-label" for="email1">Tahun Akhir</label>
+                                <select id="country" class="form-select form-select-lg" required name="tahun_akhir_smp" >
+                                    <option selected value="{{ old('nama_panggilan', $rp->tahun_akhir_smp ?? 'none') }}">{{ $rp->tahun_akhir_smp ?? 'none'}}</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                                <div class="invalid-feedback">Please choose your country!</div>
+                            </div>
+                            <button class="btn btn-primary d-block w-100" type="submit">Edit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Modal ORGANISASI -->
         <div class="modal fade" tabindex="-1" role="dialog" id="modalOrganisasi">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -559,39 +715,40 @@
 
                         <!-- Sign in form -->
 
-                        <form class="tab-pane fade show active" autocomplete="off" id="signin">
+                        <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/addorganisasi" method="POST">
+                            @csrf
+                            @method('put')
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Nama Organisasi</label>
-                                <select id="country" class="form-select form-select-lg" required>
-                                    <option value="" disabled>Choose country</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="USA">USA</option>
+                                <select id="country" class="form-select form-select-lg" required name="organisasi">
+                                    @foreach ($org as $item)
+                                        <option value="{{ $item->id }}">{{ $item->organisasi }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Jabatan</label>
-                                <select id="country" class="form-select form-select-lg" required>
-                                    <option value="" disabled>Choose country</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="USA">USA</option>
+                                <select id="country" class="form-select form-select-lg" required name="jabatan">
+                                    @foreach ($jab as $item)
+                                        <option value="{{ $item->id }}">{{ $item->jabatan }}</option>
+                                    @endforeach
                                 </select>
                                 <div class="invalid-feedback">Please choose your country!</div>
                             </div>
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Periode</label>
-                                <select id="country" class="form-select form-select-lg" required>
-                                    <option value="" disabled>Choose country</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="USA" selected>USA</option>
+                                <select id="country" class="form-select form-select-lg" required name="periode">
+                                    <option value="2025">2025</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2015">2015</option>
                                 </select>
                                 <div class="invalid-feedback">Please choose your country!</div>
                             </div>
@@ -682,7 +839,7 @@
 
                     <!-- Modal header with nav tabs -->
                     <div class="modal-header">
-                        <h5 class="modal-title">Tambahkan sosial media</h5>
+                        <h5 class="modal-title">Edit sosial media</h5>
                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
@@ -699,22 +856,22 @@
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Instagram</label>
                                 <input class="form-control" type="text" name="instagram" id="email1"
-                                    placeholder="instagram" value="{{ old('nama_panggilan', $sosmed->instagram) }}">
+                                    placeholder="instagram" value="{{ old('instagram', $sosmed->instagram) }}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Facebook</label>
                                 <input class="form-control" type="text" name="facebook" id="email1"
-                                    placeholder="Facebook" value="{{ old('nama_panggilan', $sosmed->facebook) }}">
+                                    placeholder="Facebook" value="{{ old('facebook', $sosmed->facebook) }}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Tiktok</label>
                                 <input class="form-control" type="text" name="tiktok" id="email1" placeholder="Tiktok"
-                                    value="{{ old('nama_panggilan', $sosmed->tiktok) }}">
+                                    value="{{ old('tiktok', $sosmed->tiktok) }}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">Linkedin</label>
                                 <input class="form-control" type="text" name="linkedin" id="email1"
-                                    placeholder="Linkedin" value="{{ old('nama_panggilan', $sosmed->linkedin) }}">
+                                    placeholder="Linkedin" value="{{ old('linkedin', $sosmed->linkedin) }}">
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">Edit</button>
                         </form>
@@ -830,7 +987,7 @@
                         <div class="mb-4 mt-4">
                             @if ($sosmed == null)
                             @else
-                            <label for="" class="form-label fs-base">Social Media</label>
+                            <label for="" class="form-label fs-base">Sosial Media</label>
                                 <div><i class="bx bxl-instagram-alt"></i> {{ $sosmed->instagram }}</div>
                                 <div><i class="bx bxl-facebook"></i> {{ $sosmed->facebook }}</div>
                                 <div><i class="bx bxl-tiktok"></i> {{ $sosmed->tiktok }}</div>
@@ -841,44 +998,48 @@
 
 
                         <div class="mb-4 mt-4">
-                            <label for="phone" class="form-label fs-base">Phone</label>
+                            <label for="phone" class="form-label fs-base">No Telepon</label>
                             @if (Auth::user()->no_tlp == '')
                             <p><em>62+12345689</em> <small class="text-muted">(contoh)</small></p>
+                            <hr>
                             @else
                             <p>{{ auth()->user()->no_tlp }}</p>
                             <hr>
                             @endif
                         </div>
 
-                        
 
                         <div class="mb-4 mt-4">
                             @if ($rp == null)
 
                             @else
                             <label for="" class="form-label fs-base">Pendidikan</label>
-                            <div>{{ $rp->nama_sekolah_univ }} ({{ $rp->tahun_mulai_univ }} - {{ $rp->tahun_akhir_univ }})</div>
-                            <div>{{ $rp->nama_sekolah_smk }} ({{ $rp->tahun_mulai_smk }} - {{ $rp->tahun_akhir_smk }})</div>
-                            <div>{{ $rp->nama_sekolah_smp }} ({{ $rp->tahun_mulai_smp }} - {{ $rp->tahun_akhir_smp }})</div>
+                            <div >Universitas &nbsp;  {{ $rp->nama_sekolah_univ }} ({{ $rp->tahun_mulai_univ }} - {{ $rp->tahun_akhir_univ }})</div>
+                            <div >SMK/SMA &nbsp; {{ $rp->nama_sekolah_smk }} ({{ $rp->tahun_mulai_smk }} - {{ $rp->tahun_akhir_smk }})</div>
+                            <div >SMP &nbsp; {{ $rp->nama_sekolah_smp }} ({{ $rp->tahun_mulai_smp }} - {{ $rp->tahun_akhir_smp }})</div>
                             <hr>
                             @endif
                         </div>
 
-                        
 
                         <div class="mb-4 mt-4">
                             @if (auth()->user()->karya == null)
                                 
                             @else
                             <label for="" class="form-label fs-base">Karya</label>
-                                <div>{{ auth()->user()->karya }}</div>
+                                <div><a href="https://{{ auth()->user()->karya }}">{{ auth()->user()->karya }}</a></div>
                                 <hr>
                             @endif
                         </div>
 
                         <div class="col-6 mb-4">
+                            @if (auth()->user()->dokumentasi == null)
+                                
+                            @else
+                                
                             <label for="dokumentasi" class="form-label fs-base">Dokumentasi</label>
                             <img src="{{ asset(auth()->user()->dokumentasi) }}" alt="">
+                            @endif
                         </div>
                     </div>
                 </div>

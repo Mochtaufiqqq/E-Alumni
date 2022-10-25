@@ -6,15 +6,18 @@ use Pagination;
 use App\Models\Logo;
 use App\Models\User;
 use App\Models\Berita;
-// use App\Models\Foto_postingan;
 use App\Models\Sosmed;
 use App\Models\FavIcon;
+use App\Models\Jabatan;
 use App\Models\Carousel;
 use App\Models\KesanPesan;
+use App\Models\Organisasi;
 use Illuminate\Http\Request;
 // use App\Models\Foto_postingan;
-use Illuminate\Support\Facades\DB;
+use App\Models\Organisasiuser;
+use App\Models\Riwayat_organisasi;
 use App\Models\Riwayat_pendidikan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -180,12 +183,14 @@ class UserController extends Controller
         $fvicon = FavIcon::first();
         $logo = Logo::first();
         $user = Auth::user();
-        $sosmed = Sosmed::where('user_id', auth()->user()->id)->first();
-        $rp = Riwayat_pendidikan::where('user_id', auth()->user()->id)->first();
+        $org = Organisasi::all();
+        $jab = Jabatan::all();
+        $sosmed = Sosmed::where('user_id', Auth()->User()->id)->first();
+        $rp = Riwayat_pendidikan::where('user_id', Auth()->User()->id)->first();
         return view('content.user.detail_profile',[
             'user' => $user,
             'sosmed' => $sosmed
-        ],compact('user', 'sosmed','fvicon', 'rp', 'logo'));
+        ],compact('user', 'sosmed','fvicon', 'rp', 'logo', 'jab', 'org'));
     }
 
     public function settingprofileuser(Request $request, User $user){
@@ -239,6 +244,7 @@ class UserController extends Controller
         'facebook' => $request->facebook,
         'tiktok'=> $request->tiktok,
         'linkedin'=> $request->linkedin,
+        'user_id' => auth()->user()->id
        ]);
 
        return redirect('/profile')->with('success', 'Berhasil Menambahkan Sosial Media!');
@@ -274,13 +280,13 @@ class UserController extends Controller
 
         $validatedData["user_id"] = auth()->user()->id;
         Riwayat_pendidikan::create([
-            'nama_sekolah_univ' => " UNIV " . $request->nama_sekolah_univ,
+            'nama_sekolah_univ' => $request->nama_sekolah_univ,
             'tahun_mulai_univ' => $request->tahun_mulai_univ,
             'tahun_akhir_univ' => $request->tahun_akhir_univ,
-            'nama_sekolah_smk' => " SMK " . $request->nama_sekolah_smk,
+            'nama_sekolah_smk' => $request->nama_sekolah_smk,
             'tahun_akhir_smk' => $request->tahun_akhir_smk,
             'tahun_mulai_smk' => $request->tahun_mulai_smk,
-            'nama_sekolah_smp' => " SMP " . $request->nama_sekolah_smp,
+            'nama_sekolah_smp' => $request->nama_sekolah_smp,
             'tahun_mulai_smp' => $request->tahun_mulai_smp,
             'tahun_akhir_smp' => $request->tahun_akhir_smp,
             'user_id' => Auth()->User()->id
@@ -288,6 +294,35 @@ class UserController extends Controller
         
 
         return redirect('/profile')->with('success', 'Berhasil Menambahkan Pendidikan!');
+    }
+
+    public function editpendidikan(Request $request)
+    {
+        // dd($request);
+        Riwayat_pendidikan::with('user');
+        $validatedData = $request->validate([
+            'nama_sekolah',
+            'tahun_mulai',
+            'tahun_akhir',
+            'rp_id'
+        ]);
+
+        $validatedData["user_id"] = auth()->user()->id;
+        Riwayat_pendidikan::where('user_id', Auth()->User()->id)->update([
+            'nama_sekolah_univ' => $request->nama_sekolah_univ,
+            'tahun_mulai_univ' => $request->tahun_mulai_univ,
+            'tahun_akhir_univ' => $request->tahun_akhir_univ,
+            'nama_sekolah_smk' => $request->nama_sekolah_smk,
+            'tahun_akhir_smk' => $request->tahun_akhir_smk,
+            'tahun_mulai_smk' => $request->tahun_mulai_smk,
+            'nama_sekolah_smp' => $request->nama_sekolah_smp,
+            'tahun_mulai_smp' => $request->tahun_mulai_smp,
+            'tahun_akhir_smp' => $request->tahun_akhir_smp,
+            'user_id' => Auth()->User()->id
+        ]);
+        
+
+        return redirect('/profile')->with('success', 'Berhasil Mengubah Pendidikan!');
     }
 
     public function addkarya(Request $request, User $user)
@@ -298,6 +333,19 @@ class UserController extends Controller
 
         User::where('id', $user->id)->update($validatedData);
         return redirect('/profile')->with('success', 'Berhasil mengubah!');
+    }
+
+    public function addorganisasi(Request $request)
+    {   
+
+        Organisasiuser::create([
+            'riwayat_organisasi_id' => $request->organisasi,
+            'jabatan_id' => $request->jabatan,
+            'user_id' => Auth()->User()->id
+        ]);
+
+        return redirect('/profile')->with('success', 'Berhasil mengubah!');
+
     }
 
 }

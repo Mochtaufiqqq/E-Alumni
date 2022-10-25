@@ -19,16 +19,6 @@
               <blockquote class="card-body mt-2 mb-0">
                 <p class="fs-lg">Dolor, a eget elementum, integer nulla volutpat, nunc, sit. Quam iaculis varius mauris magna sem. Egestas sed sed suscipit dolor faucibus dui imperdiet at eget. Tincidunt imperdiet quis hendrerit aliquam feugiat neque cras sed. Dictum quam integer volutpat tellus, faucibus platea. Pulvinar turpis proin faucibus at mauris.</p>
               </blockquote>
-              <figcaption class="card-footer border-0 d-sm-flex pt-0 mt-n3 mt-lg-0">
-                <div class="d-flex align-items-center border-end-sm pe-sm-4 me-sm-4">
-                  <img src="assets/img/avatar/05.jpg" width="48" class="d-md-none rounded-circle" alt="Ralph Edwards">
-                  <div class="ps-3 ps-md-0">
-                    <h5 class="fw-semibold lh-base mb-0">Ralph Edwards</h5>
-                    <span class="fs-sm text-muted">Head of Marketing</span>
-                  </div>
-                </div>
-                <img src="assets/img/brands/02.svg" width="160" class="d-block mt-2 ms-5 mt-sm-0 ms-sm-0" alt="Company logo">
-              </figcaption>
             </figure>
           </div>
         </div>
@@ -66,21 +56,19 @@
           <div class="swiper-wrapper">
   
               <!-- Item -->
-              {{-- @foreach ($organisasi as $item)
+              @foreach ($orUser as $item)
               <div class="swiper-slide py-3">
                   <div class="card card-body card-hover bg-light border-0 text-center mx-2">
-                      <img src="{{ $item->logo }}" class="d-block rounded-circle mx-auto mb-3" width="162"
-                          alt="Ralph Edwards">
-                      <h5 class="fw-medium fs-lg mb-1">{{ $item->organisasi->organisasi }}</h5>
-                      <p class="fs-sm mb-3">Tentang {{ $item->organisasi->organisasi }}</p>
+                      <img src="{{ $item->user->foto_profile }}" class="d-block rounded-circle mx-auto mb-3" width="162"
+                      alt="Ralph Edwards">
+                      <h5 class="fw-medium fs-lg mb-1">{{ $item->organisasi->organisasi}}</h5>
+                      <p class="fs-sm mb-3">{{ $item->jabatan->jabatan }}</p>
                       <div class="d-flex justify-content-center">
-                          <a href="/organisasi/detail/{{ $item->slug }}" class="btn btn-outline-primary btn-md">
-                              <i class="bx bxl-facebook"></i>
-                          </a>
+
                       </div>
                   </div>
               </div>
-              @endforeach --}}
+              @endforeach
           </div>
   
           <!-- Pagination (bullets) -->

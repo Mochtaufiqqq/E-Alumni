@@ -75,9 +75,9 @@ class User extends Authenticatable
     }
 
 
-    public function jabatan()
+    public function organisasiuser()
     {
-        return $this->hasOne(Jabatan::class);
+        return $this->hasMany(Organisasiuser::class);
     }
 
     public function sosmed()

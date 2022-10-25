@@ -17,7 +17,6 @@ class Riwayat_organisasi extends Model
     protected $table = 'riwayat_organisasi';
     protected $fillable = [
         'id_organisasi',
-        'id_jabatan',
         'foto',
         'dokumentasi',
         'logo',
@@ -39,13 +38,8 @@ class Riwayat_organisasi extends Model
         return $this->belongsTo(Organisasi::class, 'id');
     }
 
-    public function jabatan()
+    public function organisasiuser()
     {
-        return $this->belongsTo(Jabatan::class, 'id');
-    }
-
-    public function user()
-    {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Organisasiuser::class);
     }
 }

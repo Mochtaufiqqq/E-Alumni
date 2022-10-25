@@ -156,15 +156,28 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
     Route::put('/addnamapanggilan/{user}',[UserController::class,'addnamapanggilan']);
     Route::put('/addkarya/{user}',[UserController::class,'addkarya']);
+    Route::put('/addsosmed',[UserController::class,'addsosmed']);
+    Route::put('/addorganisasi',[UserController::class,'addorganisasi']);
+    Route::put('/editsosmed',[UserController::class,'editsosmed']);
+    Route::put('/addpendidikan',[UserController::class,'addpendidikan']);
+    Route::put('/editpendidikan',[UserController::class,'editpendidikan']);
     Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
 
 
      // kesan & pesan
+<<<<<<< HEAD
+     Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
+     Route::put('/editkesanpesan{kesanpesan}',[UserController::class,'editkesanpesan']);
+
+    
+
+=======
     Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
     Route::put('/editkesanpesan/{kesanpesan}',[UserController::class,'editkesanpesan']);
 
     Route::put('/addsosmed/{user}',[UserController::class,'addsosmed']);
     Route::post('/addsosmed',[UserController::class,'addsosmed']);
+>>>>>>> 380345bc951af78d39fcd81266a65baf4dceee9a
    
     
 });
