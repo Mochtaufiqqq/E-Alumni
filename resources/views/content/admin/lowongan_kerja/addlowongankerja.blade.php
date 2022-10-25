@@ -39,7 +39,7 @@
                 <div class="mb-3 m-form__group">
                   <label class="form-label" for="image">Judul</label>
                   
-                    <img class="img-preview img-fluid mb-3">
+                   
                     <input class="form-control @error('judul') is-invalid @enderror" type="text" name="judul" id="judl" placeholder="Judul" required autofocus onchange="previewImage()">
                 
                   @error('judul')
@@ -48,36 +48,38 @@
                   </div>
                   @enderror
                 </div>
+
+                <div class="mb-3 m-form__group">
+                  <label class="form-label" for="image">Nama Perusahaan</label>
+                  
+                    
+                    <input class="form-control @error('nama_perusahaan') is-invalid @enderror" type="text" name="nama_perusahaan" id="" placeholder="Nama perusahaan" required autofocus onchange="previewImage()">
+                
+                  @error('nama_perusahaan')
+                  <div class="invalid-feedback">
+                      {{ $message }}
+                  </div>
+                  @enderror
+                </div>
+
                   <div class="mb-3 m-form__group">
-                    <label class="form-label">Dekskripsi</label>
+                    <label class="form-label">Deskripsi</label>
                     <div class="input-group">
-                      <input class="form-control @error('dekskripsi') is-invalid @enderror" type="text" name="dekskripsi" placeholder="Deksripsi" required autofocus>
+                      <textarea class="form-control" name="deskripsi" id="" cols="30" rows="10" placeholder="Deskripsi"></textarea>
                     </div>
-                    @error('dekskripsi')
+                    @error('deskripsi')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
                   </div>
+
                   <div class="mb-3">
                     <label class="form-label">Tgl</label>
                     <div class="input-group">
-                      <input class="form-control @error('tgl') is-invalid @enderror" type="text" name="tgl" placeholder="Tanggal" aria-label="Recipient's username" required autofocus>
+                      <input class="form-control @error('tgl') is-invalid @enderror" type="date" name="tgl" placeholder="Tanggal" aria-label="Recipient's username" required autofocus>
                     </div>
                     @error('tgl')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                  </div>
-                  <div class="mb-3 input-group-solid">
-                    <label class="form-label">Kategori</label>
-                    <select name="kategori" id="" class="form-select form-control" required autofocus>
-                        <option selected>Pilih Kategori</option>
-                        <option value="Develover">Develover</option>
-                        <option value="Designer">Designer</option>
-                    </select>
-                    @error('kategori')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -87,7 +89,7 @@
                     <label class="form-label" for="image">Foto</label>
                   
                     <img class="img-preview img-fluid mb-3">
-                    <input class="form-control @error('foto') is-invalid @enderror" type="file" name="foto" id="foto" placeholder="foto" required autofocus onchange="previewImage()">
+                    <input class="form-control @error('foto') is-invalid @enderror" type="file" name="foto" id="image" placeholder="foto" required autofocus onchange="previewImage()">
                 
                     @error('foto')
                     <div class="invalid-feedback">

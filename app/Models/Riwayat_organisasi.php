@@ -19,6 +19,7 @@ class Riwayat_organisasi extends Model
         'id_organisasi',
         'id_jabatan',
         'foto',
+        'dokumentasi',
         'logo',
         'periode',
         'deskripsi'
@@ -43,7 +44,7 @@ class Riwayat_organisasi extends Model
         return $this->belongsTo(Jabatan::class, 'id');
     }
 
-    public function alumni()
+    public function user()
     {
         return $this->hasMany(User::class);
     }

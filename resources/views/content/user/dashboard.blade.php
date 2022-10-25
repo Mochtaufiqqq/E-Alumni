@@ -5,136 +5,117 @@
 @section('content')
 
 
-<!-- Link swiper slides to any content via swiper-tabs. Place outside of any container -->
-
 <!-- Swiper tabs -->
 <div class="position-relative py-lg-4 py-xl-5">
-    <div class="swiper-tabs position-absolute top-0 start-0 w-100 h-100">
-        <div id="image-1"
-            class="position-absolute top-0 start-0 w-100 h-100 bg-position-center bg-repeat-0 bg-size-cover swiper-tab active"
-            style="background-image: url({{ asset('user/img/landing/software-company/case-study01.jpg') }});">
-            <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-35"></span>
-        </div>
-        <div id="image-2"
-            class="position-absolute top-0 start-0 w-100 h-100 bg-position-center bg-repeat-0 bg-size-cover swiper-tab"
-            style="background-image: url({{ asset('user/img/landing/software-company/case-study02.jpg') }});">
-            <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-35"></span>
-        </div>
-        <div id="image-3"
-            class="position-absolute top-0 start-0 w-100 h-100 bg-position-center bg-repeat-0 bg-size-cover swiper-tab"
-            style="background-image: url({{ asset('user/img/landing/software-company/case-study02.jpg') }});">
-            <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-35"></span>
-        </div>
-    </div>
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
 
-    <!-- Swiper slider -->
-    <div class="container position-relative zindex-5 py-5">
-        <div class="row py-2 py-md-3">
-            <div class="col-xl-5 col-lg-7 col-md-9">
-
-                <!-- Slider controls (Prev / next) -->
-
-                <!-- Card -->
-                <div class="swiper" data-swiper-options='{
-                "spaceBetween": 30,
-                        "loop": true,
-                        "tabs": true,
-                        "pagination": {
-                          "el": "#case-study-pagination",
-                          "clickable": true
-                        },
-                        "navigation": {
-                          "prevEl": "#case-study-prev",
-                          "nextEl": "#case-study-next"
-                        }
-                      }'>
-                    <div class="swiper-wrapper">
-
-                        <!-- Item -->
-                        <div class="swiper-slide" data-swiper-tab="#image-1">
-                            <img src="{{ asset('user/img/landing/software-company/case-study-logo01.png') }}"
-                                class="d-block mb-3" width="72" alt="Logo">
-                            <h3 class="mb-2">Cashless payment "udy</h3>
-                            <p class="fs-sm text-muted border-bottom pb-3 mb-3">Payment Service Provider Company</p>
-                            <p class="pb-2 pb-lg-3 mb-3">Aenean dolor elit tempus tellus imperdiet. Elementum, ac
-                                convallis morbi sit est feugiat ultrices. Cras tortor maecenas pulvinar nec ac justo.
-                                Massa sem eget semper...</p>
-                            <a href="#" class="btn btn-primary">View "udy</a>
-                        </div>
-
-                        <!-- Item -->
-                        <div class="swiper-slide" data-swiper-tab="#image-2">
-                            <img src="{{ asset('user/img/landing/software-company/case-study-logo02.png') }}"
-                                class="d-block mb-3" width="72" alt="Logo">
-                            <h3 class="mb-2">Smart tech "udy</h3>
-                            <p class="fs-sm text-muted border-bottom pb-3 mb-3">Data Analytics Company</p>
-                            <p class="pb-2 pb-lg-3 mb-3">Adipiscing quis a at ligula. Gravida gravida diam rhoncus
-                                cursus in. Turpis sagittis tempor gravida phasellus sapien. Faucibus donec consectetur
-                                sed id sit nisl.</p>
-                            <a href="#" class="btn btn-primary">View "udy</a>
-                        </div>
-                        <!-- item -->
-                        <div class="swiper-slide" data-swiper-tab="#image-3">
-                            <img src="{{ asset('user/img/landing/software-company/case-study-logo02.png') }}"
-                                class="d-block mb-3" width="72" alt="Logo">
-                            <h3 class="mb-2">Smart tech "udy</h3>
-                            <p class="fs-sm text-muted border-bottom pb-3 mb-3">Data Analytics Company</p>
-                            <p class="pb-2 pb-lg-3 mb-3">Adipiscing quis a at ligula. Gravida gravida diam rhoncus
-                                cursus in. Turpis sagittis tempor gravida phasellus sapien. Faucibus donec consectetur
-                                sed id sit nisl.</p>
-                            <a href="#" class="btn btn-primary">View "udy</a>
-                        </div>
+            @foreach ($carousel as $key => $c)
+            
+          <div class="carousel-item {{ $key == 0 ? 'active':'' }}">
+            @if ($c->foto)
+            <img src="{{ asset($c->foto) }}" class="d-block w-100" alt="...">    
+            @endif
+            
+            <div class="carousel-caption d-none d-md-block">
+                    <h5>
+                        <span>{{ ($c->judul) }}</span>
+                    </h5>
+                    <div>
                     </div>
-                </div>
             </div>
+          </div>
+          @endforeach
+
         </div>
 
-        <div class="d-flex justify-content-center justify-content-md-starts pb-3 mb-3">
-            <button type="button" id="case-study-prev" class="btn btn-prev btn-icon btn-sm bg-white me-2">
-                <i class="bx bx-chevron-left"></i>
-            </button>
-            <button type="button" id="case-study-next" class="btn btn-next btn-icon btn-sm bg-white ms-2">
-                <i class="bx bx-chevron-right"></i>
-            </button>
-        </div>
-        <!-- Pagination (bullets) -->
-        <div class="dark-mode pt-4 mt-3">
-            <div id="case-study-pagination" class="swiper-pagination position-relative bottom-0"></div>
-        </div>
-    </div>
+        <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </button>
+      </div>
 </div>
-
-<!-- Breadcrumb -->
-<nav class="container py-4 mb-2 my-lg-3" aria-label="breadcrumb">
-    <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item">
-            <a href="index-2.html"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">About v.2</li>
-    </ol>
-</nav>
 
 
 <!-- About company -->
-<section class="container pb-5 mb-md-2 mb-lg-4">
-    <h1 class="border-bottom pb-4">Who We Are</h1>
-    <div class="row pt-2 pt-md-3">
-        <div class="col-md-6">
-            <p class="fs-lg pe-lg-4 mb-1 mb-lg-4">Mi semper risus ultricies orci pulvinar in at enim orci. Quis
-                facilisis nunc pellentesque in ullamcorper sit. Lorem blandit arcu sapien, senectus libero, amet dapibus
-                cursus quam. Eget pellentesque eu purus volutpat adipiscing malesuada. Purus nisi, tortor vel lacus.
-                Donec diam molestie ultrices vitae eget pulvinar fames. Velit lacus mi purus velit justo, amet. Nascetur
-                lobortis diam, duis orci. Vitae nibh amet lorem pellentesque.</p>
+<section id="landings" class="container text-center pt-5 mt-2 mt-md-4 mt-lg-5">
+    <h2 class="h1 pt-2 pt-lg-0">Jumlah Alumni</h2>
+    <p class="fs-lg pb-2 pb-md-3 pb-lg-0 mb-4 mb-lg-5">Jumlah alumni SMKS MAHAPUTRA CERDAS UTAMA dari tahun 2015 - 2022</p>
+    <div id="div_counter" class="swiper mt-n3 mt-md-0 pt-md-4 pt-lg-5 mx-n2 swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden" data-swiper-options="{
+        &quot;slidesPerView&quot;: 1,
+        &quot;spaceBetween&quot;: 8,
+        &quot;pagination&quot;: {
+          &quot;el&quot;: &quot;.swiper-pagination&quot;,
+          &quot;clickable&quot;: true
+        },
+        &quot;navigation&quot;: {
+          &quot;prevEl&quot;: &quot;#prev-news&quot;,
+          &quot;nextEl&quot;: &quot;#next-news&quot;
+        },
+        &quot;breakpoints&quot;: {
+          &quot;500&quot;: {
+            &quot;slidesPerView&quot;: 2
+          },
+          &quot;700&quot;: {
+            &quot;slidesPerView&quot;: 3
+          },
+          &quot;1000&quot;: {
+            &quot;slidesPerView&quot;: 4
+          }
+        }
+      }">
+        <div class="swiper-wrapper" id="swiper-wrapper-a1e6b08b2f00a3a3" aria-live="polite">
+
+          <!-- Item -->
+          <div class="swiper-slide h-auto pb-3 swiper-slide-active counter-item" role="group" aria-label="1 / 4" style="width: 238.5px; margin-right: 8px;">
+            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
+              <lottie-player class="d-dark-mode-none mx-auto mt-4 mb-2" src="assets/json/animation-feature-1-light.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
+              <lottie-player class="d-none d-dark-mode-block mx-auto mt-4 mb-2" src="assets/json/animation-feature-1-dark.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
+              <h5 class="counter">1230</h5>
+              <div class="card-body fs-lg fw-semibold text-center">Angkatan 1 (2015 - 2019)</div>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div class="swiper-slide h-auto pb-3 swiper-slide-next" role="group" aria-label="2 / 4" style="width: 238.5px; margin-right: 8px;">
+            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
+              <lottie-player class="d-dark-mode-none mx-auto mt-4 mb-2" src="assets/json/animation-feature-2-light.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
+              <lottie-player class="d-none d-dark-mode-block mx-auto mt-4 mb-2" src="assets/json/animation-feature-2-dark.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
+              <div class="card-body fs-lg fw-semibold text-center">2109</div>
+              <div class="card-body fs-lg fw-semibold text-center">Angkatan 1 (2015 - 2019)</div>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div class="swiper-slide h-auto pb-3" role="group" aria-label="3 / 4" style="width: 238.5px; margin-right: 8px;">
+            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
+              <lottie-player class="d-dark-mode-none mx-auto mt-4 mb-2" src="assets/json/animation-feature-3-light.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
+              <lottie-player class="d-none d-dark-mode-block mx-auto mt-4 mb-2" src="assets/json/animation-feature-3-dark.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
+              <div class="card-body fs-lg fw-semibold text-center">2109</div>
+              <div class="card-body fs-lg fw-semibold text-center">Angkatan 1 (2015 - 2019)</div>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div class="swiper-slide h-auto pb-3" role="group" aria-label="4 / 4" style="width: 238.5px; margin-right: 8px;">
+            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
+              <lottie-player class="d-dark-mode-none mx-auto mt-4 mb-2" src="assets/json/animation-feature-4-light.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
+              <lottie-player class="d-none d-dark-mode-block mx-auto mt-4 mb-2" src="assets/json/animation-feature-4-dark.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
+              <div class="card-body fs-lg fw-semibold text-center">2109</div>
+              <div class="card-body fs-lg fw-semibold text-center">Angkatan 1 (2015 - 2019)</div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-6">
-            <p class="fs-lg ps-lg-4 mb-1 mb-lg-4">Ac at sed sit senectus massa. Massa ante amet ultrices magna porta
-                tempor. Aliquet diam in et magna ultricies mi at. Lectus enim, vel enim egestas nam pellentesque et leo.
-                Elit mi faucibus laoreet aliquam pellentesque sed aliquet integer massa. Orci leo tortor ornare id
-                mattis auctor aliquam volutpat aliquet. Odio lectus viverra eu blandit nunc malesuada vitae eleifend
-                pulvinar. In ac fermentum sit in orci.</p>
-        </div>
-    </div>
-</section>
+    
+        <!-- Pagination (bullets) -->
+        <div class="swiper-pagination position-relative bottom-0 mt-2 swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal swiper-pagination-lock"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span></div>
+      <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+    
+  </section>
 
 
 <!-- Stats -->

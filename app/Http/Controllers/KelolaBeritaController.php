@@ -9,9 +9,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\File;
 use App\Models\FavIcon;
+use App\Models\Logo;
+
+// use Barryvdh\DomPDF\Facade\Pdf;
 
 class KelolaBeritaController extends Controller
 {
+
     
     public function show()
     {
@@ -32,7 +36,7 @@ class KelolaBeritaController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
-            // 'dokumentasi' => 'required|mimes:jpg,png,jpeg|max:5000',
+            'images.*' => 'required|mimes:jpg,png,jpeg|max:5000',
             'judul' => 'required',
             'isi' => 'required',
             'kategori' => 'required',
@@ -92,6 +96,15 @@ class KelolaBeritaController extends Controller
 
         }
         
+        $image = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $path = $file->store('foto-dokumentasi');
+                $image[] = $path;
+            }
+        }
+        
         Berita::where('id', $beritas->id)->update($validatedData);
 
         return redirect('/semuaberita')->with('success', 'Data berhasil diubah!');
@@ -103,10 +116,13 @@ class KelolaBeritaController extends Controller
         return redirect('/semuaberita')->with('success', 'Data berhasil dihapus!');
      }
 
-     public function detailberita(Berita $beritas) {
-        return view('content.admin.detailberita',[
-            'beritas' => $beritas
-        ]);
+     public function detailberita($id) {
+        $fvicon = FavIcon::first();
+        $logo = Logo::first();
+        $beritas = Berita::where('id', $id)->first();
+        return view('content.user.detail_berita',[
+            'beritas'=> $beritas,
+        ], compact('fvicon', 'logo', 'beritas'));
     }
     
     public function reportpdfberita(){
@@ -115,7 +131,7 @@ class KelolaBeritaController extends Controller
 
         $pdf = PDF::loadview('content.admin.reportpdfberita',[
         'beritas'=> $beritas,
-        'fvicon' => $fvicon])->setOptions(['defaultFont' => 'sans-serif']);;
+        'fvicon' => $fvicon])->setOptions(['defaultFont' => 'sans-serif']);
     	return $pdf->download('report-berita.pdf');
         return redirect('/semuaberita');
     }

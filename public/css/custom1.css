@@ -2,9 +2,22 @@
     width: 50%;
     transform: translate(0%, -10%);
 }
-.custom-carousel-content{
+/* .custom-carousel-content{
     text-align: start;
+} */
+.carousel-caption{
+    bottom: 330px;
 }
+
+.carousel-caption h5{
+    font-size: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 25px;
+    font-weight: 900;
+    color: white;
+}
+
 .custom-carousel-content h1{
     font-size: 40px;
     font-weight: 700;
@@ -13,8 +26,9 @@
 }
 
 .custom-carousel-content h1 span{
-    color: white;
+    color: yellow;
 }
+
 .custom-carousel-content p{
     font-size: 18px;
     font-weight: 400;
@@ -31,3 +45,4 @@
     font-weight: 600;
     letter-spacing: 0.5px;
 }
+

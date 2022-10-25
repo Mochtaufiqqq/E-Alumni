@@ -15,9 +15,16 @@ return new class extends Migration
     {
         Schema::create('riwayat_pendidikan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_instansi');
-            $table->string('tahun_mulai');
-            $table->string('tahun_akhir');
+            $table->foreignId('user_id');
+            $table->string('nama_sekolah_univ')->nullable();
+            $table->string('tahun_mulai_univ')->nullable();
+            $table->string('tahun_akhir_univ')->nullable();
+            $table->string('nama_sekolah_smk')->nullable();
+            $table->string('tahun_mulai_smk')->nullable();
+            $table->string('tahun_akhir_smk')->nullable();
+            $table->string('nama_sekolah_smp')->nullable();
+            $table->string('tahun_mulai_smp')->nullable();
+            $table->string('tahun_akhir_smp')->nullable();
             $table->timestamps();
         });
     }

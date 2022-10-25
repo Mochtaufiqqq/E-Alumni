@@ -23,13 +23,15 @@ class JabatanSeeder extends Seeder
         $data = [
             'Ketua',
             'Wakil',
+            'anggota',
             'Serketaris',
             'Bendahara',
         ];
 
         foreach ($data as $key ) {
             Jabatan::create([
-                'jabatan' => $key
+                'jabatan' => $key,
+                'user_id' => 1
             ]);
         }
     }

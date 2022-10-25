@@ -45,15 +45,15 @@
                   <a class="btn btn-primary mb-3" href="/addlowongankerja">Tambah Data Lowongan Kerja</a>
                   <a class="btn btn-secondary text-dark mb-3" href="{{ url('/reportpdflowongankerja') }}">Export PDF</a>
                     <div class="dt-ext table-responsive">
-                        <table class="display" id="responsive">
+                        <table class="table table-bordered" id="basic-row-reorder">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Foto</th>
                                     <th>Judul</th>
-                                    <th>Dekskripsi</th>
+                                    <th>Nama Perusahaan</th>
+                                    <th>Deskripsi</th>
                                     <th>Tanggal</th>
-                                    <th>Kategori</th>
                                     <th>Opsi</th>
                                 </tr>
                                 @foreach ($kerjas as $k)
@@ -70,9 +70,10 @@
                                       @endif
                                      </td>
                                     <td>{{ $k->judul }}</td>
-                                    <td>{{ $k->dekskripsi }}</td>
+                                    <td>{{ $k->nama_perusahaan }}</td>
+                                    <td>{{ $k->deskripsi }}</td>
                                     <td>{{ $k->tgl }}</td>
-                                    <td>{{ $k->kategori }}</td>
+                                    
                                     <td>
                                       <a href="/detaillowongankerja/{{ $k->id }}" class="btn btn-primary"><i data-feather="eye"></i></a>
                                       <a href="/editlowongankerja/{{ $k->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>

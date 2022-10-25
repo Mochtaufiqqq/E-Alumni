@@ -25,10 +25,12 @@ class User extends Authenticatable
     protected $table = 'users';
     protected $fillable = [
         'foto_profile',
+        'foto_kegiatan',
         'nisn',
         'nama',
         'nama_panggilan',
         'pekerjaan',
+        'karya',
         'jabatan_pekerjaan',
         'email',
         'jurusan',
@@ -73,14 +75,14 @@ class User extends Authenticatable
     }
 
 
-    public function riwayat_organisasi()
+    public function jabatan()
     {
-        return $this->belongsTo(Riwayat_organisasi::class);
+        return $this->hasOne(Jabatan::class);
     }
 
     public function sosmed()
     {
-        return $this->hasOne(Sosmed::class);
+        return $this->hasMany(Sosmed::class);
     }
 
 
@@ -91,7 +93,7 @@ class User extends Authenticatable
 
     public function riwayat_pendidikan()
     {
-        return $this->belongsTo(Riwayat_pendidikan::class);
+        return $this->hasOne(Riwayat_pendidikan::class);
     }
     
     public function kesanpesan(){

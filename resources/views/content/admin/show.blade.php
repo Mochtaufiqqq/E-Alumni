@@ -82,6 +82,7 @@
                                     <td>
                                         @if($u->status === 0)
                                         <h5><span class="badge bg-opacity-100 bg-danger text-white">Nonaktif</span></h5>
+                                        
                                         @else($u->status_user_id === 2)
                                         <h5><span class="badge bg-opacity-100 bg-success text-white">Aktif</span></h5>
                                         @endif

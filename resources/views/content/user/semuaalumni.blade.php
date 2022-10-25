@@ -5,8 +5,6 @@
 @section('content')
 
 
-<!-- Link swiper slides to any content via swiper-tabs. Place outside of any container -->
-
 <!-- Swiper tabs -->
 <div class="position-relative py-lg-4 py-xl-5">
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -22,7 +20,7 @@
             <div class="carousel-caption d-none d-md-block">
                 <div class="custom-carousel-content">
                     <h1 style="margin-bottom :30">
-                        <span>{{ ($c->isi) }}</span>
+                        <span>{{ ($c->judul) }}</span>
                     </h1>
                     <div>
                         <a href="#lihatsemuaalumni" class="btn btn-slider" style="margin-bottom: 50%">
@@ -77,8 +75,11 @@
   </section> --}}
 
 <section id="lihatsemuaalumni" class="container-fluid pt-lg-5 pb-5 mb-2 mb-md-4 mb-lg-5">
+
+  
+
     <h2 class="h2 text-center pb-md-1 mb-1 mb-sm-3">Alumni SMKS MAHAPUTRA CERDAS UTAMA</h2>
-    <div class="text-center mb-5">
+    <div class="text-center mb-5" id="">
         <a href="/semuaalumni" class="btn btn-outline-secondary">Semua</a>
         <a href="{{ route('angkatan1') }}" class="btn btn-outline-secondary">Angkatan 1</a>
         <a href="{{ route('angkatan2') }}" class="btn btn-outline-secondary">Angkatan 2</a>
@@ -92,16 +93,14 @@
         <div class="col-5 col-md-6 col-sm-6 col-xs-12 col-lg-3">
             <div class="card card-body d-flex flex-row align-items-center card-hover bg-light border-0">
                 @if ($u->foto_profile == null)
-                <img src="{{ asset('/imagenull/user.png') }}" class="d-block rounded-circle" width="50"
-                    alt="Darrell Steward">
+                <img src="{{ asset('/default/user.png') }}" class="d-block rounded-circle" width="50" height="50" alt="user">
                 @else
-                <img src="{{ asset($u->foto_profile) }}" class="d-block rounded-circle" width="50"
-                    alt="Darrell Steward">
+                <img src="{{ asset($u->foto_profile) }}" class="d-block rounded-circle" width="50" alt="user">
                 @endif
 
                 <div class="ps-4">
                     <h5 class="fw-sm fs-lg mb-1">{{ $u->nama }}</h5>
-                    <p class="fs-sm mb-3">Bekerja di PT.Nasa Sebagai Manager</p>
+                    <p class="fs-sm mb-3">{{ $u->thn_lulus }}</p>
                     {{-- <p class="fs-sm mb-3">{{ $u->thn_lulus }}</p> --}}
                     <div class="d-flex">
                         <a href="/detailalumni/{{ $u->id }}" class="btn btn-outline-secondary
@@ -110,10 +109,8 @@
                 </div>
             </div>
         </div>
-
         @endforeach
     </div>
-
 </section>
 
 

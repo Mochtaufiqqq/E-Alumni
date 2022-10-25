@@ -5,18 +5,11 @@
 @section('content')
 
 
-<section class="container-fluid pt-lg-5 pb-5 mb-2 mb-md-4 mb-lg-5">
-    @if (session('success'))
-    <div class="alert alert-primary alert-dismissible fade show" role="alert"><strong>Selamat ! </strong>
-        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title=""
-            title=""></button>
-        {{ session('success') }}
-    </div>
-    @endif
+<section class="container-fluid mt-5 mb-6 pt-5 pb-lg-5">
 
 
     <h2 class="h1 text-center pb-md-1 mb-1 mb-sm-3">Kesan & Pesan</h2>
-    @if (Route::has('login'))
+    {{-- @if (Route::has('login'))
     @auth
     <div class="text-center mb-5">
     @if (auth()->user()->kesanpesan == null)
@@ -29,10 +22,10 @@
     </div>
     
     @endauth 
-    @endif
+    @endif --}}
 
     
-    <!-- Modal kesan Pesan -->
+    {{-- <!-- Modal kesan Pesan -->
     <div class="modal fade" tabindex="-1" role="dialog" id="modalKesanPesan">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -88,7 +81,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+    
     <div class="row">
         <!-- Testimonial: Style 1 -->
         @foreach ($dtkesanpesan as $k)
@@ -105,7 +99,7 @@
                 </blockquote>
                 <figcaption class="card-footer border-0 d-flex align-items-center pt-0">
                     @if ($k->user->foto_profile == null)
-                    <img src="{{ asset('/jikatidadada/user.png') }}" alt="" width="48" class="rounded-circle">
+                    <img src="{{ asset('/default/user.png') }}" alt="" width="48" height="48" class="rounded-circle">
                         
                     @else
                     <img src="{{ asset($k->user->foto_profile) }}" alt=""  width="48" class="rounded-circle">
@@ -115,7 +109,7 @@
                         alt="Jerome Bell"> --}}
                     <div class="ps-3">
                         <h6 class="fw-semibold lh-base mb-0">{{ $k->user->nama }}</h6>
-                        <span class="fs-sm text-muted">Co-founder of Lorem Company</span>
+                        <span class="fs-sm text-muted">Tahun lulus {{ $k->user->thn_lulus }}</span>
                     </div>
                 </figcaption>
             </figure>

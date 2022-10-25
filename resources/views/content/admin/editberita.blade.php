@@ -14,7 +14,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/semuauser">Semua User</a></li>
                     <li class="breadcrumb-item"> <a href="#"></a> Prestasi </li>
-                    <li class="breadcrumb-item"> <a href="#"></a> Event]</li>
+                    <li class="breadcrumb-item"> <a href="#"></a> Event</li>
                 </ol>
             </div>
             
@@ -80,7 +80,7 @@
                   <div class="mb-3">
                     <label class="form-label">Tgl</label>
                     <div class="input-group">
-                      <input class="form-control @error('tgl') is-invalid @enderror" name="tgl" type="tgl"  value="{{ old('tgl', $beritas->tgl) }}" placeholder="Tgl" required autofocus>
+                      <input class="form-control @error('tgl') is-invalid @enderror" name="tgl" type="date"  value="{{ old('tgl', $beritas->tgl) }}" placeholder="Tgl" required autofocus>
                     </div>
                     @error('tgl')
                     <div class="invalid-feedback">
@@ -96,6 +96,25 @@
                         <option value="Event">Event</option>
                     </select>
                     @error('kategori')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Foto Dokumentasi</label>
+                    @if ($beritas->foto)
+                              
+                    <img src="{{ asset($beritas->foto)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block multiple">
+
+                    @else
+                    
+                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                        
+                    @endif
+                    <img class="img-preview img-fluid mb-3">
+                      <input type="file" name="images[]" id="foto" class="form-control @error('foto') is-invalid @enderror" onchange="previewImage()">
+                    @error('foto')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

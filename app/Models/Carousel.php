@@ -11,5 +11,5 @@ class Carousel extends Model
 
     // protected $guarded = ['id'];
     protected $table ='carousels';
-    protected $fillable = ['halaman','isi','foto'];
+    protected $fillable = ['halaman','judul','isi','foto'];
 }

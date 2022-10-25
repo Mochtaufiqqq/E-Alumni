@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\FavIcon;
 use App\Models\Jabatan;
 use App\Models\Organisasi;
+use App\Models\Logo;
 use Illuminate\Http\Request;
 use App\Models\Riwayat_organisasi;
+use App\Models\Riwayat_prestasi;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -15,10 +17,11 @@ class OrganisasiController extends Controller
     public function index()
     {
         $fvicon = FavIcon::first();
+        $logo = Logo::first();
         $organisasi = Riwayat_organisasi::all();
         $org = Organisasi::all();
         $jab = Jabatan::all();
-        return view('content.user.organisasi', compact('organisasi', 'org', 'jab','fvicon'));
+        return view('content.user.organisasi', compact('organisasi', 'org', 'jab','fvicon', 'logo'));
     }
 
     public function show()
@@ -45,6 +48,7 @@ class OrganisasiController extends Controller
         $validatedData = $request->validate([
             'periode' => 'required',
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
+            'images.*' => 'required|mimes:jpg,png,jpeg|max:5000',
             'logo' => 'required|mimes:jpg,png,jpeg|max:5000',
             'deskripsi' => 'required'
         ]);
@@ -57,25 +61,36 @@ class OrganisasiController extends Controller
         $path = $request->file('logo')->storeAs('organisasi-logo', $fileName);
         $logo = '/storage/' .$path;
 
+        $image = [];
+        
+        if($request->hasFile('images')){
+            foreach ($request->file('images') as $file){
+                $path = $file->store('dokumentasi_organisasi');
+                $image[] = $path;
+            }
+        }
+
         Riwayat_organisasi::create([
             'id_organisasi' => $request->organisasi,
             'id_jabatan' => $request->jabatan,
             'periode' => $request->periode,
             'foto' => $foto,
+            'dokumentasi' => implode('|', $image),
             'logo' => $logo,
-            'deskripsi' =>$request
+            'deskripsi' =>$request->deskripsi
         ]);
         
         return redirect('/organisasi/show')->with('berhasil', 'berhasil menambahkan'); 
     }
 
-    public function details()
+    public function details($id)
     {
         $fvicon = FavIcon::first();
+        $logo = Logo::first();
         $organisasi = Riwayat_organisasi::all()->first();
         $org = Organisasi::all();
         $jab = Jabatan::all();
-        return view('content.user.detail_organisasi', compact('organisasi', 'org', 'jab','fvicon'));
+        return view('content.user.detail_organisasi', compact('organisasi', 'org', 'jab','fvicon', 'logo'));
     }
 
     public function edit()
@@ -110,9 +125,16 @@ class OrganisasiController extends Controller
             'periode' => $request->periode,
             'foto' => $foto,
             'logo' => $logo,
-            'deskripsi' =>$request
+            'deskripsi' => $request->deskripsi
         ]);
         
         return redirect('/organisasi/show')->with('berhasil', 'berhasil menambahkan');
+    }
+
+    //USER
+    
+    public function struktur(Request $request)
+    {
+        
     }
 }

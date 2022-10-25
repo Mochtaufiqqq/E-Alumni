@@ -27,7 +27,8 @@ class CarouselController extends Controller
         $validatedData = $request->validate([
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
             'halaman' => 'required',
-            'isi' => 'required',
+            'judul',
+            'isi',
         ]);
 
             $fileName = time().$request->file('foto')->getClientOriginalName();
@@ -37,6 +38,7 @@ class CarouselController extends Controller
         Carousel::create([
             'foto' => $carousel,
             'halaman' => $request->halaman,
+            'judul' => $request->judul,
             'isi' => $request->isi,
         ]);
 
@@ -58,7 +60,8 @@ class CarouselController extends Controller
         $validatedData = $request->validate([
             'foto' => 'image|mimes:jpg,png,jpeg|max:5000',
             'halaman' => 'required',
-            'isi' => 'required',
+            'judul',
+            'isi',
         ]);
 
         if($request->file()){

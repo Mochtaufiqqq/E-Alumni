@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\FavIcon;
+use App\Models\Logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -66,6 +67,7 @@ class AuthController extends Controller
             'nama' => 'required|max:255',
             'email' => 'required|unique:users',
             'nisn' => 'required|unique:users',
+            'no_tlp' => 'required',
             'alamat' => 'required',
             'password' => 'required|min:8',
             'confirmation' => 'required|same:password',
@@ -76,6 +78,7 @@ class AuthController extends Controller
        User::create([
            'nama' => $validatedData['nama'],
            'email' => $validatedData['email'],
+           'no_tlp' => $validatedData['no_tlp'],
            'nisn' => $validatedData['nisn'],
            'alamat' => $validatedData['alamat'],
            'password' => $validatedData['password'], 

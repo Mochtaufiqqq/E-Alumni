@@ -113,7 +113,6 @@
                     <label class="form-label">Tahun Lulus</label>
                     <select name="thn_lulus" id=""  value="{{ old('thn_lulus', $user->thn_lulus) }}" class="form-select form-control" required autofocus >
                         <option selected disabled>Pilih Tahun Lulus</option>
-                        <option value="Rekayasa Perangkat Lunak">2040</option>
                         <option value="2022">2022</option>
                         <option value="2021">2021</option>
                         <option value="2020">2020</option>

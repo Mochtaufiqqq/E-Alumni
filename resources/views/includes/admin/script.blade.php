@@ -111,6 +111,23 @@
     }
 </script>
 
+<script>
+    $("#counts").animate({
+        lastValue: $("#counts").text()
+
+    },{
+    duration:2000,
+    step: function (currentValue){
+     $("#counts")
+        .text(Math.floor(currentValue));   
+    }    
+    
+    });
+    
+</script>
+
+
+
 
 
 @yield('javascript')

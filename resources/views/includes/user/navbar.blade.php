@@ -3,13 +3,16 @@
 
         <a href="#" class="navbar-brand">
             @if ($logo->foto == null)
-            <img src="{{ asset('/imagenull/logo.png') }}" width="47" alt="Silicon">
-                
+                <img src="{{ asset('imagenull/logo.png') }}" width="47" alt="Silicon">
             @else
-            <img src="{{ asset($logo->foto) }}" width="47" alt="Silicon">    
+                <img src="{{ asset($logo->foto) }}" width="47" alt="Silicon">    
             @endif
-        
-            {{ $logo->isi }}
+
+            @if ($logo->isi == null)
+                TRACER STUDY
+            @else
+                {{ $logo->isi }}
+            @endif
         </a>
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse5"
             aria-expanded="false">
@@ -20,14 +23,14 @@
         <div class="nav dropdown d-block order-lg-3 ms-4">
             <a href="#" class="d-flex nav-link p-0" data-bs-toggle="dropdown">
                 @if (Auth::user()->foto_profile == null)
-                <img src="{{ asset('default/user.png') }}" class="rounded-circle" width="48" alt="Avatar">
+                <img src="{{ asset('default/user.png') }}" class="rounded-circle" width="47" alt="Avatar">
                 @else
-                <img src="{{ asset(auth()->user()->foto_profile) }}" class="rounded-circle" width="48" alt="Avatar">
+                <img src="{{ asset(auth()->user()->foto_profile) }}" class="rounded-circle" width="47" alt="Avatar">
                 @endif
-                <div class="d-none d-sm-block ps-2">
+                {{-- <div class="d-none d-sm-block ps-2">
                     <div class="fs-xs lh-1 opacity-60">Hello,</div>
                     <div class="fs-sm dropdown-toggle">{{ auth()->user()->nama }}</div>
-                </div>
+                </div> --}}
             </a>
             <ul class="dropdown-menu dropdown-menu-end my-1" style="width: 14rem;">
                 <li>
@@ -74,15 +77,15 @@
                     <a href="/organisasi" class="nav-link">Organisasi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/ko" class="nav-link">Berita & Event</a>
+                    <a href="/tampilberita" class="nav-link">Berita & Event</a>
                 </li>
                 
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">Lainnya</a>
                     <ul class="dropdown-menu show" data-bs-popper="static">
 
-                      <li><a href="/lowongankerja" class="dropdown-item">Lowongan Pekerjaan</a></li>
-                      <li><a href="account-security.html" class="dropdown-item">Publikasi Lowongan Pekerjaan</a></li>
+                      <li><a href="/lowonganpekerjaan" class="dropdown-item">Lowongan Pekerjaan</a></li>
+                      <li><a href="/publikasiloker" class="dropdown-item">Publikasi Lowongan Pekerjaan</a></li>
 
                       <li><a href="/kesanpesan" class="dropdown-item">Kesan & Pesan</a></li>
                     </ul>
@@ -92,8 +95,5 @@
                 </li>
             </ul>
         </nav>
-        
-        
     </div>
-
 </header>

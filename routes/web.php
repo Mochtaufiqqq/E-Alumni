@@ -16,16 +16,6 @@ use App\Http\Controllers\CarouselController;
 
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 // this route guest for user
 Route::get('/',[AlumniController::class,'dashboarduser']);
@@ -36,15 +26,17 @@ Route::get('/organisasi/detail/{slug}', [OrganisasiController::class, 'details']
 Route::get('/tentangkami', [OtherController::class, 'tentangkami']);
 Route::get('/kesanpesan',[UserController::class,'kesanpesan']);
 //berita
-Route::get('/tampilberita', [KelolaBeritaController::class, 'tampil']);
-Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detail_berita']);
+Route::get('/tampilberita', [UserController::class, 'tampil']);
+Route::get('/detail_berita/{berita}', [KelolaBeritaController::class, 'detailberita']);
 //kontak
 Route::get('/kontak', [MailController::class, 'email']);
 Route::post('/kontak', [MailController::class, 'send'])->name('send');
 
+
 //loker 
 Route::get('/publikasiloker',[KelolaKerjaController::class,'publikasiloker']);
-
+Route::get('/lowonganpekerjaan',[KelolaKerjaController::class,'semualoker']);
+Route::get('/detaillowonganpekerjaan/{loker}',[KelolaKerjaController::class,'detailloker']);
 
 
 Route::group(['middleware' => ['guest']], function(){
@@ -62,6 +54,7 @@ Route::group(['middleware' => ['guest']], function(){
     });
 
 
+    // this route for admin
 Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/dashboard',[AlumniController::class,'index']);
 
@@ -148,6 +141,7 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
 
 });
 
+// this route for user
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
 
     Route::get('/semuaalumni', [UserController::class, 'semuaalumni'])->name('semuaalumni');
@@ -160,16 +154,16 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     // for manage profile alumni personal
     Route::get('/profile', [UserController::class, 'profile']);
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
+    Route::put('/addnamapanggilan/{user}',[UserController::class,'addnamapanggilan']);
+    Route::put('/addkarya/{user}',[UserController::class,'addkarya']);
     Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
 
 
      // kesan & pesan
-     Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
-     Route::put('/editkesanpesan/{kesanpesan}',[UserController::class,'editkesanpesan']);
+    Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
+    Route::put('/editkesanpesan/{kesanpesan}',[UserController::class,'editkesanpesan']);
 
-     Route::put('/addsosmed/{user}',[UserController::class,'addsosmed']);
-    
-
+    Route::put('/addsosmed/{user}',[UserController::class,'addsosmed']);
     Route::post('/addsosmed',[UserController::class,'addsosmed']);
    
     

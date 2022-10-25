@@ -24,12 +24,109 @@
 
 <!-- Google Tag Manager -->
 <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    '../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WKV3GT5');
+    let div_counter = document.querySelector('#div_counter');
+    let counters = document.querySelectorAll('.counter-item .counter');
+
+// Scroll Animation
+
+let CounterObserver = new IntersectionObserver(
+  (entries, observer) => {
+    let [entry] = entries;
+    if (!entry.isIntersecting) return;
+
+    let speed = 200;
+    counters.forEach((counter, index) => {
+      function UpdateCounter() {
+        const targetNumber = +counter.dataset.target;
+        const initialNumber = +counter.innerText;
+        const incPerCount = targetNumber / speed;
+        if (initialNumber < targetNumber) {
+          counter.innerText = Math.ceil(initialNumber + incPerCount);
+          setTimeout(UpdateCounter, 40);
+        }
+        else {
+          counter.innerText = targetNumber;
+        }
+      }
+      UpdateCounter();
+
+      if (counter.parentElement.style.animation) {
+        counter.parentElement.style.animation = '';
+      } else {
+        counter.parentElement.style.animation = `slide-up 0.3s ease forwards ${
+          index / counters.length + 0.5
+        }s`;
+      }
+    });
+    observer.unobserve(section_counter);
+  },
+  {
+    root: null,
+    threshold: window.innerWidth > 768 ? 0.4 : 0.3,
+  }
+);
+
+CounterObserver.observe(div_counter);
+
 </script>
+
+<script>
+  $(function(){  // $(document).ready shorthand
+  $('.fade').fadeIn('slow');
+});
+
+$(document).ready(function() {
+    
+    /* Every time the window is scrolled ... */
+    $(window).scroll( function(){
+    
+        /* Check the location of each desired element */
+        $('.hideme').each( function(i){
+            
+            var bottom_of_object = $(this).position().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            
+            /* If the object is completely visible in the window, fade it it */
+            if( bottom_of_window > bottom_of_object ){
+                
+                $(this).animate({'opacity':'1'},1500);
+                    
+            }
+            
+        }); 
+    
+    });
+    
+});
+</script>
+{{-- <script>
+// Get the container element
+var btnContainer = document.getElementById("myDIV");
+
+// Get all buttons with class="btn" inside the container
+var btns = btnContainer.getElementsByClassName("btn");
+
+// Loop through the buttons and add the active class to the current/clicked button
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script> --}}
+
+{{-- <script>
+    document.querySelectorAll(".nav-item").forEach((ele) =>
+  ele.addEventListener("click", function (event) {
+    event.preventDefault();
+    document
+      .querySelectorAll(".nav-item")
+      .forEach((ele) => ele.classList.remove("active"));
+    this.classList.add("active")
+  })
+);
+</script> --}}
 
 
 <!-- Vendor Scripts -->

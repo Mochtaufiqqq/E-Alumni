@@ -13,7 +13,13 @@
         <div class="position-sticky top-0">
           <div class="text-center pt-5">
             <div class="d-table position-relative mx-auto mt-2 mt-lg-4 pt-5 mb-3">
-              <img src="{{ asset($user->foto_profile) }}" class="d-block rounded-circle" width="120" alt="John Doe">
+              @if ($user->foto_profile == null)
+              <img src="{{ asset('/default/user.png') }}" class="d-block rounded-circle" width="120" height="120" alt="John Doe"> 
+              @else
+              <img src="{{ asset($user->foto_profile) }}" class="d-block rounded-circle" width="120" alt="John Doe"> 
+                  
+              @endif
+              
             </div>
             <h2 class="h5 mb-1">Riwayat Organisasi</h2>
             <div class="flex-row align-items-center">
