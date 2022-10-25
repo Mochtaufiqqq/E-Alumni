@@ -806,16 +806,15 @@
                         <div class="mb-4 mt-4">
                             <label for="fn" class="form-label fs-base">Email</label>
                             <p>{{ auth()->user()->email }}</p>
+                            <hr>
                         </div>
 
-                        <hr>
 
                         <div class="mb-4 mt-4">
                             <label for="sn" class="form-label fs-base">Alamat</label>
                             <p>{{ auth()->user()->alamat }}</p>
+                            <hr>
                         </div>
-
-                        <hr>
 
                         <div class="mb-4 mt-4">
                             @if (Auth::user()->pekerjaan == '')
@@ -823,10 +822,10 @@
                             <label for="email" class="form-label fs-base">Pekerjaan</label>
                             <div>Bekerja di {{ auth()->user()->pekerjaan }}</div>
                             <div>Sebagai {{ auth()->user()->jabatan_pekerjaan }}</div>
+                            <hr>
                             @endif
                         </div>
 
-                        <hr>
 
                         <div class="mb-4 mt-4">
                             @if ($sosmed == null)
@@ -836,10 +835,10 @@
                                 <div><i class="bx bxl-facebook"></i> {{ $sosmed->facebook }}</div>
                                 <div><i class="bx bxl-tiktok"></i> {{ $sosmed->tiktok }}</div>
                                 <div><i class="bx bxl-linkedin"></i> {{ $sosmed->linkedin }}</div>
+                                <hr>
                             @endif
                         </div>
 
-                        <hr>
 
                         <div class="mb-4 mt-4">
                             <label for="phone" class="form-label fs-base">Phone</label>
@@ -847,10 +846,11 @@
                             <p><em>62+12345689</em> <small class="text-muted">(contoh)</small></p>
                             @else
                             <p>{{ auth()->user()->no_tlp }}</p>
+                            <hr>
                             @endif
                         </div>
 
-                        <hr>
+                        
 
                         <div class="mb-4 mt-4">
                             @if ($rp == null)
@@ -860,10 +860,11 @@
                             <div>{{ $rp->nama_sekolah_univ }} ({{ $rp->tahun_mulai_univ }} - {{ $rp->tahun_akhir_univ }})</div>
                             <div>{{ $rp->nama_sekolah_smk }} ({{ $rp->tahun_mulai_smk }} - {{ $rp->tahun_akhir_smk }})</div>
                             <div>{{ $rp->nama_sekolah_smp }} ({{ $rp->tahun_mulai_smp }} - {{ $rp->tahun_akhir_smp }})</div>
+                            <hr>
                             @endif
                         </div>
 
-                        <hr>
+                        
 
                         <div class="mb-4 mt-4">
                             @if (auth()->user()->karya == null)
@@ -871,12 +872,15 @@
                             @else
                             <label for="" class="form-label fs-base">Karya</label>
                                 <div>{{ auth()->user()->karya }}</div>
+                                <hr>
                             @endif
                         </div>
+
                         <div class="col-6 mb-4">
                             <label for="dokumentasi" class="form-label fs-base">Dokumentasi</label>
                             <img src="{{ asset(auth()->user()->dokumentasi) }}" alt="">
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

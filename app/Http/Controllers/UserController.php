@@ -155,8 +155,8 @@ class UserController extends Controller
         $logo = Logo::first();
         $fvicon = FavIcon::first();
         $user = Auth::user();
-        $sosmed = Sosmed::where('user_id', Auth()->User()->id)->first();
-        $rp = Riwayat_pendidikan::where('user_id', Auth()->User()->id)->first();
+        $sosmed = Sosmed::where('user_id', auth()->user()->id)->first();
+        $rp = Riwayat_pendidikan::where('user_id', auth()->user()->id)->first();
         return view('content.user.detail_profile',[
             'user' => $user,
             'sosmed' => $sosmed
@@ -208,7 +208,7 @@ class UserController extends Controller
 
         Sosmed::with('user');
         
-       $request['user_id'] = auth()->user()->id;
+       $request["user_id"] = auth()->user()->id;
        Sosmed::create([
         'instagram'=> $request->instagram,
         'facebook' => $request->facebook,

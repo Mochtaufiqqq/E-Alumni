@@ -3,7 +3,7 @@
 
         <a href="#" class="navbar-brand">
             @if ($logo == null)
-                <img src="{{ asset('imagenull/logoadmin.jpeg') }}" width="47" alt="Silicon">
+                <img src="{{ asset('imagenull/logo.png') }}" width="47" alt="Silicon">
             @else
                 <img src="{{ asset($logo->foto) }}" width="47" alt="Silicon">    
             @endif
