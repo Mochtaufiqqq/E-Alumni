@@ -17,8 +17,8 @@ class Jabatan extends Model
         return $this->hasMany(Riwayat_organisasi::class);
     }
 
-    public function user()
+    public function organisasiuser()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Organisasiuser::class);
     }
 }

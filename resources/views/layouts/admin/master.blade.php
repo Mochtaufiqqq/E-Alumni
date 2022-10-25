@@ -8,7 +8,7 @@
     <meta name="keywords" content="admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"> --}}
-    @if ($fvicon->favicon == null)
+    @if ($fvicon == null)
     <link rel="shortcut icon" href="{{ asset('/favicon/tracerstudy.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('/favicon/tracerstudy.ico') }}" type="image/x-icon">     
     @else

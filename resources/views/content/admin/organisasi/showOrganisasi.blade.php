@@ -48,7 +48,6 @@
                                       <th scope="col">Logo</th>
                                       <th scope="col">Organisasi</th>
                                       <th scope="col">Dokumentasi</th>
-                                      <th scope="col">Jabatan</th>
                                       <th scope="col">Periode</th>
                                       <th scope="col">Deskripsi</th>
                                       <th scope="col">Opsi</th>
@@ -69,7 +68,6 @@
                                             <img src="/storage/{{ $img }}" alt="" width="50" height="50">
                                           @endforeach
                                         </td>
-                                        <td>{{ $o->jabatan->jabatan }}</td>
                                         <td>{{ $o->periode }}</td>
                                         <td>{{ $o->deskripsi }}</td>
                                         <td>

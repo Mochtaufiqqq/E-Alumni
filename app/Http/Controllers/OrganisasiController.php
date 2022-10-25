@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logo;
+use App\Models\User;
 use App\Models\FavIcon;
 use App\Models\Jabatan;
 use App\Models\Organisasi;
-use App\Models\Logo;
 use Illuminate\Http\Request;
-use App\Models\Riwayat_organisasi;
+use App\Models\Organisasiuser;
 use App\Models\Riwayat_prestasi;
+use App\Models\Riwayat_organisasi;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -72,7 +75,6 @@ class OrganisasiController extends Controller
 
         Riwayat_organisasi::create([
             'id_organisasi' => $request->organisasi,
-            'id_jabatan' => $request->jabatan,
             'periode' => $request->periode,
             'foto' => $foto,
             'dokumentasi' => implode('|', $image),
@@ -87,10 +89,13 @@ class OrganisasiController extends Controller
     {
         $fvicon = FavIcon::first();
         $logo = Logo::first();
-        $organisasi = Riwayat_organisasi::all()->first();
+        $organisasi = Riwayat_organisasi::where('id_organisasi', $id)->first();
+        $orUser = Organisasiuser::with(['user'])->where('riwayat_organisasi_id',$id)->get();
+        $user = User::all()->first();
         $org = Organisasi::all();
         $jab = Jabatan::all();
-        return view('content.user.detail_organisasi', compact('organisasi', 'org', 'jab','fvicon', 'logo'));
+        
+        return view('content.user.detail_organisasi', compact('organisasi', 'org', 'jab','fvicon', 'logo','orUser'));
     }
 
     public function edit()
@@ -121,7 +126,6 @@ class OrganisasiController extends Controller
 
         Riwayat_organisasi::where('id', $id)->update([
             'id_organisasi' => $request->organisasi,
-            'id_jabatan' => $request->jabatan,
             'periode' => $request->periode,
             'foto' => $foto,
             'logo' => $logo,

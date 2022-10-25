@@ -17,4 +17,9 @@ class Organisasi extends Model
     {
         return $this->hasMany(Riwayat_organisasi::class);
     }
+
+    public function organisasiuser()
+    {
+        return $this->hasMany(Organisasiuser::class);
+    }
 }
