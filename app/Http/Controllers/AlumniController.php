@@ -5,7 +5,9 @@ use PDF;
 use App\Models\Logo;
 use App\Models\User;
 use App\Models\Berita;
+use App\Models\Carousel;
 use App\Models\FavIcon;
+use App\Models\Lowongan_Kerja;
 use App\Models\Organisasi;
 use App\Models\TentangKami;
 use Illuminate\Http\Request;
@@ -13,6 +15,7 @@ use App\Models\Riwayat_organisasi;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
+use Carbon\Carbon;
 
 
 class AlumniController extends Controller
@@ -21,11 +24,10 @@ class AlumniController extends Controller
     public function dashboarduser(){
        
         $logo = Logo::first();
+        $carousel = Carousel::where('halaman','6')->get();
         $fvicon = FavIcon::first();
         return view('content.user.dashboard',[
-            'fvicon' => $fvicon,
-            'logo'  => $logo
-        ]);
+        ],compact('carousel','fvicon','logo'));
 
     }
 
@@ -40,16 +42,17 @@ class AlumniController extends Controller
             'chart_type' => 'bar',
         ];
 
-
-        $logo = Logo::all();
-        $beritas = Berita::orderBy('updated_at', 'DESC')->get();
+        $logo = Logo::where('id','=','2');
+        $beritas = Berita::latest()->get();
         $organisasi = Riwayat_organisasi::all();
         $totalactive = User::where('role_id','=','2')->where('status','=','1')->get();
         $totalnonactive = User::where('role_id','=','2')->where('status','=','0')->get();
         $chart1 = new LaravelChart($chart_options);
         $fvicon = Favicon::first();
+        $lokers = Lowongan_Kerja::latest()->get();
+
         return view('content.admin.dashboard',
-        compact('chart1','totalactive','totalnonactive','organisasi','beritas','fvicon','logo'));
+        compact('chart1','totalactive','totalnonactive','organisasi','beritas','fvicon','logo','lokers'));
     }
 
     public function showdtalumni(){

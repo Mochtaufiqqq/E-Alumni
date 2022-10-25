@@ -17,11 +17,20 @@
 
     <!-- Favicon and Touch Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/user/favicon/apple-touch-icon.png">
+<<<<<<< HEAD
     @if ($fvicon == null)
         
     @else
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset($fvicon->favicon) }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset($fvicon->favicon) }}"">
+=======
+    @if ($fvicon->favicon == null)
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon/tracerstudy.ico') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/favicon/tracerstudy.ico') }}">
+    @else
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset($fvicon->favicon) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset($fvicon->favicon) }}">
+>>>>>>> 380345bc951af78d39fcd81266a65baf4dceee9a
     @endif
     <link rel="manifest" href="/user/favicon/site.webmanifest ">
     {{-- <link rel="mask-icon" href="/silicon.createx.studio/assets/favicon/safari-pinned-tab.svg" color="#6366f1"> --}}
@@ -258,7 +267,7 @@
         </div>
         
         <!-- Background -->
-        <div class="position-absolute top-0 end-0 w-50 h-100 bg-position-center bg-repeat-0 bg-size-cover d-none d-xl-block" style="background-image: url(/user/img/account/signin-bg.jpg);"></div>
+        <div class="position-absolute top-0 end-0 w-50 h-100 bg-position-center bg-repeat-0 bg-size-cover d-none d-xl-block" style="background-image: url({{ asset('imagenull/ttgkami.jpg') }});"></div>
       </section>
     </main>
 

@@ -17,7 +17,7 @@
     @endif
     
     
-    <title>Tracer Alumni |  @yield('title')</title>
+    <title>Tracer Study |  @yield('title')</title>
     <!-- Google font-->
     @include('includes.admin.style')
   </head>

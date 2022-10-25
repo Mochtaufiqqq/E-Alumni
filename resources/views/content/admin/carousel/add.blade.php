@@ -38,10 +38,15 @@
                                     <label class="form-label">Halaman</label>
                                     <select name="halaman" id="" class="form-select form-control" required autofocus>
                                         <option selected disabled>Pilih Halaman</option>
-                                        <option value="Alumni">Alumni</option>
-                                        <option value="Berita">Berita</option>
-                                        <option value="TentangKami">Tentang Kami</option>
-                                        <option value="Dashboard">Dashboard</option>
+                                        <option value="0">Alumni</option>
+                                        <option value="1">Berita</option>
+                                        <option value="2">Organisasi</option>
+                                        <option value="3">Publikasi Loker</option>
+                                        <option value="4">Loker</option>
+                                        <option value="5">Tentang Kami</option>
+                                        <option value="6">Dashboard</option>
+                                        <option value="7">Register</option>
+                                        <option value="8">Login</option>
                                     </select>
                                     @error('halaman')
                                     <div class="invalid-feedback">
@@ -49,6 +54,20 @@
                                     </div>
                                     @enderror
                                 </div>
+
+                                <div class="mb-3 m-form__group">
+                                    <label class="form-label" for="image">Judul</label>
+                                    <input class="form-control @error('judul') is-invalid @enderror" type="text"
+                                        name="judul" id="judl" placeholder="Judul" required autofocus
+                                        onchange="previewImage()">
+
+                                    @error('judul')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                
                                 <div class="mb-3 m-form__group">
                                     <label class="form-label">Isi</label>
                                     <div class="input-group">

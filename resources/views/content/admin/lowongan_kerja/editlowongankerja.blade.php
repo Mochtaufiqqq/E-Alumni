@@ -36,25 +36,7 @@
                 <form action="/editlowongankerja/{{ $kerjas->id }}" method="POST" enctype="multipart/form-data">
                 @method('put')    
                 @csrf
-                <div class="mb-3 m-form__group">
-                  <label class="form-label">Foto</label>
-                  @if ($kerjas->foto)
-                            
-                  <img src="{{ asset($kerjas->foto) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
-
-                  @else
-                  
-                  <img class="img-preview img-fluid mb-3 col-sm-5">
-                      
-                  @endif
-                  <img class="img-preview img-fluid mb-3">
-                    <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" onchange="previewImage()">
-                  @error('foto')
-                  <div class="invalid-feedback">
-                      {{ $message }}
-                  </div>
-                  @enderror
-                </div>
+              
                   <div class="mb-3 m-form__group">
                     <label class="form-label">Judul</label>
                     <div class="input-group">
@@ -66,12 +48,23 @@
                     </div>
                     @enderror
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Dekskripsi </label>
+                  <div class="mb-3 m-form__group">
+                    <label class="form-label">Nama Perusahaan</label>
                     <div class="input-group">
-                      <input class="form-control @error('dekskripsi') is-invalid @enderror" type="text" name="dekskripsi" placeholder="Isi" value="{{ old('dekskripsi', $kerjas->isi) }}"required autofocus>
+                      <input class="form-control @error('nama_perusahaan') is-invalid @enderror" type="text" name="nama_perusahaan" placeholder="Nama Perusahaan" value="{{ old('nama_perusahaan', $kerjas->nama_perusahaan) }}" required autofocus>
                     </div>
-                    @error('deskrpsi')
+                    @error('nama_perusahaan')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Deskripsi</label>
+                    <div class="input-group">
+                     <textarea class="form-control" name="deskripsi" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    @error('deskripsi')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -80,7 +73,7 @@
                   <div class="mb-3">
                     <label class="form-label">Tgl</label>
                     <div class="input-group">
-                      <input class="form-control @error('tgl') is-invalid @enderror" name="tgl" type="tgl"  value="{{ old('tgl', $kerjas->tgl) }}" placeholder="Tgl" required autofocus>
+                      <input class="form-control @error('tgl') is-invalid @enderror" name="tgl" type="date"  value="{{ old('tgl', $kerjas->tgl) }}" placeholder="Tgl" required autofocus>
                     </div>
                     @error('tgl')
                     <div class="invalid-feedback">
@@ -88,19 +81,26 @@
                     </div>
                     @enderror
                   </div>
-                  <div class="mb-3 input-group-solid">
-                    <label class="form-label">Kategori</label>
-                    <select name="kategori" id="kategori"  value="{{ old('kategori', $kerjas->kategori) }}" class="form-select form-control" required autofocus>
-                        <option selected>Pilih Kategori</option>
-                        <option value="Develover">Develover</option>
-                        <option value="Designer">Designer</option>
-                    </select>
-                    @error('kategori')
+                  <div class="mb-3 m-form__group">
+                    <label class="form-label">Foto</label>
+                    @if ($kerjas->foto)
+                              
+                    <img src="{{ asset($kerjas->foto) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+  
+                    @else
+                    
+                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                        
+                    @endif
+                    <img class="img-preview img-fluid mb-3">
+                      <input type="file" name="foto" id="image" class="form-control @error('foto') is-invalid @enderror" onchange="previewImage()">
+                    @error('foto')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
                   </div>
+              
             </div>
           </div>
           <div class="card-footer">

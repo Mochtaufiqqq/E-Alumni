@@ -43,6 +43,11 @@ class DatabaseSeeder extends Seeder
         //     'foto' => 'Null'
         // ]);
 
+        Logo::create([
+            'isi'  => 'TRACER STUDY',
+            'foto'  => 'Null'
+        ]);
+
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(OrganisasiSeeder::class);
