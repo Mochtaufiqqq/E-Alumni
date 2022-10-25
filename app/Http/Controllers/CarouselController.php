@@ -27,34 +27,41 @@ class CarouselController extends Controller
         $validatedData = $request->validate([
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
             'halaman' => 'required',
-            'isi' => 'required',
+            'judul',
+            'isi',
         ]);
 
             $fileName = time().$request->file('foto')->getClientOriginalName();
             $path = $request->file('foto')->storeAs('caroussel-images', $fileName. 'public');
-            $validatedData['foto'] = '/storage/' .$path;
+            $carousel = '/storage/' .$path;
 
         Carousel::create([
-            'foto' => $request->foto,
+            'foto' => $carousel,
             'halaman' => $request->halaman,
+            'judul' => $request->judul,
             'isi' => $request->isi,
         ]);
 
         return redirect ('/showcarousel')->with('success','Carousel Berhasil Ditambahkan');
     }
 
-    public function editcarousel(){
+    public function editcarousel(Carousel $carousel){
         $fvicon = FavIcon::first();
-        $carousel = Carousel::all();
 
-        return view('content.admin.carousel.edit',compact('fvicon','carousel'));
+        return view('content.admin.carousel.edit',[
+            'carousel'  => $carousel,
+            'fvicon'  => $fvicon
+        ]);
     }
 
-    public function updatecarousel(Request $request, $id){
+
+
+    public function updatecarousel(Request $request, Carousel $carousel){
         $validatedData = $request->validate([
-            'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
+            'foto' => 'image|mimes:jpg,png,jpeg|max:5000',
             'halaman' => 'required',
-            'isi' => 'required',
+            'judul',
+            'isi',
         ]);
 
         if($request->file()){
@@ -63,11 +70,7 @@ class CarouselController extends Controller
         $validatedData['foto'] = '/storage/' .$path;
         }
 
-        Carousel::where('id', $id)->update([
-            'halaman' => $request->halaman,
-            'isi' => $request->isi,
-            'foto' => $request->foto,
-        ]);
+        Carousel::where('id', $carousel->id)->update($validatedData);
 
         return redirect ('/showcarousel')->with('success','Carousel Berhasil Diubah');
 

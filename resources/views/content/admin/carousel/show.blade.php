@@ -51,6 +51,7 @@
                                     <th>No</th>
                                     <th>Foto</th>
                                     <th>Halaman</th>
+                                    <th>Judul</th>
                                     <th>Isi</th>
                                     <th>Opsi</th>
                                 </tr>
@@ -62,7 +63,32 @@
                                     <td>
                                         <img src="{{ asset($c->foto) }}" alt="" width="50" height="50">
                                     </td>
-                                    <td>{{ $c->halaman }}</td>
+
+                                    <td>
+                                        @if ($c->halaman == 0)
+                                        <h5><span class="badge bg-opacity-100 bg-success text-white">Alumni</span></h5>
+                                        
+                                    @elseif($c->halaman == 1)
+                                    <h5><span class="badge bg-opacity-100 bg-success text-white">Berita</span></h5>
+                                    @elseif($c->halaman == 2)
+                                    <h5><span class="badge bg-opacity-100 bg-success text-white">Organisasi</span></h5>
+                                    @elseif($c->halaman == 3)
+                                    <h5><span class="badge bg-opacity-100 bg-success text-white">Publikasi Loker</span></h5>
+                                    @elseif($c->halaman == 4)
+                                    <h5><span class="badge bg-opacity-100 bg-success text-white">Loker</span></h5>
+                                    @elseif($c->halaman == 5)
+                                    <h5><span class="badge bg-opacity-100 bg-success text-white">Tentang Kami</span></h5>
+                                    @elseif($c->halaman == 6)
+                                    <h5><span class="badge bg-opacity-100 bg-success text-white">Dashboard</span></h5>
+                                    @elseif($c->halaman == 7)
+                                    <h5><span class="badge bg-opacity-100 bg-success text-white">Register</span></h5>
+                                    @elseif($c->halaman == 8)
+                                    <h5><span class="badge bg-opacity-100 bg-success text-white">Login</span></h5>
+                                        
+                                    @endif
+                                </td>
+                                    <td>{{ $c->judul }}</td>
+
                                     <td>{{ $c->isi }}</td>
                                     <td>
                                         <a href="/editcarousel/{{ $c->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>

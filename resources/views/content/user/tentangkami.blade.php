@@ -37,22 +37,4 @@
         @endforeach
     </section>
 
-
-    <!-- Stats -->
-
-
-    <!-- Gallery -->
-
-
-
-    <!-- Brands (Carousel) -->
-
-
-    <!-- Testimonials (Slider) -->
-
-
-    <!-- Team (Slider) -->
-
-
-    <!-- Contact form -->
 @endsection

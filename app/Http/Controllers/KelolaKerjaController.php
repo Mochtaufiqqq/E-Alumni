@@ -2,42 +2,75 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use PDF;
+use App\Models\Logo;
+use App\Models\FavIcon;
+use App\Models\Carousel;
+use Illuminate\Http\Request;
 use App\Models\Lowongan_Kerja;
 
 
 class KelolaKerjaController extends Controller
 {
 
+    public function publikasiloker(){
+        $fvicon = FavIcon::first();
+        $logo = Logo::first();
+        $carousel = Carousel::where('halaman' ,'3')->first();
+
+        return view ('content.user.publikasiloker',compact('fvicon','logo','carousel'));
+    }
+
+    public function semualoker()
+    {
+        $carousel = Carousel::where('halaman','4')->get();
+        $fvicon = FavIcon::first();
+        $logo = Logo::first();
+        $lokers = Lowongan_Kerja::latest()->get();
+
+        return view ('content.user.semualoker',compact('fvicon','logo','lokers','carousel'));
+    }
+
+    public function detailloker(Lowongan_Kerja $loker){
+        $fvicon = FavIcon::first();
+        $logo = Logo::first();
+
+        return view ('content.user.detailloker',[
+            'loker'  => $loker
+        ],compact('fvicon','logo'));
+
+    }
+
     public function show()
     {
-       $kerjas = Lowongan_Kerja::all();
+        $fvicon = FavIcon::first();
+        $logo = Logo::first();
+       $kerjas = Lowongan_Kerja::latest()->get();
         return view('content.admin.lowongan_kerja.showlowongankerja',[
-            'kerjas' => Lowongan_Kerja::all()
-        ],compact('kerjas'));
+        ],compact('kerjas','fvicon','logo'));
         
     }
 
     public function add() {
-        $kerjas = Lowongan_Kerja::all();
+        $fvicon = FavIcon::first();
+        $logo = Logo::first();
+        $kerjas = Lowongan_Kerja::latest()->get();
 
         return view ('content.admin.lowongan_kerja.addlowongankerja',[
-            'kerjas' => Lowongan_Kerja::all()
-        ],compact('kerjas'));
+        ],compact('kerjas','fvicon','logo'));
     }
 
     public function store(Request $request) {
         $validatedData = $request->validate([
             'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
             'judul' => 'required',
-            'dekskripsi' => 'required',
-            'kategori' => 'required',
+            'nama_perusahaan' => 'required',
+            'deskripsi' => 'required',
             'tgl'  => 'required',
         ]);
 
         $fileName = time().$request->file('foto')->getClientOriginalName();
-        $path = $request->file('foto')->storeAs('foto-kerja', $fileName. 'public');
+        $path = $request->file('foto')->storeAs('foto-loker', $fileName. 'public');
         $validatedData['foto'] = '/storage/' .$path;
 
         Lowongan_Kerja::create($validatedData);
@@ -46,16 +79,19 @@ class KelolaKerjaController extends Controller
     }
 
     public function edit(Lowongan_Kerja $kerjas) {
+        $fvicon = FavIcon::first();
+        $logo = Logo::first();
         return view('content.admin.lowongan_kerja.editlowongankerja',[
            
             'kerjas' => $kerjas
-        ]);
+        ],compact('fvicon','logo'));
     }
      public function update(Request $request , Lowongan_Kerja $kerjas) {
         $validatedData = $request->validate([
-            'foto' => 'mimes:jpg,png,jpeg|max:5000',
+            'foto' => 'required|mimes:jpg,png,jpeg|max:5000',
             'judul' => 'required',
-            'dekskripsi' => 'required',
+            'nama_perusahaan' => 'required',
+            'deskripsi' => 'required',
             'kategori' => 'required',
             'tgl'  => 'required',
         ]);
@@ -79,12 +115,15 @@ class KelolaKerjaController extends Controller
 
         return redirect('/lowongankerja')->with('success', 'Data berhasil dihapus!');
      }
+
      public function detaillowongankerja(Lowongan_Kerja $kerjas) {
         return view('content.admin.lowongan_kerja.detaillowongankerja',[
            
             'kerjas' => $kerjas
         ]);
     }
+
+
 
     public function reportpdflowongankerja(){
         $kerjas = Lowongan_Kerja::all();

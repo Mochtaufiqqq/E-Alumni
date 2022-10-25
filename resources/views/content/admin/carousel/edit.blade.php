@@ -33,15 +33,21 @@
                     <div class="row">
                         <div class="col">
                             <form action="/carousel/update/{{ $carousel->id }}" method="POST" enctype="multipart/form-data">
+                                @method('put')
                                 @csrf
                                 <div class="mb-3 input-group-solid">
                                     <label class="form-label">Halaman</label>
                                     <select name="halaman" id="" class="form-select form-control" required autofocus>
                                         <option selected disabled>Pilih Halaman</option>
-                                        <option value="Alumni">Alumni</option>
-                                        <option value="Berita">Berita</option>
-                                        <option value="Berita">Tentang Kami</option>
-                                        <option value="Berita">Dashboard</option>
+                                        <option value="0">Alumni</option>
+                                        <option value="1">Berita</option>
+                                        <option value="2">Organisasi</option>
+                                        <option value="3">Publikasi Loker</option>
+                                        <option value="4">Loker</option>
+                                        <option value="5">Tentang Kami</option>
+                                        <option value="6">Dashboard</option>
+                                        <option value="7">Register</option>
+                                        <option value="8">Login</option>
                                     </select>
                                     @error('halaman')
                                     <div class="invalid-feedback">
@@ -49,6 +55,19 @@
                                     </div>
                                     @enderror
                                 </div>
+
+                                <div class="mb-3 m-form__group">
+                                    <label class="form-label">Judul</label>
+                                    <div class="input-group">
+                                      <input class="form-control @error('judul') is-invalid @enderror" type="text" name="judul" placeholder="Judul" value="{{ old('judul', $carousel->judul) }}" required autofocus>
+                                    </div>
+                                    @error('judul')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                  </div>
+
                                 <div class="mb-3 m-form__group">
                                     <label class="form-label">Isi</label>
                                     <div class="input-group">
@@ -61,22 +80,24 @@
                                     @enderror
                                 </div>
                                 
-                        <div class="mb-3 input-group-solid">
-                            <label class="form-label" for="image">Foto</label>
-
+                                <div class="mb-3 m-form__group">
+                                    <label class="form-label">Foto Caroussel</label>
+                                    @if ($carousel->foto) 
+                                    <img src="{{ asset($carousel->foto) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                    @else
+                                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                                    @endif
                                     <img class="img-preview img-fluid mb-3">
-                                    <input class="form-control @error('foto') is-invalid @enderror" type="file"
-                                        name="images[]" placeholder="foto" multiple required autofocus
-                                        onchange="previewImage()" id="image">
+                                      <input type="file" name="foto" id="image" class="form-control @error('foto') is-invalid @enderror" onchange="previewImage()">
+                                    @error('foto')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                  </div>
 
-                            @error('foto')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
                         <div class="mb-3">
-                            <button class="btn btn-primary" type="submit">Tambah 
+                            <button class="btn btn-primary" type="submit">Edit 
                                 <i class="fa fa-arrow-right"></i>
                             </button>
                         </div>
