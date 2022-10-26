@@ -165,19 +165,11 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
 
 
      // kesan & pesan
-<<<<<<< HEAD
-     Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
-     Route::put('/editkesanpesan{kesanpesan}',[UserController::class,'editkesanpesan']);
-
-    
-
-=======
     Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
     Route::put('/editkesanpesan/{kesanpesan}',[UserController::class,'editkesanpesan']);
 
     Route::put('/addsosmed/{user}',[UserController::class,'addsosmed']);
     Route::post('/addsosmed',[UserController::class,'addsosmed']);
->>>>>>> 380345bc951af78d39fcd81266a65baf4dceee9a
    
     
 });
