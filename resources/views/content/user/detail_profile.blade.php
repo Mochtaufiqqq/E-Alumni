@@ -1159,7 +1159,6 @@
                             <hr>
                         </div>
 
-
                         <div class="mb-4 mt-4">
                             @if (Auth::user()->pekerjaan == '')
                             @else
@@ -1260,6 +1259,7 @@
                         </div>
                             @endif
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

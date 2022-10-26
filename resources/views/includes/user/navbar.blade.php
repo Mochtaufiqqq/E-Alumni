@@ -2,7 +2,6 @@
     <div class="container px-3">
 
         <a href="#" class="navbar-brand">
-
             @if ($logo == null)
                 <img src="{{ asset('imagenull/logo.png') }}" width="47" alt="Silicon">
             @else

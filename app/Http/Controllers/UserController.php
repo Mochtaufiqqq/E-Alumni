@@ -222,7 +222,7 @@ class UserController extends Controller
 
         Sosmed::with('user');
         
-       $request['user_id'] = auth()->user()->id;
+       $request["user_id"] = auth()->user()->id;
        Sosmed::create([
         'instagram'=> $request->instagram,
         'facebook' => $request->facebook,
