@@ -2,17 +2,14 @@
     <div class="container px-3">
 
         <a href="#" class="navbar-brand">
-<<<<<<< HEAD
+
             @if ($logo == null)
-=======
-            @if ($logo->foto == null)
->>>>>>> 380345bc951af78d39fcd81266a65baf4dceee9a
                 <img src="{{ asset('imagenull/logo.png') }}" width="47" alt="Silicon">
             @else
                 <img src="{{ asset($logo->foto) }}" width="47" alt="Silicon">    
             @endif
 
-            @if ($logo->isi == null)
+            @if ($logo == null)
                 TRACER STUDY
             @else
                 {{ $logo->isi }}

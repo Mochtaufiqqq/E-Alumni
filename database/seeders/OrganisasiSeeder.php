@@ -16,21 +16,6 @@ class OrganisasiSeeder extends Seeder
      */
     public function run()
     {
-        Schema::disableForeignKeyConstraints();
-        Organisasi::truncate();
-        Schema::enableForeignKeyConstraints();
-
-        $data = [
-            'Osis',
-            'Panahan',
-            'Voli',
-            'Nampon',
-        ];
-
-        foreach ($data as $key ) {
-            Organisasi::create([
-                'organisasi' => $key
-            ]);
-        }
+        
     }
 }

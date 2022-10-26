@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('riwayat_organisasi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_organisasi');
-            $table->year('periode');
-            $table->string('foto')->nullable();
+            // $table->foreignId('id_organisasi');
+            $table->string('periode')->nullable();
+            $table->string('organisasi');
             $table->string('dokumentasi')->nullable();
             $table->string('logo')->nullable();
             $table->text('deskripsi');
+            $table->string('foto_struktur');
             $table->timestamps();
         });
     }
