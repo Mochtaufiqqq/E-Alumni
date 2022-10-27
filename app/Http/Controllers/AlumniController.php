@@ -22,12 +22,13 @@ class AlumniController extends Controller
 {
 
     public function dashboarduser(){
+        $lokers = Lowongan_Kerja::latest()->first();
         $beritas = Berita::all();
         $logo = Logo::first();
         $carousel = Carousel::where('halaman','6')->get();
         $fvicon = FavIcon::first();
         return view('content.user.dashboard',[
-        ],compact('carousel','fvicon','logo', 'beritas'));
+        ],compact('carousel','fvicon','logo', 'beritas','lokers'));
 
     }
 
