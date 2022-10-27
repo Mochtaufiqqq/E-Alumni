@@ -16,12 +16,13 @@ class Riwayat_organisasi extends Model
     protected $guarded = ['id'];
     protected $table = 'riwayat_organisasi';
     protected $fillable = [
-        // 'id_organisasi',
+        'organisasi_id',
         'dokumentasi',
         'logo',
         'organisasi',
         'deskripsi',
-        'foto_struktur'
+        'foto_struktur',
+        'user_id'
     ];
 
     public function sluggable(): array
@@ -33,13 +34,18 @@ class Riwayat_organisasi extends Model
         ];
     }
 
-    // public function organisasi()
-    // {
-    //     return $this->belongsTo(Organisasi::class, 'id');
-    // }
+    public function organisasi()
+    {
+        return $this->belongsTo(Organisasi::class, 'id');
+    }
 
     public function organisasiuser()
     {
         return $this->hasMany(Organisasiuser::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

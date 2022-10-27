@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('riwayat_organisasi', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('id_organisasi');
+            $table->foreignId('organisasi_id');
             $table->string('periode')->nullable();
-            $table->string('organisasi');
+            // $table->string('organisasi');
             $table->string('dokumentasi')->nullable();
             $table->string('logo')->nullable();
             $table->text('deskripsi');

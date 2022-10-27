@@ -15,10 +15,7 @@ return new class extends Migration
     {
         Schema::create('organisasi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('organisasi_1')->nullable();
-            $table->string('organisasi_2')->nullable();
-            $table->string('organisasi_3')->nullable();
+            $table->string('organisasi')->nullable();
             $table->timestamps();
         });
     }

@@ -34,9 +34,10 @@ class OrganisasiController extends Controller
     public function show()
     {
         $fvicon = FavIcon::first();
-        $organisasi = Riwayat_organisasi::all();
+        $organisasi = Riwayat_organisasi::with('organisasi')->get();
         $org = Organisasi::all();
         $jab = Jabatan::all();
+        // dd($organisasi);
         return view('content.admin.organisasi.showOrganisasi', compact('organisasi', 'org', 'jab','fvicon'));
     }
 
@@ -78,14 +79,25 @@ class OrganisasiController extends Controller
 
         Riwayat_organisasi::create([
             // 'id_organisasi' => $request->organisasi,
-            'organisasi' => $request->organisasiUser,
+            // 'organisasi' => $request->organisasiUser,
             'dokumentasi' => implode('|', $image),
             'logo' => $logo,
             'deskripsi' =>$request->deskripsi,
-            'foto_struktur' =>$foto_struktur
-        ]);
+            'foto_struktur' =>$foto_struktur,
+            'organisasi_id' =>$request->organisasi
+        ]);     
         
+        // dd($request);
         return redirect('/organisasi/show')->with('berhasil', 'berhasil menambahkan'); 
+    }
+
+    public function addadminorganisasi(Request $request)
+    {
+        Organisasi::create([
+            'organisasi' =>$request->organisasi
+        ]);
+
+        return redirect('/organisasi/add')->with('berhasil', 'berhasil menambahkan'); 
     }
 
     public function details(Riwayat_organisasi $organisasi)
@@ -141,7 +153,7 @@ class OrganisasiController extends Controller
 
         Riwayat_organisasi::where('id', $id)->update([
             // 'id_organisasi' => $request->organisasi
-            'organisasi' => $request->organisasiUser,
+            'organisasi_id' => $request->organisasi,
             'dokumentasi' => implode('|', $image),
             'logo' =>$logo,
             'deskripsi' =>$request->deskripsi,

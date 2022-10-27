@@ -31,7 +31,7 @@ class User extends Authenticatable
         'nama_panggilan',
         'pekerjaan',
         'karya',
-        'jabatan_pekerjaan',
+        'tmpt_pekerjaan',
         'email',
         'keahlian',
         'jurusan',
@@ -79,6 +79,11 @@ class User extends Authenticatable
     public function organisasi()
     {
         return $this->hasMany(Organisasi::class);
+    }
+
+    public function riwayat_organisasi()
+    {
+        return $this->hasMany(Riwayat_organisasi::class);
     }
 
     public function sosmed()

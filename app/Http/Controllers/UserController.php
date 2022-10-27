@@ -167,14 +167,17 @@ class UserController extends Controller
         $logo = Logo::first();
         $user = Auth::user();
         $org = Organisasi::all();
+        $orgUser = Organisasiuser::with('organisasi')->where('user_id', Auth()->User()->id)->first();
         $jab = Jabatan::all();
-        $ro = Organisasi::where('user_id', Auth()->User()->id)->first();
+        $riwayat = Riwayat_organisasi::all();
+        $ro = Organisasi::with('user')->first();
         $sosmed = Sosmed::where('user_id', Auth()->User()->id)->first();
         $rp = Riwayat_pendidikan::where('user_id', Auth()->User()->id)->first();
+        // dd($orgUser);
         return view('content.user.detail_profile',[
             'user' => $user,
             'sosmed' => $sosmed
-        ],compact('user', 'sosmed','fvicon', 'rp', 'logo', 'jab', 'org', 'ro'));
+        ],compact('user', 'sosmed','fvicon', 'rp', 'logo', 'jab', 'org', 'ro', 'riwayat', 'orgUser'));
     }
 
     public function settingprofileuser(Request $request, User $user){
@@ -208,7 +211,7 @@ class UserController extends Controller
 
         $validatedData = $request->validate([
             'pekerjaan'      => 'required',
-            'jabatan_pekerjaan'    => 'required',
+            'tmpt_pekerjaan'    => 'required',
             
         ]);
         User::where('id', $user->id)->update($validatedData);
@@ -321,11 +324,28 @@ class UserController extends Controller
     
     public function addorganisasi(Request $request)
     {   
-        Organisasi::with('user')->update([
-            'organisasi_1' =>$request->organisasi_1,
-            'organisasi_2' =>$request->organisasi_2,
-            'organisasi_3' =>$request->organisasi_3,
-            'user_id' => Auth()->User()->id
+        // Organisasi::with('user');
+        Organisasiuser::with('user');
+
+        $validatedData["user_id"] = auth()->user()->id;
+
+
+        Organisasiuser::create([
+            'organisasi_id' =>$request->organisasi,
+            'user_id' => Auth()->User()->id,
+        ]);
+        
+        
+        return redirect('/profile')->with('success', 'Berhasil mengubah!');
+        
+    }
+    public function editorganisasi(Request $request, )
+    {   
+        // Organisasi::with('user');
+        Organisasiuser::with('user');
+        Organisasiuser::where('user_id', Auth()->User()->id)->update([
+            'organisasi_id' =>$request->organisasi,
+            'user_id' => Auth()->User()->id,
         ]);
         
         

@@ -135,6 +135,7 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
         Route::post('/store', [OrganisasiController::class, 'store']);
         Route::get('/edit/{id}', [OrganisasiController::class, 'edit']);
         Route::post('/update/{id}', [OrganisasiController::class, 'update']);
+        Route::post('/addadminorganisasi', [OrganisasiController::class, 'addadminorganisasi']);
     });
 
 });
@@ -159,6 +160,7 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::put('/addfotokegiatan/{user}',[UserController::class,'addfotokegiatan']);
     Route::put('/addsosmed',[UserController::class,'addsosmed']);
     Route::put('/addorganisasi',[UserController::class,'addorganisasi']);
+    Route::put('/editorganisasi',[UserController::class,'editorganisasi']);
     Route::put('/editsosmed',[UserController::class,'editsosmed']);
     Route::put('/addpendidikan',[UserController::class,'addpendidikan']);
     Route::put('/editpendidikan',[UserController::class,'editpendidikan']);

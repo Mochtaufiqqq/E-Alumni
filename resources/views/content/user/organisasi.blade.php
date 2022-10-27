@@ -83,7 +83,7 @@
                 <div class="card card-body card-hover bg-light border-0 text-center mx-2">
                     <img src="{{ $item->logo }}" class="d-block rounded-circle mx-auto mb-3" width="162"
                         alt="Ralph Edwards">
-                    <h5 class="fw-medium fs-lg mb-1">{{ $item->organisasi }}</h5>
+                    <h5 class="fw-medium fs-lg mb-1">{{ $item->organisasi->organisasi }}</h5>
                     <div class="d-flex justify-content-center">
                         <a href="/organisasi/detail/{{ $item->id }}" class="btn btn-outline-primary btn-md">
                             <i class="bx bxl-facebook"></i>

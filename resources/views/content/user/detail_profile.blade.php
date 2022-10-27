@@ -99,7 +99,7 @@
 
                         <hr>
 
-                        @if ($ro == '')
+                        @if ($orgUser == '')
                             
                         <a href="#modalOrganisasi" data-bs-toggle="modal" data-bs-target="#modalOrganisasi"
                             style="text-decoration: none; color:black">
@@ -364,13 +364,13 @@
                             @csrf
                             @method('put')
                             <div class="mb-3">
-                                <label class="form-label" for="email1">Nama Perusahaan</label>
+                                <label class="form-label" for="email1">Pekerjaan</label>
                                 <input class="form-control" type="text" name="pekerjaan" id="email1"
                                     placeholder="Nama Perusahaan" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="email1">Jabatan</label>
-                                <input class="form-control" type="text" name="jabatan_pekerjaan" id="email1"
+                                <label class="form-label" for="email1">Tempat Pekerjaan</label>
+                                <input class="form-control" type="text" name="tmpt_pekerjaan" id="email1"
                                     placeholder="Sebagai" required>
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">Tambah</button>
@@ -753,19 +753,15 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="email1">organisasi</label>
-                                <input class="form-control" type="text" name="organisasi_1" id="email1"
-                                    placeholder="(contoh : Osis (2015-2018) )">
+                                <select id="country" class="form-select form-select-lg" required
+                                    name="organisasi">
+                                    @foreach ($org as $item)
+                                        <option selected value="{{ $item->id }}">{{ $item->organisasi }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-feedback">Please choose your country!</div>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="email1">organisasi</label>
-                                <input class="form-control" type="text" name="organisasi_2" id="email1"
-                                    placeholder="(contoh : Voli (2015-2018) )">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="email1">organisasi</label>
-                                <input class="form-control" type="text" name="organisasi_3" id="email1"
-                                    placeholder="(contoh : Panahan (2015-2018) )">
-                            </div>
+                            
                             <button class="btn btn-primary d-block w-100" type="submit">Tambah</button>
                         </form>
                     </div>
@@ -789,7 +785,7 @@
 
                         <!-- Sign in form -->
 
-                        <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/addorganisasi" method="POST">
+                        <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/editorganisasi" method="POST">
                             @csrf
                             @method('put')
                             <div class="mb-3">
@@ -798,20 +794,15 @@
                                     <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="col mb-3">
                                 <label class="form-label" for="email1">organisasi</label>
-                                <input class="form-control" type="text" name="organisasi_1" id="email1"
-                                    placeholder="(contoh : Osis (2015-2018) )" value="{{ old('organisasi_1', $ro->organisasi_1) }}">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="email1">organisasi</label>
-                                <input class="form-control" type="text" name="organisasi_2" id="email1"
-                                    placeholder="(contoh : Voli (2015-2018) )" value="{{ old('organisasi_2', $ro->organisasi_2) }}">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="email1">organisasi</label>
-                                <input class="form-control" type="text" name="organisasi_3" id="email1"
-                                    placeholder="(contoh : Panahan (2015-2018) )" value="{{ old('organisasi_3', $ro->organisasi_3) }}">
+                                <select id="country" class="form-select form-select-lg" required
+                                    name="organisasi">
+                                    @foreach ($org as $item)
+                                        <option selected value="{{ $item->id }}">{{ $item->organisasi }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-feedback">Please choose your country!</div>
                             </div>
                             <button class="btn btn-primary d-block w-100" type="submit">Edit</button>
                         </form>
@@ -1195,13 +1186,11 @@
                         </div>
 
                         <div class="mb-4 mt-4">
-                            <label for="phone" class="form-label fs-base">organisasi</label>
-                            @if ($ro == '')
+                            @if ($orgUser == '')
                             
                             @else
-                            <p>{{ $ro->organisasi_1 }}</p>
-                            <p>{{ $ro->organisasi_2 }}</p>
-                            <p>{{ $ro->organisasi_3 }}</p>
+                            <label for="phone" class="form-label fs-base">organisasi</label>
+                                <p>{{ $orgUser->organisasi->organisasi }}</p>
                             <hr>
                             @endif
                         </div>
