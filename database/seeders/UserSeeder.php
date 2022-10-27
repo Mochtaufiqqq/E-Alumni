@@ -36,7 +36,6 @@ class UserSeeder extends Seeder
             'alamat' => 'Downtown Street,California State, USA',
             'password' => bcrypt('123123123'),
             'role_id' => 1,
-            'id_organisasi' => 1,
              
         ]);
         User::create([
@@ -57,7 +56,6 @@ class UserSeeder extends Seeder
             'alamat' => 'Downtown Street,California State, USA',
             'password' => bcrypt('123123123'),
             'role_id' => 2,
-            'id_organisasi' => 1,
                      ]);
 
         User::create([
@@ -78,7 +76,6 @@ class UserSeeder extends Seeder
             'alamat' => 'Downtown Street,California State, USA',
             'password' => bcrypt('123123123'),
             'role_id' => 2,
-            'id_organisasi' => 1,
 
                      
         ]);

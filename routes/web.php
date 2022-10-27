@@ -21,7 +21,7 @@ Route::get('/',[AlumniController::class,'dashboarduser']);
 Route::get('/dokumentasi',[UserController::class,'dokumentasi']);
 //organisasi
 Route::get('/organisasi', [OrganisasiController::class, 'index']);
-Route::get('/organisasi/detail/{slug}', [OrganisasiController::class, 'details']);
+Route::get('/organisasi/detail/{organisasi}', [OrganisasiController::class, 'details']);
 //endorganisasi
 Route::get('/tentangkami', [OtherController::class, 'tentangkami']);
 Route::get('/kesanpesan',[UserController::class,'kesanpesan']);
@@ -133,9 +133,9 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
 
     Route::prefix('organisasi')->group(function(){ 
         Route::get('/show', [OrganisasiController::class, 'show']);
-        Route::get('/edit', [OrganisasiController::class, 'edit']);
         Route::get('/add', [OrganisasiController::class, 'tambah']);
         Route::post('/store', [OrganisasiController::class, 'store']);
+        Route::get('/edit/{id}', [OrganisasiController::class, 'edit']);
         Route::post('/update/{id}', [OrganisasiController::class, 'update']);
     });
 
@@ -156,6 +156,9 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
     Route::put('/addnamapanggilan/{user}',[UserController::class,'addnamapanggilan']);
     Route::put('/addkarya/{user}',[UserController::class,'addkarya']);
+    Route::put('/editkarya/{user}',[UserController::class,'addkarya']);
+    Route::put('/addkeahlian/{user}',[UserController::class,'addkeahlian']);
+    Route::put('/addfotokegiatan/{user}',[UserController::class,'addfotokegiatan']);
     Route::put('/addsosmed',[UserController::class,'addsosmed']);
     Route::put('/addorganisasi',[UserController::class,'addorganisasi']);
     Route::put('/editsosmed',[UserController::class,'editsosmed']);
@@ -165,11 +168,11 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
 
 
      // kesan & pesan
-    Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
-    Route::put('/editkesanpesan/{kesanpesan}',[UserController::class,'editkesanpesan']);
+     Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
+     Route::put('/editkesanpesan{kesanpesan}',[UserController::class,'editkesanpesan']);
 
-    Route::put('/addsosmed/{user}',[UserController::class,'addsosmed']);
-    Route::post('/addsosmed',[UserController::class,'addsosmed']);
+    
+
    
     
 });
