@@ -15,10 +15,10 @@ use App\Http\Controllers\KelolaKerjaController;
 use App\Http\Controllers\CarouselController;
 
 
-
-
 // this route guest for user
 Route::get('/',[AlumniController::class,'dashboarduser']);
+//dokumentasi
+Route::get('/dokumentasi',[UserController::class,'dokumentasi']);
 //organisasi
 Route::get('/organisasi', [OrganisasiController::class, 'index']);
 Route::get('/organisasi/detail/{organisasi}', [OrganisasiController::class, 'details']);
