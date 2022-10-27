@@ -49,9 +49,15 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3 input-group-solid">
-                                    <label class="form-label">Organisasi</label>
-                                    <input type="text" name="organisasiUser" class="form-control" placeholder="(contoh : Osis (2015-2018) )">
+                                <label class="form-label" for="organisasi">Organisasi</label>
+                                <div class="mb-3 input-group">
+                                    <select type="text" class="form-control" placeholder="" id="organisasi" aria-label="Example text with button addon" aria-describedby="button-addon1" name="organisasi">
+                                            <option value="" selected>Pilih organisasi</option>
+                                        @foreach ($org as $item)
+                                            <option value="{{ $item->id ?? 'none'}}">{{ $item->organisasi ?? 'none'}}</option>
+                                        @endforeach
+                                    </select>
+                                    <button class="btn btn-outline-primary" type="button" id="button-addon1" data-bs-toggle="modal" data-bs-target="#modalOrganisasi">tambah organisasi</button>
                                 </div>
 
                                 <div class="mb-3">
@@ -102,6 +108,27 @@
                             <button class="btn btn-light" type="submit">Cancel</button>
                         </div>
                     </form>
+                    <div class="modal fade" id="modalOrganisasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Hapus Data User</h5>
+                              <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="/organisasi/addadminorganisasi" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" name="organisasi" placeholder="contoh : Osis (2021-2023)">
+                                </div>
+                                <div class="mb-3">
+                                    <button class="btn btn-primary" type="submit">Yakin</button>
+                                </div>
+                            </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

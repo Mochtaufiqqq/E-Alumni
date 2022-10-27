@@ -12,10 +12,8 @@ class Organisasi extends Model
 
     protected $table = 'organisasi';
     protected $fillable = [
-        'organisasi_1',
-        'organisasi_2',
-        'organisasi_3',
-        'user_id'
+        'organisasi',
+        'user_id',
     ];
 
     public function riwayat_organisasi()
@@ -25,6 +23,6 @@ class Organisasi extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

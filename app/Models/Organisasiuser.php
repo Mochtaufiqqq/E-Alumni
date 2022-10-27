@@ -13,8 +13,8 @@ class Organisasiuser extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'user_id',
-        'riwayat_organisasi_id',
-        'jabatan_id'
+        'organisasi_id',
+        // 'jabatan_id'
     ];
 
     public function user()
@@ -27,12 +27,12 @@ class Organisasiuser extends Model
         return $this->belongsTo(Riwayat_organisasi::class);
     }
 
-    public function jabatan()
-    {
-        return $this->belongsTo(Jabatan::class);
-    }
+    // public function jabatan()
+    // {
+    //     return $this->belongsTo(Jabatan::class);
+    // }
     public function organisasi()
     {
-        return $this->belongsTo(Organisasi::class, 'riwayat_organisasi_id', 'id');
+        return $this->belongsTo(Organisasi::class, 'organisasi_id', 'id');
     }
 }
