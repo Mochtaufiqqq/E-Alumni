@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('foto_profile')->nullable();
             $table->string('foto_kegiatan')->nullable();
             $table->string('pekerjaan')->nullable();
-            $table->string('jabatan_pekerjaan')->nullable();
+            // $table->string('jabatan_pekerjaan')->nullable();
             $table->string('tmpt_pekerjaan')->nullable();
             $table->integer('status')->default('0');
             $table->foreignId('id_organisasi')->nullable();

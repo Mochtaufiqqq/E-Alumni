@@ -31,15 +31,11 @@
 <!-- Page title -->
 <section class="container pt-4 mb-0 mb-lg-0">
     <h1>{{ $beritas->judul }}</h1>
-    <p class="text-muted mb-0">{{ $beritas->tgl }}</p>
-</section>
-
-<!-- About project -->
-<section class="container py-5 my-1 my-md-4 my-lg-5">
+    <p class="text-muted mb-5">{{ $beritas->tgl }}</p>
     <div class="row">
-        <div class="col-lg-12 mb-4 mb-lg-0">
+        <div class="col-lg-12 mb-5 mb-lg-0">
             <div class="pe-lg-4 me-lg-3 pe-xl-0 me-xl-0">
-                <p class="fs-lg mb-0">{{ $beritas->isi }}</p>
+                <p class="fs-lg mb-5">{{ $beritas->isi }}</p>
             </div>
         </div>
     </div>

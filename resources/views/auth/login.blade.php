@@ -17,16 +17,15 @@
 
     <!-- Favicon and Touch Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/user/favicon/apple-touch-icon.png">
-    @if ($fvicon->favicon == null)
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon/tracerstudy.ico') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/favicon/tracerstudy.ico') }}">
+    @if ($fvicon == null)
+        
     @else
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset($fvicon->favicon) }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset($fvicon->favicon) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset($fvicon->favicon) }}"">
     @endif
     <link rel="manifest" href="/user/favicon/site.webmanifest ">
     {{-- <link rel="mask-icon" href="/silicon.createx.studio/assets/favicon/safari-pinned-tab.svg" color="#6366f1"> --}}
-    @if ($fvicon->favicon == null)
+    @if ($fvicon == null)
     <link rel="mask-icon" href="{{ asset('/favicon/tracerstudy.ico') }}" color="#6366f1">
     <link rel="shortcut icon" href="{{ asset('favicon/tracerstudy.ico') }}">
     @else

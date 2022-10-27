@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logo;
+use App\Models\FavIcon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -9,7 +11,10 @@ class MailController extends Controller
 {
     public function email()
     {
-        return view('content.user.kontak');
+        $fvicon = FavIcon::first();
+        $logo = Logo::first();
+        $data = ['subject'];
+        return view('content.user.kontak', compact('fvicon', 'logo'));
     }
 
     public function send(Request $request)
@@ -31,11 +36,12 @@ class MailController extends Controller
         ];
 
         Mail::send('email.email', $data, function ($message) use ($data) {
-            $message->to($data['email']);
-            $message->sender('uglieelosyy@gmail.com');
+            $message->to('mhmdtaufiq3@gmail.com');
+            $message->sender($data['email']);
             $message->subject($data['subject']);
         });
-
-        return redirect('/kontak')->with('message', 'berhasil mengirim pesan');
+        
+        
+        return redirect('/kontak')->with('success', 'berhasil mengirim pesan');
     }
 }

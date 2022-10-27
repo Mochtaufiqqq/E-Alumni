@@ -6,37 +6,23 @@ use Pagination;
 use App\Models\Logo;
 use App\Models\User;
 use App\Models\Berita;
-// use App\Models\Foto_postingan;
 use App\Models\Sosmed;
 use App\Models\FavIcon;
+use App\Models\Jabatan;
 use App\Models\Carousel;
 use App\Models\KesanPesan;
+use App\Models\Organisasi;
 use Illuminate\Http\Request;
 // use App\Models\Foto_postingan;
-use Illuminate\Support\Facades\DB;
+use App\Models\Organisasiuser;
+use App\Models\Riwayat_organisasi;
 use App\Models\Riwayat_pendidikan;
+use App\Models\Riwayat_prestasi;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
-    public function addpostingan(Request $request , User $user){
-
-        $image = [];
-
-        if($request->hasFile('images')){
-            foreach ($request->file('images') as $file){
-                $path = $file->store('postingan_alumni');
-                $image[] = $path;
-            }
-        } 
-        
-        User::where('id', $user->id)->update([
-            'foto_kegiatan' => implode('|', $image)
-        ]);   
-
-        return redirect('/profile')->with('success','Foto Kegiatan berhasil ditambahkan');
-    }
 
     public function dokumentasi(){
         return view('content.user.dokumentasi');
@@ -180,12 +166,18 @@ class UserController extends Controller
         $fvicon = FavIcon::first();
         $logo = Logo::first();
         $user = Auth::user();
+        $org = Organisasi::all();
+        $orgUser = Organisasiuser::with('organisasi')->where('user_id', Auth()->User()->id)->first();
+        $jab = Jabatan::all();
+        $riwayat = Riwayat_organisasi::all();
+        $ro = Organisasi::with('user')->first();
         $sosmed = Sosmed::where('user_id', Auth()->User()->id)->first();
         $rp = Riwayat_pendidikan::where('user_id', Auth()->User()->id)->first();
+        // dd($orgUser);
         return view('content.user.detail_profile',[
             'user' => $user,
             'sosmed' => $sosmed
-        ],compact('user', 'sosmed','fvicon', 'rp', 'logo'));
+        ],compact('user', 'sosmed','fvicon', 'rp', 'logo', 'jab', 'org', 'ro', 'riwayat', 'orgUser'));
     }
 
     public function settingprofileuser(Request $request, User $user){
@@ -219,7 +211,7 @@ class UserController extends Controller
 
         $validatedData = $request->validate([
             'pekerjaan'      => 'required',
-            'jabatan_pekerjaan'    => 'required',
+            'tmpt_pekerjaan'    => 'required',
             
         ]);
         User::where('id', $user->id)->update($validatedData);
@@ -233,12 +225,13 @@ class UserController extends Controller
 
         Sosmed::with('user');
         
-       $request['user_id'] = auth()->user()->id;
+       $request["user_id"] = auth()->user()->id;
        Sosmed::create([
         'instagram'=> $request->instagram,
         'facebook' => $request->facebook,
         'tiktok'=> $request->tiktok,
         'linkedin'=> $request->linkedin,
+        'user_id' => auth()->user()->id
        ]);
 
        return redirect('/profile')->with('success', 'Berhasil Menambahkan Sosial Media!');
@@ -274,13 +267,13 @@ class UserController extends Controller
 
         $validatedData["user_id"] = auth()->user()->id;
         Riwayat_pendidikan::create([
-            'nama_sekolah_univ' => " UNIV " . $request->nama_sekolah_univ,
+            'nama_sekolah_univ' => $request->nama_sekolah_univ,
             'tahun_mulai_univ' => $request->tahun_mulai_univ,
             'tahun_akhir_univ' => $request->tahun_akhir_univ,
-            'nama_sekolah_smk' => " SMK " . $request->nama_sekolah_smk,
+            'nama_sekolah_smk' => $request->nama_sekolah_smk,
             'tahun_akhir_smk' => $request->tahun_akhir_smk,
             'tahun_mulai_smk' => $request->tahun_mulai_smk,
-            'nama_sekolah_smp' => " SMP " . $request->nama_sekolah_smp,
+            'nama_sekolah_smp' => $request->nama_sekolah_smp,
             'tahun_mulai_smp' => $request->tahun_mulai_smp,
             'tahun_akhir_smp' => $request->tahun_akhir_smp,
             'user_id' => Auth()->User()->id
@@ -288,6 +281,35 @@ class UserController extends Controller
         
 
         return redirect('/profile')->with('success', 'Berhasil Menambahkan Pendidikan!');
+    }
+
+    public function editpendidikan(Request $request)
+    {
+        // dd($request);
+        Riwayat_pendidikan::with('user');
+        $validatedData = $request->validate([
+            'nama_sekolah',
+            'tahun_mulai',
+            'tahun_akhir',
+            'rp_id'
+        ]);
+
+        $validatedData["user_id"] = auth()->user()->id;
+        Riwayat_pendidikan::where('user_id', Auth()->User()->id)->update([
+            'nama_sekolah_univ' => $request->nama_sekolah_univ,
+            'tahun_mulai_univ' => $request->tahun_mulai_univ,
+            'tahun_akhir_univ' => $request->tahun_akhir_univ,
+            'nama_sekolah_smk' => $request->nama_sekolah_smk,
+            'tahun_akhir_smk' => $request->tahun_akhir_smk,
+            'tahun_mulai_smk' => $request->tahun_mulai_smk,
+            'nama_sekolah_smp' => $request->nama_sekolah_smp,
+            'tahun_mulai_smp' => $request->tahun_mulai_smp,
+            'tahun_akhir_smp' => $request->tahun_akhir_smp,
+            'user_id' => Auth()->User()->id
+        ]);
+        
+
+        return redirect('/profile')->with('success', 'Berhasil Mengubah Pendidikan!');
     }
 
     public function addkarya(Request $request, User $user)
@@ -299,5 +321,63 @@ class UserController extends Controller
         User::where('id', $user->id)->update($validatedData);
         return redirect('/profile')->with('success', 'Berhasil mengubah!');
     }
+    
+    public function addorganisasi(Request $request)
+    {   
+        // Organisasi::with('user');
+        Organisasiuser::with('user');
 
+        $validatedData["user_id"] = auth()->user()->id;
+
+
+        Organisasiuser::create([
+            'organisasi_id' =>$request->organisasi,
+            'user_id' => Auth()->User()->id,
+        ]);
+        
+        
+        return redirect('/profile')->with('success', 'Berhasil mengubah!');
+        
+    }
+    public function editorganisasi(Request $request, )
+    {   
+        // Organisasi::with('user');
+        Organisasiuser::with('user');
+        Organisasiuser::where('user_id', Auth()->User()->id)->update([
+            'organisasi_id' =>$request->organisasi,
+            'user_id' => Auth()->User()->id,
+        ]);
+        
+        
+        return redirect('/profile')->with('success', 'Berhasil mengubah!');
+        
+    }
+    
+    public function addkeahlian(Request $request, User $user)
+    {
+        $validatedData = $request->validate([
+            'keahlian' => 'required',        
+        ]);
+    
+        User::where('id', $user->id)->update($validatedData);
+        return redirect('/profile')->with('success', 'Berhasil mengubah!');
+    }
+
+    public function addfotokegiatan(User $user, Request $request)
+    {
+        $image = [];
+
+        if($request->hasFile('images')){
+            foreach ($request->file('images') as $file){
+                $path = $file->store('postingan_alumni');
+                $image[] = $path;
+            }
+        } 
+        
+        User::where('id', $user->id)->update([
+            'foto_kegiatan' => implode('|', $image)
+        ]);   
+
+        return redirect('/profile')->with('success','Foto Kegiatan berhasil ditambahkan');
+    }
 }

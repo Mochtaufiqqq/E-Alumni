@@ -37,87 +37,85 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </button>
-      </div>
+    </div>
 </div>
 
+{{-- berita --}}
+<!-- Multiple slides responsive slider with external Prev / Next buttons and bullets outside -->
+<section class="container-fluid pt-lg-2 pb-5 mb-2 mb-md-4 mb-lg-5">
+    <h1 class="h1 text-center pb-md-1 mb-1 mb-sm-3">BERITA</h1>
 
-<!-- About company -->
-<section id="landings" class="container text-center pt-5 mt-2 mt-md-4 mt-lg-5">
-    <h2 class="h1 pt-2 pt-lg-0">Jumlah Alumni</h2>
-    <p class="fs-lg pb-2 pb-md-3 pb-lg-0 mb-4 mb-lg-5">Jumlah alumni SMKS MAHAPUTRA CERDAS UTAMA dari tahun 2015 - 2022</p>
-    <div id="div_counter" class="swiper mt-n3 mt-md-0 pt-md-4 pt-lg-5 mx-n2 swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden" data-swiper-options="{
-        &quot;slidesPerView&quot;: 1,
-        &quot;spaceBetween&quot;: 8,
-        &quot;pagination&quot;: {
-          &quot;el&quot;: &quot;.swiper-pagination&quot;,
-          &quot;clickable&quot;: true
+    <div class="position-relative px-xl-5">
+        
+        <!-- Slider prev/next buttons -->
+        <button type="button" id="prev-news" class="btn btn-prev btn-icon btn-sm position-absolute top-50 start-0 translate-middle-y d-none d-xl-inline-flex">
+            <i class="bx bx-chevron-left"></i>
+        </button>
+        <button type="button" id="next-news" class="btn btn-next btn-icon btn-sm position-absolute top-50 end-0 translate-middle-y d-none d-xl-inline-flex">
+            <i class="bx bx-chevron-right"></i>
+        </button>
+        
+        <!-- Slider -->
+        <div class="px-xl-2">
+            <div class="swiper mx-n2" data-swiper-options='{
+                "slidesPerView": 1,
+                "loop": false,
+                "pagination": {
+                    "el": ".swiper-pagination",
+                    "clickable": true
+                },
+                "navigation": {
+                    "prevEl": "#prev-news",
+                    "nextEl": "#next-news"
         },
-        &quot;navigation&quot;: {
-          &quot;prevEl&quot;: &quot;#prev-news&quot;,
-          &quot;nextEl&quot;: &quot;#next-news&quot;
-        },
-        &quot;breakpoints&quot;: {
-          &quot;500&quot;: {
-            &quot;slidesPerView&quot;: 2
+        "breakpoints": {
+          "500": {
+            "slidesPerView": 2
           },
-          &quot;700&quot;: {
-            &quot;slidesPerView&quot;: 3
-          },
-          &quot;1000&quot;: {
-            &quot;slidesPerView&quot;: 4
+          "1000": {
+              "slidesPerView": 3
           }
         }
-      }">
-        <div class="swiper-wrapper" id="swiper-wrapper-a1e6b08b2f00a3a3" aria-live="polite">
-
+      }'>
+        <div class="swiper-wrapper">
+  
           <!-- Item -->
-          <div class="swiper-slide h-auto pb-3 swiper-slide-active counter-item" role="group" aria-label="1 / 4" style="width: 238.5px; margin-right: 8px;">
-            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
-              <lottie-player class="d-dark-mode-none mx-auto mt-4 mb-2" src="assets/json/animation-feature-1-light.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
-              <lottie-player class="d-none d-dark-mode-block mx-auto mt-4 mb-2" src="assets/json/animation-feature-1-dark.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
-              <h5 class="counter">1230</h5>
-              <div class="card-body fs-lg fw-semibold text-center">Angkatan 1 (2015 - 2019)</div>
-            </div>
-          </div>
-
-          <!-- Item -->
-          <div class="swiper-slide h-auto pb-3 swiper-slide-next" role="group" aria-label="2 / 4" style="width: 238.5px; margin-right: 8px;">
-            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
-              <lottie-player class="d-dark-mode-none mx-auto mt-4 mb-2" src="assets/json/animation-feature-2-light.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
-              <lottie-player class="d-none d-dark-mode-block mx-auto mt-4 mb-2" src="assets/json/animation-feature-2-dark.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
-              <div class="card-body fs-lg fw-semibold text-center">2109</div>
-              <div class="card-body fs-lg fw-semibold text-center">Angkatan 1 (2015 - 2019)</div>
-            </div>
-          </div>
-
-          <!-- Item -->
-          <div class="swiper-slide h-auto pb-3" role="group" aria-label="3 / 4" style="width: 238.5px; margin-right: 8px;">
-            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
-              <lottie-player class="d-dark-mode-none mx-auto mt-4 mb-2" src="assets/json/animation-feature-3-light.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
-              <lottie-player class="d-none d-dark-mode-block mx-auto mt-4 mb-2" src="assets/json/animation-feature-3-dark.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
-              <div class="card-body fs-lg fw-semibold text-center">2109</div>
-              <div class="card-body fs-lg fw-semibold text-center">Angkatan 1 (2015 - 2019)</div>
-            </div>
-          </div>
-
-          <!-- Item -->
-          <div class="swiper-slide h-auto pb-3" role="group" aria-label="4 / 4" style="width: 238.5px; margin-right: 8px;">
-            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
-              <lottie-player class="d-dark-mode-none mx-auto mt-4 mb-2" src="assets/json/animation-feature-4-light.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
-              <lottie-player class="d-none d-dark-mode-block mx-auto mt-4 mb-2" src="assets/json/animation-feature-4-dark.json" background="transparent.html" speed="1.25" loop="" style="width: 180px;"></lottie-player>
-              <div class="card-body fs-lg fw-semibold text-center">2109</div>
-              <div class="card-body fs-lg fw-semibold text-center">Angkatan 1 (2015 - 2019)</div>
-            </div>
-          </div>
+          @foreach ($beritas as $b)
+          
+          <div class="swiper-slide h-auto pb-3">
+              <article class="card h-100 border-0 shadow-sm mx-2">
+                  <div class="position-relative">
+                      <a href="#" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                      <a href="#" class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
+                          <i class="bx bx-bookmark"></i>
+                </a>
+                <img src="{{ asset($b->foto) }}" class="card-img-top" alt="Image">
+              </div>
+              <div class="card-body pb-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">{{ $b->kategori }}</a>
+                  <span class="fs-sm text-muted">{{ $b->tgl }}</span>
+                </div>
+                <h3 class="h5 mb-0">
+                    <a href="/detail_berita/{{ $b->id }}">{{ $b->judul }}</a>
+                  <br>
+                  <h6 class="mt-3">{{ Str::limit($b->isi,50) }}</h6>
+                </h3>
+                <div class="d-flex align-items-center justify-content-between">
+                    <a href="/detail_berita/{{ $b->id }}" class="btn btn-outline-primary">View more</a>
+                </div>
+              </div>
+            </article>
         </div>
-    
+        @endforeach
+        
         <!-- Pagination (bullets) -->
         <div class="swiper-pagination position-relative bottom-0 mt-2 swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal swiper-pagination-lock"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span></div>
-      <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+        
+    </section>
     
-  </section>
-
-
+    
 <!-- Stats -->
 <section class="container pb-5 mb-2 mb-md-4 mb-lg-5">
     <div class="bg-secondary rounded-3 py-5 px-3 px-md-0">

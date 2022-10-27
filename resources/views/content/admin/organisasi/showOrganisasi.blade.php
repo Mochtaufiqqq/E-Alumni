@@ -44,13 +44,11 @@
                               <thead>
                                   <tr>
                                       <th scope="col">No</th>
-                                      <th scope="col">Foto</th>
                                       <th scope="col">Logo</th>
                                       <th scope="col">Organisasi</th>
                                       <th scope="col">Dokumentasi</th>
-                                      <th scope="col">Jabatan</th>
-                                      <th scope="col">Periode</th>
                                       <th scope="col">Deskripsi</th>
+                                      <th scope="col">Foto Struktur</th>
                                       <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
@@ -59,21 +57,20 @@
                                     <tr>
                                         <td scope="row">{{ $loop->iteration }}</td>
                                         <td>
-                                          <img src="{{ asset($o->foto) }}" alt="" style="max-width: 100px; max-height: 80px;">
-                                         </td>
-                                        <td>
                                           <img src="{{ asset($o->logo) }}" alt="" style="max-width: 100px; max-height: 80px;">
                                          </td>
-                                        <td>{{ $o->organisasi->organisasi }}</td>
+                                        <td>{{ $o->organisasi->organisasi ?? '-' }}</td>
+
                                         <td>@foreach (explode('|', $o->dokumentasi) as $img)
                                             <img src="/storage/{{ $img }}" alt="" width="50" height="50">
                                           @endforeach
                                         </td>
-                                        <td>{{ $o->jabatan->jabatan }}</td>
-                                        <td>{{ $o->periode }}</td>
                                         <td>{{ $o->deskripsi }}</td>
                                         <td>
-                                            <a href="/organisasi/edit{{ $o->id }}" class="btn btn-primary btn-sm">
+                                            <img src="{{ asset($o->foto_struktur) }}" alt="" style="max-width: 100px; max-height: 80px;">
+                                           </td>
+                                        <td>
+                                            <a href="/organisasi/edit/{{ $o->id }}" class="btn btn-primary btn-sm">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                             <a href="/organisasi/delete{{ $o->id }}" class="btn btn-danger btn-sm">

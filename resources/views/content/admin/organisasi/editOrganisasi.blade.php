@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title','Tambah Organisasi')
+@section('title','Edit Organisasi')
 
 @section('content')
 <!-- Container-fluid starts-->
@@ -33,15 +33,23 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <form action="/organisasi/store" method="POST" enctype="multipart/form-data">
+                            <form action="/organisasi/update/{{ $organisasi->id }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                     <label class="form-label" for="image">Logo</label>
-                                        <img class="img-preview img-fluid mb-3" style="max-height: 300px; max-width: 400px;">
-
-                                        <input class="form-control @error('logo') is-invalid @enderror" type="file"
-                                            name="logo" id="image" placeholder="logo" required autofocus
-                                            onchange="previewImage()">
+                                        <label class="form-label">Foto Profil</label>
+                                        @if ($organisasi->logo) 
+                                        <img src="{{ asset($organisasi->logo) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                        @else
+                                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                                        @endif
+                                        <img class="img-preview img-fluid mb-3">
+                                          <input type="file" name="logo" id="image" class="form-control @error('foto_profile') is-invalid @enderror" onchange="previewImage()">
+                                        @error('foto_profile')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     @error('logo')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -52,7 +60,6 @@
                                 <label class="form-label" for="organisasi">Organisasi</label>
                                 <div class="mb-3 input-group">
                                     <select type="text" class="form-control" placeholder="" id="organisasi" aria-label="Example text with button addon" aria-describedby="button-addon1" name="organisasi">
-                                            <option value="" selected>Pilih organisasi</option>
                                         @foreach ($org as $item)
                                             <option value="{{ $item->id ?? 'none'}}">{{ $item->organisasi ?? 'none'}}</option>
                                         @endforeach
@@ -63,7 +70,7 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="image">Deskripsi Organisasi</label>
                                         <textarea class="form-control @error('deskripsi') is-invalid @enderror"
-                                            name="deskripsi" id="" placeholder="Deskripsi" required type="text"></textarea>
+                                            name="deskripsi" id="" placeholder="Deskripsi" required type="text" value="">{{ old('deskripsi', $organisasi->deskripsi) }}</textarea>
                                     @error('deskripsi')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -86,12 +93,19 @@
                                 </div>
 
                                 <div class="mb-3 input-group-solid">
-                                    <label class="form-label" for="image">Foto Struktur</label>
-                                    <img class="img-preview img-fluid mb-3" style="max-height: 300px; max-width: 400px;">
-
-                                    <input class="form-control @error('logo') is-invalid @enderror" type="file"
-                                        name="foto_struktur" id="image" placeholder="logo" required autofocus
-                                        onchange="previewImage()">
+                                        <label class="form-label" for="image">Foto Struktur</label>
+                                        @if ($organisasi->foto_struktur) 
+                                        <img src="{{ asset($organisasi->foto_struktur) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                        @else
+                                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                                        @endif
+                                        <img class="img-preview img-fluid mb-3">
+                                          <input type="file" name="foto_struktur" id="image" class="form-control @error('foto_struktur') is-invalid @enderror" onchange="previewImage()">
+                                        @error('foto_struktur')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
         
                                     @error('foto_struktur')
                                     <div class="invalid-feedback">

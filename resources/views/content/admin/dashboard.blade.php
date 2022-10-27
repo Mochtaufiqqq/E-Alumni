@@ -134,7 +134,7 @@
 
                       <img src="{{ asset($o->logo) }}" alt="" width="50" height="50">
                      
-                      <div class="media-body"><span>{{ $o->organisasi->organisasi }}</span>
+                      <div class="media-body"><span>{{ $o->organisasi }}</span>
                       </div>
                     </div>
                   </td>
