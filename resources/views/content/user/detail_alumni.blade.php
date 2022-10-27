@@ -23,6 +23,7 @@
             </div>
             <h2 class="h5 mb-1">Riwayat Organisasi</h2>
             <div class="flex-row align-items-center">
+
                   <img src="{{ asset('jikatidadada/user.png') }}" class="rounded-circle me-3" width="48" alt="Avatar">
                   <img src="{{ asset('jikatidadada/user.png') }}" class="rounded-circle me-3" width="48" alt="Avatar">
                   <img src="{{ asset('jikatidadada/user.png') }}" class="rounded-circle me-3" width="48" alt="Avatar">
@@ -30,7 +31,6 @@
               <div class="flex-row align-items-center">
                 <p>2020-2021</p>
             </div>
-
             <h2 class="h5 mb-1">Prestasi Selama Sekolah</h2>
             <li class="mb-3"> Juara 1 Lomba Agustus</li>
             

@@ -266,9 +266,9 @@
                             <div class="col-12-sm-6">
                                 <div class="position-relative mb-4">
                                     <label for="jurusan" class="form-label fs-base">Tahun Lulus</label>
-                                    <select name="thn_lulu" id="thn_lulus"
-                                        class="form-select form-control @error('thn_lulu') is-invalid @enderror "
-                                        required value="{{ old('thn_lulus') }}">
+                                    <select name="thn_lulus" id="thn_lulus"
+                                        class="form-select form-control @error('thn_lulus') is-invalid @enderror "
+                                        required>
                                         <option selected disabled>Pilih Tahun Lulus</option>
                                         <option value="2022">2022</option>
                                         <option value="2021">2021</option>
@@ -337,8 +337,7 @@
                                         <input class="password-toggle-check" type="checkbox">
                                         <span class="password-toggle-indicator"></span>
                                     </label>
-                                    <div class="invalid-feedback position-absolute start-0 top-100">Mohon Masukan
-                                        Password yang valid!</div>
+                                    <div class="invalid-feedback position-absolute start-0 top-100">Password harus sama!</div>
                                 </div>
                             </div>
                         </div>

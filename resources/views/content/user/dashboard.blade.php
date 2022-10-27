@@ -12,9 +12,9 @@
 
             @foreach ($carousel as $key => $c)
             
-          <div class="carousel-item {{ $key == 0 ? 'active':'' }}">
+          <div class="carousel-item {{ $key == 0 ? 'active':'' }}" style="background-color: rgba(45,51,57,0.95);">
             @if ($c->foto)
-            <img src="{{ asset($c->foto) }}" class="d-block w-100" alt="...">    
+            <img src="{{ asset($c->foto) }}" class="d-block w-100 bg-dark opacity-60" alt="...">    
             @endif
             
             <div class="carousel-caption d-none d-md-block">

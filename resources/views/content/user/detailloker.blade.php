@@ -19,7 +19,7 @@
           <div class="d-flex align-items-center flex-wrap text-muted mb-lg-5 mb-md-4 mb-3">
             <div class="fs-sm border-end pe-3 me-3 mb-2">{{ $loker->tgl }}</div>
           </div>
-          <p class="mb-0 fs-lg">Massa massa sapien tristique cras enim. Diam at&nbsp;tempus tempus iaculis mattis&nbsp;et. Platea facilisis cursus congue diam in&nbsp;amet. Velit urna cras leo viverra mauris aenean arcu, cursus. Commodo rhoncus sit vulputate maecenas augue amet arcu libero. Lobortis enim, ut&nbsp;dui rutrum tempor at&nbsp;rutrum aenean pharetra. Quis vulputate egestas sed arcu.</p>
+          <p class="mb-0 fs-lg">{{ $loker->deskripsi }}</p>
         </div>
       </div>
     </div>

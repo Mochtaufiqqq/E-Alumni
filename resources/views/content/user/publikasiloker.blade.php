@@ -31,7 +31,7 @@
 <section class="container py-2 mt-2 mt-md-4 mt-lg-5 mb-xl-3">
     <h2 class="h1 text-center pt-2 pt-md-3 pb-4 mb-2 mb-lg-3">PUBLIKASI LOWONGAN PEKERJAAN</h2>
 
-    <div class="text-center">
+    <div class="reveal text-center">
         <p class="h5 text-primary" style="text-align: left">Berikut adalah kelengkapan yang diperlukan untuk melakukan kerja sama publikasi
             lowongan pekerjaan di SMKS MAHAPUTRA CERDAS UTAMA:</p>
         <p style="text-align: left">1. Surat Permohonan Publikasi Informasi Lowongan Pekerjaan ditujukan kepada Ketua

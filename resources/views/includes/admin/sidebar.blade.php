@@ -25,9 +25,6 @@
                 <h6>Kelola</h6>
               </div>
             </li>
-
-            <li class="dropdown"><a class="nav-link menu-title link-nav" href="/dataalumni"><i data-feather="edit"></i><span>Alumni</span></a>
-            </li>
             <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="user"></i><span>User</span></a>
               <ul class="nav-submenu menu-content">
                 <li><a href="/semuauser">Semua User</a></li>
@@ -45,15 +42,6 @@
               </ul>
             </li>
             <li class="dropdown"><a class="nav-link menu-title link-nav" href="/lowongankerja"><i data-feather="briefcase"></i><span>Lowongan Kerja</span></a>
-            </li>
-            <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="image"></i><span>Gallery</span></a>
-              <ul class="nav-submenu menu-content">
-                <li><a href="gallery.html">Gallery Grid</a></li>
-                <li><a href="gallery-with-description.html">Gallery Grid Desc</a></li>
-                <li><a href="gallery-masonry.html">Masonry Gallery</a></li>
-                <li><a href="masonry-gallery-with-disc.html">Masonry with Desc</a></li>
-                <li><a href="gallery-hover.html">Hover Effects</a></li>
-              </ul>
             </li>
             <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="list"></i><span>Lainnya</span></a>
               <ul class="nav-submenu menu-content">

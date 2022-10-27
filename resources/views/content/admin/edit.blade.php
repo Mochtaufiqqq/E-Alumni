@@ -36,22 +36,6 @@
                 <form action="/edituser/{{ $user->id }}" method="POST" enctype="multipart/form-data">
                 @method('put')    
                 @csrf
-                <div class="mb-3 m-form__group">
-                  <label class="form-label">Foto Profil</label>
-                  @if ($user->foto_profile) 
-                  <img src="{{ asset($user->foto_profile) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
-                  @else
-                  <img class="img-preview img-fluid mb-3 col-sm-5">
-                  @endif
-                  <img class="img-preview img-fluid mb-3">
-                    <input type="file" name="foto_profile" id="image" class="form-control @error('foto_profile') is-invalid @enderror" onchange="previewImage()">
-                  @error('foto_profile')
-                  <div class="invalid-feedback">
-                      {{ $message }}
-                  </div>
-                  @enderror
-                </div>
-                
                   <div class="mb-3 m-form__group">
                     <label class="form-label">NISN</label>
                     <div class="input-group">
@@ -88,7 +72,7 @@
                   <div class="mb-3">
                     <label class="form-label">Alamat</label>
                     <div class="input-group">
-                      <input class="form-control @error('alamat') is-invalid @enderror" name="alamat" type="text"  value="{{ old('alamat', $user->alamat) }}" aria-label="Amount (to the nearest dollar)" placeholder="Alamat" required autofocus>
+                      <textarea class="form-control" name="alamat" id="" cols="30" rows="10" required>{{ old('alamat',$user->alamat) }}</textarea>
                     </div>
                     @error('email')
                     <div class="invalid-feedback">
@@ -99,7 +83,7 @@
                   <div class="mb-3 input-group-solid">
                     <label class="form-label">Jurusan</label>
                     <select name="jurusan" id=""  value="{{ old('jurusan', $user->jurusan) }}" class="form-select form-control" required autofocus>
-                        <option selected disabled>Pilih Jurusan</option>
+                        <option selected value="{{ old('jurusan',$user->jurusan) }}">{{ $user->jurusan }}</option>
                         <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
                         <option value="Multimedia">Multimedia</option>
                     </select>
@@ -111,8 +95,8 @@
                   </div>
                   <div class="mb-3 input-group-solid">
                     <label class="form-label">Tahun Lulus</label>
-                    <select name="thn_lulus" id=""  value="{{ old('thn_lulus', $user->thn_lulus) }}" class="form-select form-control" required autofocus >
-                        <option selected disabled>Pilih Tahun Lulus</option>
+                    <select name="thn_lulus" id="" class="form-select form-control" required autofocus >
+                        <option selected value="{{ old('thn_lulus',$user->thn_lulus) }}">{{ $user->thn_lulus }}</option>
                         <option value="2022">2022</option>
                         <option value="2021">2021</option>
                         <option value="2020">2020</option>
@@ -128,23 +112,10 @@
                     </div>
                     @enderror
                   </div>
-                  <div class="mb-3 input-group-square">
-                    <label class="form-label">Role</label>
-                    <select name="role" id=""  value="{{ old('role', $user->role) }}" class="form-select form-control" required autofocus >
-                        <option selected>Pilih Role</option>
-                        <option value="1">Admin</option>
-                        <option value="2">User</option>
-                    </select>
-                    @error('role')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                  </div>
                   <div class="mb-3">
                     <label class="form-label">Password</label>
                     <div class="input-group">
-                      <input class="form-control @error('password') is-invalid @enderror" name="password" type="password" aria-label="Amount (to the nearest dollar)" placeholder="Password" required autofocus>
+                      <input class="form-control @error('password') is-invalid @enderror" name="password" type="password" value="{{ $user->password }}" aria-label="Amount (to the nearest dollar)" placeholder="Password">
                     </div>
                     @error('password')
                     <div class="invalid-feedback">
@@ -152,6 +123,17 @@
                     </div>
                     @enderror
                   </div>
+                  {{-- <div class="mb-3">
+                    <label class="form-label">Konfirmasi Password</label>
+                    <div class="input-group">
+                      <input class="form-control @error('confirmation') is-invalid @enderror" name="confirmation" type="password" value="{{ old('password',$user->password) }}" aria-label="Amount (to the nearest dollar)" placeholder="Konfirmasi Password" required autofocus>
+                    </div>
+                    @error('password')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                  </div> --}}
               </div>
             </div>
           </div>

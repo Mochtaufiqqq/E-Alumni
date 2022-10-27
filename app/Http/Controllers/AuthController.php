@@ -47,7 +47,7 @@ class AuthController extends Controller
         }
         
         Session::flash('status', 'failed'); 
-        Session::flash('message', 'Akun belum ada');
+        Session::flash('message', 'Email atau password anda salah !');
         return back();
 
     }
@@ -68,6 +68,8 @@ class AuthController extends Controller
             'email' => 'required|unique:users',
             'nisn' => 'required|unique:users',
             'no_tlp' => 'required',
+            'jurusan' => 'required',
+            'thn_lulus' => 'required',
             'alamat' => 'required',
             'password' => 'required|min:8',
             'confirmation' => 'required|same:password',
@@ -79,11 +81,13 @@ class AuthController extends Controller
            'nama' => $validatedData['nama'],
            'email' => $validatedData['email'],
            'no_tlp' => $validatedData['no_tlp'],
+           'jurusan' => $validatedData['jurusan'],
+           'thn_lulus' => $validatedData['thn_lulus'],
            'nisn' => $validatedData['nisn'],
            'alamat' => $validatedData['alamat'],
            'password' => $validatedData['password'], 
        ]);
-       return redirect('/login')->with('success', 'Registrasi Berhasil!');
+       return redirect('/login')->with('success', 'Registrasi Berhasil, Mohon tunggu admin untuk mengaktivasi akun anda!');
        
     }
 
