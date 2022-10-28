@@ -24,9 +24,11 @@
                   Lihat Semua Alumni
               </a>
           </div>
-          @endforeach
         </div>
+        @endforeach
         
+      </div>
+      
         <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -35,7 +37,7 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </button>
-      </div>
+</div>
 </div>
 
 

@@ -1154,8 +1154,8 @@
                             @if (Auth::user()->pekerjaan == '')
                             @else
                             <label for="email" class="form-label fs-base">Pekerjaan</label>
-                            <div>Bekerja di {{ auth()->user()->pekerjaan }}</div>
-                            <div>Sebagai {{ auth()->user()->jabatan_pekerjaan }}</div>
+                            <div>Bekerja sebagai {{ auth()->user()->pekerjaan }}</div>
+                            <div>di {{ auth()->user()->tmpt_pekerjaan }}</div>
                             <hr>
                             @endif
                         </div>
@@ -1190,11 +1190,10 @@
                             
                             @else
                             <label for="phone" class="form-label fs-base">organisasi</label>
-                                <p>{{ $orgUser->organisasi->organisasi }}</p>
+                                <img src="{{ asset($orgUser->organisasi->logo) }}" alt="" width="48">
                             <hr>
                             @endif
                         </div>
-
 
                         <div class="mb-4 mt-4">
                             @if ($rp == null)
@@ -1223,8 +1222,8 @@
                             @if (auth()->user()->keahlian == null)
                                 
                             @else
-                            <label for="" class="form-label fs-base">keahlian</label>
-                                <div><a href="">{{ auth()->user()->keahlian }}</a></div>
+                            <label for="" class="form-label fs-base">Keahlian</label>
+                                <div>{{ auth()->user()->keahlian }}</div>
                                 <hr>
                             @endif
                         </div>
