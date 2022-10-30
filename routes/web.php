@@ -16,6 +16,8 @@ use App\Http\Controllers\CarouselController;
 
 
 // this route guest for user
+
+
 Route::get('/',[AlumniController::class,'dashboarduser']);
 //organisasi
 Route::get('/organisasi', [OrganisasiController::class, 'index']);
@@ -83,6 +85,7 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::get('/editberita/{beritas}',[KelolaBeritaController::class,'edit']);
     Route::put('/editberita/{beritas}',[KelolaBeritaController::class,'update']);
     Route::delete('/hapusberita/{beritas}', [KelolaBeritaController::class, 'delete'])->name('delete');
+    Route::get('/detailberita/{berita}',[KelolaBeritaController::class,'detailberitaadm']);
 
     // Lowongan Kerja admin
     Route::get('/lowongankerja',[KelolaKerjaController::class,'show']);

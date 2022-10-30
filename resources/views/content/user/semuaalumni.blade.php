@@ -73,7 +73,7 @@
 
   
   
-    <h2 class="h2 text-center pb-md-1 mb-1 mb-sm-3">Alumni SMKS MAHAPUTRA CERDAS UTAMA</h2>
+    <h2 class="h2 text-center pb-md-1 mb-1 mb-sm-3">Daftar Alumni</h2>
     
       <ul class="nav nav-tabs justify-content-center mb-lg-2 mb-4 pb-lg-2" role="tablist">
         <li class="nav-item" role="presentation">
@@ -108,18 +108,17 @@
         </li>
       </ul>
 
+  
       <div class="text-center">
-        <form class="input-group">
-          <input type="text" placeholder="Cari data..." class="form-control form-control-sm rounded-3">
+        <form action="/cari" method="GET" class="input-group">
+          <input type="text" name="search" placeholder="Cari data..." class="form-control form-control-sm rounded-3">
           <button type="submit" class="btn btn-icon btn-sm btn-primary rounded-3 ms-3">
             <i class="bx bx-search"></i>
           </button>
         </form>
       </div>
-
-
         
-
+      
         <!-- Item -->
         <div class="row row-cols-1 row-cols-md-3 g-4 pt-2 pt-md-4 pb-lg-2">
           @foreach ($user as $u)

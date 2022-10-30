@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('karya')->nullable();
             $table->string('keahlian')->nullable();
             $table->string('foto_profile')->nullable();
-            $table->string('foto_kegiatan')->nullable();
+            $table->longText('foto_kegiatan')->nullable();
             $table->string('pekerjaan')->nullable();
             // $table->string('jabatan_pekerjaan')->nullable();
             $table->string('tmpt_pekerjaan')->nullable();

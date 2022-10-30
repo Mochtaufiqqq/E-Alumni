@@ -14,16 +14,18 @@
                 {{ $logo->isi }}
             @endif
         </a>
+        
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse5"
             aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         @if (Route::has('login'))
         @auth
         <div class="nav dropdown d-block order-lg-3 ms-4">
             <a href="#" class="d-flex nav-link p-0" data-bs-toggle="dropdown">
                 @if (Auth::user()->foto_profile == null)
-                <img src="{{ asset('default/user.png') }}" class="rounded-circle" width="47" alt="Avatar">
+                <img src="{{ asset('default/user.png') }}" class="rounded-circle" width="47" height="47" alt="Avatar">
                 @else
                 <img src="{{ asset(auth()->user()->foto_profile) }}" class="rounded-circle" width="47" alt="Avatar">
                 @endif
@@ -49,14 +51,16 @@
                 </li>
             </ul>
         </div>
+
         @else
         <div class="nav d-block order-lg-3 ms-4">
-            <a href="/login" class="btn btn-primary btn-sm fs-sm rounded d-lg-inline-flex" rel="noopener">
+            <a href="/login" class="btn btn-primary btn-sm fs-sm rounded d-lg-inline-flex">
                 &nbsp;Login
             </a>
         </div>
         @endauth
         @endif
+
         <nav id="navbarCollapse5" class="collapse navbar-collapse order-lg-2">
             <hr class="d-lg-none mt-3 mb-2">
             <ul class="navbar-nav me-auto">

@@ -20,6 +20,8 @@
 
     
 }
+
+
 /* Animation delays */
 
 
@@ -32,6 +34,7 @@
 }
 
 .custom-carousel-content h1 span{
+    
     color: yellow;
 }
 
@@ -52,6 +55,7 @@
     font-weight: 600;
     letter-spacing: 0.5px;
 }
+
 
 
 

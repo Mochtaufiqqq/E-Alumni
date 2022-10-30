@@ -1190,7 +1190,7 @@
                             
                             @else
                             <label for="phone" class="form-label fs-base">organisasi</label>
-                                <img src="{{ asset($orgUser->organisasi->logo) }}" alt="" width="48">
+                                <img src="{{ asset($orgUser->organisasi->logo) }} " alt="" width="48">
                             <hr>
                             @endif
                         </div>

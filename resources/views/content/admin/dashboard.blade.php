@@ -155,11 +155,11 @@
           <div class="card">
             <div class="card-body">
               <div class="table-responsive">
-                <h5>Berita</h5>
+                <h5>Berita Terbaru</h5>
                 <table class="table table-bordernone">                                         
                   <thead>
                     <tr>                                        
-                      <th>Foto</th>
+                      <th>Judul</th>
                       <th>Isi</th>
                       <th>Kategori</th>
                       <th>Tanggal</th>
@@ -185,12 +185,12 @@
                     
                     <tr>
                       <td>
-                        <div class="media"><img class="img-fluid rounded-circle" src="{{ asset($b->foto) }}" alt="" data-original-title="" title="" width="50" height="50">
+                        <div class="media">
                           <div class="media-body"><a href="/detailberita/{{ $b->id }}"><span>{{ $b->judul }}</span></a></div>
                         </div>
                       </td>
                       <td>
-                        <p>{{ $b->isi }}</p>
+                        <p>{{ Str::limit($b->isi,100) }}</p>
                       </td>
                       <td>
                         <p>{{ $b->kategori }}</p>
@@ -200,7 +200,6 @@
                       </td>
                     </tr>
                     @endforeach
-
                   </tbody>
                 </table>
               </div>
@@ -216,7 +215,7 @@
                 <table class="table table-bordernone">                                         
                   <thead>
                     <tr>                                        
-                      <th>Foto</th>
+                      <th>Judul | Nama Perusahaan</th>
                       <th>Deskripsi</th>
                       <th>Tanggal</th>
                       <th>
@@ -239,12 +238,12 @@
                     @foreach ($lokers as $l)
                     <tr>
                       <td>
-                        <div class="media"><img class="img-fluid rounded-circle" src="{{ asset($l->foto) }}" alt="" data-original-title="" title="" width="50" height="50">
-                          <div class="media-body"><a href="/detailloker/{{ $l->id }}"><span>{{ $l->judul }} | {{ $l->nama_perusahaan }}</span></a></div>
+                        <div class="media">
+                          <div class="media-body"><a href="/detaillowongankerja/{{ $l->id }}"><span>{{ $l->judul }} | {{ $l->nama_perusahaan }}</span></a></div>
                         </div>
                       </td>
                       <td>
-                        <p>{{ $l->deskripsi }}</p>
+                        <p>{{ Str::limit($l->deskripsi,100) }}</p>
                       </td>
                       <td>
                         <p>{{ $l->tgl }}</p>

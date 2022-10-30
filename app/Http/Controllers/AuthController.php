@@ -7,14 +7,16 @@ use App\Models\FavIcon;
 use App\Models\Logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Carousel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
     public function index() {
+        $carousel = Carousel::where('halaman', '8')->first();
         $fvicon = FavIcon::first();
-        return view('auth.login',compact('fvicon'));
+        return view('auth.login',compact('fvicon','carousel'));
     }
 
     public function login(Request $request)
@@ -54,12 +56,13 @@ class AuthController extends Controller
 
      // Register
      public function register(){
+        $carousel = Carousel::where('halaman','7')->first();
         $fvicon = FavIcon::first();
         return view('auth.register',
         [
             'title' => 'Register',
             'fvicon' => $fvicon
-        ]);
+        ],compact('carousel'));
     }
 
     public function store(Request $request){

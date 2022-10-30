@@ -111,16 +111,19 @@ class KelolaKerjaController extends Controller
      }
      
      public function delete(Lowongan_Kerja $kerjas) {
+        
         Lowongan_Kerja::destroy($kerjas->id);
 
         return redirect('/lowongankerja')->with('success', 'Data berhasil dihapus!');
      }
 
      public function detaillowongankerja(Lowongan_Kerja $kerjas) {
+
+        $fvicon = FavIcon::first();
         return view('content.admin.lowongan_kerja.detaillowongankerja',[
            
             'kerjas' => $kerjas
-        ]);
+        ],compact('fvicon'));
     }
 
 

@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\FavIcon;
 use App\Models\Organisasi;
 use App\Models\TentangKami;
+use App\Models\Carousel;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
@@ -47,6 +48,20 @@ class DatabaseSeeder extends Seeder
         //     'isi'  => 'TRACER STUDY',
         //     'foto'  => 'Null'
         // ]);
+
+        Carousel::create([
+            'halaman' => '8',
+            'judul' => 'LOGIN',
+            'isi' => 'login',
+            'foto' => 'asd'
+        ]);
+
+        Carousel::create([
+            'halaman' => '7',
+            'judul' => 'REGISTER',
+            'isi' => 'login',
+            'foto' => 'asd'
+        ]);
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);

@@ -10,7 +10,9 @@ use App\Models\FavIcon;
 use App\Models\Lowongan_Kerja;
 use App\Models\Sosmed;
 use App\Models\Organisasi;
+use App\Models\Organisasiuser;
 use App\Models\TentangKami;
+use App\Models\Riwayat_pendidikan;
 use Illuminate\Http\Request;
 use App\Models\Riwayat_organisasi;
 use Illuminate\Support\Facades\DB;
@@ -24,13 +26,13 @@ class AlumniController extends Controller
 
     public function dashboarduser(){
         $lokers = Lowongan_Kerja::latest()->first();
-        $beritas = Berita::all();
+        $beritas = Berita::orderBy('updated_at','DESC','3')->get();
         $logo = Logo::first();
+        $org = Riwayat_organisasi::orderBy('updated_at','DESC','8')->get();
         $carousel = Carousel::where('halaman','6')->get();
         $fvicon = FavIcon::first();
         return view('content.user.dashboard',[
-        ],compact('carousel','fvicon','logo', 'beritas','lokers'));
-
+        ],compact('carousel','fvicon','logo', 'beritas','lokers','org'));
     }
 
     public function index (){
@@ -45,13 +47,14 @@ class AlumniController extends Controller
         ];
 
         $logo = Logo::where('isi','=','TRACER STUDY')->get();
-        $beritas = Berita::latest()->get();
+
+        $beritas = Berita::orderBy('updated_at','DESC','4')->get();
         $organisasi = Riwayat_organisasi::all();
         $totalactive = User::where('role_id','=','2')->where('status','=','1')->get();
         $totalnonactive = User::where('role_id','=','2')->where('status','=','0')->get();
         $chart1 = new LaravelChart($chart_options);
         $fvicon = Favicon::first();
-        $lokers = Lowongan_Kerja::latest()->get();
+        $lokers = Lowongan_Kerja::orderBy('updated_at','DESC','4')->get();
 
         return view('content.admin.dashboard',
         compact('chart1','totalactive','totalnonactive','organisasi','beritas','fvicon','logo','lokers'));
@@ -136,9 +139,6 @@ class AlumniController extends Controller
             'password' => 'required|min:3',
         ]);
 
-            $fileName = time().$request->file('foto_profile')->getClientOriginalName();
-            $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
-            $validatedData['foto_profile'] = '/storage/' .$path;
             $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);
@@ -156,7 +156,7 @@ class AlumniController extends Controller
 
      public function update(Request $request , User $user) {
         $validatedData = $request->validate([
-            'nisn' => 'required',
+            'nisn' => 'required|unique:users',
             'nama' => 'required',
             'alamat' => 'required',
             'jurusan'  => 'required',
@@ -166,12 +166,6 @@ class AlumniController extends Controller
             // 'confirmation' => 'required|same:password',
         ]);
 
-        if($request->file()) {
-            $fileName = time().$request->file('foto_profile')->getClientOriginalName();
-            $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
-         $validatedData['foto_profile'] = '/storage/' .$path;
-
-        }
         
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::where('id', $user->id)->update($validatedData);
@@ -185,14 +179,15 @@ class AlumniController extends Controller
         return redirect('/semuauser')->with('success', 'Data berhasil dihapus!');
      }
      public function detailuser(User $users) {
+        $rp = Riwayat_pendidikan::where('user_id', $users->id)->first();
         $fvicon = FavIcon::first();
         $sosmed = Sosmed::where('user_id' , $users->id)->first();
+        $org = Organisasiuser::with('riwayat_organisasi')->where('user_id', $users->id)->first();
         return view('content.admin.detailuser',[
             'users' => $users,
-            'sosmed' => $sosmed
-        ],compact('fvicon'));
-    }
-
+            
+        ],compact('fvicon','sosmed','rp','org'));
+   }
 
     public function reportpdfuser(){
         $fvicon = FavIcon::first();
@@ -232,12 +227,18 @@ class AlumniController extends Controller
         $fvicon = FavIcon::first();
         $carousel = Carousel::where('halaman','0')->get();
         $search = $request->search;
-
         $user = User::where('role_id','=','2')->where('status','=','1')->where('nama','like',"%".$search."%")
         ->get();
+        $count = count($user);
+        
+        if($count == 0){
+            return 'data tidak ditemukan';
+        } else{
+            return view ('content.user.semuaalumni',[
+                'user' => $user
+            ],compact('logo','fvicon','carousel'));
 
-        return view ('content.user.semuaalumni',[
-            'user' => $user
-        ],compact('logo','fvicon','carousel'));
+        }
+        
     }
 }

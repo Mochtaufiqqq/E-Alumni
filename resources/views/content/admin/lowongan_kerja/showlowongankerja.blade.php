@@ -42,7 +42,7 @@
                 </div>
                 
                 <div class="card-body">
-                  <a class="btn btn-primary mb-3" href="/addlowongankerja">Tambah Data Lowongan Kerja</a>
+                  <a class="btn btn-primary mb-3" href="/addlowongankerja">Tambah Lowongan Pekerjaan</a>
                   <a class="btn btn-secondary text-dark mb-3" href="{{ url('/reportpdflowongankerja') }}">Export PDF</a>
                     <div class="dt-ext table-responsive">
                         <table class="table table-bordered" id="basic-row-reorder">
@@ -75,9 +75,9 @@
                                     <td>{{ $k->tgl }}</td>
                                     
                                     <td>
-                                      <a href="/detaillowongankerja/{{ $k->id }}" class="btn btn-primary"><i data-feather="eye"></i></a>
-                                      <a href="/editlowongankerja/{{ $k->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
-                                      <a href="/hapuslowongankerja/{{ $k->id }}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $k->id }}"><i data-feather="trash-2"></i></a>
+                                      <a href="/detaillowongankerja/{{ $k->id }}" class="btn btn-primary mb-3"><i data-feather="eye"></i></a>
+                                      <a href="/editlowongankerja/{{ $k->id }}" class="btn btn-warning mb-3"><i data-feather="edit"></i></a>
+                                      <a href="/hapuslowongankerja/{{ $k->id }}" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $k->id }}"><i data-feather="trash-2"></i></a>
                                        
                                          {{-- modal delete --}}
                                          <div class="modal fade" id="modalDelete{{ $k->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

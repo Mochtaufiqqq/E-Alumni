@@ -153,15 +153,16 @@ class UserController extends Controller
         $logo = Logo::first();
         $fvicon = FavIcon::first();
         $sosmed = Sosmed::where('user_id' , $user->id)->first();
-        $org = Organisasi::all();
-        $orgUser = Organisasiuser::with('organisasi')->where('user_id', $user->id)->first();
-        $ro = Organisasi::with('user')->first();
+        
+        $riwayat = Organisasiuser::with('riwayat_organisasi')->where('user_id', $user->id)->first();
+        $riwayat_organisasi = Riwayat_organisasi::with('organisasi')->where('organisasi_id', $riwayat->id)->first();
+        $rp = Riwayat_pendidikan::where('user_id', $user->id)->first();
+        $sosmed = Sosmed::where('user_id', $user->id)->first();
         return view('content.user.detail_alumni',[
            
             'user' => $user,
-            'fvicon' => $fvicon,
-            'logo'  => $logo 
-        ],compact('sosmed','orgUser'));
+
+        ],compact('sosmed','rp','sosmed','fvicon','logo','riwayat','riwayat_organisasi'));
     }
 
     public function profile(User $user)

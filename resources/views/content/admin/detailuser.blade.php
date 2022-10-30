@@ -113,10 +113,25 @@
                                             @if ($users->pekerjan == true)
                                             @elseif($users->tmpt_pekerjaan == true)
                                             <span class="font-primary mobile_num_0">
-                                            Bekerja sebagai {{ $users->pekerjaan }} di {{ $users->tmpt_pekerjaan }}</span>
+                                               {{ $users->pekerjaan }}</span>
+                                          
+                                        </li>
+                                        <li> Tempat Pekerjaan
+                                          <span class="font-primary mobile_num_0">
+                                            {{ $users->tmpt_pekerjaan }}</span>
                                             @endif
                                         </li>
                                         <hr>
+                                        @if ($rp == null)
+
+                                        @else
+                                        <li>Riwayat Organisasi
+                                          <span class="font-primary mobile_num_0">
+                                          {{ $org->organisasi->organisasi ?? 'tidak ada' }}</span>
+                                        </li>
+                                        <hr>  
+                                        @endif
+                                        
                                         @if ($sosmed == null)
                                             
                                         @else
@@ -137,8 +152,53 @@
                                         </li>
                                         <hr>
                                         @endif
+
+                                        @if ($rp == null)
+                                            
+                                        @else
+                                        <li>
+                                          Riwayat Pendidikan
+                                        </li>
+                                        <li>
+                                          Perguruan Tinggi<span class="font-primary email_add_0">{{ $rp->nama_sekolah_univ }} ({{ $rp->tahun_mulai_univ }} - {{ $rp->tahun_akhir_univ }})</span>
+                                        </li>
+                                        <li>SMA/SMK
+                                          <span class="font-primary email_add_0">{{ $rp->nama_sekolah_smk }} ({{ $rp->tahun_mulai_smk }} - {{ $rp->tahun_akhir_smk }})</span>
+                                        </li>
+                                        <li>SMP
+                                          <span class="font-primary email_add_0">{{ $rp->nama_sekolah_smp }} ({{ $rp->tahun_mulai_smp }} - {{ $rp->tahun_akhir_smp }})</span>
+                                        </li>
+                                        <hr>
+                                        @endif
+
+                                        @if ($users->keahlian == true)
+                                        <li>Keahlian<span class="font-primary city_0">{{ $users->keahlian }}</span>
+                                        </li>
+                                        <hr>   
+                                        @endif
                                         
+                                        @if ($users->karya == true)
                                         
+                                        <li>Karya<span class="font-primary city_0">{{ $users->karya }}</span>
+                                        </li>
+                                        <hr>
+                                        @endif
+
+                                        @if ($users->foto_kegiatan == true)
+                                            
+                                        
+                                        <li> Foto Kegiatan
+                                            
+                                          <div class="col">
+                                            @foreach (explode('|', $users->foto_kegiatan) as $img)
+                                            <img src="/storage/{{ $img }}" alt="" width="200">    
+                                            
+                                            @endforeach
+                                          </div>
+                                        </li>
+                                        <hr>
+                                        @endif
+                                    
                                       </ul>
                                     </div>
                                   </div>

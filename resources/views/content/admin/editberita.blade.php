@@ -48,7 +48,7 @@
                       
                   @endif
                   <img class="img-preview img-fluid mb-3">
-                    <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" onchange="previewImage()">
+                    <input type="file" name="foto" id="image" class="form-control @error('foto') is-invalid @enderror" onchange="previewImage()">
                   @error('foto')
                   <div class="invalid-feedback">
                       {{ $message }}
@@ -69,7 +69,7 @@
                   <div class="mb-3">
                     <label class="form-label">Isi </label>
                     <div class="input-group">
-                      <input class="form-control @error('isi') is-invalid @enderror" type="text" name="isi" placeholder="Isi" value="{{ old('isi', $beritas->isi) }}"required autofocus>
+                      <textarea class="form-control" value="{{ old('isi', $beritas->isi) }}" name="isi" id="" cols="30" rows="10">{{ old('alamat',$beritas->isi) }}</textarea>
                     </div>
                     @error('isi')
                     <div class="invalid-feedback">
@@ -91,7 +91,7 @@
                   <div class="mb-3 input-group-solid">
                     <label class="form-label">Kategori</label>
                     <select name="kategori" id="kategori"  value="{{ old('kategori', $beritas->kategori) }}" class="form-select form-control" required autofocus>
-                        <option selected>Pilih Kategori</option>
+                        <option selected value="{{ old('kategori',$beritas->kategori) }}">{{ $beritas->kategori }}</option>
                         <option value="Prestasi">Prestasi</option>
                         <option value="Event">Event</option>
                     </select>
@@ -103,17 +103,8 @@
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Foto Dokumentasi</label>
-                    @if ($beritas->foto)
-                              
-                    <img src="{{ asset($beritas->foto)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block multiple">
-
-                    @else
-                    
-                    <img class="img-preview img-fluid mb-3 col-sm-5">
-                        
-                    @endif
-                    <img class="img-preview img-fluid mb-3">
-                      <input type="file" name="images[]" id="foto" class="form-control @error('foto') is-invalid @enderror" onchange="previewImage()">
+                   
+                      <input type="file" name="images[]"  class="form-control @error('foto') is-invalid @enderror" onchange="previewImage()">
                     @error('foto')
                     <div class="invalid-feedback">
                         {{ $message }}
