@@ -43,7 +43,7 @@
                 
                 <div class="card-body">
                   <a class="btn btn-primary mb-3" href="/tambahuser">Tambah Data</a>
-                  <a class="btn btn-secondary text-dark mb-3" href="{{ url('/reportpdfuser') }}">Export PDF</a>
+                  <a class="btn btn-secondary text-dark mb-3" href="{{ url('/reportpdfuser') }}">Download Laporan PDF</a>
                     <div class="dt-ext table-responsive">
                       <table class="table table-bordered" id="basic-row-reorder">
                         <thead>
@@ -67,7 +67,7 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>
                                   @if ($u->foto_profile == null)
-                                  <img src="{{ asset('/imagenull/user.png') }}" alt="" width="50" height="50">
+                                  <img src="{{ asset('/default/user.png') }}" alt="" width="50" height="50">
 
                                       @else
                                       <img src="{{ asset($u->foto_profile) }}" alt="" width="50" height="50">
@@ -104,7 +104,7 @@
                                             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                                           </div>
                                           <div class="modal-body">
-                                              <p>Apakah anda yakin ingin menghapus data {{ $u->nama }} ?</p>
+                                              <p>Apakah anda yakin menghapus data {{ $u->nama }} ?</p>
                                           </div>
                                           <div class="modal-footer">
                                             <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>

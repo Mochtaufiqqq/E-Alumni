@@ -209,7 +209,7 @@
         </div>
 
         <div class="col-xl-12 recent-order-sec">
-          <div class="card">
+          <div class="reveal card">
             <div class="card-body">
               <div class="table-responsive">
                 <h5>Lowongan Pekerjaan</h5>

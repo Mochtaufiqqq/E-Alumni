@@ -60,8 +60,8 @@ class CarouselController extends Controller
         $validatedData = $request->validate([
             'foto' => 'image|mimes:jpg,png,jpeg|max:5000',
             'halaman' => 'required',
-            'judul',
-            'isi',
+            'judul' => 'required',
+            'isi' => 'required'
         ]);
 
         if($request->file()){

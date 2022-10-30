@@ -7,31 +7,29 @@
 
 <div class="position-relative py-lg-4 py-xl-5">
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
+      <div class="carousel-inner">
 
-            @foreach ($carousel as $key => $c)
-            
-          <div class="carousel-item {{ $key == 0 ? 'active':'' }}">
-            @if ($c->foto)
-            <img src="{{ asset($c->foto) }}" class="d-block w-100" alt="...">    
-            @endif
-            
-            <div class="carousel-caption d-none d-md-block">
-                <div class="custom-carousel-content">
-                    <h1 style="margin-bottom :30">
-                        <span>{{ ($c->judul) }}</span>
-                    </h1>
-                    <div>
-                        <a href="#lihatsemualoker" class="btn btn-slider" style="margin-bottom: 50%">
-                            Lihat Semua Lowongan
-                        </a>
-                    </div>
+        @foreach ($carousel as $key => $c)
+        
+      <div class="carousel-item {{ $key == 0 ? 'active':'' }}" style="background-color: rgba(45,51,57,0.95);">
+        @if ($c->foto)
+        <img src="{{ asset($c->foto) }}" class="d-block w-100 bg-dark opacity-60" alt="...">    
+        @endif
+        
+        <div class="carousel-caption d-none d-md-block">
+                <h5>
+                    <span>{{ ($c->judul) }}</span>
+                </h5>
+                <a href="#lihatsemualoker" class="btn btn-slider">
+                  Lihat Semua Loker
+              </a>
+                <div>
                 </div>
-            </div>
-          </div>
-          @endforeach
-
         </div>
+      </div>
+      @endforeach
+
+    </div>
 
         <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -52,18 +50,6 @@
       <div class="col-lg-5 col-md-4">
         <h1 class="mb-2 mb-md-0">Lowongan Pekerjaan</h1>
       </div>
-      <div class="col-lg-7 col-md-8">
-        <div class="row gy-2">
-          <div class="col-lg-5 col-sm-6">
-          </div>
-          <div class="col-lg-7 col-sm-6">
-            <div class="input-group">
-              <input type="text" class="form-control pe-5 rounded" placeholder="Search the blog...">
-              <i class="bx bx-search position-absolute top-50 end-0 translate-middle-y me-3 zindex-5 fs-lg"></i>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- Item -->
@@ -78,7 +64,7 @@
             <h3 class="h4">
               <a href="/detaillowonganpekerjaan/{{ $l->id }}">{{ $l->judul }} | {{ $l->nama_perusahaan }}</a>
             </h3>
-            <p>Tellus sagittis dolor pellentesque vel porttitor magna aliquet arcu. Interdum risus mauris pulvinar et vel. Morbi tellus, scelerisque vel metus. Scelerisque arcu egestas ac commodo, ac nibh. Pretium ac elit sed nulla nec.</p>
+            {{-- <p>Tellus sagittis dolor pellentesque vel porttitor magna aliquet arcu. Interdum risus mauris pulvinar et vel. Morbi tellus, scelerisque vel metus. Scelerisque arcu egestas ac commodo, ac nibh. Pretium ac elit sed nulla nec.</p> --}}
           </div>
         </div>
       </div>
@@ -148,7 +134,5 @@
             </li>
           </ul>
         </nav> --}}
-      </section>
-</div>
 
 @endsection

@@ -6,8 +6,6 @@
 
 <section class="container pt-1">
     <div class="row">
-
-
       <!-- Sidebar (User info + Account menu) -->
       <aside class="col-lg-3 col-md-4 border-end pb-5 mt-n5">
         <div class="position-sticky top-0">
@@ -23,21 +21,17 @@
             </div>
             <h2 class="h5 mb-1">Riwayat Organisasi</h2>
             <div class="flex-row align-items-center">
-                  <img src="{{ asset('jikatidadada/user.png') }}" class="rounded-circle me-3" width="48" alt="Avatar">
-                  <img src="{{ asset('jikatidadada/user.png') }}" class="rounded-circle me-3" width="48" alt="Avatar">
-                  <img src="{{ asset('jikatidadada/user.png') }}" class="rounded-circle me-3" width="48" alt="Avatar">
+
+                  <img src="{{ asset($orgUser->organisasi->logo) }}" class="rounded-circle me-3" width="48" alt="Avatar">
               </div>
               <div class="flex-row align-items-center">
-                <p>2020-2021</p>
+                <p>{{ $orgUser->organisasi->organisasi }}</p>
             </div>
-
             <h2 class="h5 mb-1">Prestasi Selama Sekolah</h2>
             <li class="mb-3"> Juara 1 Lomba Agustus</li>
-            
           </div>
         </div>
       </aside>
-
 
       <!-- Account details -->
       <div class="col-md-8 offset-lg-1 pb-5 mb-2 mb-lg-4 pt-md-5 mt-n3 mt-md-0">

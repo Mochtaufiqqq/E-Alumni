@@ -1,4 +1,5 @@
 @extends('layouts.admin.master')
+
 @section('title','Tambah Caroussel')
 
 
@@ -106,4 +107,6 @@
     </div>
 </div>
 </div>
+
+
 @endsection

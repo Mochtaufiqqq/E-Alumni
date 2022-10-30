@@ -11,29 +11,24 @@
         <div class="carousel-inner">
 
             @foreach ($carousel as $key => $c)
-            
-          <div class="carousel-item {{ $key == 0 ? 'active':'' }}">
+          <div class="carousel-item {{ $key == 0 ? 'active':'' }}" style="background-color: rgba(45,51,57,0.95);">
             @if ($c->foto)
-            <img src="{{ asset($c->foto) }}" class="d-block w-100" alt="...">    
+            <img src="{{ asset($c->foto) }}" class="d-block w-100 bg-dark opacity-60" alt="...">    
             @endif
             
             <div class="carousel-caption d-none d-md-block">
-                <div class="custom-carousel-content">
-                    <h1 style="margin-bottom :30">
-                        <span>{{ ($c->judul) }}</span>
-                    </h1>
-                    <div>
-                        <a href="#lihatsemuaalumni" class="btn btn-slider" style="margin-bottom: 50%">
-                            Lihat Semua Alumni
-                        </a>
-                    </div>
-                </div>
-            </div>
+              <h5>
+                  <span class="animated bounceInDown" style="color: white">{{ ($c->judul) }}</span>
+              </h5>
+                <a href="#lihatsemuaalumni" class="btn btn-slider">
+                  Lihat Semua Alumni
+              </a>
           </div>
-          @endforeach
-
         </div>
-
+        @endforeach
+        
+      </div>
+      
         <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -42,7 +37,7 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </button>
-      </div>
+</div>
 </div>
 
 
@@ -77,20 +72,58 @@
 <section id="lihatsemuaalumni" class="container-fluid pt-lg-5 pb-5 mb-2 mb-md-4 mb-lg-5">
 
   
-
+  
     <h2 class="h2 text-center pb-md-1 mb-1 mb-sm-3">Alumni SMKS MAHAPUTRA CERDAS UTAMA</h2>
-    <div class="text-center mb-5" id="">
-        <a href="/semuaalumni" class="btn btn-outline-secondary">Semua</a>
-        <a href="{{ route('angkatan1') }}" class="btn btn-outline-secondary">Angkatan 1</a>
-        <a href="{{ route('angkatan2') }}" class="btn btn-outline-secondary">Angkatan 2</a>
-        <a href="{{ route('angkatan3') }}" class="btn btn-outline-secondary">Angkatan 3</a>
-        <a href="{{ route('angkatan4') }}" class="btn btn-outline-secondary">Angkatan 4</a>
-    </div>
-    <div class="row">
-        @foreach ($user as $u)
+    
+      <ul class="nav nav-tabs justify-content-center mb-lg-2 mb-4 pb-lg-2" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a href="/semuaalumni" class="btn nav-link text-nowrap">
+            <i class="bx bxs-graduation fs-xl opacity-60 me-2"></i>
+            Semua
+          </a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a href="{{ route('angkatan1') }}" class="btn nav-link text-nowrap">
+            <i class="bx bxs-graduation fs-xl opacity-60 me-2"></i>
+            Angkatan 1
+          </a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a href="{{ route('angkatan2') }}" class="btn nav-link text-nowrap">
+            <i class="bx bxs-graduation fs-xl opacity-60 me-2"></i>
+            Angkatan 2
+          </a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a href="{{ route('angkatan3') }}" class="btn nav-link text-nowrap">
+            <i class="bx bxs-graduation fs-xl opacity-60 me-2"></i>
+            Angkatan 3
+          </a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a href="{{ route('angkatan4') }}" class="btn nav-link text-nowrap">
+            <i class="bx bxs-graduation fs-xl opacity-60 me-2"></i>
+            Angkatan 4
+          </a>
+        </li>
+      </ul>
+
+      <div class="text-center">
+        <form class="input-group">
+          <input type="text" placeholder="Cari data..." class="form-control form-control-sm rounded-3">
+          <button type="submit" class="btn btn-icon btn-sm btn-primary rounded-3 ms-3">
+            <i class="bx bx-search"></i>
+          </button>
+        </form>
+      </div>
+
+
+        
 
         <!-- Item -->
-        <div class="col-5 col-md-6 col-sm-6 col-xs-12 col-lg-3">
+        <div class="row row-cols-1 row-cols-md-3 g-4 pt-2 pt-md-4 pb-lg-2">
+          @foreach ($user as $u)
+        <div class="col">
             <div class="card card-body d-flex flex-row align-items-center card-hover bg-light border-0">
                 @if ($u->foto_profile == null)
                 <img src="{{ asset('/default/user.png') }}" class="d-block rounded-circle" width="50" height="50" alt="user">
@@ -100,7 +133,7 @@
 
                 <div class="ps-4">
                     <h5 class="fw-sm fs-lg mb-1">{{ $u->nama }}</h5>
-                    <p class="fs-sm mb-3">{{ $u->thn_lulus }}</p>
+                    <p class="fs-sm mb-3">Tahun lulus: {{ $u->thn_lulus }}</p>
                     {{-- <p class="fs-sm mb-3">{{ $u->thn_lulus }}</p> --}}
                     <div class="d-flex">
                         <a href="/detailalumni/{{ $u->id }}" class="btn btn-outline-secondary
@@ -110,8 +143,7 @@
             </div>
         </div>
         @endforeach
-    </div>
+      </div>
 </section>
-
 
 @endsection

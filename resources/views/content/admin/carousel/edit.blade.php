@@ -38,7 +38,27 @@
                                 <div class="mb-3 input-group-solid">
                                     <label class="form-label">Halaman</label>
                                     <select name="halaman" id="" class="form-select form-control" required autofocus>
-                                        <option selected disabled>Pilih Halaman</option>
+                                        <option selected value="{{ old('halaman',$carousel->halaman) }}">
+                                            @if ($carousel->halaman == 0)
+                                                Alumni
+                                            @elseif($carousel->halaman == 1)
+                                                Berita
+                                             @elseif($carousel->halaman == 2)
+                                                Organisasi
+                                                @elseif($carousel->halaman == 3)
+                                                Publikasi Loker
+                                                @elseif($carousel->halaman == 4)
+                                                Loker
+                                                @elseif($carousel->halaman == 5)
+                                                Tentang Kami
+                                                @elseif($carousel->halaman == 6)
+                                                Dashboard
+                                                @elseif($carousel->halaman == 7)
+                                                Register
+                                                @elseif($carousel->halaman == 8)
+                                                Login
+                                            @endif
+                                        </option>
                                         <option value="0">Alumni</option>
                                         <option value="1">Berita</option>
                                         <option value="2">Organisasi</option>
@@ -71,7 +91,7 @@
                                 <div class="mb-3 m-form__group">
                                     <label class="form-label">Isi</label>
                                     <div class="input-group">
-                                        <textarea class="form-control" name="isi" id="" cols="30" rows="10"></textarea>
+                                        <textarea class="form-control" name="isi" id="" cols="30" rows="10">{{ old('isi', $carousel->isi) }}</textarea>
                                     </div>
                                     @error('isi')
                                     <div class="invalid-feedback">

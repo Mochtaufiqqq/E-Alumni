@@ -17,8 +17,6 @@ use App\Http\Controllers\CarouselController;
 
 // this route guest for user
 Route::get('/',[AlumniController::class,'dashboarduser']);
-//dokumentasi
-Route::get('/dokumentasi',[UserController::class,'dokumentasi']);
 //organisasi
 Route::get('/organisasi', [OrganisasiController::class, 'index']);
 Route::get('/organisasi/detail/{organisasi}', [OrganisasiController::class, 'details']);
@@ -146,6 +144,7 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
 Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
 
     Route::get('/semuaalumni', [UserController::class, 'semuaalumni'])->name('semuaalumni');
+    Route::get('/cari',[AlumniController::class,'searchuser']);
     Route::get('/semuaalumni/angkatan1', [UserController::class, 'angkatan1'])->name('angkatan1');
     Route::get('/semuaalumni/angkatan2', [UserController::class, 'angkatan2'])->name('angkatan2');
     Route::get('/semuaalumni/angkatan3', [UserController::class, 'angkatan3'])->name('angkatan3');

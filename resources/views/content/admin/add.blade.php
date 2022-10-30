@@ -37,20 +37,6 @@
                             <form action="/tambahuser" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3 m-form__group">
-                                    <label class="form-label" for="image">Foto Profile</label>
-
-                                    <img class="img-preview img-fluid mb-3">
-                                    <input class="form-control @error('foto_profile') is-invalid @enderror" type="file"
-                                        name="foto_profile" id="image" placeholder="foto_profile" required autofocus
-                                        onchange="previewImage()">
-
-                                    @error('foto_profile')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 m-form__group">
                                     <label class="form-label">NISN</label>
                                     <div class="input-group">
                                         <input class="form-control @error('nisn') is-invalid @enderror" type="text"
@@ -91,11 +77,9 @@
                                 <div class="mb-3">
                                     <label class="form-label">Alamat</label>
                                     <div class="input-group">
-                                        <input class="form-control @error('alamat') is-invalid @enderror" name="alamat"
-                                            type="text" aria-label="Amount (to the nearest dollar)" placeholder="Alamat"
-                                            required autofocus>
+                                        <textarea class="form-control" name="alamat" id="" cols="30" rows="10" placeholder="alamat"></textarea>
                                     </div>
-                                    @error('email')
+                                    @error('alamat')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -128,19 +112,6 @@
                                         <option value="2015">2015</option>
                                     </select>
                                     @error('thn_lulus')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 input-group-square">
-                                    <label class="form-label">Role</label>
-                                    <select name="role" id="" class="form-select form-control" required autofocus>
-                                        <option selected>Pilih Role</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">User</option>
-                                    </select>
-                                    @error('role')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>

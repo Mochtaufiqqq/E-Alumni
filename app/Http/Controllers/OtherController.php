@@ -12,10 +12,11 @@ class OtherController extends Controller
 
     public function index (){
         $logo = Logo::all();
+        $lg = Logo::where('isi','TRACER STUDY')->first()->get();
         $fvicon = FavIcon::first();
         $icon = FavIcon::all();
         return view('content.admin.faviconlogo',[
-        ],compact('fvicon','icon','logo'));
+        ],compact('fvicon','icon','logo','lg'));
     }
 
     // For favicon

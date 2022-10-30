@@ -152,12 +152,16 @@ class UserController extends Controller
 
         $logo = Logo::first();
         $fvicon = FavIcon::first();
+        $sosmed = Sosmed::where('user_id' , $user->id)->first();
+        $org = Organisasi::all();
+        $orgUser = Organisasiuser::with('organisasi')->where('user_id', $user->id)->first();
+        $ro = Organisasi::with('user')->first();
         return view('content.user.detail_alumni',[
            
             'user' => $user,
             'fvicon' => $fvicon,
             'logo'  => $logo 
-        ]);
+        ],compact('sosmed','orgUser'));
     }
 
     public function profile(User $user)
@@ -193,7 +197,7 @@ class UserController extends Controller
         }
 
         User::where('id', $user->id)->update($validatedData);
-        return redirect('/profile')->with('success', 'Berhasil mengubah!');
+        return redirect('/profile')->with('success', 'Foto profil berhasil ditambahkan !');
     }
 
     public function addnamapanggilan(Request $request, User $user)
@@ -203,7 +207,7 @@ class UserController extends Controller
         ]);
 
         User::where('id', $user->id)->update($validatedData);
-        return redirect('/profile')->with('success', 'Berhasil mengubah!');
+        return redirect('/profile')->with('success', 'Nama panggilan berhasil ditambahkan !');
 
     }
 
@@ -319,7 +323,7 @@ class UserController extends Controller
         ]);
 
         User::where('id', $user->id)->update($validatedData);
-        return redirect('/profile')->with('success', 'Berhasil mengubah!');
+        return redirect('/profile')->with('success', 'Karya berhasil ditambahkan!');
     }
     
     public function addorganisasi(Request $request)
@@ -336,7 +340,7 @@ class UserController extends Controller
         ]);
         
         
-        return redirect('/profile')->with('success', 'Berhasil mengubah!');
+        return redirect('/profile')->with('success', 'Organisasi berhasil ditambahkan!');
         
     }
     public function editorganisasi(Request $request, )
@@ -349,7 +353,7 @@ class UserController extends Controller
         ]);
         
         
-        return redirect('/profile')->with('success', 'Berhasil mengubah!');
+        return redirect('/profile')->with('success', 'Organisasi berhasil diubah!');
         
     }
     
@@ -360,7 +364,7 @@ class UserController extends Controller
         ]);
     
         User::where('id', $user->id)->update($validatedData);
-        return redirect('/profile')->with('success', 'Berhasil mengubah!');
+        return redirect('/profile')->with('success', 'Keahlian berhasil ditambahkan!');
     }
 
     public function addfotokegiatan(User $user, Request $request)

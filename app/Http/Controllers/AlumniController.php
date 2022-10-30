@@ -8,6 +8,7 @@ use App\Models\Berita;
 use App\Models\Carousel;
 use App\Models\FavIcon;
 use App\Models\Lowongan_Kerja;
+use App\Models\Sosmed;
 use App\Models\Organisasi;
 use App\Models\TentangKami;
 use Illuminate\Http\Request;
@@ -22,12 +23,13 @@ class AlumniController extends Controller
 {
 
     public function dashboarduser(){
+        $lokers = Lowongan_Kerja::latest()->first();
         $beritas = Berita::all();
         $logo = Logo::first();
         $carousel = Carousel::where('halaman','6')->get();
         $fvicon = FavIcon::first();
         return view('content.user.dashboard',[
-        ],compact('carousel','fvicon','logo', 'beritas'));
+        ],compact('carousel','fvicon','logo', 'beritas','lokers'));
 
     }
 
@@ -42,7 +44,7 @@ class AlumniController extends Controller
             'chart_type' => 'bar',
         ];
 
-        $logo = Logo::where('id','=','2');
+        $logo = Logo::where('isi','=','TRACER STUDY')->get();
         $beritas = Berita::latest()->get();
         $organisasi = Riwayat_organisasi::all();
         $totalactive = User::where('role_id','=','2')->where('status','=','1')->get();
@@ -125,15 +127,13 @@ class AlumniController extends Controller
 
     public function store(Request $request) {
         $validatedData = $request->validate([
-            'foto_profile' => 'required|mimes:jpg,png,jpeg|max:5000',
             'nisn' => 'required|unique:users',
             'nama' => 'required',
             'alamat' => 'required',
             'jurusan'  => 'required',
             'thn_lulus'  => 'required',
-            'email' => 'required|min:8|unique:users',
-            'role' => 'required',
-            'password' => 'required',
+            'email' => 'required',
+            'password' => 'required|min:3',
         ]);
 
             $fileName = time().$request->file('foto_profile')->getClientOriginalName();
@@ -156,14 +156,14 @@ class AlumniController extends Controller
 
      public function update(Request $request , User $user) {
         $validatedData = $request->validate([
-            'foto_profile' => 'image|mimes:jpg,png,jpeg|max:5000',
-            'nisn'      => 'required',
-            'nama'        => 'required',
+            'nisn' => 'required',
+            'nama' => 'required',
+            'alamat' => 'required',
+            'jurusan'  => 'required',
             'thn_lulus'  => 'required',
-            'jurusan'    => 'required',
-            'alamat'     => 'required',
-            'email'     => 'required',
-            'password'   => 'required|min:8',
+            'email' => 'required',
+            'password' => 'min:8',
+            // 'confirmation' => 'required|same:password',
         ]);
 
         if($request->file()) {
@@ -186,11 +186,13 @@ class AlumniController extends Controller
      }
      public function detailuser(User $users) {
         $fvicon = FavIcon::first();
+        $sosmed = Sosmed::where('user_id' , $users->id)->first();
         return view('content.admin.detailuser',[
-           'fvicon' => $fvicon,
-            'users' => $users
-        ]);
+            'users' => $users,
+            'sosmed' => $sosmed
+        ],compact('fvicon'));
     }
+
 
     public function reportpdfuser(){
         $fvicon = FavIcon::first();
@@ -223,5 +225,19 @@ class AlumniController extends Controller
     public function showDokumentasi(){
         $users = User::where('role_id', 2)->latest()->get();
         return view ('content.admin.show',compact('users'));
+    }
+
+    public function searchuser(Request $request){
+        $logo = Logo::first();
+        $fvicon = FavIcon::first();
+        $carousel = Carousel::where('halaman','0')->get();
+        $search = $request->search;
+
+        $user = User::where('role_id','=','2')->where('status','=','1')->where('nama','like',"%".$search."%")
+        ->get();
+
+        return view ('content.user.semuaalumni',[
+            'user' => $user
+        ],compact('logo','fvicon','carousel'));
     }
 }
