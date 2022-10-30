@@ -745,12 +745,12 @@
                         <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/addorganisasi" method="POST">
                             @csrf
                             @method('put')
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <div class="alert alert-primary alert-dismissible fade show" role="alert">
                                     <span class='fw-bold'>Perhatikan</span> Kosongkan jika hanya memiliki 1 organisasi/Eskul
                                     <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
                                 <label class="form-label" for="email1">organisasi</label>
                                 <select id="country" class="form-select form-select-lg" required
@@ -788,12 +788,12 @@
                         <form class="tab-pane fade show active" autocomplete="off" id="signin" action="/editorganisasi" method="POST">
                             @csrf
                             @method('put')
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <div class="alert alert-primary alert-dismissible fade show" role="alert">
                                     <span class='fw-bold'>Perhatikan</span> Kosongkan jika hanya memiliki 1 organisasi/Eskul
                                     <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">organisasi</label>
                                 <select id="country" class="form-select form-select-lg" required
