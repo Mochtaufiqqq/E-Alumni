@@ -97,9 +97,13 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     //organisasi admin
 
     Route::get('/organisasi/show', [OrganisasiController::class, 'show']);
-    Route::get('/organisasi/edit', [OrganisasiController::class, 'edit']);
+    Route::get('/organisasi/edit/{id}', [OrganisasiController::class, 'edit']);
     Route::get('/organisasi/add', [OrganisasiController::class, 'tambah']);
     Route::post('/organisasi/store', [OrganisasiController::class, 'store']);
+    Route::post('/organisasi/update/{id}', [OrganisasiController::class, 'update']);
+    Route::post('/organisasi/addadminorganisasi', [OrganisasiController::class, 'addadminorganisasi']);
+
+
 
     // loker
     Route::get('/lokershow',[LokerController::class,'showloker']);
@@ -129,14 +133,14 @@ Route::group(['middleware' => ['auth', 'OnlyAdmin']], function(){
     Route::put('/carousel/update/{carousel}',[CarouselController::class,'updatecarousel']);
     
 
-    Route::prefix('organisasi')->group(function(){ 
-        Route::get('/show', [OrganisasiController::class, 'show']);
-        Route::get('/add', [OrganisasiController::class, 'tambah']);
-        Route::post('/store', [OrganisasiController::class, 'store']);
-        Route::get('/edit/{id}', [OrganisasiController::class, 'edit']);
-        Route::post('/update/{id}', [OrganisasiController::class, 'update']);
-        Route::post('/addadminorganisasi', [OrganisasiController::class, 'addadminorganisasi']);
-    });
+    // Route::prefix('organisasi')->group(function(){ 
+    //     Route::get('/show', [OrganisasiController::class, 'show']);
+    //     Route::get('/add', [OrganisasiController::class, 'tambah']);
+    //     Route::post('/store', [OrganisasiController::class, 'store']);
+    //     Route::get('/edit/{id}', [OrganisasiController::class, 'edit']);
+    //     Route::post('/update/{id}', [OrganisasiController::class, 'update']);
+    //     Route::post('/addadminorganisasi', [OrganisasiController::class, 'addadminorganisasi']);
+    // });
 
 });
 
@@ -155,22 +159,25 @@ Route::group(['middleware' => ['auth', 'OnlyAlumni']], function(){
     Route::get('/profile', [UserController::class, 'profile']);
     Route::put('/updateprofile/{user}',[UserController::class,'settingprofileuser']);
     Route::put('/addnamapanggilan/{user}',[UserController::class,'addnamapanggilan']);
+    Route::put('/notlp/{user}',[UserController::class,'notlp']);
     Route::put('/addkarya/{user}',[UserController::class,'addkarya']);
     Route::put('/editkarya/{user}',[UserController::class,'addkarya']);
     Route::put('/addkeahlian/{user}',[UserController::class,'addkeahlian']);
     Route::put('/addfotokegiatan/{user}',[UserController::class,'addfotokegiatan']);
     Route::put('/addsosmed',[UserController::class,'addsosmed']);
+    Route::put('/editsosmed',[UserController::class,'editsosmed']);
+    Route::put('/addprestasi',[UserController::class,'addprestasi']);
+    Route::put('/editprestasi',[UserController::class,'editprestasi']);
     Route::put('/addorganisasi',[UserController::class,'addorganisasi']);
     Route::put('/editorganisasi',[UserController::class,'editorganisasi']);
-    Route::put('/editsosmed',[UserController::class,'editsosmed']);
     Route::put('/addpendidikan',[UserController::class,'addpendidikan']);
     Route::put('/editpendidikan',[UserController::class,'editpendidikan']);
     Route::put('/addpekerjaan/{user}',[UserController::class,'addpekerjaan']);
 
 
      // kesan & pesan
-     Route::post('/addkesanpesan',[UserController::class,'addkesanpesan']);
-     Route::put('/editkesanpesan{kesanpesan}',[UserController::class,'editkesanpesan']);
+     Route::put('/addkesan',[UserController::class,'addkesanpesan']);
+     Route::put('/editkesan',[UserController::class,'editkesanpesan']);
 
     
 

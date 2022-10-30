@@ -85,9 +85,9 @@
     
     <div class="row">
         <!-- Testimonial: Style 1 -->
-        @foreach ($dtkesanpesan as $k)
+        @foreach ($kesan as $k)
 
-
+        {{-- @dd($kesan) --}}
         <div class="col-5 col-md-6 col-sm-6 col-xs-12 col-lg-3">
             <figure class="card h-100 position-relative border-0 shadow-sm pt-4 mt-4">
                 <span

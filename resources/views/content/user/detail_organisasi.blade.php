@@ -30,5 +30,20 @@
       <div class="text-center">
         <img src="{{ $organisasi->foto_struktur }}" alt="">
       </div>
+  </section>
+
+    <section class="container-fluid pt-lg-2 pb-5 mb-2 mb-md-4 mb-lg-5">
+      <h2 class="text-center">Dokumentasi</h2>
+    <div class="gallery row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 px-5 mb-5" data-video="true">
+    <!-- Item -->
+    @foreach (explode('|', $organisasi->dokumentasi) as $img)
+        <div class="col-4">
+            <a href="/storage/{{ $img }}" class="gallery-item rounded-3 width="200px" height="150px""
+                data-sub-html='<h6 class="fs-sm text-light">Gallery image caption</h6>'>
+                <img src="/storage/{{ $img }}" alt="Gallery thumbnail" width="200px" height="150px">
+                <div class="gallery-item-caption fs-sm fw-medium">Gallery image caption</div>
+            </a>
+        </div>
+    @endforeach
   </section>    
 @endsection

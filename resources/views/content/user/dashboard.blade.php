@@ -11,7 +11,6 @@
         <div class="carousel-inner">
 
             @foreach ($carousel as $key => $c)
-<<<<<<< HEAD
             
           <div class="carousel-item {{ $key == 0 ? 'active':'' }}" style="background-color: rgba(45,51,57,0.95);">
             @if ($c->foto)
@@ -19,15 +18,6 @@
             @endif
             
             <div class="carousel-caption d-none d-md-block">
-=======
-
-            <div class="carousel-item {{ $key == 0 ? 'active':'' }}">
-                @if ($c->foto)
-                <img src="{{ asset($c->foto) }}" class="d-block w-100" alt="...">
-                @endif
-
-                <div class="carousel-caption d-none d-md-block">
->>>>>>> 25700e88d9e9f312bd0fbde5ccbc8d9605c70540
                     <h5>
                         <span>{{ ($c->judul) }}</span>
                     </h5>
@@ -151,18 +141,18 @@
             <div class="col-8">
                 <div class="card-body py-5 pt-sm-0 ps-sm-4 pb-0 pb-sm-4">
                     <p
-                    class="badge fs-sm text-white bg-warning shadow-warning text-decoration-none mb-3">{{ $lokers->nama_perusahaan }}</p>
+                    class="badge fs-sm text-white bg-warning shadow-warning text-decoration-none mb-3">{{ $lokers->nama_perusahaan ?? 'tidak ada' }}</p>
                     <h3 class="h4">
-                        <a href="/lowonganpekerjaan">{{ $lokers->judul }}</a>
+                        <a href="/lowonganpekerjaan">{{ $lokers->judul ?? 'tidak ada'}}</a>
                     </h3>
-                    <p class="mb-4">{{ $lokers->deskripsi }}</p>
+                    <p class="mb-4">{{ $lokers->deskripsi ?? 'tidak ada'}}</p>
                     <div class="d-flex align-items-center text-muted">
                         <a href="/lowonganpekerjaan" class="btn btn-outline-primary">Lihat Selengkapnya</a>
                     </div>
                 </div>
             </div>
             <div class="col-4">
-                <div class="position-relative bg-position-center bg-repeat-0 bg-size-cover rounded-3" style="background-image: url({{ asset($lokers->foto) }}); min-height: 15rem;"></div>
+                <div class="position-relative bg-position-center bg-repeat-0 bg-size-cover rounded-3" style="background-image: url({{ asset($lokers->foto ?? 'tidak ada') }}); min-height: 15rem;"></div>
             </div>
         </div>
     </article>
