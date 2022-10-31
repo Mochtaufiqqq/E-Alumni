@@ -229,16 +229,12 @@ class AlumniController extends Controller
         $search = $request->search;
         $user = User::where('role_id','=','2')->where('status','=','1')->where('nama','like',"%".$search."%")
         ->get();
-        $count = count($user);
         
-        if($count == 0){
-            return 'data tidak ditemukan';
-        } else{
-            return view ('content.user.semuaalumni',[
-                'user' => $user
-            ],compact('logo','fvicon','carousel'));
+        return view ('content.user.semuaalumni',[
+        'user' => $user
+        ],compact('logo','fvicon','carousel'));
 
-        }
+        
         
     }
 }

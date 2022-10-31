@@ -26,7 +26,6 @@
                 </div>
             </div>
             @endforeach
-
         </div>
 
         <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
@@ -130,19 +129,19 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 pb-xl-3">
       <div class="col text-center border-end">
         <h3 class="h5 mb-3">Angkatan 1</h3>
-        <div class="sta card-body fs-lg fw-semibold text-center" data-max="400">0</div>
+        <div class="sta card-body fs-lg fw-semibold text-center" data-max="1293">0</div>
       </div>
       <div class="col text-center border-end">
         <h3 class="h5 mb-3">Angkatan 2</h3>
-        <div class="sta card-body fs-lg fw-semibold text-center" data-max="213">0</div>
+        <div class="sta card-body fs-lg fw-semibold text-center" data-max="2000">0</div>
       </div>
       <div class="col text-center border-end">
         <h3 class="h5 mb-3">Angkatan 3</h3>
-        <div class="sta card-body fs-lg fw-semibold text-center" data-max="125">0</div>
+        <div class="sta card-body fs-lg fw-semibold text-center" data-max="987">0</div>
       </div>
       <div class="col text-center border-end">
         <h3 class="h5 mb-3">Angkatan 4</h3>
-        <div class="sta card-body fs-lg fw-semibold text-center" data-max="300">0</div>
+        <div class="sta card-body fs-lg fw-semibold text-center" data-max="514">0</div>
       </div>
     </div>
   </section>

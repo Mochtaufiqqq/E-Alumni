@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('organisasi_id');
             $table->string('periode')->nullable();
             // $table->string('organisasi');
-            $table->string('dokumentasi')->nullable();
+            $table->longText('dokumentasi')->nullable();
             $table->string('logo')->nullable();
             $table->text('deskripsi');
             $table->string('foto_struktur');

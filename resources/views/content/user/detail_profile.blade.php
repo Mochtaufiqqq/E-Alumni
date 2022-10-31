@@ -449,7 +449,7 @@
                                 <label class="form-label" for="email1">Tahun Mulai</label>
                                 <select id="country" class="form-select form-select-lg" required
                                     name="tahun_mulai_univ">
-                                    <option selected>Pilih Tahun Lulus</option>
+                                    <option selected disabled>Pilih Tahun Mulai</option>
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
                                     <option value="2017">2017</option>
@@ -468,7 +468,8 @@
                                 <label class="form-label" for="email1">Tahun Akhir</label>
                                 <select id="country" class="form-select form-select-lg" required
                                     name="tahun_akhir_univ">
-                                    <option value="Belum selesai">Belum selesai</option>
+                                    <option selected disabled>Pilih tahun akhir</option>
+                                    <option value="Belum Selesai">Belum Selesai</option>
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
                                     <option value="2017">2017</option>
@@ -492,6 +493,7 @@
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Mulai</label>
                                 <select id="country" class="form-select form-select-lg" required name="tahun_mulai_smk">
+                                    <option selected disabled>Pilih Tahun Mulai</option>
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
                                     <option value="2017">2017</option>
@@ -509,6 +511,7 @@
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Akhir</label>
                                 <select id="country" class="form-select form-select-lg" required name="tahun_akhir_smk">
+                                    <option selected disabled>Pilih Tahun Akhir</option>
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
                                     <option value="2017">2017</option>
@@ -532,6 +535,7 @@
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Mulai</label>
                                 <select id="country" class="form-select form-select-lg" required name="tahun_mulai_smp">
+                                    <option selected disabled>Pilih Tahun Mulai</option>
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
                                     <option value="2017">2017</option>
@@ -549,6 +553,7 @@
                             <div class="col mb-3">
                                 <label class="form-label" for="email1">Tahun Akhir</label>
                                 <select id="country" class="form-select form-select-lg" required name="tahun_akhir_smp">
+                                    <option selected disabled>Pilih Tahun Akhir</option>
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
                                     <option value="2017">2017</option>
