@@ -9,12 +9,17 @@ class Riwayat_prestasi extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id_prestasi'];
+    // protected $guarded = ['id_prestasi'];
     protected $primaryKey = 'id';
     protected $table = 'riwayat_prestasi';
+    protected $fillable = [
+        'nama_prestasi',
+        'thn_prestasi',
+        'user_id'
+    ];
 
     public function prestasi()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }

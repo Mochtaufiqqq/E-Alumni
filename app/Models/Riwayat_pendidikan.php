@@ -35,4 +35,9 @@ class Riwayat_pendidikan extends Model
     {
         return $this->belongsTo(Jenjang::class);
     }
+
+    public function KesanPesan()
+    {
+        return $this->hasMany(KesanPesan::class);
+    }
 }
