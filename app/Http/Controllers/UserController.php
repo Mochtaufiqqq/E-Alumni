@@ -44,44 +44,41 @@ class UserController extends Controller
         ],compact('beritas','logo'));
     }
 
-    public function kesanpesan(){
+    public function kesanpesan(User $user){
         $logo = Logo::first();
         $fvicon = FavIcon::first();
-        $dtkesanpesan = KesanPesan::all();
+        $kesan = KesanPesan::with('user')->get();
+        // $riwayat = Riwayat_pendidikan::all();
         // $kesanpesan = KesanPesan::where('user_id', auth()->user()->id)->first();
         return view('content.user.showkesanpesan',[
             // 'kesanpesan' => KesanPesan::all(),
             // 'user' => User::all(),
             
-        ], compact('fvicon','logo','dtkesanpesan'));
+        ], compact('fvicon','logo','kesan'));
     }
 
     public function addkesanpesan(Request $request){
 
         KesanPesan::with('user');
-        $validatedData = $request->validate([
-            'isi' => 'required',
 
+        KesanPesan::create([
+            'isi' => $request->isi,
+            'user_id' => Auth()->User()->id,
         ]);
 
-        $validatedData["user_id"] = auth()->user()->id;
-        KesanPesan::create($validatedData);
-
-        return redirect('/kesanpesan')->with('success' ,'Berhasil menambahkan kesan & pesan');
+        return redirect('/profile')->with('success' ,'Berhasil menambahkan kesan & pesan');
 
     }
 
-    public function editkesanpesan(KesanPesan $kesanpesan, Request $request){
+    public function editkesanpesan(Request $request, User $user){
         KesanPesan::with('user');
-        $validatedData = $request->validate([
-            'isi' => 'required',
 
+        // $validatedData["user_id"] = auth()->user()->id;
+        KesanPesan::where('id', $user->id)->update([
+            'isi' => $request->isi
         ]);
 
-        $validatedData["user_id"] = auth()->user()->id;
-        KesanPesan::where('id', $kesanpesan->id)->update($validatedData);
-
-        return redirect('/kesanpesan')->with('success' ,'Berhasil mengubah kesan & pesan');
+        return redirect('/profile')->with('success' ,'Berhasil mengubah kesan & pesan');
         
     }
 
@@ -162,7 +159,7 @@ class UserController extends Controller
             'user' => $user,
             'fvicon' => $fvicon,
             'logo'  => $logo 
-        ],compact('sosmed','orgUser', 'organisasi'));
+        ],compact('sosmed','orgUser'));
     }
 
     public function profile(User $user)
@@ -172,17 +169,19 @@ class UserController extends Controller
         $logo = Logo::first();
         $user = Auth::user();
         $org = Organisasi::all();
-        $orgUser = Organisasiuser::with('organisasi')->where('user_id', Auth()->User()->id)->first();
+        $orgUser = Organisasiuser::with('organisasi')->where('user_id', $user->id)->first();
         $jab = Jabatan::all();
+        $kesan = KesanPesan::with('user')->where('user_id', Auth()->User()->id)->first();
         $riwayat = Riwayat_organisasi::all();
         $ro = Organisasi::with('user')->first();
         $sosmed = Sosmed::where('user_id', Auth()->User()->id)->first();
+        $prestasi = Riwayat_prestasi::where('user_id', Auth()->User()->id)->first();
         $rp = Riwayat_pendidikan::where('user_id', Auth()->User()->id)->first();
         // dd($orgUser);
         return view('content.user.detail_profile',[
             'user' => $user,
             'sosmed' => $sosmed
-        ],compact('user', 'sosmed','fvicon', 'rp', 'logo', 'jab', 'org', 'ro', 'riwayat', 'orgUser'));
+        ],compact('user', 'sosmed','fvicon', 'rp', 'logo', 'jab', 'org', 'ro', 'riwayat', 'orgUser', 'prestasi', 'kesan'));
     }
 
     public function settingprofileuser(Request $request, User $user){
@@ -384,5 +383,42 @@ class UserController extends Controller
         ]);   
 
         return redirect('/profile')->with('success','Foto Kegiatan berhasil ditambahkan');
+    }
+
+    public function notlp(Request $request,  User $user)
+    {
+        $validatedData = $request->validate([
+            'no_tlp' => 'required'
+        ]);
+        User::where('id', $user->id)->update($validatedData);
+        
+        return redirect('/profile')->with('success','No tlp berhasil di ubah berhasil ditambahkan');
+    }
+
+    public function addprestasi(Request $request) {
+
+        Riwayat_prestasi::with('user');
+        
+       $request["user_id"] = auth()->user()->id;
+       Riwayat_prestasi::create([
+        'nama_prestasi'=> $request->nama_prestasi,
+        'thn_prestasi' => $request->thn_prestasi,
+        'user_id' => auth()->user()->id
+       ]);
+
+       return redirect('/profile')->with('success', 'Berhasil Menambahkan Prestasi!');
+    }
+
+    public function editprestasi(Request $request) {
+
+        Riwayat_prestasi::with('user');
+
+       $request["user_id"] = auth()->user()->id;
+       Riwayat_prestasi::where('user_id', Auth()->User()->id)->update([
+        'nama_prestasi'=> $request->nama_prestasi,
+        'thn_prestasi' => $request->thn_prestasi,
+       ]);
+
+       return redirect('/profile')->with('success', 'Berhasil Mengubah Prestasi!');
     }
 }

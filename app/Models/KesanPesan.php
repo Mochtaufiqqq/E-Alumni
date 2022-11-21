@@ -10,12 +10,17 @@ class KesanPesan extends Model
     use HasFactory;
     protected $table = 'kesan_pesans';
     protected $primaryKey = 'id';
-    protected $fillable = ['user_id','isi'];
+    protected $fillable = ['user_id','isi', 'riwayat_pendidikan_id'];
     // protected $guarded = ['user_id'];
 
 
     public function user ()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function riwayat_pendidikan ()
+    {
+        return $this->belongsTo(Riwayat_pendidikan::class);
     }
 }

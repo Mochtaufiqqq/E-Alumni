@@ -10,11 +10,9 @@
         <div class="row">
             <div class="col-sm-6">
 
-                <h3>Detail Lowongan Kerja</h3>
+                <h3>Detail Berita</h3>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/lowongankerja">Semua Lowongan Kerja</a></li>
-                    <li class="breadcrumb-item"> <a href="/Develover"></a>Develover </li>
-                    <li class="breadcrumb-item active"><a href="/Designer"></a>Designer </li>
+                    <li class="breadcrumb-item"><a href="/semuaberita">Semua Berita</a></li>
                 </ol>
             </div>
         </div>
@@ -28,7 +26,7 @@
             <div class="col-xl">
                 <div class="card">
                     <div class="card-header pb-0">
-                        <h4 class="card-title mb-0">Detail Loker</h4>
+                        <h4 class="card-title mb-0">Detail Berita</h4>
                         <div class="card-options"><a class="card-options-collapse" href="#"
                                 data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a
                                 class="card-options-remove" href="#" data-bs-toggle="card-remove"><i
@@ -39,11 +37,30 @@
                             <div class="profile-title">
                                 <div class="media">
                                     <div class="media-body">
-                                        <h3 class="mb-1 f-20 txt-primary">Judul : {{ $kerjas->judul }}</h3>
-                                        <div class="mb-3">
+                                        <h5>Thumbnail</h5>
+                                        <img src="{{ asset($berita->foto) }}" alt="" width="400">
+                                        <p>Kategori: {{ $berita->kategori }}</p>
+                                        <p class="text-muted">Tanggal: {{ $berita->tgl }}</p>
+                                        <h3>Judul: {{ $berita->judul }}</h3>
+                                        <p>Isi: {{ $berita->isi }}</p>
+
+                                        <h5>Dokumentasi</h5>
+                                        
+                                        
+                                            <div class="col">
+
+                                        @foreach (explode('|', $berita->dokumentasi) as $img)
+
+                                        <img src="/storage/{{ $img }}" alt="" width="400">
+                                            
+                                        @endforeach
+
+                                    
+                                    </div>
+                                        {{-- <div class="mb-3">
                                           <h6 class="form-label txt-primary">Nama Perusahaan : {{ $kerjas->nama_perusahaan }}</h6>
-                                      </div>
-                                      <div class="mb-3">
+                                      </div> --}}
+                                      {{-- <div class="mb-3">
                                           <h6 class="form-label txt-primary">Di publish pada : {{ $kerjas->tgl }}</h6>
                                       </div>
                                       <div class="mb-3">
@@ -51,13 +68,13 @@
                                     </div>
                                     <div class="mb-3">
                                       <img src="{{ asset($kerjas->foto) }}" width="250" alt="" >
-                                    </div>
+                                    </div> --}}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     <div class="form-footer text-end">
-                        <a href="{{ url('/lowongankerja') }}"><button class="btn btn-primary btn-block">Kembali</button></a>
+                        <a href="{{ url('/semuaberita') }}"><button class="btn btn-primary btn-block">Kembali</button></a>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Tracer Alumni | Register</title>
+    <title>Tracer Study | Register</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Silicon - Multipurpose Technology Bootstrap Template">
@@ -354,7 +354,7 @@
                 </div>
                 <div class="w-100 align-self-end">
                     <p class="nav d-block fs-xs text-center text-xl-start pb-2 mb-0">
-                        &copy; All rights reserved. Made by
+                        &copy; Smks Mahaputra Cerdas Utama 2022. Designed by
                         <a class="nav-link d-inline-block p-0" href="https://createx.studio/" target="_blank"
                             rel="noopener">Createx Studio</a>
                     </p>
@@ -363,7 +363,7 @@
 
             <!-- Background -->
             <div class="position-absolute top-0 end-0 w-50 h-100 bg-position-center bg-repeat-0 bg-size-cover d-none d-xl-block"
-                style="background-image: url({{ asset('imagenull/ttgkami.jpg') }});"></div>
+                style="background-image: url({{ asset($carousel->foto) }});"></div>
         </section>
     </main>
 

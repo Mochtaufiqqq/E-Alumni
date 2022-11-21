@@ -34,12 +34,7 @@
             </li>
             <li class="dropdown"><a class="nav-link menu-title link-nav" href="/organisasi/show"><i data-feather="users"></i><span>Organisasi</span></a>
             </li>
-            <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="book"></i><span>Berita</span></a>
-              <ul class="nav-submenu menu-content">
-                <li><a href="/semuaberita">Semua Berita</a></li>
-                <li><a href="#">Prestasi</a></li>
-                <li><a href="#">Event</a></li>
-              </ul>
+            <li class="dropdown"><a class="nav-link menu-title link-nav" href="/semuaberita"><i data-feather="book"></i><span>Berita</span></a>
             </li>
             <li class="dropdown"><a class="nav-link menu-title link-nav" href="/lowongankerja"><i data-feather="briefcase"></i><span>Lowongan Kerja</span></a>
             </li>

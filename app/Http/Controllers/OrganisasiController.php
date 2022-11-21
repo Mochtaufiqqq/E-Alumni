@@ -54,7 +54,7 @@ class OrganisasiController extends Controller
     {
         // dd($request->all());
         $validatedData = $request->validate([
-            // 'organisasi' => 'required',
+            // 'organisasi_id' => 'required',
             'images.*' => 'required|mimes:jpg,png,jpeg|max:5000',
             'logo' => 'required|mimes:jpg,png,jpeg|max:5000',
             'deskripsi' => 'required'
@@ -84,7 +84,7 @@ class OrganisasiController extends Controller
             'logo' => $logo,
             'deskripsi' =>$request->deskripsi,
             'foto_struktur' =>$foto_struktur,
-            'organisasi_id' =>$request->organisasi
+            'organisasi_id' => $request->organisasi
         ]);     
         
         // dd($request);
@@ -152,14 +152,14 @@ class OrganisasiController extends Controller
         }
 
         Riwayat_organisasi::where('id', $id)->update([
-            // 'id_organisasi' => $request->organisasi
-            'organisasi_id' => $request->organisasi,
             'dokumentasi' => implode('|', $image),
             'logo' =>$logo,
             'deskripsi' =>$request->deskripsi,
-            'foto_struktur'=>$foto_struktur
+            'foto_struktur'=>$foto_struktur,
+            'organisasi_id' => $request->organisasi,
         ]);
         
+        // dd($request);
         return redirect('/organisasi/show')->with('berhasil', 'berhasil mengubah');
     }
     

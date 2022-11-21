@@ -71,13 +71,13 @@
                                       @endif
                                      </td>
                                     <td>{{ $b->judul }}</td>
-                                    <td>{{ $b->tgl }}</td>
                                     <td>{{ Str::limit($b->isi,200) }}</td>
+                                    <td>{{ $b->tgl }}</td>
                                     <td>{{ $b->kategori }}</td>
                                     <td>
-                                      <a href="/detailberita/{{ $b->id }}" class="btn btn-primary"><i data-feather="eye"></i></a>
-                                      <a href="/editberita/{{ $b->id }}" class="btn btn-warning"><i data-feather="edit"></i></a>
-                                      <a href="/hapusberita/{{ $b->id }}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHpsBerita{{ $b->id }}"><i data-feather="trash-2"></i></a>
+                                      <a href="/detailberita/{{ $b->id }}" class="btn btn-primary mb-3"><i data-feather="eye"></i></a>
+                                      <a href="/editberita/{{ $b->id }}" class="btn btn-warning mb-3"><i data-feather="edit"></i></a>
+                                      <a href="/hapusberita/{{ $b->id }}" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#modalHpsBerita{{ $b->id }}"><i data-feather="trash-2"></i></a>
                                        
                                          {{-- modal delete --}}
                                          <div class="modal fade" id="modalHpsBerita{{ $b->id }}" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

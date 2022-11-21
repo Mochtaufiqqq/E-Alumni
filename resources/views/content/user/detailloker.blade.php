@@ -20,6 +20,10 @@
             <div class="fs-sm border-end pe-3 me-3 mb-2">{{ $loker->tgl }}</div>
           </div>
           <p class="mb-0 fs-lg">{{ $loker->deskripsi }}</p>
+
+          <div class="mt-3">
+            <a href="/lowonganpekerjaan" style="text-decoration: none"><h6 class="text-md text-primary"> << Kembali ke halaman sebelumnya</h1></a>
+        </div>
         </div>
       </div>
     </div>

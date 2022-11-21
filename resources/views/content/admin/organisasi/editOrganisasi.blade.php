@@ -28,7 +28,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header pb-0">
-                    <h5>Tambah Berita</h5>
+                    <h5>Edit Organisasi</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -61,7 +61,7 @@
                                 <div class="mb-3 input-group">
                                     <select type="text" class="form-control" placeholder="" id="organisasi" aria-label="Example text with button addon" aria-describedby="button-addon1" name="organisasi">
                                         @foreach ($org as $item)
-                                            <option value="{{ $item->id ?? 'none'}}">{{ $item->organisasi ?? 'none'}}</option>
+                                            <option value="{{ $item->id }}">{{ $item->organisasi }}</option>
                                         @endforeach
                                     </select>
                                     <button class="btn btn-outline-primary" type="button" id="button-addon1" data-bs-toggle="modal" data-bs-target="#modalOrganisasi">tambah organisasi</button>

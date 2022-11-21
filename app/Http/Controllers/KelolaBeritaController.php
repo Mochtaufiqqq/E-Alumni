@@ -116,6 +116,14 @@ class KelolaBeritaController extends Controller
         return redirect('/semuaberita')->with('success', 'Data berhasil dihapus!');
      }
 
+     public function detailberitaadm(Berita $berita){
+        $fvicon = FavIcon::first();
+
+        return view ('content.admin.detailberita',[
+            'berita' => $berita
+        ],compact('fvicon'));
+     }
+
      public function detailberita($id) {
         $fvicon = FavIcon::first();
         $logo = Logo::first();
@@ -136,14 +144,6 @@ class KelolaBeritaController extends Controller
         return redirect('/semuaberita');
     }
 
-    // public function fotoPosting(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'images' => 'required'
-    //     ]);
-
-        
-    // }
 
 
 }

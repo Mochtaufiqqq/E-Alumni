@@ -40,7 +40,7 @@
                                     <label class="form-label">NISN</label>
                                     <div class="input-group">
                                         <input class="form-control @error('nisn') is-invalid @enderror" type="text"
-                                            name="nisn" placeholder="NISN" required autofocus>
+                                            name="nisn" placeholder="NISN" required>
                                     </div>
                                     @error('nisn')
                                     <div class="invalid-feedback">
@@ -53,7 +53,7 @@
                                     <div class="input-group">
                                         <input class="form-control @error('nama') is-invalid @enderror" type="text"
                                             name="nama" placeholder="Nama Lengkap" aria-label="Recipient's username"
-                                            required autofocus>
+                                            required>
                                     </div>
                                     @error('nama')
                                     <div class="invalid-feedback">

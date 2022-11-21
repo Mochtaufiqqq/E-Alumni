@@ -13,8 +13,6 @@
                 <h3>Tambah Data Berita</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/semuaberita">Semua Berita</a></li>
-                    <li class="breadcrumb-item"> <a href="#"></a> Prestasi</li>
-                    <li class="breadcrumb-item"><a href="#"></a> Event</li>
                 </ol>
             </div>
 
@@ -39,7 +37,7 @@
                                 <div class="mb-3 m-form__group">
                                     <label class="form-label" for="image">Judul</label>
                                     <input class="form-control @error('judul') is-invalid @enderror" type="text"
-                                        name="judul" id="judl" placeholder="Judul" required autofocus
+                                        name="judul" placeholder="Judul" required autofocus
                                         onchange="previewImage()">
 
                                     @error('judul')
@@ -51,8 +49,7 @@
                                 <div class="mb-3 m-form__group">
                                     <label class="form-label">Isi</label>
                                     <div class="input-group">
-                                        <input class="form-control @error('isi') is-invalid @enderror" type="text"
-                                            name="isi" placeholder="Isi" required autofocus>
+                                        <textarea class="form-control" name="isi" id="" cols="30" rows="10"></textarea>
                                     </div>
                                     @error('isi')
                                     <div class="invalid-feedback">
@@ -76,7 +73,7 @@
                                 <div class="mb-3 input-group-solid">
                                     <label class="form-label">Kategori</label>
                                     <select name="kategori" id="" class="form-select form-control" required autofocus>
-                                        <option selected>Pilih Kategori</option>
+                                        <option selected disabled>Pilih Kategori</option>
                                         <option value="Prestasi">Prestasi</option>
                                         <option value="Event">Event</option>
                                     </select>
@@ -89,7 +86,7 @@
                                 <div class="mb-3 input-group-solid">
                                     <label class="form-label" for="image">Foto</label>
                                     <input class="form-control @error('foto') is-invalid @enderror" type="file"
-                                        name="foto" id="foto" placeholder="foto" required autofocus
+                                        name="foto" id="image" placeholder="foto" required autofocus
                                         onchange="previewImage()">
 
                             @error('foto')
@@ -100,8 +97,6 @@
                         </div>
                         <div class="mb-3 input-group-solid">
                             <label class="form-label" for="image">Foto Kegiatan (Dokumentasi)</label>
-
-                                    <img class="img-preview img-fluid mb-3">
                                     <input class="form-control @error('foto') is-invalid @enderror" type="file"
                                         name="images[]" placeholder="foto" multiple required autofocus
                                         onchange="previewImage()">
@@ -124,4 +119,5 @@
     </div>
 </div>
 </div>
+
 @endsection

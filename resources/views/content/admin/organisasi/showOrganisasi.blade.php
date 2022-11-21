@@ -59,7 +59,7 @@
                                         <td>
                                           <img src="{{ asset($o->logo) }}" alt="" style="max-width: 100px; max-height: 80px;">
                                          </td>
-                                        <td>{{ $o->organisasi->organisasi ?? '-' }}</td>
+                                        <td>{{ $o->organisasi->organisasi }}</td>
 
                                         <td>@foreach (explode('|', $o->dokumentasi) as $img)
                                             <img src="/storage/{{ $img }}" alt="" width="50" height="50">
