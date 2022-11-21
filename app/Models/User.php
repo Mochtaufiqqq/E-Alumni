@@ -28,6 +28,7 @@ class User extends Authenticatable
         'foto_kegiatan',
         'nisn',
         'nama',
+        'no_tlp',
         'nama_panggilan',
         'pekerjaan',
         'karya',

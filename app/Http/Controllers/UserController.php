@@ -148,20 +148,21 @@ class UserController extends Controller
         return view ('content.user.semuaalumni',compact('user','fvicon','carousel','logo'));
     }
 
-    public function detailalumni(User $user) {
+    public function detailalumni(User $user, Request $id) {
 
         $logo = Logo::first();
         $fvicon = FavIcon::first();
         $sosmed = Sosmed::where('user_id' , $user->id)->first();
         $org = Organisasi::all();
-        $orgUser = Organisasiuser::with('organisasi')->where('user_id', $user->id)->first();
+        $organisasi = Riwayat_organisasi::with('user')->where('user_id', $id)->first();
+        $orgUser = Organisasiuser::with(['organisasi', 'riwayat_organisasi'])->where('user_id', $user->id)->first();
         $ro = Organisasi::with('user')->first();
         return view('content.user.detail_alumni',[
            
             'user' => $user,
             'fvicon' => $fvicon,
             'logo'  => $logo 
-        ],compact('sosmed','orgUser'));
+        ],compact('sosmed','orgUser', 'organisasi'));
     }
 
     public function profile(User $user)

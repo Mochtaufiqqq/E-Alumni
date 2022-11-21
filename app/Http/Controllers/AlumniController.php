@@ -46,15 +46,16 @@ class AlumniController extends Controller
 
         $logo = Logo::where('isi','=','TRACER STUDY')->get();
         $beritas = Berita::latest()->get();
-        $organisasi = Riwayat_organisasi::all();
+        $organisasi = Riwayat_organisasi::with('organisasi')->get();
         $totalactive = User::where('role_id','=','2')->where('status','=','1')->get();
         $totalnonactive = User::where('role_id','=','2')->where('status','=','0')->get();
         $chart1 = new LaravelChart($chart_options);
         $fvicon = Favicon::first();
         $lokers = Lowongan_Kerja::latest()->get();
+        $org = Organisasi::all();
 
         return view('content.admin.dashboard',
-        compact('chart1','totalactive','totalnonactive','organisasi','beritas','fvicon','logo','lokers'));
+        compact('chart1','totalactive','totalnonactive','organisasi','beritas','fvicon','logo','lokers', 'org'));
     }
 
     public function showdtalumni(){
@@ -136,9 +137,9 @@ class AlumniController extends Controller
             'password' => 'required|min:3',
         ]);
 
-            $fileName = time().$request->file('foto_profile')->getClientOriginalName();
-            $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
-            $validatedData['foto_profile'] = '/storage/' .$path;
+            // $fileName = time().$request->file('foto_profile')->getClientOriginalName();
+            // $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
+            // $validatedData['foto_profile'] = '/storage/' .$path;
             $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);
@@ -166,12 +167,12 @@ class AlumniController extends Controller
             // 'confirmation' => 'required|same:password',
         ]);
 
-        if($request->file()) {
-            $fileName = time().$request->file('foto_profile')->getClientOriginalName();
-            $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
-         $validatedData['foto_profile'] = '/storage/' .$path;
+        // if($request->file()) {
+        //     $fileName = time().$request->file('foto_profile')->getClientOriginalName();
+        //     $path = $request->file('foto_profile')->storeAs('profile-images2', $fileName. 'public');
+        //  $validatedData['foto_profile'] = '/storage/' .$path;
 
-        }
+        // }
         
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::where('id', $user->id)->update($validatedData);

@@ -50,10 +50,10 @@
                                         
                                       <input class="updateimg" type="file" name="img" onchange="readURL(this,0)">
                                       <div class="media-body mt-0">
-                                        <h5><span class="first_name_0">{{ $users->nama }} (</span>
+                                        <h5><span class="first_name_0">{{ $users->nama }} </span>
                                             @if ($users->nama_panggilan == true)
                                             <span class="last_name_0">{{ $users->nama_panggilan }}
-                                        )</span>
+                                        ()</span>
                                             @endif
                                             
                                         </h5>

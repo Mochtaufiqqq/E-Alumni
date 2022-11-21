@@ -19,32 +19,6 @@
 <!-- Page content -->
 <section class="container mt-4 mb-lg-5 pt-lg-2 pb-5">
 
-        <!-- Page title + Layout switcher + Search form -->
-        <div class="row align-items-end gy-3 mb-4 pb-lg-3 pb-1">
-          <div class="col-lg-4 col-md-4">
-            <h1 class="mb-2 mb-md-0">Berita</h1>
-          </div>
-          <div class="col-lg-8 col-md-8">
-            <div class="row gy-2">
-              <div class="col-lg-5 col-sm-6">
-                <div class="d-flex align-items-center">
-                  <select class="form-select">
-                    <option>Semua Kategori</option>
-                    <option value="prestasi">Prestasi</option>
-                    <option value="event">Event</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-lg-7 col-sm-6">
-                <div class="input-group">
-                  <input type="text" class="form-control pe-5 rounded" placeholder="Cari Berita...">
-                  <i class="bx bx-search position-absolute top-50 end-0 translate-middle-y me-3 zindex-5 fs-lg"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Item -->
         
         @foreach ($beritas as $b)

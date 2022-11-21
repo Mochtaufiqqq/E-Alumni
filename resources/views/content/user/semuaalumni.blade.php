@@ -75,7 +75,7 @@
   
     <h2 class="h2 text-center pb-md-1 mb-1 mb-sm-3">Alumni SMKS MAHAPUTRA CERDAS UTAMA</h2>
     
-      <ul class="nav nav-tabs justify-content-center mb-lg-2 mb-4 pb-lg-2" role="tablist">
+      {{-- <ul class="nav nav-tabs justify-content-center mb-lg-2 mb-4 pb-lg-2" role="tablist">
         <li class="nav-item" role="presentation">
           <a href="/semuaalumni" class="btn nav-link text-nowrap">
             <i class="bx bxs-graduation fs-xl opacity-60 me-2"></i>
@@ -106,7 +106,7 @@
             Angkatan 4
           </a>
         </li>
-      </ul>
+      </ul> --}}
 
       <div class="text-center">
         <form class="input-group">

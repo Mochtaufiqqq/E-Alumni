@@ -269,7 +269,7 @@
                                     <select name="thn_lulus" id="thn_lulus"
                                         class="form-select form-control @error('thn_lulus') is-invalid @enderror "
                                         required>
-                                        <option selected disabled>Pilih Tahun Lulus</option>
+                                        <option selected disabled value="{{ old('thn_lulus') }}">Pilih Tahun Lulus</option>
                                         <option value="2022">2022</option>
                                         <option value="2021">2021</option>
                                         <option value="2020">2020</option>
@@ -300,7 +300,7 @@
                                         class="form-control form-control-lg @error('no_tlp') is-invalid @enderror"
                                         required value="{{ old('no_tlp') }}">
                                     <div class="invalid-feedback position-absolute start-0 top-100">Mohon Masukkan
-                                        No telp!</div>
+                                    No telp!</div>
                                 </div>
                             </div>
                             <div class="col-12-sm-6">

@@ -22,7 +22,7 @@
             <h2 class="h5 mb-1">Riwayat Organisasi</h2>
             <div class="flex-row align-items-center">
 
-                  <img src="{{ asset($orgUser->organisasi->logo) }}" class="rounded-circle me-3" width="48" alt="Avatar">
+                  <img src="{{ asset($organisasi->logo) }}" class="rounded-circle me-3" width="48" alt="Avatar">
               </div>
               <div class="flex-row align-items-center">
                 <p>{{ $orgUser->organisasi->organisasi }}</p>
